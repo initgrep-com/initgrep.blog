@@ -1,0 +1,30 @@
+<!-- banner content -->
+  <div id="index-banner" class="parallax-container grey lighten-2 ">
+    <div class="section no-pad-bot">
+        <div class="row">
+        	<div class="col s12 m2 black darken-1">
+        		<h5 class="grey-text center-align bold ">Recent Posts</h5>
+        	</div>
+        </div>
+	        <div class="container">
+				<div class="row">
+					
+                   {% for page in site.posts%}
+					<div class="col s12 m4 recent-article">
+						<div class="icon-block">
+							<div class="author-text">
+								<h3 class="white-text ">{{page.author}}</h3>
+							</div>
+							<a href ="{{page.url}}" class="title head-text center black-text bold">{{page.title}}</a>
+
+							<p class="escript-text black-text border-bottom oswald-400">{{page.meta}}</p>
+							<span class="grey-text right date-text">{{page.date}}</span>
+						</div>
+					</div>
+                    
+					{% endfor %}}
+					</div>
+				</div>
+	    </div>
+   </div>
+    

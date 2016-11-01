@@ -1,0 +1,4 @@
+markdown: kramdown
+baseurl: /mylog
+exclude: ['README.md']
+highlighter: rouge
