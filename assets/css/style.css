@@ -55,11 +55,12 @@ p {
 }
 
 .parallax-container {
-  min-height: 500px;
+
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
 }
+
 .post-container {
   min-height: 400px;
   line-height: 0;
@@ -79,7 +80,10 @@ p {
      text-align: none;
 
   }
-
+/*add all the content settings here for line height*/
+.content-text p, .content-text blockquote, .content-text em{
+    line-height: 2.8rem;
+}
 
 
 
@@ -160,7 +164,7 @@ div.author-text h3{
 div.recent-article div a.title{
   font-size: 2.5rem;
   display: block;
-  line-height: 2.28rem;
+  line-height: 2.7rem;
   margin-top: 1rem;
 
 }
@@ -172,6 +176,10 @@ div.recent-article div a.title{
 
 .escript-text{
   text-align: justify;
+}
+.meta-text{
+    font-size: 3rem;
+    line-height: .3rem;
 }
 
 ul.inline li{
@@ -187,16 +195,15 @@ ul.inline li a i{
 .post-head{
   font-size: 3rem;
 }
-.content{
-  font-size: 20px;
+.content p, .content blockquote, .content em{
+  font-size: 1.5rem;
 }
+    .content h1{font-size: 2.8rem;}
+     .content h2{font-size: 2.4rem;}
 }
 
 @media only screen and (max-width : 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%;
-  }
+
   #index-banner .section {
     top: 10%;
   }
