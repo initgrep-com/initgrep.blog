@@ -9,16 +9,16 @@
 	        <div class="container">
 				<div class="row">
 					
-                   {% for page in site.posts%}
+                   {% for page in site.posts limit:3 %}
 					<div class="col s12 m4 recent-article">
 						<div class="icon-block">
 							<div class="author-text">
-								<h3 class="white-text ">{{page.author}}</h3>
+								<h3 class="white-text ">{{page.initials | upcase}}</h3>
 							</div>
 							<a href ="{{site.baseurl}}{{page.url}}" class="title head-text center black-text bold">{{page.title}}</a>
 
 							<p class="escript-text black-text border-bottom oswald-400">{{page.meta}}</p>
-							<span class="grey-text right date-text">{{page.date}}</span>
+							<span class="grey-text right date-text">{{page.date | date: '%B %d, %Y'}}</span>
 						</div>
 					</div>
                     

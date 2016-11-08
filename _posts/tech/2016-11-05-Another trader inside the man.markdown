@@ -1,11 +1,12 @@
 ---
 layout: post
-bannercolor: "blue-grey"
-title:  "The revisited slogan of narcissim."
+bannercolor: "grey"
+title:  "began to flourish in 2013, according to a flurry of thinkpieces."
 date:   2016-10-31
-meta: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
-categories: social
-author: "irshad ahmad sheikh"
+meta: "This part of Tumblr is familiar to 19-year-old Gillian Andrews. She, like many other teens on the blogging website, has experienced mental illness."
+category: tech
+author: "sch. dekora"
+initials: sd
 imageURL: "assets/images/as.jpg"
 twitter: " "
 facebook: " "
@@ -13,7 +14,7 @@ github: " "
 
 ---
 
-## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
+### Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
 
 >Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
 

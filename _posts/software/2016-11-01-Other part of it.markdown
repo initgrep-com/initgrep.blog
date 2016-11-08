@@ -1,11 +1,12 @@
 ---
 layout: post
-bannercolor: "black"
-title:  "Tumblr’s Depression Connection"
+bannercolor: "grey"
+title:  "It became cool to define yourself by mental illness [on Tumblr]"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-categories: social
+category: software
 author: "irshad ahmad sheikh"
+initials: nm
 imageURL: "assets/images/as.jpg"
 twitter: " "
 facebook: " "
