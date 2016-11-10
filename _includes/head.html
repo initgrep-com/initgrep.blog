@@ -3,15 +3,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>shaykh's-log</title>
+        <title>{% if page.title %} {{ page.title}} . {% endif %} shaykh's-log</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/css/materialize.css"  media="screen,projection"/>
-      	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/css/style.css"  media="screen,projection"/>
-      
+      	<link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/css/main.css"  media="screen,projection"/>
     </head>
     <body>

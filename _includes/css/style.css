@@ -43,8 +43,8 @@ nav .brand-logo {
 nav .brand-logo {
   color: #444;
   font-family: 'Pacifico', cursive;
-    font-size: 40px;
-    z-index: 100;
+  font-size: 40px;
+  z-index: 100;
 }
 p {
   line-height: 2rem;
