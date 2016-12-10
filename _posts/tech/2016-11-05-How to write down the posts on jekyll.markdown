@@ -1,9 +1,9 @@
 ---
 layout: post
 bannercolor: "teal darken-2"
-title:  "How to start with jekyll"
+title:  "How to start with jekyll-To create a new post, all you need to do is create a file in the _posts directory."
 date:   2016-10-31
-meta: "check out how to write the blog posts using a jekyll template"
+meta: One of Jekyll’s best aspects is that it is “blog aware”. What does this mean, exactly? Well, simply put, it means that blogging is baked into Jekyll’s functionality. 
 category: tech
 author: "irshad ahmad sheikh"
 initials: ias

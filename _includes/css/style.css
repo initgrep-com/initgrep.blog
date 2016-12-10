@@ -4,10 +4,12 @@
  * the core Materialize files in the future
  *
  * Made By MaterializeCSS.com
- */
+*/
  @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
  @import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,700');
  @import url('https://fonts.googleapis.com/css?family=Pacifico');
+  
+ @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 
  .oswald-300{
   font-weight: 300;
@@ -33,6 +35,14 @@
 .pacifo{
     font-family: 'Pacifico', cursive;
 }
+.pt-sans{
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 400;
+}
+.pt-sans-bold{
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-weight: 700;
+}
 
 nav ul a,
 nav .brand-logo {
@@ -49,6 +59,8 @@ nav .brand-logo {
 p {
   line-height: 2rem;
 }
+
+
 
 .button-collapse {
   color: #26a69a;
@@ -85,6 +97,12 @@ p {
     line-height: 2.8rem;
 }
 
+  #index-banner{
+    min-height: 500px;
+  }
+  #check_nav{
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(0, 0, 0, 0.2);
+  }
 
 
   .user {
@@ -132,6 +150,32 @@ p {
  {
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
  } 
+ .border-bottom-dotted{
+   border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+ }
+  .margin-top-2{
+    margin-top: 2rem;
+  }
+  .margin-bot-2{
+    margin-bottom: 2rem;
+  }
+  .padding-top-2{
+    padding-top: 2rem;
+  }
+  .padding-bot-2{
+    padding-bottom: 2rem;
+  }
+  .padding-bot-1{
+    padding-bottom: 1rem;
+  }
+  .font-2{
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .font-4{
+    font-size: 4rem;
+
+  }
  .border-trl{
   border-top: 2px dashed #eeeeee;
   border-right: 2px dashed #eeeeee;
@@ -162,9 +206,10 @@ div.author-text h3{
     text-transform: uppercase;
 }
 div.recent-article div a.title{
-  font-size: 2.5rem;
+  font-size: 5rem;
+  letter-spacing: .05rem;
   display: block;
-  line-height: 2.7rem;
+  line-height: 4.5rem;
   margin-top: 1rem;
 
 }
@@ -175,7 +220,11 @@ div.recent-article div a.title{
 }
 .card-content{
   height: 200px;
-  overflow:hidden; text-overflow-multiline:ellipsis;
+  overflow:hidden; 
+
+}
+.card-content p{
+    font-size: 1.3rem;
 }
 
 
@@ -216,6 +265,18 @@ ul.inline li a i{
 }
     .content h1{font-size: 2.8rem;}
      .content h2{font-size: 2.4rem;}
+}
+
+div.recent-article div a.title{
+  font-size: 2.7rem;
+  line-height: 2.7rem;
+
+}
+div.recent-article div p{
+  font-size: 1.5rem;
+  line-height: 2rem;
+  letter-spacing: .05rem;
+
 }
 
 @media only screen and (max-width : 992px) {

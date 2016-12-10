@@ -1,16 +1,3 @@
+ {% include topPosts.html %}
 
-{% for post in site.posts %}
- <div class="col s12 m4">
-	          <div class="card left-align" >
-	            <div class="card-deck valign-wrapper {{post.bannercolor}}">
-
-	              <a class="card-title valign white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-	            </div>
-	            <div class="card-content">
-	              <p>{{post.meta}}</p>
-	            </div>
-	            
-	          </div>
-	        </div>
-
-{% endfor %}
+ {% include allPosts.html %}
