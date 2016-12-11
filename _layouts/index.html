@@ -1,11 +1,15 @@
 {% include head.html %}
 {% include nav.html %}
-{% include banner.html %}
+{% include index/banner.html %}
    <!-- catagories content -->
 <div class="section">
 
-	        {% include indexContent.html %}
+{% include index/topPosts.html %}
 
- </div> <!--container -->
+{% include index/allPosts.html %}
+{% include  fixedIcon.html %}
+
+
+</div> <!--container -->
 
 {% include footer.html %}
