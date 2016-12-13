@@ -114,16 +114,15 @@ p {
 
 
   .user {
-  display: inline-block;
-  width: 150px;
-  height: 150px;
+
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   border: 5px solid grey;
-  margin-left: 50%;
-  margin-top: 2rem;
+
 }
 
 

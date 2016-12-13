@@ -7,7 +7,7 @@
                    {% for page in site.categories.code limit:1 %}
                    <div class="row padding-top-2 padding-bot-1 border-bottom-dotted">
                    <span class="teal-text  pt-sans-bold">Recent in code</span>
-                    <span class="grey-text right pt-sans-bold">{{page.date | date: '%B %d, %Y'}}</span>
+                    <span class="grey-text right pt-sans-bold datetime">{{page.date | date: '%B %d, %Y'}}</span>
                     <span class="grey-text right pt-sans-bold" style="padding-right: 2rem;">{{page.author | uppercase}}</span>
                    </div>
                    <div class="row">

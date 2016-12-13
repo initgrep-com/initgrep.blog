@@ -7,7 +7,7 @@
                    {% for page in site.posts limit:1 %}
                    <div class="row padding-top-2 padding-bot-1 border-bottom-dotted">
                    <span class="teal-text  date-text">Recent Post</span>
-                   	<span class="grey-text right date-text">{{page.date | date: '%B %d, %Y'}}</span>
+                   	<span class="grey-text right date-text datetime">{{page.date | date: '%B %d, %Y'}}</span>
                    	<span class="grey-text right " style="padding-right: 2rem;">{{page.author | uppercase}}</span>
                    </div>
                    <div class="row">

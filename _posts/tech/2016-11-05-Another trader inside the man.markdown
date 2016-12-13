@@ -3,7 +3,7 @@ layout: post
 comments: true
 bannercolor: "grey"
 title:  "began to flourish in 2013, according to a flurry of thinkpieces."
-date:   2016-10-31
+date:   2012-10-12
 meta: "This part of Tumblr is familiar to 19-year-old Gillian Andrews. She, like many other teens on the blogging website, has experienced mental illness."
 category: tech
 author: "sch. dekora"

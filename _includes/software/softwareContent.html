@@ -24,7 +24,7 @@
       </div>
       <div class="row  ">
         <div class="col s12 m11 border-bottom-dotted">
-           <span class="grey-text right date-text">{{page.date | date: '%B %d, %Y'}}</span>
+           <span class="grey-text right date-text datetime">{{page.date | date: '%B %d, %Y'}}</span>
           <span class="grey-text left " style="padding-right: 2rem;">{{page.author | upcase}}</span>
 
         </div>
@@ -47,7 +47,7 @@
                 <p class="border-bottom-dotted">{{post.meta}}
                   <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
                 </p>
-                 <span class="grey-text right date-text padding-bot-1 padding-right-1">{{post.date | date: '%B %d, %Y'}}</span>
+                 <span class="grey-text right date-text padding-bot-1 padding-right-1 datetime">{{post.date | date: '%B %d, %Y'}}</span>
               </div>
               
             </div>

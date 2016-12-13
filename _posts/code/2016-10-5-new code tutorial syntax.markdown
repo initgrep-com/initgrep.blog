@@ -2,7 +2,7 @@
 layout: post
 bannercolor: "teal"
 title:  "new ways of coding"
-date:   2016-10-31
+date:   2016-10-31 12:15:00
 meta: "New ways of coding and best practices"
 category: code
 author: "irshad ahmad sheikh"

@@ -7,7 +7,7 @@
                    {% for page in site.categories.software limit:1 %}
                    <div class="row padding-top-2 padding-bot-1 border-bottom-dotted">
                    <span class="teal-text  date-text">Recent in Software</span>
-                    <span class="teal-text right pt-sans-bold">{{page.date | date: '%B %d, %Y'}}</span>
+                    <span class="teal-text right pt-sans-bold datetime">{{page.date | date: '%B %d, %Y'}}</span>
                     <span class="teal-text right pt-sans-bold" style="padding-right: 2rem;">{{page.author | uppercase}}</span>
                    </div>
                    <div class="row">
