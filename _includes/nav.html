@@ -4,24 +4,23 @@
   <li><a class="pt-sans-bold teal-text" href="{{site.baseurl}}/posts/tech">Tech<span class="badge new right">10</span></a></li>
   <li><a class="pt-sans-bold" href="{{site.baseurl}}/posts/software">Software <span class="badge new right">2</span> </a></li>
   <li><a class="pt-sans-bold" href="{{site.baseurl}}/posts/code">Code <span class="badge new right">6</span></a></li>
-  <li><a class="pt-sans-bold" href="#!"  >Fitness <span class="badge new right">1</span></a></li>
-  <li class="divider"></li>
-  <li><a href="#!">Others</a></li>
+  <li><a class="pt-sans-bold" href="{{site.baseurl}}/posts/fitness"  >Fitness <span class="badge new right">1</span></a></li>
 </ul>
 <div class="navbar-fixed" id="top">
     <nav class=" white lighten-2 border-bottom " id ="check_nav" role="navigation">
     <div class="nav-wrapper container">
 
-      <a id="logo-container" href="{{site.baseurl}}/" class="brand-logo teal-text hide-on-small-and-down">shaykh's-log</a>
+      <a id="logo-container" href="{{site.baseurl}}/" 
+      class="brand-logo  hide-on-small-and-down {% include navColorTheme.html %}">shaykh's-log</a>
       <ul class="right hide-on-med-and-down">
-      	<li><a class="teal-text pt-sans-bold" href="/about">About me</a></li>
-         <li><a class="dropdown-button teal-text pt-sans-bold" href="#!" data-activates="dropdown1">Posts<i class="material-icons right">more_vert</i></a></li>
+      	<li><a class="pt-sans-bold {% include navColorTheme.html %}" href="{{site.baseurl}}/about">About me</a></li>
+         <li><a class="dropdown-button  pt-sans-bold {% include navColorTheme.html %}" href="#!" data-activates="dropdown1">Posts<i class="material-icons right">more_vert</i></a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav ">
      
-        <li><a href="#">About me</a></li>
-        <li><a href="#!" >Posts</a></li>
+        <li><a href="#" class="{% include navColorTheme.html %}">About me</a></li>
+        <li><a href="#!" class="{% include navColorTheme.html %}">Posts</a></li>
         
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -29,3 +28,4 @@
     
   </nav>
 </div>
+

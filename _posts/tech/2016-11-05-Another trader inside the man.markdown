@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 bannercolor: "grey"
 title:  "began to flourish in 2013, according to a flurry of thinkpieces."
 date:   2016-10-31

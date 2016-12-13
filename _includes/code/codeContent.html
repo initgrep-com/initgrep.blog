@@ -1,16 +1,58 @@
+<div class="container" id="topPosts">
 
-{% for post in site.categories.code %}
- <div class="col s12 m4">
-	          <div class="card left-align" >
-	            <div class="card-deck valign-wrapper {{post.bannercolor}}">
+<div class="row">
 
-	              <a class="card-title valign white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-	            </div>
-	            <div class="card-content">
-	              <p>{{post.meta}}</p>
-	            </div>
-	            
-	          </div>
-	        </div>
+  <div class="col s12 m7"> <!--wraper on lleft -->
+   
+      <div class="pt-sans  border-bottom-dotted " style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
+        <h5 class="black-text darken-3 pt-sans-bold " style="font-size: 3rem;">Coding</h5>
+    </div>
 
-{% endfor %}
+    {% for page in site.categories.code %}
+  <div class="section ">
+
+    <div class="row">
+      <div class="col s12 m12 top-article">
+        <div class="icon-block">
+          <a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}</a>
+          <p class=" black-text margin-top-2 pt-sans font-2">{{page.meta}} 
+             <a href ="{{site.baseurl}}{{page.url}}" class="teal-text" > ... read more </a>
+          </p>
+        </div>
+      </div>
+      </div>
+      <div class="row  ">
+        <div class="col s12 m11 border-bottom-dotted">
+           <span class="grey-text right date-text">{{page.date | date: '%B %d, %Y'}}</span>
+          <span class="grey-text left " style="padding-right: 2rem;">{{page.author | upcase}}</span>
+
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+
+  </div><!--wraper on lleft -->
+    {% for post in site.categories.code  limit:1 %}
+    <div class="col s12 m5 margin-top-5">
+            <div class="card side-card " id="side-card" >
+              <div class="card-deck black  hoverable valign-wrapper">  
+                   <img class = "side-card-user valign center-align" src="{{site.baseurl}}/{{post.imageURL}}"> 
+
+                   <span class=" author white-text pt-sans ">{{post.author | upcase}}</span>     
+              </div>
+              <div class="side-card-content pt-sans grey lighten-3">
+                <a class="valign black-text pt-sans-bold"  href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+                <p class="border-bottom-dotted">{{post.meta}}
+                  <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
+                </p>
+                 <span class="grey-text right date-text padding-bot-1 padding-right-1">{{post.date | date: '%B %d, %Y'}}</span>
+              </div>
+              
+            </div>
+      </div>
+
+    {% endfor %}
+  </div>
+
+</div>

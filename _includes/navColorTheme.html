@@ -1,0 +1,11 @@
+{% if page.url == '/posts/tech/' %}
+  blue-grey-text
+{% elsif page.url == '/posts/software/' %}
+green-text
+{% elsif page.url == '/posts/code/' %}
+black-text
+{% elsif page.url == '/posts/fitness/' %}
+blue-grey-text darken-4
+{%else%}
+teal-text
+{% endif %}
