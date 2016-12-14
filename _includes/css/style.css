@@ -195,6 +195,9 @@ p {
  .border-bottom-dotted{
    border-bottom: 1px dashed rgba(255,255,255, 0.4);
  }
+ .border-bottom-dotted-b{
+   border-bottom: 1px dashed rgba(0, 0, 0, 0.09);
+ }
   .margin-top-2{
     margin-top: 2rem;
   } 
@@ -202,11 +205,14 @@ p {
 
     margin-top: 5rem;
   }
-  .margin-bot-2{
+  .row .col.padding-bot-2, .margin-bot-2{
     margin-bottom: 2rem;
   }
   .padding-top-2{
     padding-top: 2rem;
+  }
+  .row .col.padding-bot-1 , .padding-bot-1 {
+    padding-bottom: 1rem;
   }
   .padding-bot-2{
     padding-bottom: 2rem;

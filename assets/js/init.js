@@ -5,9 +5,9 @@
   	$(".dropdown-content").css("width","300px");
     $('.button-collapse').sideNav();
 
-    $('span.datetime').html(timeSince($("span.datetime").html()));
+    //$('span.datetime').html(timeSince($("span.datetime").html()));
 
-    console.log($('span.datetime').html());
+    
 
 	 
   }); // end of document ready

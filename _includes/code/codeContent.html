@@ -8,7 +8,7 @@
         <h5 class="black-text darken-3 pt-sans-bold " style="font-size: 3rem;">Coding</h5>
     </div>
 
-    {% for page in site.categories.code %}
+    {% for page in site.codeCollection %}
   <div class="section ">
 
     <div class="row">
@@ -22,9 +22,9 @@
       </div>
       </div>
       <div class="row  ">
-        <div class="col s12 m11 border-bottom-dotted">
-           <span class="grey-text right date-text datetime">{{page.date | date: '%B %d, %Y'}}</span>
-          <span class="grey-text left " style="padding-right: 2rem;">{{page.author | upcase}}</span>
+        <div class="col s12 m11 border-bottom-dotted-b" style="padding-bottom: 1rem;">
+           <span class="grey-text right pt-sans-bold datetime">{{page.date | date: '%B %d, %Y'}}</span>
+          <span class="grey-text left pt-sans-bold" style="padding-right: 2rem;">{{page.author | upcase}}</span>
 
         </div>
       </div>
@@ -33,7 +33,7 @@
 
 
   </div><!--wraper on lleft -->
-    {% for post in site.categories.code  limit:1 %}
+    {% for post in site.codeCollection  limit:1 %}
     <div class="col s12 m5 margin-top-5">
             <div class="card side-card " id="side-card" >
               <div class="card-deck black  hoverable valign-wrapper">  
@@ -46,7 +46,7 @@
                 <p class="border-bottom-dotted">{{post.meta}}
                   <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
                 </p>
-                 <span class="grey-text right date-text padding-bot-1 padding-right-1 datetime">{{post.date | date: '%B %d, %Y'}}</span>
+                 <span class="grey-text right pt-sans-bold padding-bot-1 padding-right-1 datetime">{{post.date | date: '%B %d, %Y'}}</span>
               </div>
               
             </div>

@@ -2,4 +2,32 @@ markdown: kramdown
 baseurl: /mylog
 exclude: ['README.md']
 highlighter: rouge
-permalink: pretty
+permalink: /:path
+
+
+#dir config
+
+
+#collections here
+
+collections:
+
+    codeCollection:
+          output: true
+          permalink: /codes/:path
+
+    softwareCollection:
+          output: true
+          permalink: /softwares/:path
+
+    techCollection:
+        output: true
+        permalink: /technology/:path
+
+    fitnessCollection:
+        output: true
+        permalink: /fitness/:path
+
+#plugins
+
+ 

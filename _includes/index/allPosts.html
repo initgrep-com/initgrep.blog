@@ -5,12 +5,17 @@
 
 	<div class="col s12 m12 pt-sans  border-bottom-dotted " 
 			style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-	<h5 class="teal-text darken-3  " style="font-size: 3rem;">Quite a while ago</h5>
+	<h5 class="teal-text darken-3 pacifo" style="font-size: 2rem;">All of them Together</h5>
 	</div>
 </div>
 
 <div class="row">
-{% for post in site.posts | limit:6 %}
+{% for collection in site.collections %}
+ 
+{% assign colsname  = collection.label  %}
+{% assign items = site.[colsname] | sort: 'date' | reverse %}
+
+{% for post in items %}
  <div class="col s12 m4">
 	          <div class="card hoverable" >
 	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
@@ -24,6 +29,7 @@
 	          </div>
 	        </div>
 
+{% endfor %}
 {% endfor %}
 
 </div>

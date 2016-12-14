@@ -4,7 +4,7 @@
       
           <div class="container ">
           
-                   {% for page in site.categories.tech limit:1 %}
+                   {% for page in site.techCollection limit:1 %}
                    <div class="row padding-top-2 padding-bot-1 border-bottom-dotted">
                    <span class="teal-text  pt-sans-bold">Recent in Technology</span>
                     <span class="blue-grey-text right pt-sans-bold datetime">{{page.date | date: '%B %d, %Y'}}</span>
