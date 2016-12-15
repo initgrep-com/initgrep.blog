@@ -42,6 +42,10 @@
 .pacifo{
     font-family: 'Pacifico', cursive;
 }
+.pacifo-L{
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+}
 .pt-sans{
   font-fam: 'PT Sans Narrow', sans-serif;
   font-weight: 400;
@@ -66,6 +70,18 @@ nav .brand-logo {
 p {
   line-height: 2rem;
 }
+
+.nav-wrapper a.side_menu{
+    margin-left: 5%;
+}
+.nav-wrapper a.side_menu i{
+  font-size: 30px;
+}
+.nav-wrapper ul.nav_menu{
+  margin-right: 10%;
+}
+
+
 
 
 
