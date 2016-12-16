@@ -47,7 +47,7 @@
     font-size: 2rem;
 }
 .pt-sans{
-  font-fam: 'PT Sans Narrow', sans-serif;
+  font-family: 'PT Sans Narrow', sans-serif;
   font-weight: 400;
 }
 .pt-sans-bold{
@@ -82,9 +82,6 @@ p {
 }
 
 
-
-
-
 .button-collapse {
   color: #26a69a;
 }
@@ -94,6 +91,10 @@ p {
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
+}
+
+#index-banner{
+  min-height: 500px;
 }
 
 .post-container {
@@ -115,14 +116,18 @@ p {
      text-align: none;
 
   }
+
+  .content h1 , .content h2{
+
+    font-family: 'PT Sans Narrow', 
+    sans-serif; font-weight: 700;
+  }
+ 
 /*add all the content settings here for line height*/
 .content-text p, .content-text blockquote, .content-text em{
     line-height: 2.8rem;
 }
 
-  #index-banner{
-    min-height: 500px;
-  }
   #check_nav, #side-card {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.14), 0 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 0 rgba(0, 0, 0, 0.2);
   }
@@ -131,14 +136,13 @@ p {
 
   .user {
 
-  width: 100px;
-  height: 100px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  border: 5px solid grey;
-
+  border: 0px solid black;
 }
 
 
@@ -216,6 +220,9 @@ p {
  }
   .margin-top-2{
     margin-top: 2rem;
+  } 
+   .margin-top-1{
+    margin-top: 1rem;
   } 
   .margin-top-5{
 
@@ -378,17 +385,59 @@ ul.inline li a i{
 
 
 
-@media only screen and (max-width : 768px) {
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
 
+footer.page-footer {
+  margin: 0;
+}
+
+
+
+@media only screen and (max-width : 360px) {
+
+.post-head{
+  font-size: 2rem;
+}
+.post-container {
+  min-height: 200px;
+}
+
+.content p, .content blockquote, .content em{
+  font-size: 1.2rem;
+}
+.content h1{font-size: 2.2rem; }
+.content h2{font-size: 1.7rem; }
+.content-text p, .content-text blockquote, .content-text em{
+  line-height: 1.8rem;
+}
+
+}
+@media only screen and (min-width : 361px) and (max-width : 768px){
 .post-head{
   font-size: 3rem;
 }
-.content p, .content blockquote, .content em{
-  font-size: 1.5rem;
+.post-container {
+  min-height: 300px;
 }
-.content h1{font-size: 2.8rem;}
- .content h2{font-size: 2.4rem;}
 
+.content p, .content blockquote, .content em{
+  font-size: 1.6rem;
+}
+.content h1{font-size: 3rem; }
+.content h2{font-size: 2.3rem; }
+.content-text p, .content-text blockquote, .content-text em{
+  line-height: 2.4rem;
+
+}
+
+}
+
+@media only screen and (max-width : 768px) {
 
 div.recent-article div a.title{
   font-size: 2rem;
@@ -422,16 +471,4 @@ nav .brand-logo {
     top: 0;
   }
 }
-
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-  font-size: inherit;
-}
-
-footer.page-footer {
-  margin: 0;
-}
-
 

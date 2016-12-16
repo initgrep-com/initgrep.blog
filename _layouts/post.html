@@ -1,79 +1,54 @@
 {% include head.html %}
 {% include nav.html %}
 
+
 <!-- banner content -->
 
-
-  <div id="index-banner" class="post-container valign-wrapper {{page.bannercolor}} lighten-2">
-
-	   <div class="container">
-	    <div class="row ">
-	    	<div class="col s12 12">
-	    		  <h1 class="valign post-head center white-text pt-sans-bold">{{page.title}}</h1>
-	    	</div>
-        <div class="col s12 m12 ">
-                
-                  <span class="grey-text left pt-sans-bold datetime">{{page.date | date: '%B %d, %Y'}}</span>
-                    <span class="grey-text right pt-sans-bold">{{page.author | uppercase}}</span>
-
-          
-            </div>
-        </div>
-    
+<div class="container padding-top-2 ">
+    <div class="row ">
+       <div class="col s6 m6 ">
+          <div class="col  m3 l2 hide-on-small-only ">
+            <img class="user " src="{{site.baseurl}}/assets/images/as.jpg">
+          </div>
+          <div class="col s12 m8 l4  margin-top-1">
+              <a  href="{{site.baseurl}}/" class="grey-text  pt-sans-bold ">{{page.author | uppercase}}</a><br/>
+              <a class="grey-text pt-sans-bold datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
+          </div>
+       </div>
+       <div class="col s6 m6 ">
+          <div class="col s12 m4 right  margin-top-2">
               
-
-        
-	    </div>
-	   </div>
-
-
-   <div class="section content">
-   		<div class="row">
-   			<div class="col s12 m3 l3 ">
-   				
-   			
-   			</div>
-
-   			<div class=" content-text col s12 m12 l7  "> {{ content }}</div>
-
-   	<div class="col s12 m12 l2 "></div>
-
-   </div>
- 
+              <a class="grey-text pt-sans-bold datetime" >{% include util/minRead.liquid content = content %} read</a>         
+          </div>
+       </div>
     </div>
+</div>
 
-<!-- post layout -->
-{% if page.comments %}
-
-
-
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-*/
-
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
- var PAGE_IDENTIFIER =  012121212;
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = '//shaykhslog-com.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                                
+<div  class="post-container valign-wrapper grey lighten-2">
+  <div class="container">
+    <div class="row ">
+    <div class="col s12 12 ">
+        <h1 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h1>
+    </div>
+    </div>
+  </div>
+</div>
 
 
-{% endif %} 
+<div class="section content ">
+  <div class="row">
+  <div class="col s12 m12 l3 ">
+  <!-- adding the collections title part here -->
+  </div>
+
+  <div class=" content-text col s10 m10 offset-m1 offset-s1 l6 "> {{ content }}</div>
+  <div class="col s12 m12 l3 "><!--empty for now--></div>
+  </div>
+
+</div>
 
 
 {% include footer.html %}
+
+
 

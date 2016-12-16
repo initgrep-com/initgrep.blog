@@ -14,7 +14,7 @@ github: " "
 
 ---
 
-## Transform your plain text into static websites and blogs.
+
 > One of Jekyll’s best aspects is that it is “blog aware”. What does this mean, exactly? Well, simply put, it means that blogging is baked into Jekyll’s functionality. If you write articles and publish them online, you can publish and maintain a blog simply by managing a folder of text-files on your computer. Compared to the hassle of configuring and maintaining databases and web-based CMS systems, this will be a welcome change!
 
 ###The Posts FolderPermalink
