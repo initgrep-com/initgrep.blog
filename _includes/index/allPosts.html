@@ -21,7 +21,7 @@
 	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
 
 	              <a class="card-title valign pt-sans white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}
-	              <span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content = post.content %} read</span></a>
+	              <span class="grey-text pt-sans-bold timeToRead" >{{ post.content | reading_time }} read</span></a>
 	            </div>
 	            <div class="card-content pt-sans">
 	              <p>{{post.meta}}</p>

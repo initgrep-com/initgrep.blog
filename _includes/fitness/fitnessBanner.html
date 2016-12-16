@@ -15,7 +15,7 @@
             <div class="icon-block">
 
               <a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  grey-text ">{{page.title}}
-                <span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content = page.content %} read</span>
+                <span class="grey-text pt-sans-bold timeToRead" >{{ page.content | reading_time }} read</span>
               </a>
 
               <p class=" grey-text margin-top-2 pt-sans font-2">{{page.meta}} 
