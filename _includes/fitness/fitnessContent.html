@@ -5,7 +5,7 @@
   <div class="col s12 m7"> <!--wraper on lleft -->
    
       <div class="pt-sans  border-bottom-dotted " style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-        <h5 class="blue-grey-text darken-4 pt-sans-bold " style="font-size: 3rem;">Health and Fitness</h5>
+        <h5 class="{% include navColorTheme.html %} pacifo-L " style="font-size: 3rem;">Health and Fitness</h5>
     </div>
     {% assign items = site.fitnessCollection | sort: 'date' | reverse %}
     {% for page in items %}
@@ -14,7 +14,8 @@
     <div class="row">
       <div class="col s12 m12 top-article">
         <div class="icon-block">
-          <a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}</a>
+          <a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}
+          <span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content = page.content %} read</span></a>
           <p class=" black-text margin-top-2 pt-sans font-2">{{page.meta}} 
              <a href ="{{site.baseurl}}{{page.url}}" class="teal-text" > ... read more </a>
           </p>
@@ -36,13 +37,14 @@
     {% for post in site.fitnessCollection  limit:1 %}
     <div class="col s12 m5 margin-top-5">
             <div class="card side-card " id="side-card" >
-              <div class="card-deck blue-grey darken-4 hoverable valign-wrapper">  
+              <div class="card-deck {% include util/sideColor.liquid %} darken-4 hoverable valign-wrapper">  
                    <img class = "side-card-user valign center-align" src="{{site.baseurl}}/{{post.imageURL}}"> 
 
                    <span class=" author white-text pt-sans ">{{post.author | upcase}}</span>     
               </div>
-              <div class="side-card-content pt-sans blue-grey  lighten-4">
-                <a class="valign blue-grey-text darken-4 pt-sans-bold"  href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+              <div class="side-card-content pt-sans {% include util/sideColor.liquid %} lighten-4">
+                <a class="valign blue-grey-text darken-4 pt-sans-bold"  href="{{site.baseurl}}{{post.url}}">{{post.title}}
+                <span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content = post.content %} read</span></a>
                 <p class="border-bottom-dotted">{{post.meta}}
                   <a href ="{{site.baseurl}}{{post.url}}" class="teal-text">... read more </a>
                 </p>

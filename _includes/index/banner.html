@@ -1,5 +1,5 @@
 <!-- banner content -->
-  <div id="index-banner" class=" {% include util/sideColor.liquid %} ">
+  <div id="index-banner" class=" grey lighten-4">
     <div class="section ">
       
 	        <div class="container ">
@@ -14,7 +14,9 @@
 					<div class="col s12 m12 recent-article">
 						<div class="icon-block">
 
-							<a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}</a>
+							<a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}
+							<span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content = page.content %} read</span>
+							</a>
 
 							<p class=" black-text margin-top-2 pt-sans font-2">{{page.meta}} 
 							 <a href ="{{site.baseurl}}{{page.url}}" class="teal-text" > ... read more </a>
