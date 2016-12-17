@@ -28,10 +28,3 @@ collections:
         output: true
         permalink: /fitness/:path
 
-#plugins
-gems:
-   - jekyll-mentions
-   - jemoji
-   - jekyll-redirect-from
-   - jekyll-sitemap
-   - jekyll-feed

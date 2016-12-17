@@ -1,11 +1,8 @@
 {% include head.html %}
 {% include nav.html %}
-{% include fitness/fitnessBanner.html %}
+{% include subHome/banner.html  currentCollection = site.fitnessCollection %}
    <!-- catagories content -->
 <div class="section">
-
-	       {% include fitness/fitnessContent.html %}
-
+  {% include subHome/content.html  currentCollection = site.fitnessCollection %}
  </div> <!--section -->
-
 {% include footer.html %}

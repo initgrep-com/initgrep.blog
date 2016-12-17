@@ -1,11 +1,9 @@
 {% include head.html %}
 {% include nav.html %}
-{% include software/softwareBanner.html %}
+
+{% include subHome/banner.html  currentCollection = site.softwareCollection %}
    <!-- catagories content -->
 <div class="section">
-
-	       {% include software/softwareContent.html %}
-
+  {% include subHome/content.html  currentCollection = site.softwareCollection %}
  </div> <!--section -->
-
 {% include footer.html %}

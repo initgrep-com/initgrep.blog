@@ -1,3 +1,4 @@
+{% assign collection = {{include.currentCollection}}%}
 
 <div class="container" id="topPosts">
 
@@ -6,18 +7,17 @@
   <div class="col s12 m7"> <!--wraper on lleft -->
    
       <div class="pt-sans  border-bottom-dotted " style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-        <h5 class="{% include navColorTheme.html %} pacifo-L  " style="font-size: 3rem;">Softwares</h5>
+        <h5 class="black-text darken-3 pt-sans-bold " style="font-size: 3rem;">Coding</h5>
     </div>
 
-    {% for page in site.softwareCollection %}
+    {% for page in collection %}
   <div class="section ">
 
     <div class="row">
       <div class="col s12 m12 top-article">
         <div class="icon-block">
           <a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}
-          <span class="grey-text pt-sans-bold timeToRead" >{{ page.content | reading_time }} read</span>
-          </a>
+          <span class="grey-text pt-sans-bold timeToRead" >{{ page.content | reading_time }} read</span></a>
           <p class=" black-text margin-top-2 pt-sans font-2">{{page.meta}} 
              <a href ="{{site.baseurl}}{{page.url}}" class="teal-text" > ... read more </a>
           </p>
@@ -36,17 +36,18 @@
 
 
   </div><!--wraper on lleft -->
-    {% for post in site.softwareCollection  limit:1 %}
+    {% for post in collection  limit:1 %}
     <div class="col s12 m5 margin-top-5">
             <div class="card side-card " id="side-card" >
-              <div class="card-deck {% include util/sideColor.liquid %} lighten-1 hoverable valign-wrapper">  
+              <div class="card-deck {% include util/sideColor.liquid %}   valign-wrapper">  
                    <img class = "side-card-user valign center-align" src="{{site.baseurl}}/{{post.imageURL}}"> 
 
                    <span class=" author white-text pt-sans ">{{post.author | upcase}}</span>     
               </div>
-              <div class="side-card-content pt-sans {% include util/sideColor.liquid %} lighten-4">
-                <a class="valign green-text pt-sans-bold"  href="{{site.baseurl}}{{post.url}}">{{post.title}}
-                <span class="grey-text pt-sans-bold timeToRead" >{{ post.content | reading_time }} read</span></a>
+              <div class="side-card-content pt-sans grey lighten-3">
+                <a class="valign black-text pt-sans-bold"  href="{{site.baseurl}}{{post.url}}">{{post.title}}
+                  <span class="grey-text pt-sans-bold timeToRead" >{{ post.content | reading_time }}read</span>
+                </a>
                 <p class="border-bottom-dotted">{{post.meta}}
                   <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
                 </p>
