@@ -1,4 +1,4 @@
-{% assign collection = {{include.currentCollection}}%}
+
 
 <div class="container" id="topPosts">
 
@@ -7,9 +7,11 @@
   <div class="col s12 m7"> <!--wraper on lleft -->
    
       <div class="pt-sans  border-bottom-dotted " style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-        <h5 class="black-text darken-3 pt-sans-bold " style="font-size: 3rem;">Coding</h5>
+        <h5 class="{% include util/textColor.liquid %} darken-3 pacifo-L " style="font-size: 3rem;">{% include util/heading.liquid %}</h5>
     </div>
 
+    
+{% assign collection = {{include.currentCollection}} %}
     {% for post in collection %}
   <div class="section ">
 
