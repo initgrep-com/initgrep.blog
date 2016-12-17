@@ -15,7 +15,7 @@
        <div class="col s6 m6 ">
           <div class="col s12 m4 right  margin-top-2">
               
-              <span class="grey-text pt-sans-bold datetime" >{{ page.content | reading_time }} read</span>         
+              <span class="grey-text pt-sans-bold datetime" >{% include util/minRead.liquid content =  page.content  %} read</span>         
           </div>
        </div>
     </div>
