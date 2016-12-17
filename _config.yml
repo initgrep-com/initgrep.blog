@@ -28,3 +28,6 @@ collections:
         output: true
         permalink: /fitness/:path
 
+#plugins
+
+gems: [jekyll-timeago]
