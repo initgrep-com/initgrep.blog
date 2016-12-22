@@ -1,11 +1,13 @@
-markdown: kramdown
+#dir and path 
 baseurl: /mylog
 exclude: ['README.md']
-highlighter: rouge
 permalink: /:path
 
+#syntax
+markdown: kramdown
+highlighter: rouge
 
-#dir config
+
 
 
 #collections here

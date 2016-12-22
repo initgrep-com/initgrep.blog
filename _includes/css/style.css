@@ -113,21 +113,24 @@ width: 100%;
 .content{
 clear: both;
 margin-bottom: 50px;
-font-size: 1.8rem;
+font-size: 1.3rem;
 font-family: 'Gentium Basic', serif;
 text-align: none;
+font-weight: 600;
 
 }
-
+.content-text blockquote{
+	font-family: 'PT Sans Narrow', sans-serif; 
+}
 .content h1 , .content h2{
 
-font-family: 'PT Sans Narrow', 
-sans-serif; font-weight: 700;
+font-family: 'PT Sans Narrow', sans-serif; 
+font-weight: 700;
 }
 
 /*add all the content settings here for line height*/
 .content-text p, .content-text blockquote, .content-text em{
-line-height: 2.8rem;
+line-height: 1.5rem;
 }
 
 #check_nav, #side-card {
@@ -409,7 +412,7 @@ margin: 0;
 @media only screen and (max-width : 360px) {
 
 .post-head{
-font-size: 2rem;
+font-size: 1.3rem;
 }
 .post-container {
 min-height: 200px;
