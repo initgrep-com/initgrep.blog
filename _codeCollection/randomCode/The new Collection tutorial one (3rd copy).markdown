@@ -1,5 +1,7 @@
 ---
 layout: post
+comments: true
+id: c_002
 bannercolor: "blue-grey"
 title:  "The revisited slogan of narcissim."
 date:   2016-10-31

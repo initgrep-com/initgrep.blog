@@ -1,0 +1,9 @@
+{% include head.html %}
+{% include nav.html %}
+
+{% include subHome/banner.html  currentCollection = site.lifeCollection %}
+   <!-- catagories content -->
+<div class="section">
+  {% include subHome/content.html  currentCollection = site.lifeCollection %}
+ </div> <!--section -->
+{% include footer.html %}

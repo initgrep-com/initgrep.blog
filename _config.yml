@@ -35,9 +35,9 @@ collections:
           output: true
           permalink: /codes/:path
 
-    softwareCollection:
+    lifeCollection:
           output: true
-          permalink: /softwares/:path
+          permalink: /life/:path
 
     techCollection:
         output: true
@@ -49,4 +49,5 @@ collections:
 
 #plugins
 
-gems: [jekyll-timeago]
+gems:
+  - jekyll-seo-tag

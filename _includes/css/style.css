@@ -113,10 +113,8 @@ width: 100%;
 .content{
 clear: both;
 margin-bottom: 50px;
-font-size: 1.3rem;
+font-size: 1.6rem;
 font-family: 'Gentium Basic', serif;
-text-align: none;
-font-weight: 600;
 
 }
 .content-text blockquote{
@@ -130,7 +128,7 @@ font-weight: 700;
 
 /*add all the content settings here for line height*/
 .content-text p, .content-text blockquote, .content-text em{
-line-height: 1.5rem;
+	line-height: 2rem;
 }
 
 #check_nav, #side-card {
