@@ -1,13 +1,30 @@
-#dir and path 
-baseurl: /mylog
-exclude: ['README.md']
-permalink: /:path
+#title:
+#email
+#description
+#url
+#twitter_username
+#github_username
+#image:
+
 
 #syntax
 markdown: kramdown
 highlighter: rouge
+#dir and path 
+baseurl: /mylog
+permalink: /:path
 
 
+exclude:
+  - "bower_components"
+  - "node_modules"
+  - "bower.json"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "Gruntfile.coffee"
+  - "package.json"
+  - "Rakefile"
+  - "README.md"
 
 
 #collections here

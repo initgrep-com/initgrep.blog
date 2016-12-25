@@ -8,6 +8,8 @@ category: code
 author: "irshad sheikh"
 initials: ias
 imageURL: "assets/images/as.jpg"
+comments: true
+id: c_0001
 
 ---
 > Javascript string checking for null or empty
