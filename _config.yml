@@ -1,12 +1,3 @@
-#title:
-#email
-#description
-#url
-#twitter_username
-#github_username
-#image:
-
-
 #syntax
 markdown: kramdown
 highlighter: rouge
@@ -51,3 +42,40 @@ collections:
 
 gems:
   - jekyll-seo-tag
+
+
+
+
+
+#social and seo
+
+title: shaykh'slog- Blog about technology and life
+#email
+description: Blog about technology, coding , fitness and coding
+url : gagrock.github.io/mylog
+logo: /assets/images/logo.jpg
+author:
+  twitter: shk_irshad
+
+#social profile
+social:
+  name: irshad sheikh
+  links:
+    - https://twitter.com/shk_irshad
+    - https://www.facebook.com/irshsheikh
+   # - https://www.linkedin.com/in/BenBalter
+    - https://plus.google.com/+irshad.mike
+    - https://github.com/gagrock
+   # - https://keybase.io/benbalter
+
+twitter:
+  username: irshsheikh
+
+facebook:
+  app_id: 1234
+  publisher: pub_123
+  admins: scrollasd
+
+
+
+
