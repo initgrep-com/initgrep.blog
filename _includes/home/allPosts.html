@@ -10,14 +10,15 @@
 </div>
 
 <div class="row">
+<div class="col s12 m12 xl12">
+
 {% for collection in site.collections %}
- 
 {% assign colsname  = collection.label  %}
 {% assign items = site.[colsname] | sort: 'date' | reverse %}
 
-{% for post in items %}
- <div class="col s12 m4">
-	          <div class="card hoverable" >
+	{% for post in items %}
+ <div class="col s12 m4 xl3">
+	          <div class="card hoverable medium " >
 	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
 
 	              <a class="card-title valign pt-sans white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}
@@ -26,13 +27,17 @@
 	            <div class="card-content pt-sans">
 	              <p>{{post.meta}}</p>
 	            </div>
+	            <div class="card-action">
+	              <a href="#">This is a link</a>
+	              <a href="#">This is a link</a>
+	            </div>
 	            
 	          </div>
 	        </div>
 
+	{% endfor %}
 {% endfor %}
-{% endfor %}
-
+</div>
 </div>
 
 

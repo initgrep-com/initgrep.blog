@@ -3,7 +3,8 @@ layout: post
 bannercolor: "green ligten-3"
 title:  "How to properly write the code with clear syntax"
 date:   2016-12-21
-meta: "Check the default highlighter: rouge works and how efficiently it does the work"
+meta: "Check the default highlighter: rouge works and how efficiently it does the work.Check the default highlighter: rouge works and how efficiently it does the work."
+excerpt: ""
 category: code
 author: "irshad sheikh"
 initials: ias
