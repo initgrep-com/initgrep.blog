@@ -1,5 +1,7 @@
 {% assign techSorted = (site.techCollection | sort: 'date') | reverse %}
 {% assign codeSorted = (site.codeCollection | sort: 'date') | reverse %}
+{% assign fitSorted = (site.fitnessCollection | sort: 'date') | reverse %}
+{% assign lifeSorted = (site.lifeCollection | sort: 'date') | reverse %}
 
 {% include head.html %}
 {% include nav.html %}
@@ -8,8 +10,10 @@
 <div class="section">
 
 {% include home/topPosts.html %}
-{% include home/catagory.html cc = codeSorted %}
-{% include home/catagory.html cc = techSorted %}
+{% include home/catagory.html cc = codeSorted label = "while coding" bgColor = "grey lighten-3" %}
+{% include home/catagory.html cc = techSorted label = "technology insights" bgColor = "white" %}
+{% include home/catagory.html cc = fitSorted label = "health and fitness" bgColor = "grey lighten-2" %}
+{% include home/catagory.html cc = lifeSorted label = "Life like everyday" bgColor = "" %}
 {% include  home/fixedIcon.html %}
 
 

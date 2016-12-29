@@ -1,13 +1,11 @@
-{% assign labels = ["while in coding", "technology insights", "health and fitness", "life as well"] %}
 
-
-<div class="grey lighten-3 " id="allPosts">
+<div class="{{include.bgColor }} " id="allPosts">
 <div class="container">
 
   <div class="row">
   	<div class="col s12 m5 l6  pt-sans  border-bottom-dotted " 
-			style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-	<h3 class=" {% include util/textColor.liquid %} pt-sans sub_heading" >{{ labels[1] }}</h3>
+			style="padding-bottom: 1rem; border-color: #009688 !important;">
+	<h3 class=" {% include util/textColor.liquid %} pt-sans sub_heading" >{{include.label}}</h3>
 	</div>
 
   </div>
