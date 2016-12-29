@@ -1,3 +1,6 @@
+{% assign techSorted = (site.techCollection | sort: 'date') | reverse %}
+{% assign codeSorted = (site.codeCollection | sort: 'date') | reverse %}
+
 {% include head.html %}
 {% include nav.html %}
 {% include home/banner.html %}
@@ -5,8 +8,8 @@
 <div class="section">
 
 {% include home/topPosts.html %}
-
-{% include home/allPosts.html %}
+{% include home/catagory.html cc = codeSorted %}
+{% include home/catagory.html cc = techSorted %}
 {% include  home/fixedIcon.html %}
 
 

@@ -1,0 +1,42 @@
+{% assign labels = ["while in coding", "technology insights", "health and fitness", "life as well"] %}
+
+
+<div class="grey lighten-3 " id="allPosts">
+<div class="container">
+
+  <div class="row">
+  	<div class="col s12 m5 l6  pt-sans  border-bottom-dotted " 
+			style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
+	<h3 class=" {% include util/textColor.liquid %} pt-sans sub_heading" >{{ labels[1] }}</h3>
+	</div>
+
+  </div>
+
+<div class="row">
+<div class="col s12 m12 xl12">
+
+{% assign cc = {{include.cc }} %}
+{% for post in cc limit:5 %}
+ <div class="col s12 m4 xl3">
+	          <div class="card hoverable medium " id='top-card' >
+	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
+
+	              <a class="card-title valign pt-sans white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}
+	              <span class="grey-text pt-sans-bold timeToRead" > {% include util/minRead.liquid content= post.content  %} read</span></a>
+	            </div>
+	            <div class="card-content pt-sans">
+	              <p>{{post.meta}}</p>
+	            </div>
+	            <div class="card-action">
+	              <a href="#">This is a link</a>
+	              <a href="#">This is a link</a>
+	            </div>
+	            
+	          </div>
+	        </div>
+
+	{% endfor %}
+</div>
+</div>
+</div>
+</div>

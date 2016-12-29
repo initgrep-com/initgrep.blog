@@ -1,24 +1,10 @@
-
-<div class="grey lighten-3 " id="allPosts">
-<div class="container">
-<div class="section ">
-
-	<div class="col s12 m12 pt-sans  border-bottom-dotted " 
-			style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-	<h5 class=" {% include util/textColor.liquid %} pacifo" style="font-size: 2rem;">All posts</h5>
-	</div>
-</div>
-
-<div class="row">
-<div class="col s12 m12 xl12">
-
 {% for collection in site.collections %}
 {% assign colsname  = collection.label  %}
 {% assign items = site.[colsname] | sort: 'date' | reverse %}
 
 	{% for post in items %}
  <div class="col s12 m4 xl3">
-	          <div class="card hoverable medium " >
+	          <div class="card hoverable medium " id='top-card' >
 	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
 
 	              <a class="card-title valign pt-sans white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}
@@ -37,15 +23,3 @@
 
 	{% endfor %}
 {% endfor %}
-</div>
-</div>
-
-
-</div>
-
-</div>
-
-<!--
-
-
--->
