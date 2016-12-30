@@ -3,37 +3,38 @@
 <div class="container">
 
   <div class="row">
-  	<div class="col s12 m5 l6  pt-sans  border-bottom-dotted " 
-			style="padding-bottom: 1rem; border-color: #009688 !important;">
-	<h3 class=" {% include util/textColor.liquid %} pt-sans sub_heading" >{{include.label}}</h3>
-	</div>
+  
+	<div class="col s12 m3 l3 right   border-bottom-dotted" style="line-height: 2rem; margin-top: 2rem;">
+		 <a href = "{{ include.url | prepend: site.baseurl }}" class=" {% include util/textColor.liquid %} right pt-sans sub_heading" >{{include.label}} <i class="material-icons" style="font-size: 12px;">forward</i></a>
+	 </div>
+
 
   </div>
 
 <div class="row">
-<div class="col s12 m12 xl12">
+<div class="col s12 m12 xl12 padding-bot-2">
 
 {% assign cc = {{include.cc }} %}
 {% for post in cc limit:5 %}
  <div class="col s12 m4 xl3">
-	          <div class="card hoverable medium " id='top-card' >
+ 		
+		  <div class="card hoverable  medium " id='top-card'>
 	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
 
-	              <a class="card-title valign pt-sans white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}
-	              <span class="grey-text pt-sans-bold timeToRead" > {% include util/minRead.liquid content= post.content  %} read</span></a>
+	              <a class="card-title valign pt-sans-bold white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
 	            </div>
-	            <div class="card-content pt-sans">
+	            <div class="card-content pt-sans black-text">
 	              <p>{{post.meta}}</p>
 	            </div>
-	            <div class="card-action">
-	              <a href="#">This is a link</a>
-	              <a href="#">This is a link</a>
+	            <div class="card-actions">
+	              <a href="#">{{post.author}}</a>
+	              <a class="right" style="padding-top: 5px">{% include util/minRead.liquid content= post.content  %} read</a>
 	            </div>
-	            
-	          </div>
-	        </div>
 
-	{% endfor %}
+	          </div>  
+	   
+ </div>
+{% endfor %}
 </div>
 </div>
 </div>

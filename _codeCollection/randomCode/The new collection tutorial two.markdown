@@ -1,10 +1,10 @@
 ---
 layout: post
-bannercolor: "black"
+bannercolor: "purple darken-4"
 title:  "Tumblr’s Depression Connection"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-category: software
+category: code
 author: "irshad ahmad sheikh"
 initials: ab
 imageURL: "assets/images/as.jpg"

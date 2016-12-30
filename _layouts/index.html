@@ -7,13 +7,12 @@
 {% include nav.html %}
 {% include home/banner.html %}
    <!-- catagories content -->
-<div class="section">
+<div class="section grey lighten-5">
 
 {% include home/topPosts.html %}
-{% include home/catagory.html cc = codeSorted label = "while coding" bgColor = "grey lighten-3" %}
-{% include home/catagory.html cc = techSorted label = "technology insights" bgColor = "white" %}
-{% include home/catagory.html cc = fitSorted label = "health and fitness" bgColor = "grey lighten-2" %}
-{% include home/catagory.html cc = lifeSorted label = "Life like everyday" bgColor = "" %}
+{% include home/catagory.html cc = codeSorted label = "in coding" bgColor = "grey lighten-3" url = '/posts/code'  %}
+{% include home/catagory.html cc = techSorted label = "in technology" bgColor = "" url = "/posts/tech"  %}
+{% include home/catagory.html cc = fitSorted label = "health and fitness" bgColor = "grey lighten-2" url = "/posts/fitness" %}
 {% include  home/fixedIcon.html %}
 
 

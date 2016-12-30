@@ -1,16 +1,16 @@
 <!-- banner content -->
-  <div id="index-banner" class=" grey lighten-4">
+  <div id="index-banner" class=" grey lighten-3" style=" box-shadow: 0 0 1px 0 #DEDADA;">
     <div class="section ">
       
 	        <div class="container ">
 					
                    {% for page in site.fitnessCollection limit:1 %}
-                   <div class="row padding-top-2 padding-bot-1 border-bottom-dotted">
-                   <span class="teal-text  date-text">Recent Post</span>
-                   	<span class="grey-text right date-text datetime">{{page.date | date: '%B %d, %Y' }}</span>
-                   	<span class="grey-text right " style="padding-right: 2rem;">{{page.author | uppercase}}</span>
-                   </div>
+                   
                    <div class="row">
+                   <div class="col s12 m10 push-m1" style="margin-top: 3rem; ">
+                   	 <span class="teal-text center pt-sans">Recent Post</span>
+               
+                   </div>
 					<div class="col s12 m12 recent-article">
 						<div class="icon-block">
 

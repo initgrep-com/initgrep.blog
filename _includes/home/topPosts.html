@@ -2,24 +2,26 @@
 
 <div class="row">
 
-  <div class="col s12 m7"> <!--wraper on lleft -->
-   
-      <div class="pt-sans  border-bottom-dotted " style="padding-bottom: 1rem; margin-bottom: 3rem; border-color: #009688 !important;">
-        <h5 class="  {% include util/textColor.liquid %} pacifo-L " style="font-size: 3rem;">Latest posts</h5>
-    </div>
+  <div class="col s12 m8"> <!--wraper on lleft -->
 
 {% for collection in site.collections %}
 {% assign colsname  = collection.label  %}
 {% assign items = site.[colsname] | sort: 'date' | reverse %}
-
 {% for post in items limit: 2 %}
-  <div class="section ">
+  <div class="section box white"  >
 
     <div class="row">
+    <div class="col s12 m12 post-meta">
+     <a class="teal-text text-darken-3 pt-sans author">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <a class="teal-text text-darken-3 pt-sans" href="{{site.baseurl}}/posts/{{post.category}}">{{post.category}}</a>
+     <span class="grey-text text-darken-4 pt-sans  timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
+      <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">{{post.date | date: '%B %d, %Y'}}</span>
+      
+      
+    </div>
       <div class="col s12 m12 top-article">
         <div class="icon-block">
           <a href ="{{site.baseurl}}{{post.url}}" class="title pt-sans-bold  black-text ">{{post.title}}
-          <span class="grey-text pt-sans-bold timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
+          
           </a>
           <p class=" black-text margin-top-2 pt-sans font-2">{{post.meta}} 
              <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
@@ -27,13 +29,7 @@
         </div>
       </div>
       </div>
-      <div class="row  ">
-        <div class="col s12 m11 border-bottom-dotted-b" style="padding-bottom: 1rem;" >
-           <span class="grey-text right pt-sans-bold datetime">{{post.date | date: '%B %d, %Y'}}</span>
-          <span class="grey-text left pt-sans-bold" style="padding-right: 2rem;">{{post.author | upcase}}</span>
 
-        </div>
-      </div>
     </div>
   {% endfor %}
   {% endfor %}

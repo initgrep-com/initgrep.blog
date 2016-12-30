@@ -1,10 +1,10 @@
 ---
 layout: post
-bannercolor: "blue-grey"
+bannercolor: "deep-orange darken-4"
 title:  "The revisited slogan of narcissim."
 date:   2016-10-31
 meta: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
-category: software
+category: code
 author: "irshad ahmad sheikh"
 initials: ias
 imageURL: "assets/images/as.jpg"
