@@ -15,13 +15,13 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,700');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
-
+@import url('https://fonts.googleapis.com/css?family=Courgette');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 
 
-
-
-
+.courgettte{
+font-family: 'Courgette', cursive;
+}
 .oswald-300{
 font-weight: 300;
 font-family: 'Oswald', sans-serif;
@@ -103,16 +103,20 @@ color: rgba(255,255,255,.9);
 
 #index-banner{
 min-height: 500px;
+opacity: 0;
+transition: opacity 2s ease-out;
+}
+#topPosts, .code-wrapper, .fit-wrapper{
+  opacity: 0;
+  transition: opacity 1s ease;
+
+}
+.subHomeBanner{
+  height: 500px;
+  opacity: 0;
+  transition: opacity 2s ease-out;
 }
 
-.post-container {
-min-height: 400px;
-line-height: 0;
-height: auto;
-color: rgba(255,255,255,.9);
-padding-left: 3rem;
-padding-right: 3rem;
-}
 .parallax-container .section {
 width: 100%;
 }
@@ -126,15 +130,27 @@ font-family: 'Gentium Basic', serif;
 .content-text blockquote{
 	font-family: 'PT Sans Narrow', sans-serif; 
 }
+.content p em{
+font-family: 'Courgette', cursive;
+}
 .content h1 , .content h2{
-
 font-family: 'PT Sans Narrow', sans-serif; 
 font-weight: 700;
 }
 
+.content .author, .content .readtime, .content .datetime{
+  font-size: 1rem;
+}
+.content .author{
+  text-transform: capitalize;
+}
+
 /*add all the content settings here for line height*/
-.content-text p, .content-text blockquote, .content-text em{
-	line-height: 2rem;
+.content-text blockquote p .content-text em{
+  line-height: 2rem;
+}
+.content-text p,{
+	line-height: 2.5rem;
 }
 
 #check_nav, #side-card, #top-card {
@@ -368,9 +384,7 @@ span.timeToRead{
 }
 
 .section.box{
-  border: 1px solid #CFC9C9;
   padding: 3rem 1rem 2rem 1rem;
-
   margin-bottom: 1rem;
   box-shadow: 0 0px 1px 0 #DEDADA;
   border-radius: 4px;
@@ -470,9 +484,7 @@ margin: 0;
 
 @media only screen and (max-width : 360px) {
 
-.post-head{
-font-size: 1.3rem;
-}
+
 .post-container {
 min-height: 200px;
 }
@@ -481,6 +493,7 @@ min-height: 200px;
 font-size: 1.2rem;
 }
 .content h1{font-size: 2.2rem; }
+.content h3{font-size: 2.1rem;}
 .content h2{font-size: 1.7rem; }
 .content-text p, .content-text blockquote, .content-text em{
 line-height: 1.8rem;
@@ -488,9 +501,7 @@ line-height: 1.8rem;
 
 }
 @media only screen and (min-width : 361px) and (max-width : 768px){
-.post-head{
-font-size: 3rem;
-}
+
 .post-container {
 min-height: 300px;
 }
@@ -499,6 +510,7 @@ min-height: 300px;
 font-size: 1.6rem;
 }
 .content h1{font-size: 3rem; }
+.content h1{font-size: 2.5rem; }
 .content h2{font-size: 2.3rem; }
 .content-text p, .content-text blockquote, .content-text em{
 line-height: 2.4rem;

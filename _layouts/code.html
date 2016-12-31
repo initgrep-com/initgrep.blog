@@ -1,9 +1,9 @@
 {% include head.html %}
 {% include nav.html %}
 {% assign sorted = (site.codeCollection | sort: 'date') | reverse %}
-{% include subHome/banner.html  currentCollection = site.codeCollection %}
    <!-- catagories content -->
-<div class="section">
+   {% include subHome/banner.html  currentCollection = sorted %}
+<div class="section code-wrapper">
   {% include subHome/content.html  currentCollection = sorted %}
  </div> <!--section -->
 {% include footer.html %}

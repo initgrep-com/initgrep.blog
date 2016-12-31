@@ -1,44 +1,39 @@
 {% include head.html %}
 {% include nav.html %}
 
-<div class="container padding-top-2 ">
-    <div class="row ">
-       <div class="col s6 m6 ">
-          <div class="col  m3 l2 hide-on-small-only ">
-            <img class="user " src="{{site.baseurl}}/assets/images/as.jpg">
-          </div>
-          <div class="col s12 m8 l4  margin-top-1">
-              <a  href="{{site.baseurl}}/" class="grey-text  pt-sans-bold ">{{page.author | uppercase}}</a><br/>
-              <a class="grey-text pt-sans-bold datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
-          </div>
-       </div>
-       <div class="col s6 m6 ">
-          <div class="col s12 m4 right  margin-top-2">
-              
-              <span class="grey-text pt-sans-bold datetime" >{% include util/minRead.liquid content =  page.content  %} read</span>         
-          </div>
-       </div>
-    </div>
-</div>
 
-<div  class="post-container valign-wrapper grey lighten-4">
-  <div class="container">
-    <div class="row ">
-    <div class="col s12 12 ">
-        <h1 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h1>
+<div class=" content " style="padding-top: 4rem;">
+<div class="row" style="margin-bottom: 0;">
+  <div class="col s10 m10 l8 offset-m1 offset-s1 offset-l2 ">
+    <div class="row " style="margin-bottom: 0px;">
+      <div class="col s6 m6 l6">
+        <div class="col  m3 l2 hide-on-small-only ">
+          <img class="user " src="{{site.baseurl}}/assets/images/as.jpg">
+        </div>
+        <div class="col s12 m9 l8  margin-top-1">
+          <a  href="{{site.baseurl}}/" class="grey-text  pt-sans author" style="display: block;">{{page.author }}</a>
+          <a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
+        </div>
+      </div>
+    <div class="col s6 m6 l6">
+      <div class="col s12 m4 right  margin-top-2">
+          <span class="grey-text right pt-sans readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
+      </div>
     </div>
     </div>
   </div>
 </div>
-
-
-<div class="section content ">
+  <div class="row">
+     <div class="col s10 m10 l8 offset-m1 offset-s1 offset-l2 ">
+            <h1 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h1>
+    </div>
+  </div>
   <div class="row">
   <div class="col s12 m12 l3 ">
   <!-- adding the collections title part here -->
   </div>
-
   <div class="  col s10 m10 offset-m1 offset-s1 l6 ">
+ 
    <div class=" content-text col s12 m12 l12 ">{{ content }}</div>
    <div class=" col s12 m12 l12 "> {% include util/disqus.html %}</div>
    

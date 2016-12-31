@@ -1,7 +1,7 @@
 ---
 layout: post
 bannercolor: "black"
-title:  "Tumblr’s Depression Connection"
+title:  "Tumblr’s Depression Connection and pitfalls of social networks "
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: fitness
@@ -14,7 +14,7 @@ github: " "
 
 ---
 
-## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
+### better of an idea and more to share in the next edit
 
 >Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
 

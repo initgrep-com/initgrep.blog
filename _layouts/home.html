@@ -10,11 +10,14 @@
 <div class="section grey lighten-5">
 
 {% include home/topPosts.html %}
+<div class="code-wrapper">
 {% include home/catagory.html cc = codeSorted label = "in coding" bgColor = "grey lighten-3" url = '/posts/code'  %}
-{% include home/catagory.html cc = techSorted label = "in technology" bgColor = "" url = "/posts/tech"  %}
-{% include home/catagory.html cc = fitSorted label = "health and fitness" bgColor = "grey lighten-2" url = "/posts/fitness" %}
-{% include  home/fixedIcon.html %}
+</div>
+<div class="fit-wrapper">
+{% include home/catagory.html cc = fitSorted label = "health and fitness" bgColor = "white" url = "/posts/fitness" %}
 
+{% include  home/fixedIcon.html %}
+</div>
 
 </div> <!--container -->
 

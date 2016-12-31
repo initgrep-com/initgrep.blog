@@ -1,17 +1,13 @@
 <!-- banner content -->
   <div id="index-banner" class=" grey lighten-3" style=" box-shadow: 0 0 1px 0 #DEDADA;">
-    <div class="section ">
+   <div class="section " style="padding-top: 4rem;" >
       
-	        <div class="container ">
-					
+	        <div class="container  ">
+				 <div class="row">	
                    {% for page in site.fitnessCollection limit:1 %}
-                   
-                   <div class="row">
-                   <div class="col s12 m10 push-m1" style="margin-top: 3rem; ">
-                   	 <span class="teal-text center pt-sans">Recent Post</span>
-               
-                   </div>
-					<div class="col s12 m12 recent-article">
+                  
+                 
+					<div class="col s12 m8 recent-article ">
 						<div class="icon-block">
 
 							<a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}
@@ -26,9 +22,17 @@
 
 						</div>
 					</div>
-                    	</div>
+                  
 					{% endfor %}
-				
+					 <div class="col s12 m4 recent-article ">
+						<div class="section " >
+						<a href="https://twitter.com/shaykhslog" class="twitter-follow-button" data-show-count="false">Follow @shaykhslog</a>
+						<a class="twitter-timeline" href="https://twitter.com/shaykhslog">Tweets by shaykhslog</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</div>
+
+					</div>
+
+				  </div>
 				</div>
 	    </div>
    </div>
