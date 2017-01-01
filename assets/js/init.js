@@ -17,7 +17,7 @@
 
       var options = [
       
-          {selector: '#topPosts', offset: 150, callback: function(el) {
+          {selector: '#topPosts', offset: 120, callback: function(el) {
             console.log("fire !!!");
              $('#topPosts').css('opacity',"1");
           } },

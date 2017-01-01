@@ -42,6 +42,7 @@ collections:
 
 gems:
   - jekyll-seo-tag
+  - octopress-paginate
 
 
 

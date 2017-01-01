@@ -67,10 +67,6 @@ z-index: 100;
 text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
 }
 
-p {
-line-height: 2rem;
-}
-
 .nav-wrapper a.side_menu{
 margin-left: 5%;
 }
@@ -133,9 +129,12 @@ font-family: 'Gentium Basic', serif;
 .content p em{
 font-family: 'Courgette', cursive;
 }
-.content h1 , .content h2{
+.content-text h1 , .content-text h2, .content-text h3, .content-text h4, .content-text h5{
 font-family: 'PT Sans Narrow', sans-serif; 
 font-weight: 700;
+}
+.content-text h3, .content-text h4, .content-text h5{
+  
 }
 
 .content .author, .content .readtime, .content .datetime{
@@ -150,7 +149,7 @@ font-weight: 700;
   line-height: 2rem;
 }
 .content-text p,{
-	line-height: 2.5rem;
+	line-height: 3rem;
 }
 
 #check_nav, #side-card, #top-card {
@@ -330,6 +329,8 @@ border-bottom: 2px dashed #eeeeee;
 }
 
 
+
+
 #footer{
 position: absolute;
 bottom: 0;
@@ -389,6 +390,18 @@ span.timeToRead{
   box-shadow: 0 0px 1px 0 #DEDADA;
   border-radius: 4px;
 }
+h1.toc{
+  font-size: 1.2rem;
+  
+}
+ul.series li{
+  font-size: 1rem;
+  padding: 1rem;
+  display: block;
+  background-color: #f6f6f8;
+  margin-bottom: 1rem;
+}
+
 
 .card-deck{
 padding: 1rem;

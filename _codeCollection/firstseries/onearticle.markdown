@@ -1,20 +1,19 @@
 ---
-layout: post
-bannercolor: "black"
-title:  "Tumblr’s Depression Connection and pitfalls of social networks "
+layout: codeSeriesPost
+bannercolor: "blue"
+title:  "The revisited slogan of narcissim."
 date:   2016-10-31
-meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-category: fitness
+excerpt: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
+meta: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
+category: code
+series: demo
 author: "irshad ahmad sheikh"
-initials: ab
 imageURL: "assets/images/as.jpg"
-twitter: " "
-facebook: " "
-github: " "
+comments: true
 
 ---
 
-#### better of an idea and more to share in the next edit
+#### Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
 
 >Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
 

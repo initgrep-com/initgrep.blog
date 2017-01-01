@@ -1,0 +1,23 @@
+{% assign collection = {{include.currentCollection}} %}
+
+ <div class="section box">
+      <h1 class="toc pt-sans-bold"> Table of Contents </h1>
+      <ul class="series">
+      {% assign count = '0' %}
+      {% for post in collection %}
+      {% if post.series == page.series %}
+
+          {% capture count %}{{ count | plus: '1' }}{% endcapture %}
+          <li> 
+          {% if page.url == post.url %}
+              <a class="teal-text text-darken-3 pt-sans-bold " href="{{post.url}}">{{ count }} - {{post.title}}</a>
+          {% else %}
+              <a class="black-text pt-sans" href="{{post.url}}">{{ count }} - {{post.title}}</a>
+          {% endif %}
+          </li>
+      {% endif %}
+      {% endfor %}
+      </ul>
+  </div>
+
+
