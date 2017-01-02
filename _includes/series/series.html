@@ -10,9 +10,9 @@
           {% capture count %}{{ count | plus: '1' }}{% endcapture %}
           <li> 
           {% if page.url == post.url %}
-              <a class="teal-text text-darken-3 pt-sans-bold " href="{{post.url}}">{{ count }} - {{post.title}}</a>
+              <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">{{ count }} - {{post.title}}</a>
           {% else %}
-              <a class="black-text pt-sans" href="{{post.url}}">{{ count }} - {{post.title}}</a>
+              <a class="black-text pt-sans" href="{{site.baseurl}}{{post.url}}">{{ count }} - {{post.title}}</a>
           {% endif %}
           </li>
       {% endif %}

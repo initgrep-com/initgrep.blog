@@ -26,14 +26,6 @@ collections:
           output: true
           permalink: /codes/:path
 
-    lifeCollection:
-          output: true
-          permalink: /life/:path
-
-    techCollection:
-        output: true
-        permalink: /technology/:path
-
     fitnessCollection:
         output: true
         permalink: /fitness/:path
