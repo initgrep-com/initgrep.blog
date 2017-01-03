@@ -1,5 +1,5 @@
 ---
-
+baseurl: /mylog
 ---
 
 var data = {};
@@ -13,7 +13,7 @@ data.store = {
         "title": "{{ post.title | xml_escape }}",
         "author": "{{ post.author | xml_escape }}",
         "category": "{{ post.category | xml_escape }}",
-        "url": "{{site.baseurl}}{{ post.url | xml_escape }}",
+        "url": "{{page.baseurl}}{{ post.url | xml_escape }}",
         "meta" : {{ post.meta | strip_html | strip_newlines | jsonify }}
       }
       {% unless forloop.last %},{% endunless %}
