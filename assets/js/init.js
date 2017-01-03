@@ -1,10 +1,24 @@
 var BlogObject = function(){
 
+  this.noResults = '<div class="container"><div class="row"><div class="col s12 red darken-4"><span class="white-text">No results found..</span></div></div></div>' ;
+  this.getRandom = function() { return Math.abs(Math.floor(Math.random() * 10));};
+  this.coloCodes = [
+                      'teal lighten-2',
+                      'purple lighten-2',
+                      'pink accent-1',
+                      'purple darken-4',
+                      'blue darken-4',
+                      'indigo darken-4',
+                      'deep-purple darken-1',
+                      'deep-purple darken-4',
+                      'green darken-4',
+                      'indigo darken-2'
+                    ];
+
 
     this.registerSearch = function(){
-        $('a[href="#search"]').on('click', function(event) {
+        $('a[id="nav_search"]').on('click', function(event) {
       
-            event.preventDefault();
             $('#search').addClass('open');
             $('#search > form > input[type="search"]').focus();
         });
@@ -12,15 +26,10 @@ var BlogObject = function(){
         $('a.close , a.close i').on('click', function(event) {
                $('#search').removeClass('open');
         });
-         $('body').on('keyup', function(e) {
-             console.log("keycode ",e.keyCode);
-            e.keyCode == 27 ? $('#search').removeClass('open') : '';
-        });
-    
-
+         
     };//
     this.initLunr = function(){
-
+          console.log('initLunr run');
         // Initalize lunr with the fields it will be searching on. I've given title
               // a boost of 10 to indicate matches on this field are more important.
               var idx = lunr(function () {
@@ -45,16 +54,16 @@ var BlogObject = function(){
             return idx;
 
     }//
-    this.getUnitDiv = function(sdiv , author, category, title, url, meta ){
-
-        var unit = '<div class="col s12 m3">'
-            +'<div class="card blue-grey darken-1">'
-            +'<div class="card-content white-text">'
-            +'<a class="card-title" href ="'+ url +'">'+title +'</h5>'
-            +'<p>'+meta+'</p>'
-            '+</div></div></div>';
-
+    this.getUnitDiv = function(sdiv , url, title ){
+        var _this = this;
+        
+           var unit = '<div class="col s12 m2 padding-bot-1">'
+                  +'<a href="'+ url +'" class=" searchItem '+_this.coloCodes[_this.getRandom()]+'">'  
+                  +'<span  class="white-text pt-sans-bold">'+title+'</span>'
+                  +'</a></div>';
+        
           $(sdiv).append(unit);
+
       } // 
 
    this.displaySearchResults = function (searchCnt,results, store) {
@@ -62,16 +71,15 @@ var BlogObject = function(){
         var _this = this;
 
         if (results.length) { // Are there any results?
-         
-
+          
           for (var i = 0; i < results.length; i++) {  // Iterate over the results
             var item = store[results[i].ref];
-            _this.getUnitDiv(searchCnt,item.author,item.category, item.title, item.url, item.meta);
+            _this.getUnitDiv(searchCnt,item.url, item.title);
           }
 
          
         } else {
-          $(searchCnt).html( '<b>No results found</b>' );
+          $(searchCnt).html(_this.noResults);
         }
       }//end
 
@@ -80,21 +88,16 @@ var BlogObject = function(){
         _this.registerSearch();
         var idx = _this.initLunr();
 
-        $('input.doSearch').on('change keyup', function(){
+      $('input.doSearch').on('change keyup', function(){
           var searchTerm = $(this).val();
-           $('.searchContainer').html(searchTerm);
-            
-           if (searchTerm) {
-  
-             
-                var results = idx.search(searchTerm); // Get lunr to perform a search
-                _this.displaySearchResults('.searchContainer', results, data.store); // We'll write this in the next section
-               console.log('results',results);
-               //$('.searchContainer').html("results  "+results); 
+           $('.searchContainer').html('');
+          if (searchTerm) {
 
-            }
+              var results = idx.search(searchTerm); // Get lunr to perform a search
+              _this.displaySearchResults('.searchContainer', results, data.store); // We'll write this in the next section
+          }
 
-        });
+      });
 
     }//end
 

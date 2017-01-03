@@ -11,7 +11,7 @@
       <a id="logo-container" href="{{site.baseurl}}/" 
       class="brand-logo  {% include util/textColor.liquid %} ">shaykh's-log</a>
       <ul class=" nav_menu right hide-on-med-and-down">
-       <li><a class="black-text" href="#search"><i class="material-icons">search</i></a></li>
+       <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
       	<li><a class="pt-sans-bold {% include util/textColor.liquid %}" href="{{site.baseurl}}/about">About me</a></li>
          <li><a class="dropdown-button  pt-sans-bold {% include util/textColor.liquid %}" href="#!" data-activates="dropdown1">Posts<i class="material-icons right">more_vert</i></a></li>
 
@@ -25,7 +25,7 @@
           </div>
         
           <a href="{{site.baseurl}}/"><span class="white-text  pacifo-L">shaykh's-log</span></a>
-          <a href="#!email"><span class=" email"></span></a>
+          <a id="nav_search" ><i class=" white-text material-icons">search</i> search</a>
         </div></li>
         <li><a class=" {% include util/textColor.liquid %} " style="font-size: 1.1rem;" href="{{site.baseurl}}/posts/code"><i class="material-icons">code</i>Coding</a></li>
          <li><a class=" {% include util/textColor.liquid %} " style="font-size: 1.1rem;" href="{{site.baseurl}}/posts/fitness">

@@ -526,7 +526,27 @@ margin: 0;
   transform: translate(0px, 0px) scale(1, 1); 
     opacity: 1;
 }
+div.searchContainer{
+  height: 450px;
+  overflow-y: scroll;
+}
+a.searchItem{
+  display: block;
+    min-height: 80px;
+    padding: .5rem;
+    border-radius: 5px;
+     -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
 
+}
+
+a.searchItem span{
+  font-size: 1rem;
+  line-height: 1.3rem;
+}
 
 
 /** end search related **/
