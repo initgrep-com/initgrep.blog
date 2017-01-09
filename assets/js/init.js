@@ -1,6 +1,7 @@
+var prop = new Properties();
 var BlogObject = function(){
 
-  this.noResults = '<div class="container"><div class="row"><div class="col s12 red darken-4"><span class="white-text">No results found..</span></div></div></div>' ;
+  this.noResults = '<div class="col red s12 m6 l6 offset-m3  offset-l3 notfound"><i class="material-icons">sentiment_dissatisfied</i>'+prop.notFound+'</div>' ;
   this.getRandom = function() { return Math.abs(Math.floor(Math.random() * 10));};
   this.coloCodes = [
                       'teal lighten-2',
@@ -57,10 +58,8 @@ var BlogObject = function(){
     this.getUnitDiv = function(sdiv , url, title ){
         var _this = this;
         
-           var unit = '<div class="col s12 m2 padding-bot-1">'
-                  +'<a href="'+ url +'" class=" searchItem '+_this.coloCodes[_this.getRandom()]+'">'  
-                  +'<span  class="white-text pt-sans-bold">'+title+'</span>'
-                  +'</a></div>';
+           var unit = '<div class="col s12 m3 padding-bot-1">'+
+                      '<a href="'+url+'" class=" searchItem "><span class="pt-sans">'+title+'</span></a></div>';
         
           $(sdiv).append(unit);
 
@@ -121,10 +120,6 @@ var BlogObject = function(){
 
        return [
       
-              {selector: '#topPosts', offset: 120, callback: function(el) {
-                console.log("fire !!!");
-                 $('#topPosts').css('opacity',"1");
-              } },
               {selector: '.code-wrapper', offset: 200, callback: function(el) {
                 console.log("fire !!!");
                  $('.code-wrapper').css('opacity',"1");

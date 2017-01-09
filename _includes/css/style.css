@@ -7,10 +7,6 @@
 */
 
 
-
-
-
-
 /** ========================**/
 @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
 @import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,700');
@@ -102,7 +98,7 @@ min-height: 500px;
 opacity: 0;
 transition: opacity 2s ease-out;
 }
-#topPosts, .code-wrapper, .fit-wrapper{
+ .code-wrapper, .fit-wrapper{
   opacity: 0;
   transition: opacity 1s ease;
 
@@ -528,20 +524,31 @@ margin: 0;
 }
 div.searchContainer{
   height: 450px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+div.searchContainer .notfound{
+  padding: 1rem;
+  border-radius: 5px;
 }
 a.searchItem{
-  display: block;
-    min-height: 80px;
-    padding: .5rem;
-    border-radius: 5px;
-     -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  -ms-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
+display: block;
+padding: .5rem;
+border-radius: 5px;
+color: #333;
+border: 1px solid #ADA1A1;
+-webkit-transition: all .5s ease-in-out;
+-moz-transition: all .5s ease-in-out;
+-o-transition: all .5s ease-in-out;
+-ms-transition: all .5s ease-in-out;
+transition: all .5s ease-in-out;
 
 }
+
+a.searchItem:hover{
+  background-color: #222;
+  color: white;
+}
+
 
 a.searchItem span{
   font-size: 1rem;
