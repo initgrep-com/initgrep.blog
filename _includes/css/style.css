@@ -89,10 +89,9 @@ color: #26a69a;
   min-height: 200px;
   padding-top: 50px;
 }
-.background a#nav_search{
+.background a#sidenav_search{
   position: relative;
   top: 4rem;
-  margin-left: 75%;
   padding: 0 0 0 0 !important;
 }
 

@@ -18,10 +18,10 @@ var BlogObject = function(){
 
 
     this.registerSearch = function(){
-        $('a[id="nav_search"]').on('click', function(event) {
+        $('a[id="nav_search"] , a[id="sidenav_search"]').on('click', function(event) {
       
             $('#search').addClass('open');
-            $('#search > form > input[type="search"]').focus();
+            $('#search input[type="text"]').focus();
         });
     
         $('a.close , a.close i').on('click', function(event) {
