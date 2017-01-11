@@ -30,6 +30,10 @@ collections:
         output: true
         permalink: /fitness/:path
 
+    authors:
+        output: true
+        permalink: /about/:path
+
 #plugins
 
 gems:
