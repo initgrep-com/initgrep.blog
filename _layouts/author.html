@@ -1,13 +1,31 @@
 {% include head.html %}
-{% include nav.html %}
-   <!-- catagories content -->
-<div class="section grey lighten-5">
-{{page.name}}
-{{page.facebook}}
-{{page.twitter}}
-<hr/>
-{{content}}
+<div class="author-wrapper">
 
-</div> 
+	<div class="author-wrapper-left valign-wrapper">
+	<a href="#"  class=" side_menu "><i class="material-icons" style="font-size: 2rem; padding: 1rem; position: fixed;">sort</i></a>
+		<div class="user-wrapper valign">
+			<img class="user-image " src="{{site.baseurl}}/assets/images/as.jpg" /> 
+			<p class="about-me pt-sans black-text">Hi, this is irshad ahmad sheikh. yet another text content that should be centered verticallyyet another text content that should be centeredy</p>
+			<p class="about-me pt-sans black-text">Please feel free to reach me @</p>
+		
+			<ul class="user-contact">
 
-{% include footer.html %}
+				
+				<li><a href="#"><img src="{{site.baseurl}}/assets/images/fb.png" width="30" height="30"></a></li>
+				<li><a href="#"><img src="{{site.baseurl}}/assets/images/twitter.png" width="30" height="30"></a></li>
+				<li><a href="#"><img src="{{site.baseurl}}/assets/images/github.png" width="30" height="30"></a></li>
+				<li><a href="#"><img src="{{site.baseurl}}/assets/images/linkedin.png" width="70" height="25"></a></li>
+				
+				
+			</ul>
+			
+		</div>
+	</div>
+	<div class="author-wrapper-right valign-wrapper">
+		
+	</div>
+</div>
+ 
+
+
+{% include scripts/baseScript.html%}

@@ -116,15 +116,15 @@ var BlogObject = function(){
 
     this.getSFireOptions = function(){
 
-        $('#index-banner,.subHomeBanner').css('opacity',"1");
+        $('#index-banner,.subHomeBanner , #topPosts').css('opacity',"1");
 
        return [
       
-              {selector: '.code-wrapper', offset: 200, callback: function(el) {
+              {selector: '.code-wrapper', offset: 150, callback: function(el) {
                 console.log("fire !!!");
                  $('.code-wrapper').css('opacity',"1");
               } },
-               {selector: '.fit-wrapper', offset: 400, callback: function(el) {
+               {selector: '.fit-wrapper', offset: 350, callback: function(el) {
                 console.log("fire !!!");
                  $('.fit-wrapper').css('opacity',"1");
               } }

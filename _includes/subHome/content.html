@@ -13,7 +13,7 @@
 
     <div class="row">
     <div class="col s12 m12 post-meta">
-     <a class="teal-text text-darken-3 pt-sans author">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <a class="teal-text text-darken-3 pt-sans" href="{{site.baseurl}}/posts/{{post.category}}">{{post.category}}</a>
+     <a class="teal-text text-darken-3 pt-sans author" href="{{site.baseurl}}/about/{{post.author}}">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <a class="teal-text text-darken-3 pt-sans" href="{{site.baseurl}}/posts/{{post.category}}">{{post.category}}</a>
      <span class="grey-text text-darken-4 pt-sans right timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
       <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">{{post.date | date: '%B %d, %Y'}}</span>
       

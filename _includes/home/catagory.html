@@ -27,7 +27,7 @@
 	              <p>{{post.meta}}</p>
 	            </div>
 	            <div class="card-actions">
-	              <a href="#">{{post.author}}</a>
+	              <a href="{{site.baseurl}}/about/{{post.author}}">{{post.author}}</a>
 	              <a class="right" style="padding-top: 5px">{% include util/minRead.liquid content= post.content  %} read</a>
 	            </div>
 
