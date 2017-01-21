@@ -14,6 +14,7 @@ layout: null
 
     {% for collection in site.collections %}
     {% assign colsname  = collection.label  %}
+    {% if colsname != 'authors'%} 
     {% assign items = site.[colsname] | sort: 'date' | reverse %}
     {% for post in items %}
       <item>
@@ -30,6 +31,7 @@ layout: null
         {% endfor %}
       </item>
     {% endfor %}
+    {% endif%}
     {% endfor %}
   </channel>
 </rss>
