@@ -426,7 +426,11 @@ ul.series li{
 .card-deck{
 padding: 1rem;
 width: 100%; 
-min-height: 200px;
+min-height: 150px;
+}
+.card-chip{
+  padding-left: 1rem;
+  padding-top: 1rem;
 }
 
 .card-content{
@@ -586,7 +590,22 @@ a.searchItem span{
   100% { width: 50%;  }
 }
 
+@keyframes resize-l{
+  0% { width: 0px; left: 150%;}
+  100% { width: 50%;  }
+}
+
 /** for desktop **/
+.author-wrapper-right a{
+  padding: .5rem;
+  margin: 1rem;
+  background-color: #f1f1f1;
+  display: block;
+  border-radius: 5px;
+  border-left: 25px solid #222;
+  border-right: 25px solid #222;
+ 
+}
 
 
 @media only screen and (min-width : 980px){
@@ -597,12 +616,15 @@ a.searchItem span{
   width: 50%;
   background-color: #f1f1f1;
 }
+
 .author-wrapper-right{
-  background-color: white;
+  background-color: #111;
   left: 50%;
   width: 50%;
+  overflow-y: auto;
    -webkit-animation: resize 1s ;
            animation: resize 1s ;
+
 }
 
 .user-wrapper{
@@ -631,9 +653,11 @@ ul.user-contact li{
   background-position: center center;
   background-size: cover;
   border: 0px solid black;
-  margin-left: 35%;
-     -webkit-animation: resize-image 1s ;
-             animation: resize-image 1s ;
+
+}
+
+.back-home{
+  margin-top: 5rem;
 }
 
 }
@@ -650,7 +674,7 @@ ul.user-contact li{
   background-color: #f1f1f1;
  }
  .author-wrapper-right{
-
+   height: 400px;
    background-color: #333;
  }
 .user-wrapper{
@@ -681,6 +705,9 @@ ul.user-contact li{
   border: 0px solid black;
   margin-left: 40%;
 
+}
+.back-home{
+  margin-right: 2rem;
 }
 
 }

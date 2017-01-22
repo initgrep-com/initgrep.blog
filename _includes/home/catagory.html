@@ -18,20 +18,26 @@
 {% for post in cc limit:5 %}
  <div class="col s12 m4 xl3">
  		
-		  <div class="card hoverable  medium " id='top-card'>
-	            <div class="card-deck  valign-wrapper {{post.bannercolor}}">
+<div class="card hoverable  medium " id='top-card'>
+	<div class="{{post.bannercolor}} card-chip">
+		<a href="{{site.baseurl}}/about/{{post.author}}">
+			<div class="chip">
+				<img src="{{site.baseurl}}/assets/images/as.jpg" alt="Contact Person">
+				{{post.author}}
+			</div>
+		</a>
+	</div>
+	<div class="card-deck  valign-wrapper {{post.bannercolor}}">
+		<a class="card-title valign pt-sans-bold white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+	</div>
+	<div class="card-content pt-sans black-text">
+		<p>{{post.meta}}</p>
+	</div>
+	<div class="card-actions">
+		<a >{% include util/minRead.liquid content= post.content  %} read</a>
+	</div>
 
-	              <a class="card-title valign pt-sans-bold white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-	            </div>
-	            <div class="card-content pt-sans black-text">
-	              <p>{{post.meta}}</p>
-	            </div>
-	            <div class="card-actions">
-	              <a href="{{site.baseurl}}/about/{{post.author}}">{{post.author}}</a>
-	              <a class="right" style="padding-top: 5px">{% include util/minRead.liquid content= post.content  %} read</a>
-	            </div>
-
-	          </div>  
+</div>  
 	   
  </div>
 {% endfor %}
