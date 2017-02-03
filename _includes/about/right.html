@@ -1,0 +1,38 @@
+	
+	<div class="right-side ">
+		
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">I work for</h5>
+				<a class='res-ans pt-sans-bold' href="//{{page.companyURL}}" target="blank">{{page.company}}</a>
+			</div>
+		</div>	
+		<div class="row res-item">
+			<div class="col s12 m12 ">	
+				<h5 class="res-title pt-sans-bold"> At present I am part of</h5>
+				<a class='res-ans pt-sans-bold' >{{page.currentProject}}.{{page.aboutCurrentProject}}</a>
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">Skills I have acquire over the years are</h5>
+				<ul> {% include util/tokenizer.liquid param= page.skills %}</ul>
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">In my spare time I like to do</h5>
+				<ul> {% include util/tokenizer.liquid param= page.hobby %}</ul>
+				
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">I have done</h5>
+				<a  class='res-ans pt-sans-bold' >{{page.latestEducation}}.{{page.major}}</a>
+				
+			</div>
+		</div>
+		
+
+	</div>

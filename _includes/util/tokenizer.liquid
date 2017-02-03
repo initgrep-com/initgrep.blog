@@ -1,0 +1,5 @@
+{% assign my_str = {{include.param}} %}
+{% assign my_arr = my_str | split: ',' %}
+{% for token in my_arr %}
+  <li><a class='pt-sans-bold'> {{token}}</a></li>
+{% endfor %}
