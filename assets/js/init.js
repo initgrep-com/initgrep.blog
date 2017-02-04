@@ -116,9 +116,10 @@ var BlogObject = function(){
 
     this.getSFireOptions = function(){
 
-        $('#index-banner,.subHomeBanner , #topPosts').css('opacity',"1");
+        $('#index-banner,.subHomeBanner , #topPosts , .code-wrapper , .fit-wrapper ').css('opacity',"1");
 
-       return [
+      /**
+           return [
       
               {selector: '.code-wrapper', offset: 150, callback: function(el) {
                 console.log("fire !!!");
@@ -128,7 +129,9 @@ var BlogObject = function(){
                 console.log("fire !!!");
                  $('.fit-wrapper').css('opacity',"1");
               } }
-      ];
+            ];
+
+      **/
 
     };
 

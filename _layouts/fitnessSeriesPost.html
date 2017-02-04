@@ -8,7 +8,7 @@
     <div class="row " style="margin-bottom: 0px;">
       <div class="col s6 m6 l6">
         <div class="col  m3 l2 hide-on-small-only ">
-          <img class="user " src="{{site.baseurl}}/assets/images/as.jpg">
+                   {% include util/insertDp.liquid name = page.author  class = "user" %}
         </div>
         <div class="col s12 m9 l8  margin-top-1">
           <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans author" style="display: block;">{{page.author }}</a>

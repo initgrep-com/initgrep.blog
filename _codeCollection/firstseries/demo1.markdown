@@ -1,23 +1,17 @@
 ---
-layout: post
-comments: true
-id: c_002
-bannercolor: "blue"
-title:  "The revisited slogan of narcissim."
+layout: codeSeriesPost
+bannercolor: "grey"
+title:  "It became cool to define yourself by mental illness [on Tumblr]"
 date:   2016-10-31
-excerpt: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
-meta: "She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl"
+meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
+excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: code
+series: demo
 author: "irshad ahmad sheikh"
-initials: ias
-imageURL: "assets/images/as.jpg"
-twitter: " "
-facebook: " "
-github: " "
-
+comments: true
 ---
 
-## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
+#### Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
 
 >Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
 

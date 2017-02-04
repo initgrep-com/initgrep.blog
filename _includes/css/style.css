@@ -469,7 +469,13 @@ display: block;
 font-size: .8rem;
 }
 
-
+.cchip{
+  background-color: transparent !important;
+  font-weight: 400 !important;
+  color: #f1f1f1 !important;
+  letter-spacing: 0.025rem;
+  text-transform: capitalize;
+}
 
 .side-card-content p{
 font-size: 1.3rem;
@@ -642,6 +648,8 @@ a.searchItem span{
     }
     .left-side p.about-me{
       font-size: 18px;
+      letter-spacing: 0.025rem;
+      color: rgba(0,0,0,0.5);
     }
    
     .user-image{
@@ -738,6 +746,8 @@ a.searchItem span{
     }
     .left-side p.about-me{
       font-size: 18px;
+       letter-spacing: 0.025rem;
+      color: rgba(0,0,0,0.5);
     }
    
     .user-image{

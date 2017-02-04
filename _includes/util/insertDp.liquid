@@ -1,0 +1,8 @@
+{% assign name = {{include.name}} %}
+
+{% for author in site.authors  %}
+{% if author.name == name %}
+  <img class="{{include.class}} " src="{{site.baseurl}}/assets/images/{{author.image}}">
+{% endif %}
+
+{% endfor %}

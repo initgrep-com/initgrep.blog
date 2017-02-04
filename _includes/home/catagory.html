@@ -21,8 +21,8 @@
 <div class="card hoverable  medium " id='top-card'>
 	<div class="{{post.bannercolor}} card-chip">
 		<a href="{{site.baseurl}}/about/{{post.author}}">
-			<div class="chip">
-				<img src="{{site.baseurl}}/assets/images/as.jpg" alt="Contact Person">
+			<div class="chip cchip pt-sans">
+				{% include util/insertDp.liquid name = post.author  %}
 				{{post.author}}
 			</div>
 		</a>

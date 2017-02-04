@@ -1,7 +1,7 @@
 ---
 layout: author
 name: irshad ahmad sheikh
-image: assets/images/as.jpg
+image: as.jpg
 github: gagrock
 twitter: irsh_shykh
 company: MetricStream Infotech PVT LTD.
@@ -12,7 +12,5 @@ skills: JAVA, HTML5, JAVAEE, REST, JAX-RS, Angular-js, Javascript, JQuery, C++, 
 hobby: workout, Code, hangout with friends, Play video games
 latestEducation: Master's in Computer Applications (MCA)
 major: My Major was developing sofware using Java Programming Language.
-
+aboutMe: I work as a software developer. I have over 4+ years of experience in developing web applications and Java Enterprise applications. 
 ---
-
-Hi, Thank you for visiting here. I have written various tutorials on this blog. Most of my blogs are related to code and fitness.

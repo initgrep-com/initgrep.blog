@@ -4,14 +4,10 @@ bannercolor: "grey"
 title:  "It became cool to define yourself by mental illness [on Tumblr]"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
+excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: fitness
-author: "irshad ahmad sheikh"
-initials: nm
-imageURL: "assets/images/as.jpg"
-twitter: " "
-facebook: " "
-github: " "
-
+author: "irshad sheikh"
+comments: true
 ---
 
 ## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
