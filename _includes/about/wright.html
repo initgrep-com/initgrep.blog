@@ -1,0 +1,38 @@
+	
+	<div class="right-side ">
+		
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">Motive</h5>
+				<a class='res-ans pt-sans-bold' href="//{{page.companyURL}}" target="blank">{{page.motive}}</a>
+			</div>
+		</div>	
+		<div class="row res-item">
+			<div class="col s12 m12 ">	
+				<h5 class="res-title pt-sans-bold"> we write blogs about</h5>
+				<ul> {% include util/tokenizer.liquid param= page.blogCatagories %}</ul>
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">Contact us @</h5>
+				<ul> {% include util/tokenizer.liquid param= page.contact %}</ul>
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">We are based in</h5>
+				<a class='res-ans pt-sans-bold' >{{page.location}}</a>
+				
+			</div>
+		</div>
+		<div class="row res-item">
+			<div class="col s12 m12 ">
+				<h5 class="res-title pt-sans-bold">want to write for us</h5>
+				<a  class='res-ans pt-sans-bold' >{{page.writeforus}}</a>
+				
+			</div>
+		</div>
+		
+
+	</div>

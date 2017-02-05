@@ -1,7 +1,7 @@
 var prop = new Properties();
 var BlogObject = function(){
 
-  this.noResults = '<div class="col red s12 m6 l6 offset-m3  offset-l3 notfound"><i class="material-icons">sentiment_dissatisfied</i>'+prop.notFound+'</div>' ;
+  this.noResults = '<div class="col red s12 m6 l6 offset-m3  offset-l3 notfound">'+prop.notFound+'<i class="material-icons">sentiment_dissatisfied</i></div>' ;
   this.getRandom = function() { return Math.abs(Math.floor(Math.random() * 10));};
   this.coloCodes = [
                       'teal lighten-2',
@@ -73,7 +73,9 @@ var BlogObject = function(){
           
           for (var i = 0; i < results.length; i++) {  // Iterate over the results
             var item = store[results[i].ref];
-            _this.getUnitDiv(searchCnt,item.url, item.title);
+            //setTimeout(function(){
+              _this.getUnitDiv(searchCnt,item.url, item.title);
+              //},500);
           }
 
          

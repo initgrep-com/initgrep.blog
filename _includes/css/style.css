@@ -14,6 +14,14 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+
+
 
 .courgettte{
 font-family: 'Courgette', cursive;
@@ -353,12 +361,6 @@ border-bottom: 2px dashed #eeeeee;
 
 
 
-#footer{
-position: relative;
-bottom: 0;
-width: 100%;
-}
-
 .bold{
 font-weight: 800;
 }
@@ -545,13 +547,28 @@ font-size: inherit;
   transform: translate(0px, 0px) scale(1, 1); 
     opacity: 1;
 }
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
 div.searchContainer{
   height: 450px;
   overflow-y: auto;
 }
 div.searchContainer .notfound{
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 5px;
+  animation: fadein 2s;
+  color: #f1f1f1;
+  letter-spacing: 0.025rem;
+  font-size: 1rem;
 }
 a.searchItem{
 display: block;
@@ -559,8 +576,9 @@ padding: .5rem;
 border-radius: 5px;
 color: #333;
 border: 1px solid #ADA1A1;
--webkit-transition: all .5s ease-in-out;
-transition: all .5s ease-in-out;
+ -webkit-animation: fadein 2s;
+         animation: fadein 2s;
+
 
 }
 
@@ -574,6 +592,7 @@ a.searchItem span{
   font-size: 1rem;
   line-height: 1.3rem;
 }
+
 
 
 /** end search related **/
@@ -895,3 +914,10 @@ top: 0;
 }
 }
 
+
+
+
+/**
+
+
+**/
