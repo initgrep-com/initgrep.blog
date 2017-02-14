@@ -14,6 +14,11 @@
 @import url('https://fonts.googleapis.com/css?family=Courgette');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 
+.font-48{   font-size: 48px !important; }
+.font-32{   font-size: 32px !important; }
+.font-64{   font-size: 64px !important; }
+.font-86{   font-size: 86px !important; }
+
 html, body {
   height: 100%;
   margin: 0;
@@ -917,7 +922,34 @@ top: 0;
 
 
 
-/**
+/** 404 **/
+.f404-wrapper{
+  padding-bottom: 4rem;
+  border: 1px solid #f8f4f4;
+  margin-top: 4rem !important;
+  border-radius: 4px;
+}
+.f404 h1{
 
+  letter-spacing: 0.05rem;
+  color: #787880;
+  font-size: 200px;
+  text-shadow: -1px 0px 1px rgba(150, 150, 150, 1);
+}
 
-**/
+.f404 h5{
+  color: #787880;
+}
+
+@media only screen and (max-width : 979px){
+
+  .f404 h1{
+  font-size: 100px;
+  }
+  .f404 h5{
+    font-size: 16px;
+  }
+
+}
+
+/** 404 end **/
