@@ -146,12 +146,13 @@ width: 100%;
 .content{
 clear: both;
 margin-bottom: 50px;
-font-size: 1.6rem;
-font-family: 'Gentium Basic', serif;
+font-size: 1.5rem;
+  font-family: 'PT Sans Narrow', sans-serif; 
 
 }
 .content-text blockquote{
   font-family: 'PT Sans Narrow', sans-serif; 
+  background-color: rgba(0,0,0,0.05);
 }
 .content p em{
 font-family: 'Courgette', cursive;
@@ -177,6 +178,7 @@ font-weight: 700;
 }
 .content-text p,{
   line-height: 3rem;
+  font-size: 2rem;
 }
 
 #check_nav, #side-card, #top-card {
@@ -411,22 +413,57 @@ span.timeToRead{
   margin-left: 1rem;
 }
 
+.rt-content-wrapper{
+
+}
 .section.box{
   padding: 3rem 1rem 2rem 1rem;
   margin-bottom: 1rem;
   box-shadow: 0 0px 1px 0 #DEDADA;
   border-radius: 4px;
+
 }
+.toc-wrapper{
+  min-height: 500px;
+  margin-top: 80px;
+  padding-left: 20%;
+  border-right: 4px solid rgba(0,0,0,0.2);
+}
+
 h1.toc{
   font-size: 1.2rem;
+  text-align: center;
+
+}
+
+
+ul.series li{
+  font-size: .9rem;
+  display: block;
+  margin-bottom: 1rem;
+  background-color: rgba(0,0,0,0.2);
+  padding: 1rem;
   
 }
-ul.series li{
-  font-size: 1rem;
-  padding: 1rem;
+
+@media only screen and (max-width : 980px){
+  .toc-wrapper{
+    min-height: 100px;
+   margin-top: -50px;
+   padding-left: 0px;
+   border: 0px solid rgba(0,0,0,0.2);
+  }
+
+  ul.series li{
+  font-size: .9rem;
   display: block;
-  background-color: #f6f6f8;
   margin-bottom: 1rem;
+  background-color: rgba(0,0,0,0.2);
+  padding: 1rem;
+ 
+}
+
+
 }
 
 
@@ -873,7 +910,7 @@ min-height: 300px;
 }
 
 .content p, .content blockquote, .content em{
-font-size: 1.6rem;
+font-size: 1.3rem;
 }
 .content h1{font-size: 3rem; }
 .content h1{font-size: 2.5rem; }

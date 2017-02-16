@@ -2,11 +2,12 @@
 
 {% assign collection = {{include.currentCollection}} %}
 
- <div class="section box">
+ <div class="section toc-wrapper">
       <h1 class="toc pt-sans-bold"> Table of Contents </h1>
       <ul class="series">
       {% assign count = '0' %}
-      {% for post in collection %}
+      {% assign colSeries  = collection | reverse %}
+      {% for post in colSeries %}
       {% if post.series == page.series %}
 
           {% capture count %}{{ count | plus: '1' }}{% endcapture %}
