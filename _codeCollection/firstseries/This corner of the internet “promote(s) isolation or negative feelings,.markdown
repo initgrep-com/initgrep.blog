@@ -1,6 +1,6 @@
 ---
 layout: codeSeriesPost
-bannercolor: "grey"
+bannercolor: "black"
 title:  "This corner of the internet “promote(s) isolation or negative feelings"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"

@@ -17,14 +17,14 @@
                              {% include util/insertDp.liquid name = page.author  class = "user" %}
                     </div>
                     <div class="col s12 m10 l8 xl10  margin-top-1 ">
-                      <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans author" style="display: block;">{{page.author }}</a>
+                      <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans author" style="display: block; text-transform: capitalize;">{{page.author }}</a>
                       <a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
                     </div>
                   </div>
                 </div>
               <div class="col s6 m6 l6 xl2 ">
                 <div class="col s12 m12 l12 right  margin-top-2 ">
-                    <span class="grey-text right pt-sans readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
+                    <span class="grey-text right pt-sans-bold readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
                 </div>
               </div>
               </div>
@@ -42,19 +42,18 @@
 
           <div class="row content">
              <div class=" content-text col s12 m12 l10 xl8 ">{{ content }}</div>
-
           </div>
+
+          <!-- comments -->
+            <div class="row">
+              <div class=" col s12 m10 l10 "> {% include util/disqus.html %}</div>
+            </div>
+
+          <!-- end -->
 
 
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-    <div class=" col s12 m10 l10 offset-m1 offset-l1 "> {% include util/disqus.html %}</div>
-
-  </div>
-  </div>
-  
 </div>
 
 {% include footer.html %}

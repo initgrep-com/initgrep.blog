@@ -11,13 +11,13 @@
           {% include util/insertDp.liquid name = page.author  class = "user" %}
         </div>
         <div class="col s12 m9 l8  margin-top-1">
-          <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans author" style="display: block;">{{page.author }}</a>
+          <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans-bold author" style="display: block;">{{page.author }}</a>
           <a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
         </div>
       </div>
     <div class="col s6 m6 l6">
       <div class="col s12 m4 right  margin-top-2">
-          <span class="grey-text right pt-sans readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
+          <span class="grey-text right pt-sans-bold readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
       </div>
     </div>
     </div>
