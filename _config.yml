@@ -47,8 +47,8 @@ gems:
 
 title: shaykhslog.com
 description: Blog about techonology, code, Health and fitness
-logo: /assets/images/logo.jpg
-image: /assets/images/logo.jpg 
+logo: logo.jpg
+image: logo.jpg 
 
 
 #twitter -related

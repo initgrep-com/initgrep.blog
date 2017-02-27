@@ -10,7 +10,6 @@ comments: true
 author: "irshad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
-image: code.png
 ---
 
 ## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
