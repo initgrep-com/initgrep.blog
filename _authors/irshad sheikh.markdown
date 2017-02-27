@@ -14,5 +14,6 @@ hobby: workout, Code, hangout with friends, Play video games, playing cricket
 latestEducation: Master's in Computer Applications (MCA)
 major: My Major was developing sofware using Java Programming Language.
 aboutMe: I work as a software developer. I have over 4+ years of experience in developing web applications and Java Enterprise applications. 
+meta: I work as a software developer. I have over 4+ years of experience in developing web applications and Java Enterprise applications. 
 ---
 
