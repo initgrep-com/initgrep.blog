@@ -7,8 +7,11 @@ meta: "Even past its prime, a group of users who find community in their mental 
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: code
 series: demo
-author: "irshad ahmad sheikh"
 comments: true
+author: "irshad ahmad sheikh"
+twitter: imshykh	
+facebook: irshsheikh
+image: code.png
 ---
 
 Then there’s a picture of her, the girl (at least, supposedly) behind the Tumblr: pale, with brown hair. Beautiful. She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl who reads The Catcher in the Rye and listens to the Smiths. She receives anonymous messages asking about her life and complimenting her, and notes from people who seem to be her friends.

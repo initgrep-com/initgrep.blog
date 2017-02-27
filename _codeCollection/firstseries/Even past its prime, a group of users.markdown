@@ -7,8 +7,11 @@ meta: "Even past its prime, a group of users who find community in their mental 
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: code
 series: demo
-author: "irshad ahmad sheikh"
 comments: true
+author: "irshad ahmad sheikh"
+twitter: imshykh	
+facebook: irshsheikh
+image: code.png
 ---
 
  If you want to be part of the club, you gotta be insecure and unstable in some way. I’m not a fan.”

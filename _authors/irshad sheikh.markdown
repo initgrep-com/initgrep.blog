@@ -3,7 +3,8 @@ layout: author
 name: irshad sheikh
 image: charlie.jpg
 github: gagrock
-twitter: irsh_shykh
+twitter: imshykh
+facebook: irshsheikh
 company: telnet Infotech PVT LTD.
 companyURL: www.telnet.com
 currentProject: FINAR
