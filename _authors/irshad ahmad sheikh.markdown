@@ -3,7 +3,7 @@ layout: author
 name: irshad ahmad sheikh
 image: as.jpg
 github: gagrock
-twitter: irsh_shykh
+twitter: imshykh
 company: MetricStream Infotech PVT LTD.
 companyURL: www.metricstream.com
 currentProject: Regulatory Engagements

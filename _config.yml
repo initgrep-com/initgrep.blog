@@ -38,7 +38,6 @@ collections:
 
 gems:
   - jekyll-seo-tag
-  - octopress-paginate
 
 
 
@@ -46,32 +45,20 @@ gems:
 
 #social and seo
 
-title: shaykh'slog- Blog about technology and life
-#email
-description: Blog about technology, coding , fitness and coding
-url : gagrock.github.io
+title: shaykhslog.com
+description: Blog about techonology, code, Health and fitness
 logo: /assets/images/logo.jpg
-author:
-  twitter: shk_irshad
+image: /assets/images/logo.jpg 
 
-#social profile
-social:
-  name: irshad sheikh
-  links:
-    - https://twitter.com/shk_irshad
-    - https://www.facebook.com/irshsheikh
-   # - https://www.linkedin.com/in/BenBalter
-    - https://plus.google.com/+irshad.mike
-    - https://github.com/gagrock
-   # - https://keybase.io/benbalter
 
+#twitter -related
 twitter:
-  username: irshsheikh
+  username: shaykhslog
 
 facebook:
-  app_id: 1234
-  publisher: pub_123
-  admins: scrollasd
+  username: shaykhslog
+
+
 
 
 

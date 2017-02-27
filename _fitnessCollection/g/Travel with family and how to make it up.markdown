@@ -6,8 +6,11 @@ date:   2016-10-31
 meta: "Then there’s a picture of her, the girl (at least, supposedly) behind the Tumblr: pale, with brown hair. Beautiful."
 excerpt: "Then there’s a picture of her, the girl (at least, supposedly) behind the Tumblr: pale, with brown hair. Beautiful."
 category: fitness
-author: "irshad ahmad sheikh"
 comments: true
+author: "irshad ahmad sheikh"
+twitter: imshykh	
+facebook: irshsheikh
+image: code.png
 ---
 
 
