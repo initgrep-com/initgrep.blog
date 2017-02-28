@@ -413,9 +413,6 @@ span.timeToRead{
   margin-left: 1rem;
 }
 
-.rt-content-wrapper{
-
-}
 .section.box{
   padding: 3rem 1rem 2rem 1rem;
   margin-bottom: 1rem;
@@ -813,14 +810,12 @@ a.searchItem span{
     }
    
     .user-image{
-      height: 250px;
-      width: 250px;
+      height: 150px;
+      width: 150px;
       border-radius: 50%;
       border: 10px solid rgba(0,0,0,0.3);
       -webkit-animation: opa 1s;
               animation: opa 1s;
-
-
     }
 
     ul.user-contact li{
