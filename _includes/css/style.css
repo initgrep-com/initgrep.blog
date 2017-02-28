@@ -607,7 +607,8 @@ div.searchContainer{
 div.searchContainer .notfound{
   padding: 2rem;
   border-radius: 5px;
-  animation: fadein 2s;
+  -webkit-animation: fadein 2s;
+          animation: fadein 2s;
   color: #f1f1f1;
   letter-spacing: 0.025rem;
   font-size: 1rem;

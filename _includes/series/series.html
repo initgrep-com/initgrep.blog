@@ -3,21 +3,34 @@
 {% assign collection = {{include.currentCollection}} %}
 
  <div class="section toc-wrapper">
-      <h1 class="toc pt-sans-bold"> Table of Contents </h1>
-      <ul class="series">
+    
       {% assign count = '0' %}
       {% assign colSeries  = collection | reverse %}
+      <h1 class="toc pt-sans-bold"> Table of Contents </h1>
       {% for post in colSeries %}
+      {% if post.series != nil %}
       {% if post.series == page.series %}
-
           {% capture count %}{{ count | plus: '1' }}{% endcapture %}
+
+      <ul class="series">
           <li> 
           {% if page.url == post.url %}
-              <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">{{ count }} - {{post.title}}</a>
+              <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">
+                  <i class="material-icons" style="font-size: 14px;">radio_button_checked</i> - {{post.title}}
+              </a>
           {% else %}
-              <a class="black-text pt-sans" href="{{site.baseurl}}{{post.url}}">{{ count }} - {{post.title}}</a>
+              <a class="black-text pt-sans" href="{{site.baseurl}}{{post.url}}">
+                  <i class="material-icons" style="font-size: 14px;">radio_button_checked</i> - {{post.title}}
+              </a>
           {% endif %}
           </li>
+      {% endif %}
+       {% else %}
+         <a class="teal-text text-darken-3 pt-sans-bold" href="{{site.baseurl}}{{page.url}}">
+             <i class="material-icons" style="font-size: 14px;">radio_button_checked</i> - {{page.title}}
+         </a> 
+
+         {% break %} 
       {% endif %}
       {% endfor %}
   </div>

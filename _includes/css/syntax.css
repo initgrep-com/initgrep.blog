@@ -1,11 +1,9 @@
-.highlight  {
-			 background: #333;
-			 border-right: 1px dashed #f1f1f1;
-			 border-left: 1px dashed #f1f1f1;
-			 font-family: monospace, monospace;
-			 font-size: .8rem;
-			 letter-spacing: 0.05rem;
-			 padding: 1rem;
+.highlight  {	
+	 background: #333;
+	 font-family: monospace, monospace;
+	 font-size: .8rem;
+	 letter-spacing: 0.05rem;
+	 padding: 1rem;
 }
 .highlighter-rouge{
 	background-color: #333;

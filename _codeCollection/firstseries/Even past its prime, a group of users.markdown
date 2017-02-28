@@ -1,7 +1,7 @@
 ---
 layout: codeSeriesPost
 bannercolor: "blue-grey"
-title:  "he California native felt unable to talk about her self-harm"
+title:  "the California native felt unable to talk about her self-harm"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
