@@ -2,20 +2,20 @@
 {% include nav.html %}
 
 
-<div class=" content " style="padding-top: 4rem;">
+<div class=" content " style="padding-top: 2rem;">
 <div class="row" style="margin-bottom: 0;">
   <div class="col s10 m10 l8 offset-m1 offset-s1 offset-l2 ">
     <div class="row " style="margin-bottom: 0px;">
-      <div class="col s6 m6 l6">
-        <div class="col  m3 l2 hide-on-small-only ">
+      <div class="col s12 m6 l6 ">
+        <div class="col s4 m3 l2  ">
           {% include util/insertDp.liquid name = page.author  class = "user" %}
         </div>
-        <div class="col s12 m9 l8  margin-top-1">
+        <div class="col s6 m9 l8  margin-top-1">
           <a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans-bold author" style="display: block;">{{page.author }}</a>
           <a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
         </div>
       </div>
-    <div class="col s6 m6 l6">
+    <div class="col s12 m6 l6 hide-on-small-only">
       <div class="col s12 m4 right  margin-top-2">
           <span class="grey-text right pt-sans-bold readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
       </div>
