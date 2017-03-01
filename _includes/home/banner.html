@@ -3,16 +3,28 @@
    <div class="section " style="padding-top: 4rem;" >
       
 	        <div class="container  ">
-				 <div class="row">	
-                   {% for page in site.fitnessCollection limit:1 %}
+				 <div class="row ">	
+                   {% for page in site.codeCollection | limit: 1 %}
                   
                  
-					<div class="col s12 m8 recent-article ">
-						<div class="icon-block">
+					<div class="col s12 m8 recent-article  ">
+						<div class="row col s12 m12 l12 ">
+							<h6 class="banner-subheading"> Recent from 
+								<a href="{{site.baseurl}}/posts/code">
+									<span class="catagory-links">code</span>
+								</a>
+								<span class="grey-text pt-sans-bold center timeToRead" >
+								{% include util/minRead.liquid content= page.content  %} read
+							</span>
+							</h6>
+
+
+						</div>
+						<div class="row col s12 m12 l12 ">
+							<div class="icon-block ">
 
 							<a href ="{{site.baseurl}}{{page.url}}" class="title pt-sans-bold  black-text ">{{page.title}}
-							<span class="grey-text pt-sans-bold timeToRead" >
-							{% include util/minRead.liquid content= page.content  %} read</span>
+							
 							</a>
 
 							<p class=" black-text margin-top-2 pt-sans font-2">{{page.meta}} 
@@ -20,6 +32,7 @@
 							
 							</p>
 
+						</div>
 						</div>
 					</div>
                   

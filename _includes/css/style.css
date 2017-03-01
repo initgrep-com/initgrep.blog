@@ -116,6 +116,28 @@ line-height: 0;
 height: auto;
 color: rgba(255,255,255,.9);
 }
+
+span.catagory-links{
+  color: white;
+  background-color: #222;
+  padding: .15rem .25rem .15rem .25rem;
+  border-radius: 5px;
+  font-size: 12px;
+  letter-spacing: 0.025rem;
+  text-transform: uppercase;
+  transition: background-color 1s ease-in;
+}
+span.catagory-links:hover{
+  background-color: rgba(0,0,0,0.4);
+  transition: background-color 1s ease-out;
+}
+
+.banner-subheading{
+  font-size: 12px;
+  text-transform: capitalize;
+  padding-left: 2rem;
+}
+
 #topPosts{
   opacity: 0;
 -webkit-transition: opacity 2s ease-out;
@@ -143,13 +165,36 @@ transition: opacity 2s ease-out;
 .parallax-container .section {
 width: 100%;
 }
+
 .content{
 clear: both;
 margin-bottom: 50px;
 font-size: 1.5rem;
-  font-family: 'PT Sans Narrow', sans-serif; 
-
+font-family: 'PT Sans Narrow', sans-serif; 
+padding-top: 2rem;
 }
+
+.post-img{
+  /* filter: blur(1px) ; */
+  position: relative;
+  max-width: 100%;
+  height: 400px;
+}
+.post-img:hover{
+   filter: blur(0px) ;
+}
+.post-img-floater{
+  position: absolute;
+  width: 65%;
+  height: 400px;
+  top: 94px;
+  background-color: rgba(5,5,5,0.8);
+  padding: 1rem;
+}
+
+.grow > img.post-img{ transition: all .5s ease-in-out; }
+
+.grow:hover >img.post-img { transform: scale(1.05); }
 .content-text blockquote{
   font-family: 'PT Sans Narrow', sans-serif; 
   background-color: rgba(0,0,0,0.05);
@@ -203,7 +248,7 @@ border-radius: 50%;
 background-repeat: no-repeat;
 background-position: center center;
 background-size: cover;
-border: 0px solid black;
+border: 4px solid rgba(255,255,255,0.6);
 }
 
 
@@ -389,8 +434,6 @@ font-size: 4rem;
 letter-spacing: .05rem;
 display: block;
 line-height: 4.1rem;
-margin-top: 1rem;
-
 }
 div.top-article div a.title{
 font-size: 2rem;

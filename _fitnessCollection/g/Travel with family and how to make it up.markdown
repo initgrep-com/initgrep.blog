@@ -10,7 +10,7 @@ comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
-image: code.png
+image: background2.jpg
 ---
 
 

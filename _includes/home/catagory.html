@@ -4,8 +4,13 @@
 
   <div class="row">
   
-	<div class="col s12 m3 l3 right   border-bottom-dotted" style="line-height: 2rem; margin-top: 2rem;">
-		 <a href = "{{ include.url | prepend: site.baseurl }}" class=" {% include util/textColor.liquid %} right pt-sans sub_heading" >{{include.label}} <i class="material-icons" style="font-size: 12px;">forward</i></a>
+	<div class="col s12 m3 l3  " style="line-height: 2rem; margin-top: 2rem;">
+		
+		 <a href="{{ include.url | prepend: site.baseurl }}">
+			<span class="catagory-links">{{include.label}}</span>
+		</a>
+
+
 	 </div>
 
 
@@ -18,7 +23,7 @@
 {% for post in cc limit:5 %}
  <div class="col s12 m4 xl3">
  		
-<div class="card hoverable  medium " id='top-card'>
+<div class="card hoverable {{include.cardColor}} medium " id='top-card'>
 	<div class="{{post.bannercolor}} card-chip">
 		<a href="{{site.baseurl}}/about/{{post.author}}">
 			<div class="chip cchip pt-sans">
