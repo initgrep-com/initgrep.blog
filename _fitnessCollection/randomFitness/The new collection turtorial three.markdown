@@ -10,9 +10,10 @@ comments: true
 author: "irshad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
+
 ---
 
-## Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
+#### Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
 
 >Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
 
