@@ -186,7 +186,7 @@ padding-top: 2rem;
 .post-img-floater{
   position: absolute;
   top: 94px;
-  background-color: rgba(5,5,5,0.8);
+  background-color: rgba(5,5,5,0.4);
   height: 400px;
   padding-top: 1rem !important;
 }
