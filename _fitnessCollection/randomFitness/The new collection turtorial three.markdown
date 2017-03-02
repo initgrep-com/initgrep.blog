@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: fitnessSeriesPost
 bannercolor: "red lighten-2"
 title:  "It became cool to define yourself by mental illness [on Tumblr]"
 date:   2016-10-31
@@ -13,9 +13,8 @@ facebook: irshsheikh
 
 ---
 
-#### Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform
 
->Scrolling through y0ung-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung >along a wall. Underneath it, there’s a message.
+> #### _Scrolling through young-blood, a wildly popular Tumblr, eventually you’ll see a picture of a daisy strung  along a wall. Underneath it, there’s a message._
 
 Then there’s a picture of her, the girl (at least, supposedly) behind the Tumblr: pale, with brown hair. Beautiful. She’s cool in a way that isn’t like girls at school, but that’s been in books and movies: the sad, beautiful girl who reads The Catcher in the Rye and listens to the Smiths. She receives anonymous messages asking about her life and complimenting her, and notes from people who seem to be her friends.
 
