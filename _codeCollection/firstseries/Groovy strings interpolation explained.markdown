@@ -40,3 +40,5 @@ _“I was more open about my weird issues [on Tumblr],” Andrews said. “I cou
 
 >“Sometimes hearing other people’s stories for why they did the same thing you did can be just, like, ‘Yeah, yeah, 
 
+<script async src="//jsfiddle.net/irshsheikh/oLy31ynr/38/embed/js,html,css,result/dark/?bodyColor=333"></script>
+
