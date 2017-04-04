@@ -119,6 +119,7 @@ var BlogObject = function(){
     this.getSFireOptions = function(){
 
         $('#index-banner,.subHomeBanner , #topPosts , .code-wrapper , .fit-wrapper ').css('opacity',"1");
+        return [];
 
       /**
            return [

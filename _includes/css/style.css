@@ -8,11 +8,10 @@
 
 
 /** ========================**/
-@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
-@import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,700');
-@import url('https://fonts.googleapis.com/css?family=Pacifico');
-@import url('https://fonts.googleapis.com/css?family=Courgette');
+@import url('https://fonts.googleapis.com/css?family=Pacifico'); 
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700');
 
 .font-48{   font-size: 48px !important; }
 .font-32{   font-size: 32px !important; }
@@ -27,31 +26,6 @@ html, body {
 
 
 
-
-.courgettte{
-font-family: 'Courgette', cursive;
-}
-.oswald-300{
-font-weight: 300;
-font-family: 'Oswald', sans-serif;
-}
-.oswald-400{
-font-weight: 400;
-font-family: 'Oswald', sans-serif;
-}
-.oswald-700{
-font-weight: 700;
-font-family: 'Oswald', sans-serif;
-}
-
-.gentium-400{
-font-family: 'Gentium Basic', serif;
-font-weight: 400;
-}
-.gentium-700{
-font-family: 'Gentium Basic', serif;
-font-weight: 700;
-}
 .pacifo{
 font-family: 'Pacifico', cursive;
 }
@@ -66,6 +40,11 @@ font-weight: 400;
 .pt-sans-bold{
 font-family: 'PT Sans Narrow', sans-serif;
 font-weight: 700;
+}
+
+.notoserif_italic{
+  font-family: 'Noto Serif', serif;
+
 }
 
 nav .brand-logo {
@@ -120,7 +99,7 @@ color: rgba(255,255,255,.9);
 span.catagory-links{
   color: white;
   background-color: #222;
-  padding: .15rem .25rem .15rem .25rem;
+  padding: .35rem .50rem .35rem .5rem;
   border-radius: 5px;
   font-size: 12px;
   letter-spacing: 0.025rem;
@@ -169,9 +148,16 @@ width: 100%;
 .content{
 clear: both;
 margin-bottom: 50px;
-font-size: 1.5rem;
 font-family: 'PT Sans Narrow', sans-serif; 
 padding-top: 2rem;
+
+}
+.content p{
+  letter-spacing: 0.025rem;
+  font-size: 1.3rem;
+}
+.content p em {
+  font-size: 1.2rem;
 }
 
 .post-img{
@@ -197,7 +183,9 @@ padding-top: 2rem;
   background-color: rgba(0,0,0,0.05);
 }
 .content p em{
-font-family: 'Courgette', cursive;
+  font-family: 'Noto Serif', serif;
+  font-weight: 400;
+
 }
 .content-text h1 , .content-text h2, .content-text h3, .content-text h4, .content-text h5{
 font-family: 'PT Sans Narrow', sans-serif; 
@@ -928,16 +916,19 @@ a.searchItem span{
 min-height: 200px;
 }
 
-.content p, .content blockquote, .content em{
+.content p, .content blockquote{
 font-size: 1.2rem;
 }
 .content h1{font-size: 2.2rem; }
 .content h3{font-size: 2.1rem;}
 .content h2{font-size: 1.7rem; }
-.content-text p, .content-text blockquote, .content-text em{
+.content-text p, .content-text blockquote{
 line-height: 1.8rem;
 }
 
+.content em, , .content-text em{
+  font-size: 1rem;
+}
 }
 @media only screen and (min-width : 361px) and (max-width : 768px){
 
