@@ -2,6 +2,7 @@ This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use this software, either
 in source code form or as a compiled binary form.
+
 However, you can not copy, modify or distribute the posts(tutorials)
 present in this repository. It is owners sole property. If you want
 to read, you can visit the website from your browser and read the posts.

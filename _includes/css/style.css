@@ -451,8 +451,9 @@ span.timeToRead{
 .toc-wrapper{
   min-height: 500px;
   margin-top: 10px;
-  padding-left: 20%;
-  border-right: 4px solid rgba(0,0,0,0.2);
+  padding-left: 40%;
+  padding-right: 2%;
+  border-right: 1px solid rgba(0,0,0,0.2);
 }
 
 h1.toc{
@@ -466,9 +467,27 @@ ul.series li{
   font-size: .9rem;
   display: block;
   margin-bottom: 1rem;
-  background-color: rgba(0,0,0,0.2);
-  padding: 1rem;
+  /*background-color: rgba(0,0,0,0.2);*/
+  /* padding: 1rem; */
+  padding-right: 1rem;
   
+}
+ul.series li a:before{
+    content: "";
+    display: block;
+    font-size: 20px;
+    background: url("../images/list.png") no-repeat 100% ;
+    width: 32px;
+    height: 50px;
+    float: left;
+    margin-top: 0px;
+    margin-right: 10px;
+    
+}
+ul.series li a{
+  letter-spacing: 0.025rem;
+
+  display: block;
 }
 
 @media only screen and (max-width : 980px){

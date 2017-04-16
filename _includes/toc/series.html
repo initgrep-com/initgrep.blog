@@ -2,7 +2,7 @@
 
 {% assign collection = {{include.currentCollection}} %}
 
-<div class="section toc-wrapper">
+<div class="section toc-wrapper" >
 
 {% assign count = '0' %}
 {% assign colSeries  = collection | reverse %}
@@ -15,11 +15,10 @@
 <li> 
 {% if page.url == post.url %}
 <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">
-<i class="material-icons" style="font-size: 14px;">check</i> - {{post.title}}
+{{post.title}}
 </a>
 {% else %}
-<a class="black-text pt-sans" href="{{site.baseurl}}{{post.url}}">
-<i class="material-icons" style="font-size: 14px;">star</i> - {{post.title}}
+<a class="black-text pt-sans-bold" href="{{site.baseurl}}{{post.url}}"> {{post.title}}
 </a>
 {% endif %}
 </li>
@@ -27,7 +26,7 @@
 {% else %}
 <li>
 <a class="teal-text text-darken-3 pt-sans-bold" href="{{site.baseurl}}{{page.url}}">
-<i class="material-icons" style="font-size: 14px;">check</i> - {{page.title}}
+ {{page.title}}
 </a> 
 </li> 
 {% break %} 

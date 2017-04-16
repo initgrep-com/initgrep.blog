@@ -22,14 +22,9 @@ exclude:
 
 collections:
 
-    codeCollection:
+    postCollection: 
           output: true
-          permalink: /codes/:path
-
-    fitnessCollection:
-        output: true
-        permalink: /fitness/:path
-
+          permalink: /posts/:path
     authors:
         output: true
         permalink: /about/:path

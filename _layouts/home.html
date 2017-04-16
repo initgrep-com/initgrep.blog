@@ -1,6 +1,6 @@
 
-{% assign codeSorted = (site.codeCollection | sort: 'date') | reverse %}
-{% assign fitSorted = (site.fitnessCollection | sort: 'date') | reverse %}
+{% assign codeSorted = (site.postCollection | sort: 'date') | reverse %}
+
 
 {% include head.html %}
 {% include nav.html %}
@@ -15,17 +15,9 @@
 	label = "code" 
 	bgColor = "grey lighten-3" 
 	cardColor =  "white" 
-	url = '/posts/code' 
+	url = '/posts/series' 
  %}
-</div>
-<div class="fit-wrapper">
-{% include home/catagory.html 
-	cc = fitSorted 
-	label = "health and fitness" 
-	bgColor = "white" 
-	cardColor = "blue-grey lighten-5"
-	url = "/posts/fitness" 
-%}
+
 
 {% include  home/fixedIcon.html %}
 </div>

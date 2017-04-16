@@ -1,9 +1,6 @@
 
  <!--- nav content -->   
-<ul id="dropdown1" class="dropdown-content">
-  <li><a class="pt-sans-bold {% include util/textColor.liquid %}" href="{{site.baseurl}}/posts/code">Coding <span class="badge new right">6</span></a></li>
-  <li><a class="pt-sans-bold {% include util/textColor.liquid %}" href="{{site.baseurl}}/posts/fitness"  >Fitness <span class="badge new right">1</span></a></li>
-</ul>
+
 <div class="navbar-fixed" id="top" >
     <nav class=" white lighten-2 " id ="check_nav" role="navigation" style=" box-shadow: 0 0 1px 0 #DEDADA;">
     <div class="nav-wrapper">
@@ -13,26 +10,20 @@
       <ul class=" nav_menu right hide-on-med-and-down">
        <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
       	<li><a class="pt-sans-bold {% include util/textColor.liquid %}" href="{{site.baseurl}}/about">About</a></li>
-         <li><a class="dropdown-button  pt-sans-bold {% include util/textColor.liquid %}" href="#!" data-activates="dropdown1">Posts<i class="material-icons right">more_vert</i></a></li>
+         <li><a class="dropdown-button  pt-sans-bold {% include util/textColor.liquid %}" href="{{site.baseurl}}/posts" >Posts<i class="material-icons right">more_vert</i></a></li>
 
       </ul>
 
       <!--side menu -->
       <ul id="slide-out" class="side-nav ">
+        
         <li>
               <div class="background {% include util/sideColor.liquid %}">
                   <a href="{{site.baseurl}}/"><span class="white-text  pacifo-L">shaykh's-log</span></a>
                   <a id="sidenav_search" class="btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">search</i></a>
               </div> 
         </li>
-        
-         <li style="margin-top: 2rem; ">
-          <a class=" {% include util/textColor.liquid %} " style="font-size: 1.1rem;" href="{{site.baseurl}}/posts/code">
-              <i class="material-icons">code</i>Coding
-          </a>
-        </li>
-         <li><a class=" {% include util/textColor.liquid %} " style="font-size: 1.1rem;" href="{{site.baseurl}}/posts/fitness">
-        <i class="material-icons">accessibility</i>Fitness</a></li>
+    <li style="margin-top: 5rem; height: 20px;"></li>
         <li><div class="divider"></div></li>
         <!--<li><a class="subheader ">Subheader</a></li> -->
         <li><a class=" {% include util/textColor.liquid %}" href="{{site.baseurl}}/about"><i class=" material-icons">android</i>About</a></li>

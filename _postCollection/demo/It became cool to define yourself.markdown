@@ -1,12 +1,12 @@
 ---
-layout: codeSeriesPost
+layout: seriesPost
 bannercolor: "indigo darken-2"
 title:  "It became cool to define yourself by mental illness [on Tumblr]"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: code
-series: demo
+series: First Demo Series
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	

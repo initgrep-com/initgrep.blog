@@ -1,12 +1,12 @@
 ---
-layout: codeSeriesPost
+layout: seriesPost
 bannercolor: "black"
 title:  "This corner of the internet “promote(s) isolation or negative feelings"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 category: code
-series: demo
+series: First Demo Series
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
