@@ -5,12 +5,12 @@
 <div class="section toc-wrapper" >
 
 {% assign count = '0' %}
-{% assign colSeries  = collection | reverse %}
+{% assign colcategory  = collection | reverse %}
 <h1 class="toc pt-sans-bold"> Table of Contents </h1>
-<ul class="series">
-{% for post in colSeries %}
-{% if post.series != nil %}
-{% if post.series == page.series %}
+<ul class="category">
+{% for post in colcategory %}
+{% if post.category != nil and post.category != blank %}
+{% if post.category == page.category %}
 {% capture count %}{{ count | plus: '1' }}{% endcapture %}
 <li> 
 {% if page.url == post.url %}

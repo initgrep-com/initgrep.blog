@@ -1,7 +1,7 @@
 ---
 layout: author
 name: irshad ahmad sheikh
-image: as.jpg
+image: pp.jpeg
 github: gagrock
 twitter: imshykh
 company: MetricStream Infotech PVT LTD.

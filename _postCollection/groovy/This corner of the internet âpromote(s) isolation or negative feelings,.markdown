@@ -1,23 +1,18 @@
 ---
 layout: seriesPost
-bannercolor: "blue-grey"
-title:  "Groovy Strings interpolation explained"
+bannercolor: "black"
+title:  "This corner of the internet “promote(s) isolation or negative feelings"
 date:   2016-10-31
-meta: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
-excerpt: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
-category: code
-series: First Demo Series
+meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
+excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
+category: groovy
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
-image: code.png
 ---
 
- If you want to be part of the club, you gotta be insecure and unstable in some way. I’m not a fan.”
 
-This corner of the internet “promote(s) isolation or negative feelings,” Erin Tatum wrote for Everyday Feminism in 2013. “[It] basically transforms taboo emotions like self-doubt into an aesthetic. Feelings of worthlessness or disillusionment become synonymous with and indicative of true tortured beauty, as well as intelligence and particularly psychological depth.” Why did Tumblr become the perfect place for online angst?
-How Tumblr Became Depressed
 
 Tumblr launched in 2007 as a blog-meets-social-network. And unlike on a typical blog, where you’re an unknown URL floating in cyberspace, Tumblr’s structure encourages community via features it pioneered, like resharing posts and direct messaging.
 
@@ -34,11 +29,6 @@ There’s a reason that these sorts of groups haven’t as obviously manifested 
 
 _“I was more open about my weird issues [on Tumblr],” Andrews said. “I could talk more openly to a group of strangers than I could to people I had to face every day and, I think, worry about me.” Quickly browsing Tumblr will prove Andrews is hardly alone: There are countless anonymous, confessional blogs discussing topics like eating disorders and self-harm. Some of those posts have hundreds of thousands of interactions. Sustained feelings of loneliness, unhappiness, and other potential symptoms of mental illness can be a common friendship base for those who are struggling, Garcia said. “They are connecting and they get each other. It’s comfortable if you’re both depressed.”_
 
-<img style="width: 300px; height: 300px;" src='{{site.baseurl}}/assets/images/background2.jpg'>
-
 “For me, Tumblr was a place I thought people could find themselves, especially if you’re an outsider in some kind of way,” said Leijon. While he is right that Tumblr can be a positive place for teens to explore their identities, Whitlock said the problem is that it’s like a group-therapy session with no therapist. Here, young, depressed people are hearing things only from other young, depressed people.
 
 >“Sometimes hearing other people’s stories for why they did the same thing you did can be just, like, ‘Yeah, yeah, 
-
-<script async src="//jsfiddle.net/irshsheikh/oLy31ynr/38/embed/js,html,css,result/dark/?bodyColor=333"></script>
-

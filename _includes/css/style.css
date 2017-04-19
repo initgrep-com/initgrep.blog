@@ -106,10 +106,7 @@ span.catagory-links{
   text-transform: uppercase;
   transition: background-color 1s ease-in;
 }
-span.catagory-links:hover{
-  background-color: rgba(0,0,0,0.4);
-  transition: background-color 1s ease-out;
-}
+
 
 .banner-subheading{
   font-size: 12px;
@@ -150,7 +147,6 @@ clear: both;
 margin-bottom: 50px;
 font-family: 'PT Sans Narrow', sans-serif; 
 padding-top: 2rem;
-
 }
 .content p{
   letter-spacing: 0.025rem;
@@ -227,13 +223,13 @@ box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.2);
 
 .user {
 
-width: 65px;
-height: 65px;
+width: 70px;
+height: 70px;
 border-radius: 50%;
 background-repeat: no-repeat;
 background-position: center center;
 background-size: cover;
-border: 4px solid rgba(255,255,255,0.6);
+border: 4px solid rgba(255,255,255,0.8);
 }
 
 
@@ -442,9 +438,9 @@ span.timeToRead{
 }
 
 .section.box{
-  padding: 3rem 1rem 2rem 1rem;
+  padding: 3rem 1rem 1rem 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 0px 1px 0 #DEDADA;
+  box-shadow: 0 0px 1px 0 #9e9e9e;
   border-radius: 4px;
 
 }
@@ -463,7 +459,7 @@ h1.toc{
 }
 
 
-ul.series li{
+ul.category li{
   font-size: .9rem;
   display: block;
   margin-bottom: 1rem;
@@ -472,7 +468,7 @@ ul.series li{
   padding-right: 1rem;
   
 }
-ul.series li a:before{
+ul.category li a:before{
     content: "";
     display: block;
     font-size: 20px;
@@ -484,7 +480,7 @@ ul.series li a:before{
     margin-right: 10px;
     
 }
-ul.series li a{
+ul.category li a{
   letter-spacing: 0.025rem;
 
   display: block;
@@ -498,7 +494,7 @@ ul.series li a{
    border: 0px solid rgba(0,0,0,0.2);
   }
 
-  ul.series li{
+  ul.category li{
   font-size: .9rem;
   display: block;
   margin-bottom: 1rem;
@@ -753,9 +749,9 @@ a.searchItem span{
       padding-left: 2rem;
     }
     .left-side p.about-me{
-      font-size: 18px;
-      letter-spacing: 0.025rem;
-      color: rgba(0,0,0,0.5);
+      font-size: 14px;
+      letter-spacing: 0.03rem;
+      color: rgba(0,0,0,0.7);
     }
    
     .user-image{

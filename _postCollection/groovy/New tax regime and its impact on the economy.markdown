@@ -5,8 +5,7 @@ title:  "New tax regime and its impact on economy"
 date:   2016-10-31
 meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
 excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-category: code
-series: First Demo Series
+category: groovy
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	

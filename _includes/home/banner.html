@@ -4,15 +4,14 @@
       
 	        <div class="container  ">
 				 <div class="row ">	
-                   {% for page in site.postCollection | limit: 1 %}
+				 {% assign sortedR = site.postCollection | sort: 'date' | reverse %}
+                   {% for page in sortedR | reverse | limit:1 %}
                   
                  
 					<div class="col s12 m8 recent-article  ">
 						<div class="row col s12 m12 l12 ">
-							<h6 class="banner-subheading"> Recent from 
-								<a href="{{site.baseurl}}/posts/code">
-									<span class="catagory-links">code</span>
-								</a>
+							<h6 class="banner-subheading"> Read the latest Post from 
+								<span class="catagory-links">{{page.category}}</span>
 								<span class="grey-text pt-sans-bold center timeToRead" >
 								{% include util/minRead.liquid content= page.content  %} read
 							</span>

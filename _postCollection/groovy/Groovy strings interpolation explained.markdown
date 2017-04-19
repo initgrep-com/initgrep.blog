@@ -1,17 +1,16 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "blue-grey"
-title:  "Secondary parties and their owners willing to sacrifice"
+title:  "Groovy Strings interpolation explained"
 date:   2016-10-31
 meta: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
 excerpt: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
-category: code
-series: First Demo Series
+category: asdasd
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
-image: code.png
+image: background2.jpg
 ---
 
  If you want to be part of the club, you gotta be insecure and unstable in some way. I’m not a fan.”
@@ -34,6 +33,11 @@ There’s a reason that these sorts of groups haven’t as obviously manifested 
 
 _“I was more open about my weird issues [on Tumblr],” Andrews said. “I could talk more openly to a group of strangers than I could to people I had to face every day and, I think, worry about me.” Quickly browsing Tumblr will prove Andrews is hardly alone: There are countless anonymous, confessional blogs discussing topics like eating disorders and self-harm. Some of those posts have hundreds of thousands of interactions. Sustained feelings of loneliness, unhappiness, and other potential symptoms of mental illness can be a common friendship base for those who are struggling, Garcia said. “They are connecting and they get each other. It’s comfortable if you’re both depressed.”_
 
+<img style="width: 300px; height: 300px;" src='{{site.baseurl}}/assets/images/background2.jpg'>
+
 “For me, Tumblr was a place I thought people could find themselves, especially if you’re an outsider in some kind of way,” said Leijon. While he is right that Tumblr can be a positive place for teens to explore their identities, Whitlock said the problem is that it’s like a group-therapy session with no therapist. Here, young, depressed people are hearing things only from other young, depressed people.
 
 >“Sometimes hearing other people’s stories for why they did the same thing you did can be just, like, ‘Yeah, yeah, 
+
+<script async src="//jsfiddle.net/irshsheikh/oLy31ynr/38/embed/js,html,css,result/dark/?bodyColor=333"></script>
+

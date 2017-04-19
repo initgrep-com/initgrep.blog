@@ -9,12 +9,12 @@
 {% if colsname != 'authors'%} 
 {% assign items = site.[colsname] | sort: 'date' | reverse %}
 {% for post in items limit: 5 %}
-
+ 
   <div class="section box white"  >
 
     <div class="row">
     <div class="col s12 m12 post-meta">
-     <a class="teal-text text-darken-3 pt-sans author" href="{{site.baseurl}}/about/{{post.author}}">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >{{post.series}}</span>
+     <a class="teal-text text-darken-3 pt-sans author" href="{{site.baseurl}}/about/{{post.author}}">  {{post.author}}</a>  <span class="grey-text text-darken-4 pt-sans author"> has posted in </span> <span class="teal-text text-darken-3 pt-sans" >{{post.category}}</span>
      <span class="grey-text text-darken-4 pt-sans right timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
       <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">{{post.date | date: '%B %d, %Y'}}</span>
       

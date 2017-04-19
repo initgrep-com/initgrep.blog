@@ -1,52 +1,83 @@
 
-<div class="{{include.bgColor }} " id="allPosts">
-<div class="container">
+{% assign sortedPosts = (site.postCollection | sort: 'date') | reverse %}
+{% for post in sortedPosts %}
 
-  <div class="row">
-  
-	<div class="col s12 m3 l3  " style="line-height: 2rem; margin-top: 2rem;">
-		
-		 <a href="{{ include.url | prepend: site.baseurl }}">
-			<span class="catagory-links">{{include.label}}</span>
-		</a>
-
-
-	 </div>
-
-
-  </div>
-
-<div class="row">
-<div class="col s12 m12 xl12 padding-bot-2">
-
-{% assign cc = {{include.cc }} %}
-{% for post in cc limit:5 %}
- <div class="col s12 m4 xl3">
- 		
-<div class="card hoverable {{include.cardColor}} medium " id='top-card'>
-	<div class="{{post.bannercolor}} card-chip">
-		<a href="{{site.baseurl}}/about/{{post.author}}">
-			<div class="chip cchip pt-sans">
-				{% include util/insertDp.liquid name = post.author  %}
-				{{post.author}}
-			</div>
-		</a>
-	</div>
-	<div class="card-deck  valign-wrapper {{post.bannercolor}}">
-		<a class="card-title valign pt-sans-bold white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-	</div>
-	<div class="card-content pt-sans black-text">
-		<p>{{post.meta}}</p>
-	</div>
-	<div class="card-actions">
-		<a >{% include util/minRead.liquid content= post.content  %} read</a>
-	</div>
-
-</div>  
-	   
- </div>
+{% assign last = last | append: post.category %}
+{% assign last = last | append: '|' %}
 {% endfor %}
+{% assign category = last | split: '|' | uniq%}
+<!--create stupid colors -->
+{% assign bgColor = 'grey lighten-3'%}
+{% assign cardColor = 'white'%}
+{% for tag in category %}
+
+<div class="code-wrapper ">
+<div class="{{bgColor }} " id="allPosts">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m3 l3  " style="line-height: 2rem; margin-top: 2rem;">
+                
+                    <span class="catagory-links">{{tag}}</span>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 m12 xl12 padding-bot-2">
+
+{% for post in sortedPosts %}
+{% if tag == post.category%}
+
+
+             <!--create individual posts here -->
+
+                <div class="col s12 m4 xl3">
+                    <div class="card hoverable {{cardColor}} medium " id='top-card'>
+                        <div class="{{post.bannercolor}} card-chip">
+                            <a href="{{site.baseurl}}/about/{{post.author}}">
+                                <div class="chip cchip pt-sans">
+                                    {% include util/insertDp.liquid name = post.author %} {{post.author}}
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card-deck  valign-wrapper {{post.bannercolor}}">
+                            <a class="card-title valign pt-sans-bold white-text" href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+                        </div>
+                        <div class="card-content pt-sans black-text">
+                            <p>{{post.meta}}</p>
+                        </div>
+                        <div class="card-actions">
+                            <a>{% include util/minRead.liquid content= post.content  %} read</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!--END -->
+       {% endif %}
+         {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 </div>
-</div>
-</div>
+     {% if bgColor == 'white'%}	
+ 			  {% assign bgColor= "grey lighten-3" %}
+ 		{%else%}
+ 			  {% assign bgColor = "white" %}
+		{%endif%}
+		  {% if cardColor == 'white'%}	
+ 			  {% assign cardColor= "grey lighten-3" %}
+ 		{%else%}
+ 			  {% assign cardColor = "white" %}
+		{%endif%}
+{% endfor %}
+
+
+
+
+
+
+
+

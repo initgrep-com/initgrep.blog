@@ -1,12 +1,11 @@
 ---
 layout: seriesPost
 bannercolor: "blue-grey"
-title:  "the California native felt unable to talk about her self-harm"
-date:   2017-03-01
-meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-category: code
-series: First Demo Series
+title:  "International rides and their values on goIbibo"
+date:   2016-10-31
+meta: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
+excerpt: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
+category: groovy
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
@@ -16,7 +15,6 @@ image: code.png
 
  If you want to be part of the club, you gotta be insecure and unstable in some way. I’m not a fan.”
 
-While going through the code several time you will find the [shakkyslog](https://gagrock.github.com/mylog)
 This corner of the internet “promote(s) isolation or negative feelings,” Erin Tatum wrote for Everyday Feminism in 2013. “[It] basically transforms taboo emotions like self-doubt into an aesthetic. Feelings of worthlessness or disillusionment become synonymous with and indicative of true tortured beauty, as well as intelligence and particularly psychological depth.” Why did Tumblr become the perfect place for online angst?
 How Tumblr Became Depressed
 

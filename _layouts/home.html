@@ -1,27 +1,14 @@
 
-{% assign codeSorted = (site.postCollection | sort: 'date') | reverse %}
-
-
 {% include head.html %}
 {% include nav.html %}
 {% include home/banner.html %}
    <!-- catagories content -->
-<div class="section grey lighten-5">
-
+<div class="section grey lighten-5 ">
 {% include home/topPosts.html %}
-<div class="code-wrapper">
-{% include home/catagory.html 
-	cc = codeSorted 
-	label = "code" 
-	bgColor = "grey lighten-3" 
-	cardColor =  "white" 
-	url = '/posts/series' 
- %}
+{% include home/catagory.html %}
 
 
 {% include  home/fixedIcon.html %}
-</div>
-
 </div> <!--container -->
 
 {% include footer.html %}

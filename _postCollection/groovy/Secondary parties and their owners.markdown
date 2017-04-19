@@ -1,19 +1,22 @@
 ---
 layout: seriesPost
-bannercolor: "black"
-title:  "This corner of the internet “promote(s) isolation or negative feelings"
+bannercolor: "blue-grey"
+title:  "Secondary parties and their owners willing to sacrifice"
 date:   2016-10-31
-meta: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-excerpt: "Even past its prime, a group of users who find community in their mental illness retain a strong grip on the platform"
-category: code
-series: First Demo Series
+meta: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
+excerpt: "And unlike on a typical blog, where you’re an unknown URL floating in cyberspace,"
+category: groovy
 comments: true
 author: "irshad ahmad sheikh"
 twitter: imshykh	
 facebook: irshsheikh
+image: code.png
 ---
 
+ If you want to be part of the club, you gotta be insecure and unstable in some way. I’m not a fan.”
 
+This corner of the internet “promote(s) isolation or negative feelings,” Erin Tatum wrote for Everyday Feminism in 2013. “[It] basically transforms taboo emotions like self-doubt into an aesthetic. Feelings of worthlessness or disillusionment become synonymous with and indicative of true tortured beauty, as well as intelligence and particularly psychological depth.” Why did Tumblr become the perfect place for online angst?
+How Tumblr Became Depressed
 
 Tumblr launched in 2007 as a blog-meets-social-network. And unlike on a typical blog, where you’re an unknown URL floating in cyberspace, Tumblr’s structure encourages community via features it pioneered, like resharing posts and direct messaging.
 
