@@ -1,5 +1,4 @@
 #syntax
-name: '{init}|grep'
 markdown: kramdown
 highlighter: rouge
 #dir and path 
@@ -41,17 +40,17 @@ gems:
 
 
 #social and seo
-
-title: shaykhslog.com
+name: '{init}|grep'
+title: www.initgrep.com
 description: Blog about techonology, code, Health and fitness
 logo: logo.jpg
 image: logo.jpg 
 
 twitter:
-  username: shaykhslog
+  username: initgrep
 
 facebook:
-  username: shaykhslog
+  username: initgrep
 
 
 
