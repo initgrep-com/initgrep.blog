@@ -1,7 +1,8 @@
-{% assign name = {{include.name}} %}
+{% assign name = {{include.name | upcase}}  %}
 
 {% for author in site.authors  %}
-{% if author.name == name %}
+{% assign auth_name = {{author.name | upcase}}  %}
+{% if auth_name == name %}
   <img class="{{include.class}} " src="{{site.baseurl}}/assets/images/{{author.image}}">
 {% endif %}
 

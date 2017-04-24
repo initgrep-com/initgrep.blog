@@ -104,6 +104,7 @@ span.catagory-links{
   font-size: 12px;
   letter-spacing: 0.025rem;
   text-transform: uppercase;
+  -webkit-transition: background-color 1s ease-in;
   transition: background-color 1s ease-in;
 }
 

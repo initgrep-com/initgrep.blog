@@ -1,6 +1,6 @@
 ---
 layout: author
-name: irshad ahmad sheikh
+name: sheikh Irshad
 image: pp.jpeg
 github: gagrock
 twitter: imshykh
