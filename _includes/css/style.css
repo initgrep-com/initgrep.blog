@@ -195,7 +195,7 @@ font-weight: 700;
 .content .author, .content .readtime, .content .datetime{
   font-size: 1rem;
 }
-.content .author{
+.author{
   text-transform: capitalize;
 }
 
