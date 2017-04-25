@@ -230,7 +230,8 @@ border-radius: 50%;
 background-repeat: no-repeat;
 background-position: center center;
 background-size: cover;
-border: 4px solid rgba(255,255,255,0.8);
+border: 4px solid #ddd;
+padding: .1rem;
 }
 
 
@@ -761,6 +762,7 @@ a.searchItem span{
       width: 250px;
       border-radius: 50%;
       border: 10px solid rgba(0,0,0,0.3);
+      padding: .2rem;
       -webkit-animation: opa 1s;
               animation: opa 1s;
 

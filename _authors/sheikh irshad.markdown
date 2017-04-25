@@ -4,6 +4,7 @@ name: sheikh Irshad
 image: pp.jpeg
 github: gagrock
 twitter: imshykh
+facebook: irshsheikh
 company: XXXXXXXXXXXXXX
 companyURL: www.XXXXXXXXXX.com
 currentProject: XXXXXXXXX
