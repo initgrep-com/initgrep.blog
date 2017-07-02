@@ -14,7 +14,7 @@ github: igagrock
 image: code.png
 ---
 
-> A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method`
+> A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method` .
 
 ### Functional interface:
 An Interface which permits only single Abstract method excluding the default methods. Functional Interface was introduced in Java 8. For compile time validations, [`@FunctionalInterface`](https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html) was introduced.
@@ -57,5 +57,4 @@ collect(['Java','Groovy']) { it.contains 'G }
 ```
 looking closely to the above code, It is same syntax used for the collect method for collections such as `[1,2,3,4,5].collect([]){ it*it }`
 
-Thank you for stopping by. If I have missed something, please feel free to drop your comments.
 
