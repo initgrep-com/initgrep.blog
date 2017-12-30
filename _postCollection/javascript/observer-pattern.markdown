@@ -3,15 +3,15 @@ layout: seriesPost
 bannercolor: "green darken-4"
 title:  "Observer pattern in Javascript"
 date:   2017-12-30
-meta: "Design patterns are an important aspect of constructive and efficient software development, irrespective of any software languages"
-excerpt: "Design patterns are an important aspect of constructive and efficient software development, irrespective of any software languages"
+meta: "Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject"
+excerpt: "Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject"
 category: JavaScript
 comments: true
 author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: igagrock
-image: code.png
+image: observer.png
 ---
 
 
