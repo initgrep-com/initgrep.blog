@@ -6,6 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" type="image/png" href="{{site.baseurl}}/assets/images/favicon.png"/>
 {% include seo/headseo.html %}
+{% if site.env == 'production' %}
+    {% include analytics/google-analytics.html %}
+{% endif %}
 <!--[if lt IE 9]>
 <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
