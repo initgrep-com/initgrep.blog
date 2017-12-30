@@ -4506,7 +4506,8 @@ em {
 }
 
 strong {
-  font-weight: 500;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 small {

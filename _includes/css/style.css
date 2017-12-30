@@ -87,7 +87,10 @@ color: #26a69a;
   top: 4rem;
   padding: 0 0 0 0 !important;
 }
-
+img{
+  width: 100%;
+  height: auto;
+}
 
 .parallax-container {
 
@@ -149,12 +152,12 @@ margin-bottom: 50px;
 font-family: 'PT Sans Narrow', sans-serif; 
 padding-top: 2rem;
 }
-.content p{
+.content p , .content ol li{
   letter-spacing: 0.025rem;
   font-size: 1.3rem;
 }
 .content p em {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .post-img{
