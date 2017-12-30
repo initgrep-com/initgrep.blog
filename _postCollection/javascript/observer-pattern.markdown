@@ -253,11 +253,13 @@ notified the change
 dataList =  [ 222 ]
 
 ```
+Below is final code template:
+<script src="https://gist.github.com/igagrock/423778c9a28ea870345b8fec660722fa.js"></script>
 
 **P.S**
 
-Observer pattern is easier to implement. we also have the independence of implementing different type of notifications. 
-However, every time we have a different data structure, we have to implement it again. In order to over come this, we could use the publisher/subscriber pattern or event listener patterns. 
+Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can improvised and used in real world applications. 
+
 
 
 
