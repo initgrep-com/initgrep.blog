@@ -11,12 +11,12 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: igagrock
-image: code.png
+image: pub-sub.gif
 ---
 
+Publisher Subscriber pattern is the loosely coupled extension of [Observer pattern](/posts/javascript/observer-pattern) . It introduces a message broker or Event Bus which acts as a bridge between a publisher(Subject) and various Subscribers. The topics are published by Subject for different kinds of events. The subscriber registers for the respective topics to get notified.
 
 
 
->Design patterns are an important aspect of constructive and efficient software 
->development, irrespective of any software languages. They help in 
+
 

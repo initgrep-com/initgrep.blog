@@ -4,7 +4,7 @@ highlighter: rouge
 #dir and path 
 #baseurl: /mylog
 permalink: /:path
-env : 'dev'
+env : 'production'
 
 
 
