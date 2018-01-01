@@ -1,6 +1,6 @@
 {% include head.html %}
 {% include nav.html %}
-{% assign sorted = (site.postCollection | sort: 'date') | reverse %}
+{% assign sorted = site.postCollection | sort: 'date' | reverse %}
    <!-- catagories content -->
 <!--   {% include subHome/banner.html  currentCollection = sorted %} -->
 <div class="section code-wrapper">

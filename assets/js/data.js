@@ -1,14 +1,13 @@
 ---
-
 ---
 
 var data = {};
 data.store = {
-
+	
 {% for collection in site.collections %}
 {% assign colsname  = collection.label  %}
 {% if colsname != 'authors'%} 
-{% assign items = site.[colsname] | sort: 'date' | reverse %}
+{% assign items = site[colsname] | sort: 'date' | reverse %}
 {% for post in items %}
   "{{ post.url | slugify }}": {
     "title": "{{ post.title | xml_escape }}",
@@ -23,5 +22,4 @@ data.store = {
 {%endif%}
 {% endfor %}
   
-
 };

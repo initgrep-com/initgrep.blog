@@ -33,7 +33,7 @@ collections:
 
 #plugins
 
-gems:
+plugins:
   - jekyll-seo-tag
 
 
