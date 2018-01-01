@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: igagrock
-image: code.png
+image: sam.png
 ---
 
 > A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method` .
