@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: igagrock
-image: observer.png
+image: observer.jpg
 ---
 
 

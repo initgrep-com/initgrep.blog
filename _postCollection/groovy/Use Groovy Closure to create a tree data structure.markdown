@@ -13,6 +13,7 @@ facebook: irshsheikh
 github: gagrock
 image: code.png
 ---
+
 > As per [Apache groovy Documentation](http://groovy-lang.org/), "Groovy is a powerful, optionally typed and dynamic language, with static-typing and static compilation capabilities, for the Java platform aimed at improving developer productivity thanks to a concise, familiar and easy to learn syntax. It integrates smoothly with any Java program, and immediately delivers to your application powerful features, including scripting capabilities, Domain-Specific Language authoring, runtime and compile-time meta-programming and functional programming."
 
 I recently started using Groovy. Part of my job is heavily dependent on creating a tree structure based on a data table with each row having a relationship with other row. i.e `id` of one row will be equal to `parent_id` of other row.

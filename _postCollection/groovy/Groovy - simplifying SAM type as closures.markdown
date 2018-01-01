@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: igagrock
-image: sam.png
+image: sam.jpg
 ---
 
 > A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method` .
@@ -55,6 +55,8 @@ In the `(2)nd` case , the 2nd parameter is closure and it is coerced to an AST. 
 ```groovy
 collect(['Java','Groovy']) { it.contains 'G }
 ```
-looking closely to the above code, It is same syntax used for the collect method for collections such as `[1,2,3,4,5].collect([]){ it*it }`
+looking closely to the above code, It is same syntax used for the collect method for collections such as 
+
+`[1,2,3,4,5].collect([]){ it*it }`
 
 
