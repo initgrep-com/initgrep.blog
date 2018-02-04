@@ -5,7 +5,7 @@ title:  "Observer pattern in Javascript"
 date:   2017-12-30
 meta: "Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject"
 excerpt: "Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject"
-category: JavaScript
+category: Design-pattern
 comments: true
 author: "sheikh irshad"
 twitter: imshykh	
@@ -20,7 +20,7 @@ image: observer.jpg
 Design patterns are an important aspect of constructive and efficient software 
 development. To create code maintainable and reduce dependency across the modules, it is important to implement the design patterns suited for the use case.
 
-My analogy of the **Observer pattern** could be given as below
+My analogy of the **Observer pattern** could be as below
 >*Let's say, In my home, I have a main switch board.  we can either switch-on the main 
 >board or switch-off. Every room has one light bulb. I want to create a pattern such as 
 >when ever the board is turned off or on, The light bulbs in each room are turned on or 
