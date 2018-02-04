@@ -18,7 +18,7 @@ image: observer.jpg
 
 
 Design patterns are an important aspect of constructive and efficient software 
-development. To create code maintainable and reduce dependency across the modules, it is important to implement the design patterns most suited for the use case.
+development. To create code maintainable and reduce dependency across the modules, it is important to implement the design patterns suited for the use case.
 
 My analogy of the **Observer pattern** could be given as below
 >*Let's say, In my home, I have a main switch board.  we can either switch-on the main 
@@ -258,7 +258,10 @@ Below is final code template:
 
 **P.S**
 
-Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can improvised and used in real world applications. 
+Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can be improvised and used in real world applications. 
+Although Observer design pattern provides a some level of code decoupling, [Pub-Sub pattern](/posts/javascript/publisher-Subscriber(pub-sub)) goes further ahead with decoupling. 
+
+
 
 
 
