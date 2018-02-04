@@ -12,7 +12,7 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700');
-
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 .font-48{   font-size: 48px !important; }
 .font-32{   font-size: 32px !important; }
 .font-64{   font-size: 64px !important; }
@@ -45,6 +45,9 @@ font-weight: 700;
 .notoserif_italic{
   font-family: 'Noto Serif', serif;
 
+}
+.font-slabo27{
+  font-family: 'Slabo 27px', serif;
 }
 
 nav .brand-logo {
@@ -115,9 +118,11 @@ span.catagory-links{
 
 
 .banner-subheading{
-  font-size: 12px;
+  font-size: 1rem;
   text-transform: capitalize;
+  font-family: 'PT Sans Narrow', sans-serif;
   padding-left: 2rem;
+  font-weight: 700;
 }
 
 #topPosts{
@@ -757,7 +762,9 @@ a.searchItem span{
       padding-left: 2rem;
     }
     .left-side p.about-me{
-      font-size: 14px;
+      font-size: 1.8rem;
+        font-family: 'Slabo 27px', serif;
+        font-weight: 500;
       letter-spacing: 0.03rem;
       color: rgba(0,0,0,0.7);
     }
@@ -857,6 +864,8 @@ a.searchItem span{
     }
     .left-side p.about-me{
       font-size: 18px;
+    
+        font-family: 'Slabo 27px', serif;
        letter-spacing: 0.025rem;
       color: rgba(0,0,0,0.5);
     }

@@ -1,0 +1,35 @@
+.collection {
+	border-width: 0px;
+}
+
+.collection .collection-header{
+	font-family: 'PT Sans Narrow', sans-serif;
+	margin-left: 1rem;
+	margin-bottom: 2rem;
+	text-align: center;
+}
+.collection .collection-header h5{
+	text-transform: capitalize;
+	font-family: 'Slabo 27px', serif;
+	font-weight: 600;
+}
+.collection .collection-item {
+	border-bottom-width: 0px;
+}
+
+div.right-side div.row div.col ul.collection li.collection-item a.title {
+	font-family: 'PT Sans Narrow', sans-serif;
+	font-weight: 700;
+	font-size: 1.4rem;
+	letter-spacing: .05rem;
+	color: #333;
+}
+div.right-side div.row div.col ul.collection li.collection-item a.title:hover {
+	color: rgb(24, 122, 151);
+}
+
+div.right-side div.row div.col ul.collection li.collection-item p {
+	font-family: 'PT Sans Narrow', sans-serif;
+	line-height: 2rem;
+	font-size: 1.3rem;
+}

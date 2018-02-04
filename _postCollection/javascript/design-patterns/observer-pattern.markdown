@@ -259,7 +259,7 @@ Below is final code template:
 **P.S**
 
 Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can be improvised and used in real world applications. 
-Although Observer design pattern provides a some level of code decoupling, [Pub-Sub pattern](/posts/javascript/publisher-Subscriber(pub-sub)) goes further ahead with decoupling. 
+Although Observer design pattern provides a some level of code decoupling, [Pub-Sub pattern](/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)) goes further ahead with decoupling. 
 
 
 

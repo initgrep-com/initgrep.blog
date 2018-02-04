@@ -24,7 +24,8 @@
         <div class="row">
             <div class="col s12 m12 xl12 padding-bot-2">
 
-{% for post in sortedPosts %}
+{% assign innerPosts = (sortedPosts | sort: 'date' )  %}
+{% for post in innerPosts %}
 {% if tag == post.category%}
 
 

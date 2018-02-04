@@ -14,7 +14,7 @@ github: igagrock
 image: pub-sub.jpg
 ---
 
-Publisher Subscriber(Pub-Sub) pattern goes further ahead by decoupling the registration process of subscribers and publishers compared to [Observer pattern](/posts/javascript/observer-pattern) . It introduces a message broker or Event Bus which acts as a bridge between a publisher(Subject) and various Subscribers. The topics are published by Subject for different kinds of events. The subscriber registers for the respective topics to get notified.
+Publisher Subscriber(Pub-Sub) pattern goes further ahead by decoupling the registration process of subscribers and publishers compared to [Observer pattern](/posts/javascript/design-patterns/observer-pattern) . It introduces a message broker or Event Bus which acts as a bridge between a publisher(Subject) and various Subscribers. The topics are published by Subject for different kinds of events. The subscriber registers for the respective topics to get notified.
 
 Let me try an analogy for it:
 > *lets say we have 10 radio stations in a city. Each radio station works at their own frequency
