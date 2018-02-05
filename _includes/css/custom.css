@@ -10,7 +10,7 @@
 }
 .collection .collection-header h5{
 	text-transform: capitalize;
-	font-family: 'Slabo 27px', serif;
+	font-family: 'PT Sans Narrow', sans-serif;
 	font-weight: 600;
 }
 .collection .collection-item {

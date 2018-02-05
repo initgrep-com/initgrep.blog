@@ -763,7 +763,7 @@ a.searchItem span{
     }
     .left-side p.about-me{
       font-size: 1.5rem;
-        font-family: 'Slabo 27px', serif;
+      font-family: 'PT Sans Narrow', sans-serif;
         font-weight: 500;
       letter-spacing: 0.03rem;
       color: rgba(0,0,0,0.7);
