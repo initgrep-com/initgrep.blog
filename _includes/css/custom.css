@@ -21,7 +21,6 @@
 div.right-side div.row div.col ul.collection li.collection-item a.title {
 	font-family: 'PT Sans Narrow', sans-serif;
 	font-weight: 700;
-	font-size: 1.2rem;
 	letter-spacing: .05rem;
 	color: #333;
 }
@@ -32,5 +31,5 @@ div.right-side div.row div.col ul.collection li.collection-item a.title:hover {
 div.right-side div.row div.col ul.collection li.collection-item p {
 	font-family: 'PT Sans Narrow', sans-serif;
 	line-height: 2rem;
-	font-size: 1rem;
+
 }
