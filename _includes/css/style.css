@@ -12,7 +12,7 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700');
-@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+/* @import url('https://fonts.googleapis.com/css?family=Slabo+27px'); */
 .font-48{   font-size: 48px !important; }
 .font-32{   font-size: 32px !important; }
 .font-64{   font-size: 64px !important; }
@@ -762,7 +762,7 @@ a.searchItem span{
       padding-left: 2rem;
     }
     .left-side p.about-me{
-      font-size: 1.2rem;
+      font-size: 1.5rem;
         font-family: 'Slabo 27px', serif;
         font-weight: 500;
       letter-spacing: 0.03rem;
