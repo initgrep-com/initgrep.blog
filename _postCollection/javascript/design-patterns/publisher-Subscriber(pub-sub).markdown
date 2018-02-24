@@ -19,7 +19,7 @@ Publisher Subscriber(Pub-Sub) pattern goes further ahead by decoupling the regis
 Let me try an analogy for it:
 > *lets say we have 10 radio stations in a city. Each radio station works at their own frequency
 > In case we want to listen to radio station(A) with frequency equal to 100, we have to switch to the given frequency. 
-> Radio station(A) publishes its episodesa at the frequency(topic/event) 100. As a subscriber, if we want to listen to it, we have to listen at this frequency(topic/event)*
+> Radio station(A) publishes its episodes at the frequency(topic/event) 100. As a subscriber, if we want to listen to it, we have to listen at this frequency(topic/event)*
 > 
 
  
@@ -69,10 +69,9 @@ var EmailService = {
 	} 
 }
 ```
-I would prefer to let the `EmailService extend EventBus`. This would make `EmailService`
+we can also let `EmailService extend EventBus`. This would make `EmailService`
 have all the characteristics of `EventBus`. Based on the need, we can customize the API also.
-I call it a generic implementation. *It is just my own convention.* There is always a better way.
-
+	
 
 ```javascript
 //extend the EventBus
@@ -87,7 +86,8 @@ var EmailService = function(){
 EmailService.prototype = Object.create(EventBus.prototype)
 EmailService.prototype.constructor = EmailService;
 ```
-*Note: you can use the new features of ES6 classes to extend to the EventBus object*
+*Note: you can use the new features of [ES6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) classes to extend to the EventBus object*
+
 
 Now that we have extended to `EventBus`. lets create the `EmailService` Object
 

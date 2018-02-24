@@ -4,4 +4,5 @@
 {% include css/style.css %}
 {% include css/materialize.css %}
 {% include css/custom.css %}
+{% include css/media.css %}
 {% include css/syntax.css %}
