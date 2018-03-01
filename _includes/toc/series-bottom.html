@@ -1,13 +1,13 @@
  {% assign collection = {{include.currentCollection}} %}
 
-<div class="section toc-wrapper">
+<div class="section toc-bottom-wrapper">
 
     {% assign count = '0' %} {% assign colcategory = collection | reverse %}
-    <h1 class="toc-heading pt-sans-bold"> Table of Contents </h1>
-    <dl class="toc">
+    <h1 class=" pt-sans-bold"> Table of contents - <span>{{page.category}} <span></h1>
+    <ul class="toc-bottom">
         {% for post in colcategory %} {% if post.category != nil and post.category != blank %} {% if post.category == page.category
         %} {% capture count %}{{ count | plus: '1' }}{% endcapture %}
-        <dt>
+        <li>
             {% if page.url == post.url %}
             <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">
                 {{post.title}}
@@ -16,13 +16,13 @@
             <a class="black-text pt-sans-bold" href="{{site.baseurl}}{{post.url}}"> {{post.title}}
             </a>
             {% endif %}
-        </dt>
+        </li>
         {% endif %} {% else %}
-        <dt>
+        <li>
             <a class="teal-text text-darken-3 pt-sans-bold" href="{{site.baseurl}}{{page.url}}">
                 {{page.title}}
             </a>
-        </dt>
+        </li>
         {% break %} {% endif %} {% endfor %}
-    </dl>
+    </ul>
 </div>

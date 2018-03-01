@@ -8,9 +8,9 @@
     ul.category li {
         font-size: .9rem;
         display: block;
-        margin-bottom: 1rem;
-        background-color: rgba(0, 0, 0, 0.2);
-        padding: 1rem;
+        margin: 0rem;
+        /* background-color: rgba(0, 0, 0, 0.2); */
+        padding: 0rem;
     }
 }
 

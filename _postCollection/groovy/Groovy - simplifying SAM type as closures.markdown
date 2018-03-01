@@ -16,7 +16,7 @@ image: sam.jpg
 
 > A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method` .
 
-### Functional interface:
+**Functional interface:**
 An Interface which permits only single Abstract method excluding the default methods. Functional Interface was introduced in Java 8. For compile time validations, [`@FunctionalInterface`](https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html) was introduced.
 
 ```groovy
@@ -24,7 +24,7 @@ An Interface which permits only single Abstract method excluding the default met
             boolean test(T obj)
         }
 ```
-#### Abstract classes with single abstract method:
+**Abstract classes with single abstract method:**
 ```groovy
 public class predicateImpl  implements predicate<String>{
       @override
