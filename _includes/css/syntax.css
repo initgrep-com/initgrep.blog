@@ -1,14 +1,14 @@
 .highlight  {	
 	 background:transparent;
 	 font-family: 'Overpass Mono', monospace;
-	 font-size: 1rem;
+	 font-size: .8rem;
 	 letter-spacing: 0.05rem;
 	 padding: .2rem;
 }
 .highlighter-rouge{
 	background-color:transparent;
 	color: #164b78;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	font-family: 'Overpass Mono', monospace;
 	font-weight: 600;
 }
