@@ -264,7 +264,7 @@
         min-height: 300px;
     }
     .content p, .content p em {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
     .content h1 {
         font-size: 3rem;
@@ -285,19 +285,16 @@
     .content p strong {
         font-size: 1.5rem;
     }
-    .content p, .content p em {
-        font-size: 1.3rem;
-    }
     .content ol li {
         letter-spacing: 0.025rem;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
     
     pre.highlight {
         font-size: .8rem;
     }
     code.highlighter-rouge{
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 }
 

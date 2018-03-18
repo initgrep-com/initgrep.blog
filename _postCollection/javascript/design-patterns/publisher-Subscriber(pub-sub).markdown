@@ -1,6 +1,6 @@
 ---
 layout: seriesPost
-bannercolor: "purple darken-4"
+bannercolor: "blue darken-4"
 title:  "Publisher-Subscriber(pub-Sub) pattern in Javascript"
 date:   2017-12-31
 meta: "Publisher Subscriber pattern is the loosely coupled extension of Observer pattern."

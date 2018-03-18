@@ -133,7 +133,7 @@ span.catagory-links {
   border-radius: 5px;
   font-size: 12px;
   letter-spacing: 0.025rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   -webkit-transition: background-color 1s ease-in;
   transition: background-color 1s ease-in;
 }
@@ -578,27 +578,27 @@ dl.toc{
 
 dl.toc > dt{
   counter-increment:li;
-  font-size: 1.3rem;
+  font-size: 1rem;
   position:relative; /* Create a positioning context */
 	margin:0 10px 6px 2em; /* Give each list item a left margin to make room for the numbers */
-	padding: .5rem .5rem; /* Add some spacing around the content */
+	padding: .5rem .5rem; Add some spacing around the content
 	list-style:none; /* Disable the normal item numbering */
 	/* border-top:2px solid #666; */
   /* background:#f6f6f6; */
   display: block;
-  height: 80px;
+  height: 50px;
 }
 dl.toc > dt:before{
   content:counter(li); 
 	position:absolute;
 	top:10px;
-	left:-4rem;
+	left:-2rem;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;
-  width:2.4em;
+  width:2em;
 	/* margin-right:1rem; */
-	padding:4px;
+	padding:1px;
   border : 4px solid #ddd;
   border-radius: 50%;
 	color:#333;
