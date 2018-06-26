@@ -12,6 +12,7 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: mod.jpg
+
 ---
 
 JavaScript is an object-based language. While writing code, it is important to keep the code clean and avoid name-space collisions. In order to keep your application code modular, it is important to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing.
