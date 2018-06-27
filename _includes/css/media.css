@@ -62,6 +62,7 @@
         padding-top: 1rem;
         -webkit-animation: resize 1s;
         animation: resize 1s;
+        overflow-y: auto;
     }
     .right-side div.res-item {}
     div.res-item h5.res-title {

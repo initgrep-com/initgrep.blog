@@ -178,7 +178,10 @@ span.catagory-links {
 
 
 div.highlighter-rouge{
-  border-bottom: 5px solid rgb(194, 192, 192);
+  border: 1px solid rgb(194, 192, 192);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    border-radius: 2px;
 }
 .content {
   clear: both;
@@ -591,7 +594,7 @@ dl.toc > dt{
 dl.toc > dt:before{
   content:counter(li); 
 	position:absolute;
-	top:10px;
+	top:-2px;
 	left:-2rem;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;

@@ -43,7 +43,7 @@ plugins:
 #social and seo
 name: '{init}|grep'
 title: www.initgrep.com
-description: Blog about techonology, code, Health and fitness
+description: Blog about Software development, languages and other tech stuff
 logo: logo.jpg
 image: logo.jpg 
 
