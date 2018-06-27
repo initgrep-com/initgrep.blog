@@ -18,7 +18,7 @@ image: ngfilter2.jpg
 Filters are one of the AngularJS features which help in filtering or formatting the data for the end user.
 There are a number of built-in filters such as `filter`, `currency`. [Built-in-filters](https://docs.angularjs.org/api/ng/filter) section in AngularJs documentation has a complete list.
 
-A sample usage of Filters in view templates is as below:
+A sample usage of Filters in view templates is as below: 
 
 ```html
 {{ "{{ expression | filter:argument1:argument2:... "}} }}
