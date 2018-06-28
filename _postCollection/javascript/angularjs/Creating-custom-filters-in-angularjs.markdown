@@ -6,7 +6,7 @@ date:   2018-06-26
 meta: "Filters are one of the AngularJS features which help in filtering or formatting the data for the end user"
 excerpt: "Filters are one of the AngularJS features which help in filtering or formatting the data for the end user"
 category: angularjs
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
