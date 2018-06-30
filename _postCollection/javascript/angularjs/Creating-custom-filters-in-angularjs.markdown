@@ -26,7 +26,7 @@ A sample usage of Filters in view templates is as below:
 
 `expression` is a valid JavaScript expression. Filter is separated with  pipe(`|`) symbol and can have one or more arguments separated by a colon(`:`). 
 
-We can use Filters in the Controllers, Services or Directives as well. I will explain a little later...
+We can use Filters in the Controllers, Services or Directives as well. I will explain it a little later...
 
 Let's begin with a simple filter example.
 
@@ -81,7 +81,7 @@ Before we move ahead, let me briefly explain a few core concepts.
 [Digest Cycle](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest) is AngularJS way of tracking each change in the scope and updating the template views and vice versa. Scope at its core is a set of key-value pairs of data. AngularJS registers [watchers](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch) on each of the scope value. The value could be a primitive or [Javascript object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects). When a Digest Cycle is initiated, all the watchers are called. If the value has changed since the last Digest cycle, the listener functions are run to update the corresponding expressions where the values are used. 
 
 **Interpolation:**
-[Interpolation](https://docs.angularjs.org/guide/interpolation) expressions such `{{"{{ an-expression "}}}}` is used to provide two-way data binding for text nodes or attribute values of DOM. During the compilation process, text nodes and attribute values are scanned by `$compile`  service. If the interpolation is found, `InterpolationDirective` is added to the node and an Interpolation function is computed. After that `watchers`  are added to the computed function. During the `Digest Cycle`, these watches are used to update the corresponding text nodes or attribute value.
+[Interpolation](https://docs.angularjs.org/guide/interpolation) expressions such as `{{"{{ an-expression "}}}}` is used to provide two-way data binding for text nodes or attribute values of DOM. During the compilation process, text nodes and attribute values are scanned by `$compile`  service. If the interpolation is found, `InterpolationDirective` is added to the node and an Interpolation function is computed. After that `watchers`  are added to the computed function. During the `Digest Cycle`, these watches are used to update the corresponding text nodes or attribute value.
 
 I hope that was clear enough.
 
@@ -126,7 +126,7 @@ angular.module('customFilterApp', [])
   </body>
 ```
 
-I have created a stateful filter above. It is dependent on an value service to fetch the position. It is also registered as stateful. The code points are explained below.
+I have created a stateful filter above. It is dependent on a value service to fetch the position. It is also registered as stateful. The code points are explained below.
 
 **_.js :**
 
