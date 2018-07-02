@@ -77,23 +77,26 @@ I have created an AngularJs module `customFilterApp` with a controller registere
 
 Before we move ahead, let me briefly explain a few core concepts.
 
-**Digest Cycle:**
+##### Digest Cycle:
+
 [Digest Cycle](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest) is AngularJS way of tracking each change in the scope and updating the template views and vice versa. Scope at its core is a set of key-value pairs of data. AngularJS registers [watchers](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch) on each of the scope value. The value could be a primitive or [Javascript object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects). When a Digest Cycle is initiated, all the watchers are called. If the value has changed since the last Digest cycle, the listener functions are run to update the corresponding expressions where the values are used. 
 
-**Interpolation:**
+##### Interpolation:
+
 [Interpolation](https://docs.angularjs.org/guide/interpolation) expressions such as `{{"{{ an-expression "}}}}` is used to provide two-way data binding for text nodes or attribute values of DOM. During the compilation process, text nodes and attribute values are scanned by `$compile`  service. If the interpolation is found, `InterpolationDirective` is added to the node and an Interpolation function is computed. After that `watchers`  are added to the computed function. During the `Digest Cycle`, these watches are used to update the corresponding text nodes or attribute value.
 
 I hope that was clear enough.
 
 Let's get Back to Filters...
 
-**Filter execution:**
+##### Filter execution:
 
 Since filter functions are [pure functions](https://en.wikipedia.org/wiki/Pure_function).  AngularJs depends on this contract during the digest cycle. 
 1. If the value is primitive, Filters in templates are executed only when the input has changed.
 2. If the value is Object or the filters are registered as stateful, Filters are executed on every digest.
 
-**Stateful filters**:
+##### Stateful filters
+
 Stateful filters depend on the external state. If the external state changes, the result returned for the same input to filter function might vary. As a result, the filter is executed one or more times during the Digest Cycle. It is recommended to avoid stateful filter. 
 
 ```js
@@ -128,11 +131,11 @@ angular.module('customFilterApp', [])
 
 I have created a stateful filter above. It is dependent on a value service to fetch the position. It is also registered as stateful. The code points are explained below.
 
-**_.js :**
+##### _.js :
 
 `position` is a value service. It stores the position. `anycaps` is the filter name. It returns a filter function which in turn returns a string with any given character(in UPPERCASE). The filter is registered as stateful by adding `anycapsFilter.$stateful = true;`.  It means the filter will be executed one or more times during the Digest cycle. `position` service is injected as a dependency to the filter. The filter function uses the `val` attribute to get the position.
 
-**_.html :**
+##### _.html :
 
 `position.val` is binded to the value of `input` element as `<input type="text" ng-model="position.val">`. As the value changes, the filter gets executed.to
 
@@ -140,7 +143,7 @@ It might not be easy to figure out the difference as much from the code. But onc
 
 
 
-**Filters usage in Controllers**
+##### Filters usage in Controllers
 
 ```js
 angular

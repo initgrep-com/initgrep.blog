@@ -202,10 +202,15 @@ div.highlighter-rouge{
   letter-spacing: 0.05rem;
 }
 
-.content ol li {
+.content ol li , .content ul li {
   letter-spacing: 0.025rem;
   font-size: 1.2rem;
+  line-height: 2rem;
 }
+.content ul li {
+ list-style-type: disclosure-closed !important;
+}
+
 
 .content p em {
   font-size: 1.2rem;
@@ -215,7 +220,7 @@ div.highlighter-rouge{
   /* font-weight: 400; */
 }
 
-.content h3::before {
+.content h2::before {
   content: '#';
   font-size: 8rem;
   position: absolute;
