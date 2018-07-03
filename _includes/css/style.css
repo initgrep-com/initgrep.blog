@@ -586,7 +586,7 @@ dl.toc{
 
 dl.toc > dt{
   counter-increment:li;
-  font-size: 1rem;
+  font-size: 1.2rem;
   position:relative; /* Create a positioning context */
 	margin:0 10px 6px 2em; /* Give each list item a left margin to make room for the numbers */
 	padding: .5rem .5rem; Add some spacing around the content
@@ -596,11 +596,14 @@ dl.toc > dt{
   display: block;
   height: 50px;
 }
+dl.toc dt a{
+  font-size: 1.3rem;
+}
 dl.toc > dt:before{
   content:counter(li); 
 	position:absolute;
-	top:-2px;
-	left:-2rem;
+	top: 7%;
+	left:-2.5rem;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;
 	box-sizing:border-box;

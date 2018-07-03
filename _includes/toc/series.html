@@ -2,7 +2,7 @@
 
 <div class="section toc-wrapper">
 
-    {% assign count = '0' %} {% assign colcategory = collection | reverse %}
+    {% assign count = '0' %} {% assign colcategory = collection %}
     <h1 class="toc-heading pt-sans-bold"> Table of Contents </h1>
     <dl class="toc">
         {% for post in colcategory %} {% if post.category != nil and post.category != blank %} {% if post.category == page.category
