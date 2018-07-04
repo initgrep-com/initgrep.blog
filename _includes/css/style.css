@@ -636,7 +636,8 @@ dl.toc > dt:before{
 }
 
 .card-content p {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.025rem;
 }
 
 .side-card {}

@@ -3,8 +3,8 @@ layout: seriesPost
 bannercolor: "yellow darken-4"
 title:  "Modular design pattern in JavaScript"
 date:   2018-03-18
-meta: "Modular design pattern helps to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing."
-excerpt: "Modular design pattern helps to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing."
+meta: "Modular design pattern helps to split each functionality into different chunks of code to separate the concerns."
+excerpt: "Modular design pattern helps to split each functionality into different chunks of code to separate the concerns."
 category: Design-pattern
 comments: true
 author: "sheikh irshad"
