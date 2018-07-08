@@ -131,8 +131,8 @@ span.catagory-links {
   background-color: #222;
   padding: .35rem .50rem .35rem .5rem;
   border-radius: 5px;
-  font-size: 12px;
-  letter-spacing: 0.025rem;
+  font-size: 1rem;
+  letter-spacing: 0.3rem;
   text-transform: capitalize;
   -webkit-transition: background-color 1s ease-in;
   transition: background-color 1s ease-in;
@@ -188,11 +188,13 @@ div.highlighter-rouge{
   margin-bottom: 50px;
   font-family: 'Roboto Slab', serif;
   padding-top: 2rem;
+    line-height: 2;
 }
 
 .content p {
   letter-spacing: 0.025rem;
   font-size: 1.2rem;
+
 }
 
 .content p strong {
@@ -205,10 +207,10 @@ div.highlighter-rouge{
 .content ol li , .content ul li {
   letter-spacing: 0.025rem;
   font-size: 1.2rem;
-  line-height: 2rem;
+  /*line-height: 2rem;*/
 }
 .content ul li {
- list-style-type: disclosure-closed !important;
+ list-style-type: square !important;
 }
 
 
@@ -227,6 +229,22 @@ div.highlighter-rouge{
   color: #9e9e9e;
   opacity: .4;
   margin-left: -60px;
+}
+
+.content table{
+  border: 1px solid #d0d0d0;
+}
+.content table th{
+  text-align: center;
+  font-size: 1rem;
+  border-right:1px solid #d0d0d0;
+  background-color: #f9f6f6;
+}
+.content table td{
+  font-size: 1.1rem;
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0; 
+padding: 1rem;
 }
 
 .post-img {
@@ -269,7 +287,7 @@ div.highlighter-rouge{
 }
 
 .content-text p, {
-  line-height: 3rem;
+  line-height: 2.2rem;
   font-size: 2rem;
 }
 

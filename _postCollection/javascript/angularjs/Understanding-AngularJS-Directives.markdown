@@ -1,10 +1,10 @@
 ---
 layout: seriesPost
-bannercolor: "light-green accent-3"
+bannercolor: "deep-orange darken-1"
 title:  "Understanding AngularJS Directives"
 date:   2018-07-03
-meta: " AngularJS Directives is a unit of reusable code which is used to add custom behavior to HTML elements or attributes."
-excerpt: "AngularJS Directives is a unit of reusable code which is used to add custom behavior to HTML elements or attributes."
+meta: " AngularJS Directive is a unit of reusable code which is used to add custom behavior to HTML elements or attributes."
+excerpt: "AngularJS Directive is a unit of reusable code which is used to add custom behavior to HTML elements or attributes."
 category: angularjs
 comments: true
 author: "sheikh irshad"
