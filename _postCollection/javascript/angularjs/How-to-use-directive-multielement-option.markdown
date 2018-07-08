@@ -1,6 +1,6 @@
 ---
 layout: seriesPost
-bannercolor: "red accent-2"
+bannercolor: "yellow darken-4"
 title:  "How to implement multielement directives"
 date:   2018-07-09
 meta: " In order To apply AngularJs directives on various elements without having to add them for every DOM element multielement option can be set to true."
@@ -8,7 +8,7 @@ excerpt: "In order To apply AngularJs directives on various elements without hav
 category: angularjs
 comments: true
 author: "sheikh irshad"
-twitter: imshykh    
+twitter: imshykh  
 facebook: irshsheikh
 github: igagrock
 image: mulele.jpg
@@ -47,8 +47,6 @@ I have added `demo-multi-element-start` and `demo-multi-element-end` as above. a
 
 ```js
 first important sentence!
-
 second important sentence!
-
 third important sentence!
 ```

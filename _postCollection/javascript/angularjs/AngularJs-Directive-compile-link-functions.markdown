@@ -1,7 +1,7 @@
 ---
 layout: seriesPost
 bannercolor: "red darken-4"
-title:  "AngularJs Directive -compile and link function"
+title:  "AngularJs Directive - compile and link function"
 date:   2018-07-08
 meta: "Compile function does the one-time activity and could be used to do some initialization. Link function is used to perform DOM manipulation and copy content into the DOM from the scope."
 excerpt: "Compile function does the one-time activity and could be used to do some initialization. Link function is used to perform DOM manipulation and copy content into the DOM from the scope."
