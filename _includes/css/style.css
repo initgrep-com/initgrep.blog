@@ -615,12 +615,12 @@ dl.toc > dt{
   height: 50px;
 }
 dl.toc dt a{
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 dl.toc > dt:before{
   content:counter(li); 
 	position:absolute;
-	top: 7%;
+	top: 12%;
 	left:-2.5rem;
 	-moz-box-sizing:border-box;
 	-webkit-box-sizing:border-box;

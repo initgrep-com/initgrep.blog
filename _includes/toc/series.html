@@ -9,17 +9,17 @@
         %} {% capture count %}{{ count | plus: '1' }}{% endcapture %}
         <dt>
             {% if page.url == post.url %}
-            <a class="teal-text text-darken-3 pt-sans-bold " href="{{site.baseurl}}{{post.url}}">
+            <a class="teal-text text-darken-3 pt-sans " href="{{site.baseurl}}{{post.url}}">
                 {{post.title}}
             </a>
             {% else %}
-            <a class="black-text pt-sans-bold" href="{{site.baseurl}}{{post.url}}"> {{post.title}}
+            <a class="black-text pt-sans" href="{{site.baseurl}}{{post.url}}"> {{post.title}}
             </a>
             {% endif %}
         </dt>
         {% endif %} {% else %}
         <dt>
-            <a class="teal-text text-darken-3 pt-sans-bold" href="{{site.baseurl}}{{page.url}}">
+            <a class="teal-text text-darken-3 pt-sans" href="{{site.baseurl}}{{page.url}}">
                 {{page.title}}
             </a>
         </dt>
