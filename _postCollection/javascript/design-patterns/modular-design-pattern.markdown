@@ -223,6 +223,5 @@ There are various liberaries available today, which help to implement modular de
 
 You can check out the documentation for implementing each one of them. All of these liberaries have various benefits such lazy loading, asynchronous module loading, using modules in a non-html applications etc.
 
-{% include ads/article-ads.html %}
  
 

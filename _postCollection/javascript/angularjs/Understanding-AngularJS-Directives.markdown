@@ -24,6 +24,7 @@ image: directive1.jpg
 3. `C` -  CSS class based
 4. `M` -  Comment based.
 
+{% include ads/article-ads.html %}
 The type is specified by the `restrict` property of directive configuration object.  During the compilation process, directives are matched based on their type. If nothing is specified, the default options used for matching are **`EA`**.
 
 Let's start with a basic directive example...
@@ -56,6 +57,7 @@ I have created a directive named `userInfo`. The factory function returns `userI
 </div>
 ```
 In the HTML file, I have added `appCtrl1` controller. Inside the controller, I have added directive `user-Info` as an element and an attribute. As I stated earlier, by default the directive type is `EA`. If we want to `restrict` the attribute type to a distinct type, we will have to explicitly add `restrict` property with values among `EACM`
+{% include ads/article-ads.html %}
 
 #### Normalization of the directive name
 

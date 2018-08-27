@@ -72,6 +72,8 @@ Let's get started by actually implementing one. Our Data Structure for this tuto
 ```
 we have added the `dataList` and helper functions (`push & pop`) to add and remove the data respectively. Nothing fancy till now.
 
+{% include ads/article-ads.html %}
+
 **Add a List which keeps track of Observers**
 
 ```js
@@ -110,6 +112,7 @@ var register = function ( observer){
 ```
 `register` function takes an object as parameter and stores(registers) it in the `Observers` list. It is mandatory that this Object has a `notify` function. We have a validation in place for it. 
 we will get back to the `notify` function later. let's forget it for now
+{% include ads/article-ads.html %}
 
 **Remove an Observer**
 
@@ -128,6 +131,8 @@ var remove =  function(observer){
 1.  `Subject` is a wrapper object which contains our `dataList` and `Observers` list.
 2.   Helper functions (`push/pop`) to add and remove data to/from `dataList`. 
 3.   Service functions (`register/remove`) to register and remove `Observer` from Observer List
+
+{% include ads/article-ads.html %}
 
 Below is the complete code template of what we have done so far.
 
@@ -211,6 +216,8 @@ var notifyRegistered = function(){
 ```
 
 `notifyRegistered` service calls the `notify` method of all the registered Observers.
+
+{% include ads/article-ads.html %}
 
 **Let's create some test code and run it.**
 

@@ -20,6 +20,7 @@ There are a number of built-in filters such as `filter`, `currency`. [Built-in-f
 
 A sample usage of Filters in view templates is as below:   
 
+
 ```html
 {{ "{{ expression | filter:argument1:argument2:... "}} }}
 ```
@@ -27,6 +28,8 @@ A sample usage of Filters in view templates is as below:
 `expression` is a valid JavaScript expression. Filter is separated with  pipe(`|`) symbol and can have one or more arguments separated by a colon(`:`). 
 
 We can use Filters in the Controllers, Services or Directives as well. I will explain it a little later...
+
+{% include ads/article-ads.html %}
 
 Let's begin with a simple filter example.
 
@@ -43,6 +46,7 @@ angular.module('customFilterApp', [])
   return initcaps;
 });
 ```
+
 
 ```html
 <!-- _.html -->
@@ -74,6 +78,7 @@ I have created an AngularJs module `customFilterApp` with a controller registere
 > 3. It should not change the external state. 
 >
 > 4. Filters should be valid AngularJs Expression identifiers such as `uppercase` or `orderBy`. Names with special characters, such as hyphens and dots, are not allowed. 
+{% include ads/article-ads.html %}
 
 Before we move ahead, let me briefly explain a few core concepts.
 
@@ -86,6 +91,8 @@ Before we move ahead, let me briefly explain a few core concepts.
 [Interpolation](https://docs.angularjs.org/guide/interpolation) expressions such as `{{"{{ an-expression "}}}}` is used to provide two-way data binding for text nodes or attribute values of DOM. During the compilation process, text nodes and attribute values are scanned by `$compile`  service. If the interpolation is found, `InterpolationDirective` is added to the node and an Interpolation function is computed. After that `watchers`  are added to the computed function. During the `Digest Cycle`, these watches are used to update the corresponding text nodes or attribute value.
 
 I hope that was clear enough.
+
+{% include ads/article-ads.html %}
 
 Let's get Back to Filters...
 
@@ -141,7 +148,7 @@ I have created a stateful filter above. It is dependent on a value service to fe
 
 It might not be easy to figure out the difference as much from the code. But once you put some log statements and keep changing the input, you would notice the execution cycles are much higher for the stateful filter. During the execution, I noticed for every input change, Stateless filter gets called only once but Stateful filter gets called twice.
 
-
+{% include ads/article-ads.html %}
 
 ##### Filters usage in Controllers
 
