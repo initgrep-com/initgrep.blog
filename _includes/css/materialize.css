@@ -7171,6 +7171,14 @@ input[type=range]:focus::-ms-fill-upper {
   width: 24px;
   color: rgba(0, 0, 0, 0.54);
 }
+.side-nav li > a > i.material-icons.receipt{
+    position:relative;
+    display:inline-block;
+}
+.side-nav li > a > i.material-icons.receipt:after{
+    content : "receipt";
+}
+
 
 .side-nav .divider {
   margin: 8px 0 0 0;
@@ -8732,3 +8740,4 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em;
   }
 }
+
