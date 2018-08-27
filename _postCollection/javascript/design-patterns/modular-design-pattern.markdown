@@ -70,6 +70,8 @@ we can use both the types of `add` method in same application without any challe
 
 So far so good. let's go further ahead and discuss some benefits of implementing modular pattern in JavaScript.
 
+{% include ads/article-ads.html %}
+
  **Encapsulation**:
  
  Encapsulation in its simple terms means, Show only the functionality which is necessary and keep the rest of it hidden or private. Encapsulation is a popular concept in various object oriented language such as Java. We can implement it in JavaScript also.  There are few things we need to take care in order to achieve it:
@@ -114,7 +116,7 @@ var financeCalc = new calc();
      financeCalc.roundingLimit; //undefined
      financeCalc.getRoundingLimit(); // 2
 ```
-
+{% include ads/article-ads.html %}
 **Introduction to IIFEs**
 
   Immediately Invoked Function Expressions or IIFE  (pronounced "iffy") are anonymous JavaScript functions which are invoked immediately. A basic syntax is like:
@@ -155,6 +157,7 @@ when we wrap the function in a set of braces, it returns the expression value wh
     //code here
 })();
 ```
+{% include ads/article-ads.html %}
 **Advantages of using IIFEs to implement a modular pattern**
 
 If you noticed above, when we created our `calc` module. To use it in our `finance` application, we had to manually create the objects. we named it as `financeCalc`. The name looks fine but it is not defined by the module and is not a standard. As a result, we can give any random name and eventually might fall into a name collision. So how can we restrict it and give a standard name. Well, IIFEs have come to our rescue. If you remember, IIFE is invoked at the time of creation. As a result, we can bet, we always have one instance in our application with a standard object returned by the module itself.
@@ -220,6 +223,6 @@ There are various liberaries available today, which help to implement modular de
 
 You can check out the documentation for implementing each one of them. All of these liberaries have various benefits such lazy loading, asynchronous module loading, using modules in a non-html applications etc.
 
-
+{% include ads/article-ads.html %}
  
 
