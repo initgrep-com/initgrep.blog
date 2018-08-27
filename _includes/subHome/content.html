@@ -1,55 +1,47 @@
-
-
 <div class="container">
-
-<div class="row">
-
-  <div class="col s12 m9"> <!--wraper on lleft -->
-   
-   
-  {% assign collection = {{include.currentCollection}} %}
+  <div class="row">
+    <div class="col s12 m9"> <!--wraper on lleft -->
+    
+    
+    {% assign collection = {{include.currentCollection}} %}
     {% for post in collection %}
-  <div class="section box white"  >
-
-    <div class="row">
-    <div class="col s12 m12 post-meta">
-      <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
-     <a class="teal-text text-darken-3 pt-sans author" href="{{site.baseurl}}/about/{{post.author}}">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >{{post.category}}</span>
-     <span class="grey-text text-darken-4 pt-sans right timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
-      <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">{{post.date | date: '%B %d, %Y'}}</span>
-      
-      
-    </div>
-      <div class="col s12 m12 top-article">
-        <div class="icon-block">
-          <a href ="{{site.baseurl}}{{post.url}}" class="title pt-sans-bold  black-text ">{{post.title}}
-          
-          </a>
-          <p class=" black-text margin-top-2 pt-sans font-2">{{post.meta}} 
-             <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
-          </p>
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="{{site.baseurl}}/about/{{post.author}}">  {{post.author }}</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >{{post.category}}</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >{% include util/minRead.liquid content= post.content  %}  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">{{post.date | date: '%B %d, %Y'}}</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="{{site.baseurl}}{{post.url}}" class="title pt-sans-bold  black-text ">{{post.title}}
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">{{post.meta}}
+                <a href ="{{site.baseurl}}{{post.url}}" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-
+    {% endfor %}
+    <div class="section box white">
+      {% include ads/feed-ads.html %}
     </div>
-  {% endfor %}
-
-
-  </div><!--wraper on lleft -->
-  <div class="col m3">
+    </div><!--wraper on lleft -->
+    <div class="col m3">
       <div class="col-12">
-      {% include ads/homepage-adunit-vert-300-600.html %}
-    </div>
-    <div class="col-12">
-      {% include ads/homepage-adunit-vert-300-600-2.html %}
-    </div>
+        {% include ads/homepage-adunit-vert-300-600.html %}
+      </div>
+      <div class="col-12">
+        {% include ads/homepage-adunit-vert-300-600-2.html %}
+      </div>
       <div class="col-12">
         {% include ads/adunit-vert-300-1050.html %}
-       </div>
+      </div>
+    </div>
   </div>
-
-
-  </div>
-
 </div>
