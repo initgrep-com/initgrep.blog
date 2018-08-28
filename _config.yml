@@ -15,7 +15,7 @@ exclude:
   - "Gemfile"
   - "Gemfile.lock"
   - "Gruntfile.coffee"
-  - "package.json"
+  - "package.json"                  
   - "Rakefile"
   - "README.md"
 
