@@ -41,11 +41,11 @@ plugins:
 
 
 #social and seo
-name: '{init}|grep'
+name: initgrep
 title: www.initgrep.com
 description: Blog about Software development, languages and other technology  stuff
-logo: logo.jpg
-image: logo.jpg 
+logo: biglogo.jpg
+image: biglogo.jpg 
 
 twitter:
   username: initgrep
