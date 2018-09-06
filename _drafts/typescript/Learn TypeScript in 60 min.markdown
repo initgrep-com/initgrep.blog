@@ -110,3 +110,55 @@ It is way of opting-out of type checking.
     // cast to a string
     let len:number = (<string>name).length;
 ```
+#### Functions: 
+Functions can be declared as named functions or anonymous functions similar to JavaScript. However, TypeScript allows to have the type checking for function parameters and return type. 
+Below is the syntax of the function.
+
+```js
+  /**
+   point function takes two arguments of number type and returns a number
+  **/
+  //named function
+  function point(x:number, y:number):number{
+      return x*Y;
+  }
+  //anonymous function
+  let point = function(x:number, y:number):number{
+      return x*Y;
+  }
+```
+Function types can also be declared. It consists of `parameters` and `return` types with return types being separated by (fat arrow)`=>`. Parameter names does not need to be consistent with the function type. Only the parameter types are checked. Return type declaration is mandatory. If a function does not return anything, return type should be `void`, 
+
+TypeScript compiler normally infers the type if type is present on one side of the equation. 
+Below is an example of function type declaration and usage.
+
+```js
+    /** 
+        declare a point as function type having parameters 
+        as number type and the return type as number
+    **/
+    def point: (x:number, y:number) => number;
+    point = function(x:number,y:number):number{ x*Y };
+    //type is automatically inferred by compiler
+    point = function(x,y){ x*Y };
+```
+In TypeScript, Every function parameter is required. Although the values could be given as `null` or `undefined`. But it is mandatory to have equal number of arguments given to a function as the number of parameters function expects.
+
+**Optional Parameter**: They are declared by adding a question mark(`?`) to the name of the parameter. Optional parameters must follow required parameters.
+
+```js
+    function user(firstName: string, lastName?: string):string{
+        return firstName+lastName;
+    }
+```
+**Default Parameters**: Default parameters are assigned a value during function declaration. Default parameters following after all the required parameter are considered optional and can be omitted during function call. During the function call, if the argument corresponding to default parameter has an `undefined` value or the argument is not provided, the default value will be considered. 
+```js
+    function User(firstName:String, middleName="dash",lastName:String){
+      console.log(`Name = ${firstName} - ${middleName} - ${lastName}`)
+    }
+
+```
+> Trailing default parameters and optional parameter can be omitted from the function type.
+> 
+
+**Interface**: Interface represents a composite type. It can also represent set of abilities.
