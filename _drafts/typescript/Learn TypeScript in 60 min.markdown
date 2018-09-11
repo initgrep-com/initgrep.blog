@@ -147,18 +147,95 @@ In TypeScript, Every function parameter is required. Although the values could b
 **Optional Parameter**: They are declared by adding a question mark(`?`) to the name of the parameter. Optional parameters must follow required parameters.
 
 ```js
+    //function type
+    (firstName:string, lastName?:string) => string
+    //Declaration
     function user(firstName: string, lastName?: string):string{
         return firstName+lastName;
-    }
+}
+
 ```
-**Default Parameters**: Default parameters are assigned a value during function declaration. Default parameters following after all the required parameter are considered optional and can be omitted during function call. During the function call, if the argument corresponding to default parameter has an `undefined` value or the argument is not provided, the default value will be considered. 
+**Default Parameters**: Default parameters are assigned a value during function declaration. Default parameters following after all the required parameter are considered optional and can be omitted during function call. As a result, In the function type, default parameters are mentioned similar as option parameters. During the function call, if the argument corresponding to default parameter has an `undefined` value or the argument is not provided, the default value will be considered. Default parameters can be provided in any order. In case, required parameters follow default parameters, function call should explicitly have `undefined` for default parameters.   
 ```js
-    function User(firstName:String, middleName="dash",lastName:String){
-      console.log(`Name = ${firstName} - ${middleName} - ${lastName}`)
-    }
+    //function type is similar as option parameter
+    (firstName:string, lastName?:string) => string
+    //declaration
+    function User(firstName:String,lastName:String = "dash"){
+      console.log(`Name = ${firstName} - ${lastName}`)
+}
 
 ```
 > Trailing default parameters and optional parameter can be omitted from the function type.
-> 
 
-**Interface**: Interface represents a composite type. It can also represent set of abilities.
+**Rest Parameters**: It is similar to `arguments` in JavaScript and `varargs` in Java.They are represented by preceding ellipsis such as `...restparam`. Rest parameters are treated as boundless number of parameters. Any number of arguments can be passed to it. You can even pass none. The compiler builds up an array of `arguments` and can be accessed inside the function with the name following ellipsis.
+```js
+    //return type is inferred as string type here by the compiler
+    function addStudents(...students:string[]){
+        return students.join('-');
+    }
+```
+**Function Overloading**: Unlike Java or C#, where function overloading consists of multiple declaration of same function with different number or type of parameters. In TypeScript, the `overload list` is provided. The overload list is possible number of function variations to be allowed in an overloaded function. The final function declaration contains parameter types and return types of which the overloaded list would make a subset. [Here](https://blog.mariusschulz.com/2016/08/18/function-overloads-in-typescript) is a detailed post.
+
+```js
+    //overload list type include Number and String
+    function add(x:number, y:number):number;
+    function add(x:string, y:string):string;
+
+	//final declaration contains type Any which is superset to all types
+    function add(x:any, y:any){
+      return (typeof x === 'string' && typeof y === 'string') ? `${x}-${y}` : x+y
+    }
+
+	//you can also make the final declaration more specific by using union types.
+    function add(x:number|string , y:number|string):number|string{
+      return (typeof x === 'string' && typeof y === 'string') ? `${x}-${y}` : x+y
+    }
+
+    add("star","awards");  //pass
+    add(1,2);  //pass 
+    add([1,2,3],[1,2,3]); //fail
+```
+
+#### Interfaces and Classes:
+Interface represents the shape of the values. It is way of defining contracts in the code to avoid any type mismatch. Interfaces can be used to specify types of a group of values, function types, index types(arrays) and class types
+
+```js
+    // Specify types for a javaScript object
+    let user:{name:string, age:number, height:number} = {name:'irshad',height:198,age:30};
+
+    /*Interfaces group the types specified with a name. 
+    Here UserType represents a type of object with memebers such as 
+    name(string type), age(number type), height(number type).
+     */
+    interface UserType{
+      name:string,
+      age:number,
+      height:number
+    };
+    //user is of the type UserType
+    let user:UserType = {name:'irshad',height:198,agee:30};
+
+	//error. location is 	not specified in the type
+    let user:UserType = {name:'irshad',height:198,location:30.01}; 
+````
+
+Interfaces can also represent function types. 
+
+```js
+//user type represents a function type
+interface userType{
+  (firstName:string, lastName:string, age:number):string;
+}
+/**username is a userType. Notice the function declaration doesn't contain explicit parameter types or return types. It is due to type inferrence.
+**/
+let userName:userType = function(first,last,age){
+  return `${first}  -  ${last}`
+}
+//provide explicit types for function declaration
+userName = function(first:string,last:string,age:number):string{
+  return `${first}  -  ${last}`
+}
+
+userName('irshad',"ahmad", 30); //pass
+userName('irshad',"ahmad", "30"); //fail. 
+```
