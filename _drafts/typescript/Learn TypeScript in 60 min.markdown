@@ -196,14 +196,22 @@ In TypeScript, Every function parameter is required. Although the values could b
     add([1,2,3],[1,2,3]); //fail
 ```
 
-#### Interfaces and Classes:
+#### Interfaces:
 Interface represents the shape of the values. It is way of defining contracts in the code to avoid any type mismatch. Interfaces can be used to specify types of a group of values, function types, index types(arrays) and class types
 
+A simplified way of describing an object would be as following:
 ```js
     // Specify types for a javaScript object
     let user:{name:string, age:number, height:number} = {name:'irshad',height:198,age:30};
 
-    /*Interfaces group the types specified with a name. 
+	//user is of the type UserType
+    let user:UserType = {name:'irshad',height:198,agee:30};
+```
+
+ **Interfaces can represent an object with properties.**
+ 
+```js
+    /*Interface desribes an object with properties. 
     Here UserType represents a type of object with memebers such as 
     name(string type), age(number type), height(number type).
      */
@@ -218,24 +226,102 @@ Interface represents the shape of the values. It is way of defining contracts in
 	//error. location is 	not specified in the type
     let user:UserType = {name:'irshad',height:198,location:30.01}; 
 ````
-
-Interfaces can also represent function types. 
+ The required parameters should exist and types should match. The compiler does not check for the order of parameters. we will discuss about the `optional` and `readOnly` parameters later in the tutorial.
+ 
+**Interfaces can represent function types.**
 
 ```js
-//user type represents a function type
-interface userType{
-  (firstName:string, lastName:string, age:number):string;
-}
-/**username is a userType. Notice the function declaration doesn't contain explicit parameter types or return types. It is due to type inferrence.
-**/
-let userName:userType = function(first,last,age){
-  return `${first}  -  ${last}`
-}
-//provide explicit types for function declaration
-userName = function(first:string,last:string,age:number):string{
-  return `${first}  -  ${last}`
-}
+    //userType interface represents a function type
+    interface userType{
+      //function type is represented by set of parameters and return value  
+      (firstName:string, lastName:string, age:number):string;
+    }
+    /**username is a userType. Notice the function declaration doesn't 
+    contain explicit parameter types or return types. 
+    It is due to type inferrence.
+    **/
+    let userName:userType = function(first,last,age){
+      return `${first}  -  ${last}`
+    }
+    //provide explicit types for function declaration
+    userName = function(first:string,last:string,age:number):string{
+      return `${first}  -  ${last}`
+    }
 
-userName('irshad',"ahmad", 30); //pass
-userName('irshad',"ahmad", "30"); //fail. 
+    userName('irshad',"ahmad", 30); //pass
+    userName('irshad',"ahmad", "30"); //fail. 
 ```
+For the function types,The compiler considers the order in function parameters. It matches types of one parameter at a time. If the types are not specified in function declaration, the contextual typing of TypeScript can infer the types of arguments during the function call.
+
+**Interfaces can represent Indexable types.**
+
+Indexable types have *index signatures* which take a form of `a[10]`or `a['ten']` and return a value.  A rule of thumb is indexer type and return type of an indexable type will never change i.e if indexer is of type **X** and its return type is **Y**. It will always remain so. 
+
+```js
+    /** declare dot as interface for indexable type with
+     *  indexer of type number and return type as string */
+    interface dot{
+      [x:number]:string
+    }
+
+    let point:dot [100];
+```
+
+`string` and `number` are the supported index types. *Number indexes are internally transformed into string types in JavaScript.* As a result, it is possible to use both the types together for indexes. However, the return types should either be same or type returned from a numeric indexer must be a subtype of the type returned from the string indexer. 
+
+```js
+    /** both string and numeric indexer is used and return type is string in both cases */
+    interface dashIndexTYpe{
+      [x:number]:string
+      [x:string]:string
+    }
+
+    //Not valid as return types are not same
+    interface dashIndexType{
+      [x:number]:string
+      [x:string]:number
+    }
+
+    let a:dashIndexTYpe = {'a':'100',2:'100'}
+```
+An Object oriented example :)
+```js
+    class road{ name:string}
+    //class highway is subtype of class road
+    class highway extends road{ line:number}
+	
+    /** valid 
+     * numeric indexer type returns the similar datatype as string
+     */
+    interface roadIndexableType{
+      [x:string]: road
+      [x:number]: road
+    }
+
+    /** valid
+     * numeric indexer type returns the subtype 
+     * of string indexer return type
+     */
+    interface roadIndexableTypeD{
+      [x:string]: road
+      [x:number]: highway
+    }
+
+    /**
+     * Not Valid
+     * Numeric indexer return type is not similar to 
+     * or subtype of string indexer return type
+     */
+    interface roadIndexableTypeNV{
+      [x:string]: highway
+      [x:number]: road
+    }
+
+```
+
+### Classes:
+TBD
+
+hybrid types:TBD
+
+OPTIONAL and readonly types:
