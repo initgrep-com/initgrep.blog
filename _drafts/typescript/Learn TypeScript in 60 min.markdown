@@ -12,7 +12,6 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 
-
 ---
 
 JavaScript is great! It supports dynamic types. However, scaling large applications written in JavaScript often becomes difficult.
@@ -319,9 +318,121 @@ An Object oriented example :)
 
 ```
 
-### Classes:
-TBD
+### Classes `implement` Interfaces:
+Interfaces can be implemented by classes just like in `Java` or `C#`
 
-hybrid types:TBD
+```js
+    //Declare a person Interface
+    interface person{
+      name:string
+      getAverageScore(...scores:number[]):number;
+    }
+    
+	// class implements the interface person and
+    // inherits the methods and properties declared
+    class BachelorStudents implements student{
+      constructor(){}
+      name:string;
+      getAverageScore(...scores){
+          let avarge:number;
+          //do some logic
 
-OPTIONAL and readonly types:
+          return avarge;
+      }
+
+    }
+
+	let bc1 = new BachelorStudents();
+```
+### Interfaces`extends` to Interfaces
+Interfaces can extend other interfaces and inherit their properties or methods. The class implementing the last interface has to implement methods present in the interfaces to which the current interfaces `extends` to.
+
+```js
+	interface person{
+      name:string
+    }
+
+    interface student extends person{
+      getAverageScore(...scores:number[]):number;
+    }
+
+    class BachelorStudents implements student{
+      constructor(){}
+      name:string;
+      getAverageScore(...scores){
+          let avarge:number;
+          //do some logic
+
+          return avarge;
+      }
+
+    }
+
+    let bc1 = new BachelorStudents();
+```
+
+### Hybrid Types:
+Since JavaScript is dynamic and flexible. It is possible for an interface to represent more than one kind of type at the same time. 
+
+An example below describes how an object can behave as a function as well as an object at the same time. 
+
+```js
+    /** Declare an interface as composite type with 
+        members as a function type and a property */
+
+    interface Trip{
+      //function type
+      (place:string) 
+      //property distance
+      distance:number
+    }
+
+    //function return the object type as counter
+    function getTrip():Trip{
+      let c = <Trip>function(place:string){}
+      c.distance = 100
+      return c;
+    }
+
+    let app = getTrip();
+    app('call function with place argument');
+	app.distance = 102
+
+```
+
+### Optional and readonly types:
+
+The properties present in an Interface which may not be required can be declared as option. An optional property can be declared by appending `?` after the name
+
+```js
+	interface Person{
+      name: string
+      age?: number
+      phone?: number
+    }
+
+	function createUser(p:Person){
+      console.log("Name: ",p.name);
+      //it is important to validate optional params
+      if(p.age){
+        console.log("Age: ",p.age);
+      }
+      if(p.phone){
+        console.log("phone: ",p.phone);
+      }
+    }
+```
+Readonly properties can only be modified when the object is created. A readonly property is specified by putting `readonly` before the name. It is similar as is a `const` for a variable. However both have different usage.
+
+```js
+    interface readOnlyPerson{
+      readonly name:string
+    }
+
+    let person1:readOnlyPerson = {name :"Bolt"};
+    console.log("Name of person1", person1.name);
+    //upadate failure
+    person1.name = "usian"
+```
+
+
