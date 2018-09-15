@@ -5,8 +5,7 @@ highlighter: rouge
 #baseurl: /mylog
 permalink: /:path
 env : 'production'
-# env : 'development'
-
+#env : 'development'
 
 exclude:
   - "bower_components"
