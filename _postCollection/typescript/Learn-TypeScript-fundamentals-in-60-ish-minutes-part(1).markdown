@@ -438,5 +438,3 @@ Readonly properties can only be modified when the object is created. A readonly 
     //upadate failure
     person1.name = "usian"
 ```
-
-{% include ads/article-ads.html %}
