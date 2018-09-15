@@ -37,9 +37,6 @@ plugins:
   - jekyll-seo-tag
 
 
-
-
-
 #social and seo
 name: initgrep
 title: www.initgrep.com
