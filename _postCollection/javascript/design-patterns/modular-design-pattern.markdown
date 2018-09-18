@@ -8,23 +8,22 @@ excerpt: "Modular design pattern helps to split each functionality into differen
 category: Design-pattern
 comments: true
 author: "sheikh irshad"
-twitter: imshykh	
+twitter: imshykh    
 facebook: irshsheikh
 github: igagrock
 image: mod.jpg
 
 ---
 
-JavaScript is an object-based language. While writing code, it is important to keep the code clean and avoid name-space collisions. In order to keep your application code modular, it is important to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing.
+JavaScript is an object-based language. During the development of an application, it is important to keep the code clean and avoid name-space collisions. In order to keep the code modular, it is important to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing.
 
-Modularity is used in almost any JavaScript libraries/frameworks  such as nodejs, jQuery etc. Each module is kept in a separate file to have a complete distinguishing file system to traverse and maintain.
+Modularity is used in almost any JavaScript libraries/ frameworks such as nodeJs, jQuery etc. Each module is kept in a separate file to have a complete distinguishing file system to traverse and maintain.
 
-Let's go through the basics of implementation and how we can leverage the pattern for the specific needs. For this tutorial, Lets create some functionalities of a calculator to be used in our demo `finance` application.
-
+Let's go through the basics of implementation and learn how we can leverage the pattern for the specific needs. For this tutorial, Let's create some functionalities of a calculator as our demo `finance app`.
+ 
 **Modular design pattern in making**
 
-The basic way to create different modules is to have separate name-space for each functionality to avoid name collisions in the application. In JavaScript, we can create a separate object for each functionality to achieve this.
-
+The basic way to create different modules is to have separate name-space for a set of functions to avoid name collisions in the application. In JavaScript, we can create a separate object with a set of functions to achieve this.
 
 ```js
 
@@ -36,52 +35,51 @@ var calc = function(){
  }
 ```
 
-I have created a constructor function to create the `calc` object. This object can be initialized in any part of the application to access the methods. Lets say, we want to use the above `calc` in a `finance` application
+I have created a constructor function to create the `calc` object. This object can be initialized in any part of the application to access the methods. Let us say, we want to use the above `calc` in a `finance` application
 
 
 ```js
 var financeCalc = new calc();
-	financeCalc.add(100 , 200);
-	financeCalc.subtract(400 , 100);
+    financeCalc.add(100 , 200);
+    financeCalc.subtract(400 , 100);
 ```
 
-lets assume, we need an extra functionality which adds data of two different months. This method is part of our other module `grossModule`
+let's assume, we need an extra function which adds data of two different months. For this, we will create another module as `grossModule` and keep the new function as part of it.
 
-we can follow the same process of creating a new object and adding the respective methods.
-
+For further upgrades, we can follow the same process of creating a new object and adding the respective methods.
 
 ```js
 var grossModule = function(){
-  	this.add = function(month1Data , month2Data){
-       	//	doing some complex calculations
-         return month1+month2
+      this.add = function(month1Data , month2Data){
+           //    doing some complex calculations
+         return month1Data + month2Data
       }
 }
 // using this module in our finance application 
  var financeCalc = new calc();
-	financeCalc.add(100 , 200);
-	financeCalc.subtract(400 , 100);
+    financeCalc.add(100 , 200);
+    financeCalc.subtract(400 , 100);
     
  var financeGrossModule = new grossModule();
-   	financeGrossModule.add(month1, month2);
+       financeGrossModule.add(month1, month2);
 ```
 we have assigned different name-space for each of the `add` methods.
-we can use both the types of `add` method in same application without any challenges.
+we can use both the types of `add` methods in the same application without any challenges.
 
-So far so good. let's go further ahead and discuss some benefits of implementing modular pattern in JavaScript.
+So far so good. let's go further ahead and discuss some benefits of implementing the modular pattern in JavaScript.
 
 {% include ads/article-ads.html %}
 
  **Encapsulation**:
  
- Encapsulation in its simple terms means, Show only the functionality which is necessary and keep the rest of it hidden or private. Encapsulation is a popular concept in various object oriented language such as Java. We can implement it in JavaScript also.  There are few things we need to take care in order to achieve it:
+ Encapsulation in its simple terms means, *show only the functionality which is necessary and keep the rest of it hidden or private*. Encapsulation is a popular concept in the various object-oriented languages such as Java. Similarly, we can achieve it in JavaScript also by keeping in mind a few principles such as:
   1. *Access the data using methods (getter/setter)*
 2. *Keep the methods private which deal with inner business logic*
 3. *Create simple public API's*
       
-This is just my own specification of how to implement encapsulation and does not refer to any standard document. 
+This is just a specification of how to implement encapsulation and does not refer to any standard document. 
     
-Lets modify the `calc` module while considering each of the above features.
+Let's modify the `calc` module while considering each of the above features.
    
 ```js
 var calc = function(){
@@ -91,7 +89,7 @@ var calc = function(){
        var subtract = function(a,b){return a-b;}
        var divide = function(a,b){return a/b;}
        var multiply = function(a,b){return a*b;}
-	   
+       
        //public methods
        this.getRoundingLimit = {return roundingLimit;}
        this.calculate = function(operation , a, b){
@@ -110,21 +108,22 @@ var calc = function(){
 
 ```js
 var financeCalc = new calc();
-	 financeCalc.calculate('+',100,200);
-   	 financeCalc.calculate('-',200,100);
+     financeCalc.calculate('+',100,200);
+        financeCalc.calculate('-',200,100);
      financeCalc.add(100,200); // is undefined
      financeCalc.roundingLimit; //undefined
      financeCalc.getRoundingLimit(); // 2
 ```
 {% include ads/article-ads.html %}
+
 **Introduction to IIFEs**
 
   Immediately Invoked Function Expressions or IIFE  (pronounced "iffy") are anonymous JavaScript functions which are invoked immediately. A basic syntax is like:
   
 ```js
-	(function () {
-    	// logic here
-	})();	
+    (function () {
+        // logic here
+    })();    
 ```
  In JavaScript, functions can either be created using a normal function declaration such as the named function **or** a function expression
 ```js 
@@ -132,9 +131,10 @@ var financeCalc = new calc();
 function foo() {//some code here}
     
 // function expression
-var foo = function() { //some code here }	
+var foo = function() { //some code here }    
 ```
-In JavaScript, expression always return a value. Since functions are first class objects, If we create a function using function expression, it would return the function object.
+Expressions always return a value. Since functions are first class objects in JavaScript, If we create a function using function expression, it would return the function object.
+
 Let's take the below example:
 
 ```js
@@ -160,7 +160,7 @@ when we wrap the function in a set of braces, it returns the expression value wh
 {% include ads/article-ads.html %}
 **Advantages of using IIFEs to implement a modular pattern**
 
-If you noticed above, when we created our `calc` module. To use it in our `finance` application, we had to manually create the objects. we named it as `financeCalc`. The name looks fine but it is not defined by the module and is not a standard. As a result, we can give any random name and eventually might fall into a name collision. So how can we restrict it and give a standard name. Well, IIFEs have come to our rescue. If you remember, IIFE is invoked at the time of creation. As a result, we can bet, we always have one instance in our application with a standard object returned by the module itself.
+If you noticed above, when we created our `calc` module. To use it in our `finance` application, we had to manually create the objects. we named it as `financeCalc`. The name looks fine but it is not defined by the module and is not a standard. It is possible to give any random name and eventually fall into a name collision. So how can we restrict it and give a standard name?. Well, IIFEs have come to our rescue. If you remember, IIFE is invoked at the time of creation. As a result, we can bet, we will always have one instance in our application with a standard object returned by the module itself. 
 
 Let's assume, our `calc` module is present in a seperate file named as `calc.js`
 
@@ -173,7 +173,7 @@ Let's assume, our `calc` module is present in a seperate file named as `calc.js`
        var subtract = function(a,b){return a-b;}
        var divide = function(a,b){return a/b;}
        var multiply = function(a,b){return a*b;}
-	   var getRoundingLimit = {return roundingLimit;}
+       var getRoundingLimit = {return roundingLimit;}
        var calculate = function(operation , a, b){
            switch(operation){
               case '+': return add(a ,b); break;
@@ -186,7 +186,7 @@ Let's assume, our `calc` module is present in a seperate file named as `calc.js`
        
        //return the public resources with a standard object name-space
        return Calculator = {
-       		//public methods
+               //public methods
             //Note: we can keep different names to the methods
              getRoundingLimit : getRoundingLimit,
              calculate : calculate
@@ -195,9 +195,9 @@ Let's assume, our `calc` module is present in a seperate file named as `calc.js`
  })();
  
 ```
-We can import it my adding a `script` tag in our index html file or using any other module loading libraries. I will explain various ways of loading modules by the end of this tutorial.
+We can import it by adding a `script` tag in our index html file or using any other module loading libraries. I will explain the various ways of loading modules by the end of this tutorial.
 
-After importing the `calc.js` in our `financeApp`.Below is our demo `financeApp.js`. In our `financeApp.html`, we have add the `calc.js`. Once the Html is loaded, `calc.js` is also loaded and the IIFE is invoked. Thus, we will have the `Caclulator` object available at the load time including the public methods present in the `Calculator`.
+After importing the `calc.js` in our `financeApp`. Below is our demo `financeApp.js`. In our `financeApp.html`, we have added the `calc.js`. Once the Html is loaded, `calc.js` is also loaded and the IIFE is invoked. Thus, we will have the `Calculator` object available at the load time including the public methods present in the `Calculator`.
 
 ```html
   <script src ='calc.js' /> 
@@ -215,13 +215,13 @@ After importing the `calc.js` in our `financeApp`.Below is our demo `financeApp.
 
 By now, I hope it is clear, how can we implement the modular design pattern in JavaScript applications. 
 
-There are various liberaries available today, which help to implement modular design pattern. Following are the few popular methods which are implemented
+There are numerous libraries available today, which help to achieve the modular design pattern. Following are the few popular methods which are implemented:
 
 1. [AMD *define* and *require * statement.](https://github.com/amdjs/amdjs-api/blob/master/AMD.md)
 2. [ CommonJS *require()* statement as implemented in nodeJs](https://nodejs.org/docs/latest/api/modules.html)
 3. [  ES2015 *import* statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
 
-You can check out the documentation for implementing each one of them. All of these liberaries have various benefits such lazy loading, asynchronous module loading, using modules in a non-html applications etc.
+You can check out the documentation for implementing each one of them. All of these libraries have various benefits such as lazy loading, asynchronous module loading, using modules in a non-html application etc.
 
  
 
