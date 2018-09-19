@@ -299,7 +299,15 @@
     }
 }
 
-@media only screen and (min-width: 1280px) and (max-width: 1360px) {
+@media only screen and (min-width: 1280px) and (max-width: 1368px) {
+
+  /** poster home  **/
+
+    div.recent-article div a.title {
+        font-size: 3rem !important;
+        line-height: 1;
+    }
+
     .post-container {
         min-height: 300px;
     }
@@ -343,7 +351,8 @@
 }
 
 
-@media only screen and (min-width: 1360px) and (max-width: 1680px) {
+@media only screen and (min-width: 1369px) and (max-width: 1680px) {
+  
     .post-container {
         min-height: 300px;
     }

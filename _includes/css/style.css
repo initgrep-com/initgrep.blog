@@ -153,7 +153,8 @@ span.catagory-links {
 }
 
 #index-banner {
-  min-height: 500px;
+  min-height: 300px;
+  height: auto;
   opacity: 0;
   -webkit-transition: opacity 2s ease-out;
   transition: opacity 2s ease-out;

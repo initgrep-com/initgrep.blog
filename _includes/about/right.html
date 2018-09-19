@@ -1,4 +1,4 @@
-{% assign sortedCollection = site.postCollection | sort: 'date' %}
+{% assign sortedCollection = site.postCollection | sort: 'date' | reverse %}
 
 
 <div class="right-side">
@@ -16,7 +16,7 @@
 					<p>{{post.meta}}
 						<span class="grey-text text-darken-4 pt-sans right timeToRead">{% include util/minRead.liquid content= post.content %} read</span>
 					</p>
-					<!-- <div href="#!" class="secondary-content">
+					<!-- <div href="#!" class="secondary-content .hide-on-med-and-down">
 						<i class="material-icons" deep-orange>grade</i>
 						<i class="material-icons" deep-orange>grade</i>
 						<i class="material-icons" deep-orange>grade</i>

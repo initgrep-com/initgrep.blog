@@ -8,9 +8,9 @@
                    {% for page in sortedR | reverse | limit:1 %}
                   
                  
-					<div class="col s12 m8 recent-article  ">
+					<div class="col s12 m9 recent-article ">
 						<div class="row col s12 m12 l12 ">
-							<h6 class="banner-subheading"> Read the latest Post from 
+							<h6 class="banner-subheading"> Latest post from 
 								<span class="teal-text text-darken-3 pt-sans">{{page.category}}</span>
 								<span class="grey-text pt-sans-bold center timeToRead" >
 								{% include util/minRead.liquid content= page.content  %} read
@@ -36,7 +36,7 @@
 					</div>
                   
 					{% endfor %}
-					 <div class="col s12 m4 recent-article ">
+					 <div class="col s12 m3 recent-article ">
 						{% include ads/allPost-adunit-resp.html %}
 
 					</div>
