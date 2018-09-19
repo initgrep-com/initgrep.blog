@@ -8,7 +8,7 @@
                    {% for page in sortedR | reverse | limit:1 %}
                   
                  
-					<div class="col s12 m9 recent-article ">
+					<div class="col s12 m12 recent-article ">
 						<div class="row col s12 m12 l12 ">
 							<h6 class="banner-subheading"> Latest post from 
 								<span class="teal-text text-darken-3 pt-sans">{{page.category}}</span>
@@ -36,10 +36,10 @@
 					</div>
                   
 					{% endfor %}
-					 <div class="col s12 m3 recent-article ">
+					 <!-- <div class="col s12 m3 recent-article ">
 						{% include ads/allPost-adunit-resp.html %}
 
-					</div>
+					</div> -->
 
 				  </div>
 				</div>
