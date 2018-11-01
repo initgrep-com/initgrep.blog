@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 bannercolor: "blue darken-4"
 title:  "Learn TypeScript fundamentals in 60-ish minutes - part(1) "
@@ -265,7 +265,7 @@ Indexable types have *index signatures* which take a form of `a[10]`or `a['ten']
       [x:number]:string
     }
 
-    let point:dot [‘one’]; // point[0] will return `one`
+    let point:dot [100];
 ```
 
 `string` and `number` are the supported index types. *Number indexes are internally transformed into string types in JavaScript.* As a result, it is possible to use both the types together for indexes. However, the return types should either be same or type returned from a numeric indexer must be a subtype of the type returned from the string indexer. 
