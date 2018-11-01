@@ -132,7 +132,7 @@ span.catagory-links {
   padding: .35rem .50rem .35rem .5rem;
   border-radius: 5px;
   font-size: 1rem;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
   text-transform: capitalize;
   -webkit-transition: background-color 1s ease-in;
   transition: background-color 1s ease-in;
