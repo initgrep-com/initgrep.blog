@@ -235,3 +235,12 @@ Printer.printDocument("path://to/the/document");
     rp.printAge(12);
 
 ```
+
+#### Generics
+
+Generics is a facility of generic programming to produce reusable code. A typical Generic function in TypeScript is written as follows:
+
+```js
+
+	
+```
