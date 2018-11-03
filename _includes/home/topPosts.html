@@ -7,7 +7,7 @@
 {% for collection in site.collections %}
 {% assign colsname  = collection.label  %}
 {% if colsname != 'authors'%} 
-{% assign items = site.[colsname] | sort: 'date'  %}
+{% assign items = site.[colsname] | sort: 'date' %}
 {% for post in items limit: 5 %}
  
   <div class="section box white"  >
