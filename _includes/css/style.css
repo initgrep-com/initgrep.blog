@@ -223,7 +223,7 @@ div.highlighter-rouge{
   /* font-weight: 400; */
 }
 
-.content h2::before {
+.content h2::before, .content h3::before {
   content: '#';
   font-size: 8rem;
   position: absolute;

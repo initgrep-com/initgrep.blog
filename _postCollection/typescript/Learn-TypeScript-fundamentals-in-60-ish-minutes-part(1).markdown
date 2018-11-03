@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: seriesPost
 bannercolor: "blue darken-4"
 title:  "Learn TypeScript fundamentals in 60-ish minutes - part(1) "
 date:   2018-09-15
