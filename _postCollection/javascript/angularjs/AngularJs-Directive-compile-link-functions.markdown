@@ -97,7 +97,7 @@ angular.directive("dumyCompile",function(){
   }
 })
 ```
-> while creating a directive using directive registering API, You can either return a `Directive Definition Object` that defines the directive properties, or just the `postLink function`. Rest of the options will have default values. You can check [API for registering directives](posts/javascript/angularjs/Angularjs-api-to-register-directives-directive-definition-object) to learn how to create and register a directive.
+> while creating a directive using directive registering API, You can either return a `Directive Definition Object` that defines the directive properties, or just the `postLink function`. Rest of the options will have default values. You can check [API for registering directives](/posts/javascript/angularjs/Angularjs-api-to-register-directives-directive-definition-object) to learn how to create and register a directive.
 > 
 {% include ads/article-ads.html %}
 

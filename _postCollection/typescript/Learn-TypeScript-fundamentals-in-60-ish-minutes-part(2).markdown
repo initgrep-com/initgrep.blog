@@ -1,12 +1,12 @@
 ---
 layout: seriesPost
-bannercolor: "red darken-5"
+bannercolor: "blue darken-5"
 title:  "Learn TypeScript fundamentals in 60-ish minutes - part(2) "
-date:   2018-11-01
-meta: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications. It may be used to develop applications for both client-side and server-side."
-excerpt: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications. It may be used to develop applications for both client-side and server-side."
+date:   2018-11-02
+meta: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications. "
+excerpt: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript."
 category: typescript
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
