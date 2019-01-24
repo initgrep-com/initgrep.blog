@@ -1,4 +1,20 @@
 
+---
+layout: seriesPost
+bannercolor: "red darken-4"
+title:  "Learn TypeScript fundamentals in 60-ish minutes - part(1) "
+date:   2018-06-26
+meta: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications."
+excerpt: "TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications."
+category: typescript
+comments: true
+author: "sheikh irshad"
+twitter: imshykh
+facebook: irshsheikh
+github: igagrock
+image: ts.jpeg
+
+---
 
 #### Lambda expression.
 
