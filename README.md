@@ -1,4 +1,4 @@
-###jekyll based blog
+### jekyll based blog
 
 Hi, I have developed this template and it has grown ever since. 
 I wanted to develop everything using liquid templates and avoiding all the other plugins.
