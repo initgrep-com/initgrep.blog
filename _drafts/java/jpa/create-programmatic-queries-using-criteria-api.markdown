@@ -108,14 +108,14 @@ public <T> Long getCountOfEntity(Class<T> claz) {
     }
 ```
 
-The only change made to the previous example is -- an argument which specifies the `Class` of the `Entity`. Rest of the Code stays same. You can learn more about Java Generics [here](https://docs.oracle.com/javase/tutorial/java/generics/index.html).
+I have only updated the previous example to allow the generic parameter which specifies the `Class` of the `Entity`. Rest of the Code stays same. You can learn more about Java Generics [here](https://docs.oracle.com/javase/tutorial/java/generics/index.html).
 
-Let me explain briefly few lines of the code before we move on to our next example--
+Before we move on to our next example, let's see how the Criteria API works.
 
 ```java
 	 CriteriaQuery<T> createQuery(Class<T> resultClass);
 ```
-`CreateQuery` method takes the `Class` name of the result type as an argument. To understand this, we will have to understand the abstract meaning of it. I will describe it in the below points:
+`CreateQuery` method takes the `Class` name of the result type as an argument. I will describe the abstract meaning it below.
 * If the result is returned as a data-set related to the entity e.g all the students or one of the  student. The parameter should be `Student.class`.
 	```java 
         builder.createQuery(Student.class);
@@ -125,6 +125,22 @@ Let me explain briefly few lines of the code before we move on to our next examp
 		builder.createQuery(Long.class);
     ```
 
+```java
+	Root<T> root = studentQuery.from(Student.Class)
+```
+The `Root` refers to the entity one which the query would be run such as `Student.class` in the above example.
+
+```java
+	studentQuery.select(countExpression);	
+```
+
+The `select` method specifies the result to be returned by the Query. If we want to return all the rows of the entity instead of just returning the count, we could pass the `root` entity as the parameter such as below.
+
+```java
+	studentQuery.select(root);	
+```
 
 
-
+#### Relationship
+![Interface relationships in Criteria API](/assets/images/apidaigram.png)
+*<ins>Interface relationships in Criteria API</ins>*
