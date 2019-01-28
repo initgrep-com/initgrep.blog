@@ -19,7 +19,7 @@ Java Persistence API (JPA) provides specification of managing data, such as acce
 
 There are obviously many ways in JPA that could be used to interact with database such as JPQL(Java Persistence Query Language), Criteria API, and Entity specific methods such as persist, merge, remove, flush etc.
 
-I initially found Criteria API pretty intimidating. I just couldn't grasp it. To be honest, I had to invest quite some time to figure out how it works. It eventually turned out to be quite fluent and simple API and I thought why not just write about the experiences I had while learning it. So here it is, **"Creating Programmatic Queries using JPA Criteria API"**.
+I initially found Criteria API pretty intimidating. To be honest, I had to invest quite some time to figure out how it works. It eventually turned out to be quite fluent and simple API and I thought why not just write about the experiences I had while learning it. So here it is, **"Creating Programmatic Queries using JPA Criteria API"**.
 
 Criteria Queries are type-safe and portable. They are written using Java programming language APIs. They use the abstract schema of the persistent entities to find, modify and delete persistent entities by invoking JPA Entity Operations.
 
@@ -121,10 +121,11 @@ Before we move on to our next example, let's see how the Criteria API works.
         builder.createQuery(Student.class);
     ```
 * If the query returns any other result irrespective of which entity it works on, It should have a parameter of the returned type. As we saw above, when the count was returned, the parameter type was 
-	```java
-		builder.createQuery(Long.class);
-    ```
 
+```java
+	builder.createQuery(Long.class);
+```
+---
 ```java
 	Root<T> root = studentQuery.from(Student.Class)
 ```
@@ -137,10 +138,13 @@ The `Root` refers to the entity one which the query would be run such as `Studen
 The `select` method specifies the result to be returned by the Query. If we want to return all the rows of the entity instead of just returning the count, we could pass the `root` entity as the parameter such as below.
 
 ```java
-	studentQuery.select(root);	
+	
 ```
 
+Relationships between various Interfaces in Criteria API.
 
-#### Relationship
 ![Interface relationships in Criteria API](/assets/images/apidaigram.png)
 *<ins>Interface relationships in Criteria API</ins>*
+
+In the Above diagram, observe the classes in blue background. The relationship tree explains the inheritance hierarchy among various interfaces.
+`Selection` is at the top and being extended by `Expression`. Expression in turn is being extended by `Predicate` and `Path` interfaces. `From` interface extends path which in turn is parent of both `Root` and `Join` Interface.
