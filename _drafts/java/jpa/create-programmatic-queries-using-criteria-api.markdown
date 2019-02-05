@@ -125,7 +125,7 @@ Before we move on to our next example, let's see how the Criteria API works.
 ```java
 	builder.createQuery(Long.class);
 ```
----
+
 ```java
 	Root<T> root = studentQuery.from(Student.Class)
 ```
@@ -138,13 +138,158 @@ The `Root` refers to the entity one which the query would be run such as `Studen
 The `select` method specifies the result to be returned by the Query. If we want to return all the rows of the entity instead of just returning the count, we could pass the `root` entity as the parameter such as below.
 
 ```java
-	
+	studentQuery.select(studentRoot);
 ```
 
-Relationships between various Interfaces in Criteria API.
+
+#####  Inheritance Relationships
+
 
 ![Interface relationships in Criteria API](/assets/images/apidaigram.png)
 *<ins>Interface relationships in Criteria API</ins>*
 
 In the Above diagram, observe the classes in blue background. The relationship tree explains the inheritance hierarchy among various interfaces.
-`Selection` is at the top and being extended by `Expression`. Expression in turn is being extended by `Predicate` and `Path` interfaces. `From` interface extends path which in turn is parent of both `Root` and `Join` Interface.
+`Selection` is at the top and being extended by `Expression`. `Expression` in  turn is being extended by `Predicate` and `Path` interfaces. `From` interface extends path which in turn is parent of both `Root` and `Join` Interface.
+
+I will get give a couple of examples related to it.
+
+`Root` Interface is itself an expression. It means, we can query a complete Entity by passing `Root` as parameter to `CriteriaQuery.select` method.
+In Case we want to fetch a selected attribute, we can fetch the attribute path using `root.get(attributeName)`. This method returns an `Path`  object which inherits `expression`.	
+
+### Criteria Joins
+
+#### Implicit Join 
+
+```java
+	root.get("addresses");
+```
+When a collection parameter is passed to the get method, it creates a path to corresponding to the referenced **collection-valued attribute**. This results in creation of an `INNER JOIN` query.
+
+Let's go back to our domain objects. `Student` has a `OneToMany` relationship with `Address`. To fetch the `address`, we can use the `root.get('address')`. Below is the example.
+
+```java
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Student> cq = builder.createQuery(Student.class);
+		Root<Student> root = cq.from(Student.class);
+		cq.select(root.get("addresses"));
+		em.createQuery(cq).getResultList();
+```
+
+Output Query for the above example looks like as below:
+
+```java
+   select
+        addresses1_.id as id1_0_,
+        addresses1_.city_code as city_cod2_0_,
+        addresses1_.city_lang as city_lan3_0_,
+        addresses1_.city_name as city_d nam4_0_,
+        addresses1_.country as country5_0_,
+        addresses1_.house_number as house_nu6_0_,
+        addresses1_.street as street7_0_,
+        addresses1_.student_id as student_9_0_,
+        addresses1_.zip_code as zip_code8_0_ 
+    from
+        student student0_ 
+    inner join
+        address addresses1_ 
+            on student0_.id=addresses1_.student_id
+```
+
+Note: Since the Address is the Owner of the relationship between Student and Address. By default, the fetch type for a `OneToMany` relationship is lazy fetch. As a result, there would be extra queries fired to initialize the Student entities related to each Address. However, If we add a where clause and specify a `restriction or predicate`, it would only result in Single Query being fired.
+
+
+#### Explicit Join
+
+Normally when we define relationships in JPA, the Join will be based on the related ID column. However, if we want to define the restriction based on some other column, `Join.on(Predicate...)` can be used.
+
+```java
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Student> cq = builder.createQuery(Student.class);
+        Root<Student> root = cq.from(Student.class);
+        Join<Student, Address> join = root.join("addresses");
+        /** the below statement is only for the illustration only.
+        	the join relationship will by-default be id and reference id
+        **/
+        join.on(builder.equal(root.get("id"), join.get("student")));
+        cq.multiselect(join);
+        List<Student> resultList = em.createQuery(cq).getResultList();
+```
+
+The output of the above code example is quite different than what we saw in implicit join. The initial query only fetches the address id by doing the `INNER JOIN`. Each of the entities in the relationship are fetched lazily using separate queries
+
+```java
+   select
+        addresses1_.id as col_0_0_ 
+    from
+        student student0_ 
+    inner join
+        address addresses1_ 
+            on student0_.id=addresses1_.student_id 
+```
+
+After all the Id's are fetched, One query is used to fetch Student and Address details by doing an `OUTER JOIN` on Student id and address.Student_id.
+
+```java
+   select
+        address0_.id as id1_0_0_,
+        address0_.city_code as city_cod2_0_0_,
+        address0_.city_lang as city_lan3_0_0_,
+        address0_.city_name as city_nam4_0_0_,
+        address0_.country as country5_0_0_,
+        address0_.house_number as house_nu6_0_0_,
+        address0_.street as street7_0_0_,
+        address0_.student_id as student_9_0_0_,
+        address0_.zip_code as zip_code8_0_0_,
+        student1_.id as id1_4_1_,
+        student1_.name as name2_4_1_,
+        student1_.passport_id as passport3_4_1_ 
+    from
+        address address0_ 
+    left outer join
+        student student1_ 
+            on address0_.student_id=student1_.id 
+    where
+        address0_.id=?
+```
+Note: if a where clause is used in `CritieriaQuery`. It would result in a single query.
+
+if you have come this far, you would probably be thinking about, How can we avoid extra queries and fetch the joined data all at once. Well, JPA has got you covered by providing `Fetch Join`.
+
+#### FETCH JOIN
+
+`FETCH` tells the JPA to override the declarative fetch definitions and initialize all the associations or relationships eagerly. As a result, only one query is every produced.
+
+```java
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Student> cq = builder.createQuery(Student.class);
+		Root<Student> root = cq.from(Student.class);
+		root.fetch("addresses");
+		cq.select(root);
+		List<Student> resultList = em.createQuery(cq).getResultList();
+```
+
+the above query output is only a single query as below:
+
+``` java
+  select
+        student0_.id as id1_4_0_,
+        addresses1_.id as id1_0_1_,
+        student0_.name as name2_4_0_,
+        student0_.passport_id as passport3_4_0_,
+        addresses1_.city_code as city_cod2_0_1_,
+        addresses1_.city_lang as city_lan3_0_1_,
+        addresses1_.city_name as city_nam4_0_1_,
+        addresses1_.country as country5_0_1_,
+        addresses1_.house_number as house_nu6_0_1_,
+        addresses1_.street as street7_0_1_,
+        addresses1_.student_id as student_9_0_1_,
+        addresses1_.zip_code as zip_code8_0_1_,
+        addresses1_.student_id as student_9_0_0__,
+        addresses1_.id as id1_0_0__ 
+    from
+        student student0_ 
+    inner join
+        address addresses1_ 
+            on student0_.id=addresses1_.student_id
+```
+
