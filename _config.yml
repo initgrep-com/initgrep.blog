@@ -39,7 +39,7 @@ plugins:
 #social and seo
 name: initgrep
 title: www.initgrep.com
-description: Blog about Software development, languages and other technology  stuff
+description: Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot
 logo: biglogo.jpg
 image: biglogo.jpg 
 
