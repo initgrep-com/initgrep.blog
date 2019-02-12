@@ -15,7 +15,7 @@ image: cq1.jpg
 
 ---
 
- Similar to a `SELECT` SQL query, Criteria query has various methods to select the values of an Entity. `select` and `multiselect` methods are provided in the CriteriaQuery Interface for this purpose. We can select one or more values, the whole entity or multiple entities after a join.
+ Similar to  a `SELECT` SQL query, Criteria query has various methods to select the values of an Entity. `select` and `multiselect` methods are provided in the CriteriaQuery Interface for this purpose. We can select one or more values, the whole entity or multiple entities after a join.
 
 ### CriteriaQuery select
 ### CriteriaQuery multiSelect
