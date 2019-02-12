@@ -1,0 +1,593 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+<meta name="theme-color" content="#000000">
+<title>www.initgrep.com</title>
+<meta itemprop="description" name="description" content="Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot" />
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="www.initgrep.com">
+<meta property="og:url" content="http://localhost:4000/posts/">
+<meta property="og:image" content="http://localhost:4000/assets/images/biglogo.jpg" />
+<meta property="og:site_name" content="www.initgrep.com">
+<meta property="article:publisher" content="http://www.facebook.com/initgrep" />
+<meta property="article:author" content="https://www.facebook.com/" />
+<meta property="article:published_time" content="" />
+<meta property="og:description" content="Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot">
+<link rel="canonical" href="http://localhost:4000/posts/" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@initgrep" />
+<meta name="twitter:creator" content="@">
+<meta name="twitter:title" content="www.initgrep.com">
+<meta name="twitter:description" content="Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot">
+<meta name="twitter:image" content="http://localhost:4000/assets/images/biglogo.jpg">
+
+<meta name="google-site-verification" content="" />
+
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "www.initgrep.com",
+"image": "http://localhost:4000/assets/images/biglogo.jpg",
+"datePublished": "",
+"description": "Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot",
+"publisher": {"@type": "Organization",
+"logo": {"@type": "ImageObject",
+"url": "http://localhost:4000/assets/images/biglogo.jpg",
+"url": "http://localhost:4000/posts/"}
+</script>
+
+
+
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/assets/css/main.css"  media="screen,projection"/>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#333"
+    },
+    "button": {
+      "background": "#333333"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+    "message": "Hey there, Thank you for visiting by...\n\n\n <b>initgrep.com</b> uses cookies to ensure you get the best experience.",
+    "link": "check our privacy policy",
+    "href": "https://www.freeprivacypolicy.com/privacy/view/45d4583efa7b94a6561a193611ee4104"
+  }
+})});
+</script>
+</head>
+<body>
+
+ <!--- nav content -->   
+
+<div class="navbar-fixed" id="top" >
+    <nav class=" white lighten-2 " id ="check_nav" role="navigation" style=" box-shadow: 0 0 1px 0 #DEDADA;">
+    <div class="nav-wrapper">
+
+      <a id="logo-container" href="/" 
+      class="brand-logo  
+black-text
+
+ ">initgrep</a>
+      <ul class=" nav_menu right hide-on-med-and-down">
+       <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
+      	<li><a class="pt-sans-bold 
+black-text
+
+" href="/about">About</a></li>
+         <li><a class=" pt-sans-bold 
+black-text
+
+" href="/posts" >Posts<i class="material-icons right">more_vert</i></a></li>
+
+      </ul>
+
+      <!--side menu -->
+      <ul id="slide-out" class="side-nav ">
+        
+        <li>
+              <div class="background 
+
+black
+">
+                  <a href="/"><span class="white-text  pacifo-L">initgrep</span></a>
+                  <a id="sidenav_search" class="btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">search</i></a>
+              </div> 
+        </li>
+      <li style="margin-top: 1rem; height: 20px;"></li>
+        
+         <li>
+          <a class=" 
+black-text
+
+ " href="/posts/">
+            <i class=" material-icons receipt"></i>Posts
+          </a>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a class=" 
+black-text
+
+" href="/about">
+            <i class=" material-icons android">android</i>About
+          </a>
+        </li>
+
+      </ul>
+      <a href="#" data-activates="slide-out" class=" side_menu button-collapse 
+black-text
+
+ show-on-large"><i class="material-icons">sort</i></a>
+    </div>
+    
+  </nav>
+</div>
+
+
+
+   <!-- catagories content -->
+<!--   <div class="section subHomeBanner grey lighten-3">
+<div class="container  ">
+
+
+
+
+
+  <div class="row" style="padding-top: 4rem;">
+    <div class="col s12 m10 " style="padding-left: 2rem;">
+
+      <span class="teal-text  pt-sans">Recent Post</span>
+    </div>
+    <div class="col s12 m12 recent-article ">
+      <div class="icon-block">
+
+        <a href ="/posts/java/jpa/create-programmatic-queries-using-criteria-api" class="title pt-sans-bold  black-text ">Programmatic Queries using JPA Criteria API
+          <span class="grey-text darken-2 pt-sans-bold timeToRead" >
+
+  35 mins
+  read</span>
+        </a>
+
+          <p class=" black-text margin-top-2 pt-sans font-2">Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data. 
+          <a href ="/posts/java/jpa/create-programmatic-queries-using-criteria-api" class="teal-text" > ... read more </a>
+          </p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div> -->
+<div class="section code-wrapper">
+  <div class="container">
+  <div class="row">
+    <div class="col s12 m9"> <!--wraper on lleft -->
+    
+    
+    
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >jpa</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  35 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">February 11, 2019</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/java/jpa/create-programmatic-queries-using-criteria-api" class="title pt-sans-bold  black-text ">Programmatic Queries using JPA Criteria API
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data.
+                <a href ="/posts/java/jpa/create-programmatic-queries-using-criteria-api" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >typescript</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  29 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">November 02, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/typescript/Learn-TypeScript-fundamentals-in-60-ish-minutes-part(2)" class="title pt-sans-bold  black-text ">Learn TypeScript fundamentals in 60-ish minutes - part(2) 
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications. 
+                <a href ="/posts/typescript/Learn-TypeScript-fundamentals-in-60-ish-minutes-part(2)" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >angularjs</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  3 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">July 09, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/angularjs/How-to-use-directive-multielement-option" class="title pt-sans-bold  black-text ">How to implement multielement directives
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2"> In order To apply AngularJs directives on various elements without having to add them for every DOM element multielement option can be set to true.
+                <a href ="/posts/javascript/angularjs/How-to-use-directive-multielement-option" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >angularjs</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  18 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">July 08, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/angularjs/AngularJs-Directive-compile-link-functions" class="title pt-sans-bold  black-text ">AngularJs Directive - compile and link function
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Compile function does the one-time activity and could be used to do some initialization. Link function is used to perform DOM manipulation and copy content into the DOM from the scope.
+                <a href ="/posts/javascript/angularjs/AngularJs-Directive-compile-link-functions" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >angularjs</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  5 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">July 06, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/angularjs/Angularjs-api-to-register-directives-directive-definition-object" class="title pt-sans-bold  black-text ">API for registering directive- Directive Definition Object
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Directives are created using angular.directive API. This API takes a directive name followed by a factory function which returns a Directive Definition Object. 
+                <a href ="/posts/javascript/angularjs/Angularjs-api-to-register-directives-directive-definition-object" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >angularjs</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  4 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">July 03, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/angularjs/Understanding-AngularJS-Directives" class="title pt-sans-bold  black-text ">Understanding AngularJS Directives
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2"> AngularJS Directive is a unit of reusable code which is used to add custom behavior to HTML elements or attributes.
+                <a href ="/posts/javascript/angularjs/Understanding-AngularJS-Directives" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >typescript</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  32 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">June 26, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/typescript/Learn-TypeScript-fundamentals-in-60-ish-minutes-part(1)" class="title pt-sans-bold  black-text ">Learn TypeScript fundamentals in 60-ish minutes - part(1) 
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">TypeScript is the superset of JavaScript with optional static types. It compiles to JavaScript. It is designed for the development of large applications.
+                <a href ="/posts/typescript/Learn-TypeScript-fundamentals-in-60-ish-minutes-part(1)" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >angularjs</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  12 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">June 26, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/angularjs/Creating-custom-filters-in-angularjs" class="title pt-sans-bold  black-text ">Creating Custom Filters in AngularJS
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Filters are one of the AngularJS features which help in filtering or formatting the data for the end user
+                <a href ="/posts/javascript/angularjs/Creating-custom-filters-in-angularjs" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >Design-pattern</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  17 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">March 18, 2018</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/design-patterns/modular-design-pattern" class="title pt-sans-bold  black-text ">Modular design pattern in JavaScript
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Modular design pattern helps to split each functionality into different chunks of code to separate the concerns.
+                <a href ="/posts/javascript/design-patterns/modular-design-pattern" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >Design-pattern</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  6 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">December 31, 2017</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)" class="title pt-sans-bold  black-text ">Publisher-Subscriber(pub-Sub) pattern in Javascript
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Publisher Subscriber pattern is the loosely coupled extension of Observer pattern.
+                <a href ="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >Design-pattern</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  15 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">December 30, 2017</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/javascript/design-patterns/observer-pattern" class="title pt-sans-bold  black-text ">Observer pattern in Javascript
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject
+                <a href ="/posts/javascript/design-patterns/observer-pattern" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >groovy</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  4 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">October 31, 2016</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/groovy/Use%20Groovy%20Closure%20to%20create%20a%20tree%20data%20structure" class="title pt-sans-bold  black-text ">Use Groovy Closure to create a tree data structure
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">Closure is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable.
+                <a href ="/posts/groovy/Use%20Groovy%20Closure%20to%20create%20a%20tree%20data%20structure" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="section box white"  >
+        <div class="row">
+          <div class="col s12 m12 post-meta">
+            <span class="grey-text text-darken-4 pt-sans author"> Posted by</span>
+            <a class="teal-text text-darken-3 pt-sans author" href="/about/sheikh irshad">  sheikh irshad</a>  <span class="grey-text text-darken-4 pt-sans author">in </span> <span class="teal-text text-darken-3 pt-sans" >groovy</span>
+            <span class="grey-text text-darken-4 pt-sans right timeToRead" >
+
+  3 mins
+  read</span>
+            <span class="grey-text text-darken-4 pt-sans datetime" style="display: block;">October 31, 2016</span>
+            
+            
+          </div>
+          <div class="col s12 m12 top-article">
+            <div class="icon-block">
+              <a href ="/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures" class="title pt-sans-bold  black-text ">Groovy : simplifying SAM type as closures
+                
+              </a>
+              <p class=" black-text margin-top-2 pt-sans font-2">A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method
+                <a href ="/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures" class="teal-text" > ... read more </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    <div class="section box white">
+      
+
+    </div>
+    </div><!--wraper on right -->
+    <div class="col m3 hide-on-small-only">
+      <div class="col-12">
+        
+      </div>
+      <div class="col-12">
+        
+      </div>
+      <div class="col-12">
+        
+      </div>
+    </div>
+  </div>
+</div>
+ </div> <!--section -->
+<div id="search">
+    <div class="section">
+       <div class="row">
+         <div class="col s12 m12">
+          <a class=" close btn-floating waves-effect waves-light btn-small black right ">
+              <i class="large material-icons">close</i>
+          </a>
+         </div>
+       </div> 
+       <div class="row">
+        <div class="input-field col s12 m8 offset-m2">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate doSearch" >
+          <label for="icon_prefix">Search</label>
+        </div>
+    </div>
+  <div class="row  ">
+    <div class=" container ">
+       <div class="row searchContainer ">
+        
+      </div>
+    </div>
+
+  </div>
+
+   </div> 
+</div>
+
+<footer class="page-footer white" id="">
+        
+    <div class="footer-copyright">
+      <div class="container">
+       <a class="blue-grey-text " href="/about/sheikh irshad">Made with <i class="material-icons teal-text lighten-4">favorite</i> by me</a>
+      </div>
+    </div>
+  </footer>
+
+ <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/properties.js"></script> 
+<script type="text/javascript" src="/assets/js/init.js"></script> 
+<script type="text/javascript" src="/assets/js/lunr.min.js"></script> 
+<script type="text/javascript" src="/assets/js/data.js"></script>       
+<script id="dsq-count-scr" src="//www-initgrep-com.disqus.com/count.js" async></script>
+
+
+
+
+</body>
+</html>

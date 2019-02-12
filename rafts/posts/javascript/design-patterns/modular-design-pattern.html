@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+<meta name="theme-color" content="#000000">
+<title>Modular design pattern in JavaScript - www.initgrep.com  </title>
+<meta itemprop="description" name="description" content="Modular design pattern helps to split each functionality into different chunks of code to separate the concerns." />
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modular design pattern in JavaScript">
+<meta property="og:url" content="http://localhost:4000/posts/javascript/design-patterns/modular-design-pattern">
+<meta property="og:image" content="http://localhost:4000/assets/images/mod.jpg" />
+<meta property="og:site_name" content="www.initgrep.com">
+<meta property="article:publisher" content="http://www.facebook.com/initgrep" />
+<meta property="article:author" content="https://www.facebook.com/irshsheikh" />
+<meta property="article:published_time" content="2018-03-18 00:00:00 +0530" />
+<meta property="og:description" content="Modular design pattern helps to split each functionality into different chunks of code to separate the concerns.">
+<link rel="canonical" href="http://localhost:4000/posts/javascript/design-patterns/modular-design-pattern" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@initgrep" />
+<meta name="twitter:creator" content="@imshykh">
+<meta name="twitter:title" content="Modular design pattern in JavaScript - www.initgrep.com  ">
+<meta name="twitter:description" content="Modular design pattern helps to split each functionality into different chunks of code to separate the concerns.">
+<meta name="twitter:image" content="http://localhost:4000/assets/images/mod.jpg">
+
+<meta name="google-site-verification" content="" />
+
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Modular design pattern in JavaScript - www.initgrep.com  ",
+"image": "http://localhost:4000/assets/images/mod.jpg",
+"datePublished": "2018-03-18 00:00:00 +0530",
+"description": "Modular design pattern helps to split each functionality into different chunks of code to separate the concerns.",
+"publisher": {"@type": "Organization",
+"logo": {"@type": "ImageObject",
+"url": "http://localhost:4000/assets/images/mod.jpg",
+"url": "http://localhost:4000/posts/javascript/design-patterns/modular-design-pattern"}
+</script>
+
+
+
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/assets/css/main.css"  media="screen,projection"/>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#333"
+    },
+    "button": {
+      "background": "#333333"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+    "message": "Hey there, Thank you for visiting by...\n\n\n <b>initgrep.com</b> uses cookies to ensure you get the best experience.",
+    "link": "check our privacy policy",
+    "href": "https://www.freeprivacypolicy.com/privacy/view/45d4583efa7b94a6561a193611ee4104"
+  }
+})});
+</script>
+</head>
+<body> 
+ <!--- nav content -->   
+
+<div class="navbar-fixed" id="top" >
+    <nav class=" white lighten-2 " id ="check_nav" role="navigation" style=" box-shadow: 0 0 1px 0 #DEDADA;">
+    <div class="nav-wrapper">
+
+      <a id="logo-container" href="/" 
+      class="brand-logo  
+black-text
+
+ ">initgrep</a>
+      <ul class=" nav_menu right hide-on-med-and-down">
+       <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
+      	<li><a class="pt-sans-bold 
+black-text
+
+" href="/about">About</a></li>
+         <li><a class=" pt-sans-bold 
+black-text
+
+" href="/posts" >Posts<i class="material-icons right">more_vert</i></a></li>
+
+      </ul>
+
+      <!--side menu -->
+      <ul id="slide-out" class="side-nav ">
+        
+        <li>
+              <div class="background 
+
+black
+">
+                  <a href="/"><span class="white-text  pacifo-L">initgrep</span></a>
+                  <a id="sidenav_search" class="btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">search</i></a>
+              </div> 
+        </li>
+      <li style="margin-top: 1rem; height: 20px;"></li>
+        
+         <li>
+          <a class=" 
+black-text
+
+ " href="/posts/">
+            <i class=" material-icons receipt"></i>Posts
+          </a>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a class=" 
+black-text
+
+" href="/about">
+            <i class=" material-icons android">android</i>About
+          </a>
+        </li>
+
+      </ul>
+      <a href="#" data-activates="slide-out" class=" side_menu button-collapse 
+black-text
+
+ show-on-large"><i class="material-icons">sort</i></a>
+    </div>
+    
+  </nav>
+</div>
+
+
+<div class="section ">
+
+  <div class="row ">
+    <div class="col l4 s12 m8 xl4 offset-m2 hide-on-med-and-down">
+       
+
+<div class="section toc-wrapper">
+
+     
+    <h1 class="toc-heading pt-sans-bold"> Table of Contents </h1>
+    <dl class="toc">
+                   
+        <dt>
+            
+            <a class="black-text pt-sans" href="/posts/javascript/design-patterns/observer-pattern"> Observer pattern in Javascript
+            </a>
+            
+        </dt>
+             
+        <dt>
+            
+            <a class="black-text pt-sans" href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)"> Publisher-Subscriber(pub-Sub) pattern in Javascript
+            </a>
+            
+        </dt>
+             
+        <dt>
+            
+            <a class="teal-text text-darken-3 pt-sans " href="/posts/javascript/design-patterns/modular-design-pattern">
+                Modular design pattern in JavaScript
+            </a>
+            
+        </dt>
+                                          
+    </dl>
+</div>
+
+      
+    </div>
+    <div class="col s12 m8 l8 xl8 offset-m2 ">
+
+      <!-- author -->
+      <div class="row" style="margin-bottom: 0px;">
+        <div class="col s12 m10 l0 xl12  ">
+          <div class="row " style="margin-bottom: 0px;">
+            <div class="col s12 m8 l6 xl6 ">
+              <div class="row">
+                <div class="col s4 m4 l3 xl2  ">
+                  
+
+
+
+
+
+
+
+
+  <img class="user " src="/assets/images/pp.jpeg">
+
+
+
+
+
+                </div>
+                <div class="col s6 m8 l8 xl10  margin-top-1 ">
+                  <a href="/about/sheikh irshad" class="grey-text  pt-sans-bold author" style="display: block; text-transform: capitalize;">
+                    sheikh irshad
+                  </a>
+                  <a class="grey-text pt-sans datetime ">March 18, 2018</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m4 l6 xl2 hide-on-small-only  ">
+              <div class="col s12 m12 l12 right  margin-top-2 ">
+                <span class="grey-text right pt-sans-bold readtime">
+                  
+
+  17 mins
+ read
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- author -->
+
+      <div class="row content" style="padding-top: 0px;">
+        <div class="col s12 m12 l10 xl8 ">
+          <h2 class="valign post-head center black-text pt-sans-bold">Modular design pattern in JavaScript</h2>
+        </div>
+        <div class=" content-text col s12 m12 l10 xl8 "><p>JavaScript is an object-based language. During the development of an application, it is important to keep the code clean and avoid name-space collisions. In order to keep the code modular, it is important to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing.</p>
+
+<p>Modularity is used in almost any JavaScript libraries/ frameworks such as nodeJs, jQuery etc. Each module is kept in a separate file to have a complete distinguishing file system to traverse and maintain.</p>
+
+<p>Let’s go through the basics of implementation and learn how we can leverage the pattern for the specific needs. For this tutorial, Let’s create some functionalities of a calculator as our demo <code class="highlighter-rouge">finance app</code>.</p>
+
+<p><strong>Modular design pattern in making</strong></p>
+
+<p>The basic way to create different modules is to have separate name-space for a set of functions to avoid name collisions in the application. In JavaScript, we can create a separate object with a set of functions to achieve this.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">var</span> <span class="nx">calc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">subtract</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">;}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">divide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">/</span><span class="nx">b</span><span class="p">;}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">multiply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">b</span><span class="p">;}</span>
+ <span class="p">}</span>
+</code></pre></div></div>
+
+<p>I have created a constructor function to create the <code class="highlighter-rouge">calc</code> object. This object can be initialized in any part of the application to access the methods. Let us say, we want to use the above <code class="highlighter-rouge">calc</code> in a <code class="highlighter-rouge">finance</code> application</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">financeCalc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">calc</span><span class="p">();</span>
+    <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">100</span> <span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+    <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="mi">400</span> <span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>let’s assume, we need an extra function which adds data of two different months. For this, we will create another module as <code class="highlighter-rouge">grossModule</code> and keep the new function as part of it.</p>
+
+<p>For further upgrades, we can follow the same process of creating a new object and adding the respective methods.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">grossModule</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">month1Data</span> <span class="p">,</span> <span class="nx">month2Data</span><span class="p">){</span>
+           <span class="c1">//    doing some complex calculations</span>
+         <span class="k">return</span> <span class="nx">month1Data</span> <span class="o">+</span> <span class="nx">month2Data</span>
+      <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// using this module in our finance application </span>
+ <span class="kd">var</span> <span class="nx">financeCalc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">calc</span><span class="p">();</span>
+    <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">100</span> <span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+    <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">subtract</span><span class="p">(</span><span class="mi">400</span> <span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    
+ <span class="kd">var</span> <span class="nx">financeGrossModule</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">grossModule</span><span class="p">();</span>
+       <span class="nx">financeGrossModule</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">month1</span><span class="p">,</span> <span class="nx">month2</span><span class="p">);</span>
+</code></pre></div></div>
+<p>we have assigned different name-space for each of the <code class="highlighter-rouge">add</code> methods.
+we can use both the types of <code class="highlighter-rouge">add</code> methods in the same application without any challenges.</p>
+
+<p>So far so good. let’s go further ahead and discuss some benefits of implementing the modular pattern in JavaScript.</p>
+
+<p><strong>Encapsulation</strong>:</p>
+
+<p>Encapsulation in its simple terms means, <em>show only the functionality which is necessary and keep the rest of it hidden or private</em>. Encapsulation is a popular concept in the various object-oriented languages such as Java. Similarly, we can achieve it in JavaScript also by keeping in mind a few principles such as:</p>
+<ol>
+  <li><em>Access the data using methods (getter/setter)</em></li>
+  <li><em>Keep the methods private which deal with inner business logic</em></li>
+  <li><em>Create simple public API’s</em></li>
+</ol>
+
+<p>This is just a specification of how to implement encapsulation and does not refer to any standard document.</p>
+
+<p>Let’s modify the <code class="highlighter-rouge">calc</code> module while considering each of the above features.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">calc</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+       <span class="c1">//private member functions</span>
+       <span class="kd">var</span> <span class="nx">roundingLimit</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+       <span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">subtract</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">divide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">/</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">b</span><span class="p">;}</span>
+       
+       <span class="c1">//public methods</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">getRoundingLimit</span> <span class="o">=</span> <span class="p">{</span><span class="k">return</span> <span class="nx">roundingLimit</span><span class="p">;}</span>
+       <span class="k">this</span><span class="p">.</span><span class="nx">calculate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">operation</span> <span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+           <span class="k">switch</span><span class="p">(</span><span class="nx">operation</span><span class="p">){</span>
+              <span class="k">case</span> <span class="s1">'+'</span><span class="p">:</span> <span class="k">return</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span> <span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'-'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'*'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">multiply</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'/'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">division</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="nl">default</span> <span class="p">:</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"no suitable operation found"</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+           <span class="p">}</span>
+       <span class="p">}</span>    
+ <span class="p">}</span>
+ 
+</code></pre></div></div>
+<p>Our <code class="highlighter-rouge">Calc</code> module now has one public method <code class="highlighter-rouge">calculate</code> which takes the sign of operation and returns the result. Rest of the methods are private and can not be accessed outside the module.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">financeCalc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">calc</span><span class="p">();</span>
+     <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">calculate</span><span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+        <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">calculate</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+     <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// is undefined</span>
+     <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">roundingLimit</span><span class="p">;</span> <span class="c1">//undefined</span>
+     <span class="nx">financeCalc</span><span class="p">.</span><span class="nx">getRoundingLimit</span><span class="p">();</span> <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<p><strong>Introduction to IIFEs</strong></p>
+
+<p>Immediately Invoked Function Expressions or IIFE  (pronounced “iffy”) are anonymous JavaScript functions which are invoked immediately. A basic syntax is like:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// logic here</span>
+    <span class="p">})();</span>    
+</code></pre></div></div>
+<p>In JavaScript, functions can either be created using a normal function declaration such as the named function <strong>or</strong> a function expression</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//named function declaration</span>
+<span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span><span class="c1">//some code here}</span>
+    
+<span class="c1">// function expression</span>
+<span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">//some code here }    </span>
+</code></pre></div></div>
+<p>Expressions always return a value. Since functions are first class objects in JavaScript, If we create a function using function expression, it would return the function object.</p>
+
+<p>Let’s take the below example:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="c1">//declare the function</span>
+  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  
+  <span class="p">}</span>
+  <span class="c1">//invoke the function</span>
+  <span class="nx">foo</span><span class="p">();</span>
+</code></pre></div></div>
+<p>we can also write the above as</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">(</span><span class="kd">function</span><span class="p">(){})</span>
+  <span class="nx">foo</span><span class="p">();</span>
+</code></pre></div></div>
+<p>when we wrap the function in a set of braces, it returns the expression value which is a function object. It also means we can invoke the function object returned from the expression. It can be done by merely adding the calling parenthesis.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">//code here</span>
+<span class="p">})();</span>
+</code></pre></div></div>
+
+<p><strong>Advantages of using IIFEs to implement a modular pattern</strong></p>
+
+<p>If you noticed above, when we created our <code class="highlighter-rouge">calc</code> module. To use it in our <code class="highlighter-rouge">finance</code> application, we had to manually create the objects. we named it as <code class="highlighter-rouge">financeCalc</code>. The name looks fine but it is not defined by the module and is not a standard. It is possible to give any random name and eventually fall into a name collision. So how can we restrict it and give a standard name?. Well, IIFEs have come to our rescue. If you remember, IIFE is invoked at the time of creation. As a result, we can bet, we will always have one instance in our application with a standard object returned by the module itself.</p>
+
+<p>Let’s assume, our <code class="highlighter-rouge">calc</code> module is present in a seperate file named as <code class="highlighter-rouge">calc.js</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//calc.js</span>
+<span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+       <span class="c1">//private member functions</span>
+       <span class="kd">var</span> <span class="nx">roundingLimit</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+       <span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">subtract</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">-</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">divide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">/</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">multiply</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span><span class="k">return</span> <span class="nx">a</span><span class="o">*</span><span class="nx">b</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">getRoundingLimit</span> <span class="o">=</span> <span class="p">{</span><span class="k">return</span> <span class="nx">roundingLimit</span><span class="p">;}</span>
+       <span class="kd">var</span> <span class="nx">calculate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">operation</span> <span class="p">,</span> <span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">){</span>
+           <span class="k">switch</span><span class="p">(</span><span class="nx">operation</span><span class="p">){</span>
+              <span class="k">case</span> <span class="s1">'+'</span><span class="p">:</span> <span class="k">return</span> <span class="nx">add</span><span class="p">(</span><span class="nx">a</span> <span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'-'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">subtract</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'*'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">multiply</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="k">case</span> <span class="s1">'/'</span> <span class="p">:</span> <span class="k">return</span> <span class="nx">division</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+              <span class="nl">default</span> <span class="p">:</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">"no suitable operation found"</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+           <span class="p">}</span>
+       <span class="p">}</span> 
+       
+       <span class="c1">//return the public resources with a standard object name-space</span>
+       <span class="k">return</span> <span class="nx">Calculator</span> <span class="o">=</span> <span class="p">{</span>
+               <span class="c1">//public methods</span>
+            <span class="c1">//Note: we can keep different names to the methods</span>
+             <span class="na">getRoundingLimit</span> <span class="p">:</span> <span class="nx">getRoundingLimit</span><span class="p">,</span>
+             <span class="na">calculate</span> <span class="p">:</span> <span class="nx">calculate</span>
+       <span class="p">}</span>
+       
+ <span class="p">})();</span>
+ 
+</code></pre></div></div>
+<p>We can import it by adding a <code class="highlighter-rouge">script</code> tag in our index html file or using any other module loading libraries. I will explain the various ways of loading modules by the end of this tutorial.</p>
+
+<p>After importing the <code class="highlighter-rouge">calc.js</code> in our <code class="highlighter-rouge">financeApp</code>. Below is our demo <code class="highlighter-rouge">financeApp.js</code>. In our <code class="highlighter-rouge">financeApp.html</code>, we have added the <code class="highlighter-rouge">calc.js</code>. Once the Html is loaded, <code class="highlighter-rouge">calc.js</code> is also loaded and the IIFE is invoked. Thus, we will have the <code class="highlighter-rouge">Calculator</code> object available at the load time including the public methods present in the <code class="highlighter-rouge">Calculator</code>.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nt">&lt;script </span><span class="na">src =</span><span class="s">'calc.js'</span> <span class="nt">/&gt;</span> 
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+ <span class="c1">// financeApp.js</span>
+ <span class="nx">Calculator</span><span class="p">.</span><span class="nx">calculate</span><span class="p">(</span><span class="s1">'+'</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span>
+ <span class="nx">Calculator</span><span class="p">.</span><span class="nx">calculate</span><span class="p">(</span><span class="s1">'-'</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="mi">100</span><span class="p">);</span>
+ <span class="nx">Calculator</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">200</span><span class="p">);</span> <span class="c1">// is undefined</span>
+ <span class="nx">Calculator</span><span class="p">.</span><span class="nx">roundingLimit</span><span class="p">;</span> <span class="c1">//undefined</span>
+ <span class="nx">Calculator</span><span class="p">.</span><span class="nx">getRoundingLimit</span><span class="p">();</span> <span class="c1">// 2</span>
+</code></pre></div></div>
+
+<p>By now, I hope it is clear, how can we implement the modular design pattern in JavaScript applications.</p>
+
+<p>There are numerous libraries available today, which help to achieve the modular design pattern. Following are the few popular methods which are implemented:</p>
+
+<ol>
+  <li><a href="https://github.com/amdjs/amdjs-api/blob/master/AMD.md">AMD <em>define</em> and *require * statement.</a></li>
+  <li><a href="https://nodejs.org/docs/latest/api/modules.html"> CommonJS <em>require()</em> statement as implemented in nodeJs</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">  ES2015 <em>import</em> statement.</a></li>
+</ol>
+
+<p>You can check out the documentation for implementing each one of them. All of these libraries have various benefits such as lazy loading, asynchronous module loading, using modules in a non-html application etc.</p>
+
+</div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 hide-on-large-only">
+           
+
+<div class="section toc-bottom-wrapper">
+
+      <!-- | reverse -->
+    <h1 class=" pt-sans-bold"> Table of contents - <span>Design-pattern <span></h1>
+    <ul class="toc-bottom">
+                   
+        <li>
+            
+            <a class="black-text pt-sans-bold" href="/posts/javascript/design-patterns/observer-pattern"> Observer pattern in Javascript
+            </a>
+            
+        </li>
+             
+        <li>
+            
+            <a class="black-text pt-sans-bold" href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)"> Publisher-Subscriber(pub-Sub) pattern in Javascript
+            </a>
+            
+        </li>
+             
+        <li>
+            
+            <a class="teal-text text-darken-3 pt-sans-bold " href="/posts/javascript/design-patterns/modular-design-pattern">
+                Modular design pattern in JavaScript
+            </a>
+            
+        </li>
+                                          
+    </ul>
+</div>
+        </div>
+      </div>
+      <!-- comments -->
+      <div class="row">
+        <div class=" col s12 m12 l10"> <div class="content">
+<p>Please feel free to pass your feedback in the comments. Thank you for stopping by.</p>
+
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+var PAGE_URL = "https://www.initgrep.com//posts/javascript/design-patterns/modular-design-pattern"; 
+var PAGE_IDENTIFIER = "/posts/javascript/design-patterns/modular-design-pattern"
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://www-initgrep-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+      </div>
+      <!-- end -->
+    </div>
+
+  </div>
+
+ 
+  <div id="search">
+    <div class="section">
+       <div class="row">
+         <div class="col s12 m12">
+          <a class=" close btn-floating waves-effect waves-light btn-small black right ">
+              <i class="large material-icons">close</i>
+          </a>
+         </div>
+       </div> 
+       <div class="row">
+        <div class="input-field col s12 m8 offset-m2">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate doSearch" >
+          <label for="icon_prefix">Search</label>
+        </div>
+    </div>
+  <div class="row  ">
+    <div class=" container ">
+       <div class="row searchContainer ">
+        
+      </div>
+    </div>
+
+  </div>
+
+   </div> 
+</div>
+
+<footer class="page-footer white" id="">
+        
+    <div class="footer-copyright">
+      <div class="container">
+       <a class="blue-grey-text " href="/about/sheikh irshad">Made with <i class="material-icons teal-text lighten-4">favorite</i> by me</a>
+      </div>
+    </div>
+  </footer>
+
+ <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/properties.js"></script> 
+<script type="text/javascript" src="/assets/js/init.js"></script> 
+<script type="text/javascript" src="/assets/js/lunr.min.js"></script> 
+<script type="text/javascript" src="/assets/js/data.js"></script>       
+<script id="dsq-count-scr" src="//www-initgrep-com.disqus.com/count.js" async></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+<meta name="theme-color" content="#000000">
+<title>Observer pattern in Javascript - www.initgrep.com  </title>
+<meta itemprop="description" name="description" content="Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject" />
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Observer pattern in Javascript">
+<meta property="og:url" content="http://localhost:4000/posts/javascript/design-patterns/observer-pattern">
+<meta property="og:image" content="http://localhost:4000/assets/images/observer.jpg" />
+<meta property="og:site_name" content="www.initgrep.com">
+<meta property="article:publisher" content="http://www.facebook.com/initgrep" />
+<meta property="article:author" content="https://www.facebook.com/irshsheikh" />
+<meta property="article:published_time" content="2017-12-30 00:00:00 +0530" />
+<meta property="og:description" content="Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject">
+<link rel="canonical" href="http://localhost:4000/posts/javascript/design-patterns/observer-pattern" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@initgrep" />
+<meta name="twitter:creator" content="@imshykh">
+<meta name="twitter:title" content="Observer pattern in Javascript - www.initgrep.com  ">
+<meta name="twitter:description" content="Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject">
+<meta name="twitter:image" content="http://localhost:4000/assets/images/observer.jpg">
+
+<meta name="google-site-verification" content="" />
+
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Observer pattern in Javascript - www.initgrep.com  ",
+"image": "http://localhost:4000/assets/images/observer.jpg",
+"datePublished": "2017-12-30 00:00:00 +0530",
+"description": "Observer design pattern helps to decouple the code dependency by registering  different Observers on the Subject",
+"publisher": {"@type": "Organization",
+"logo": {"@type": "ImageObject",
+"url": "http://localhost:4000/assets/images/observer.jpg",
+"url": "http://localhost:4000/posts/javascript/design-patterns/observer-pattern"}
+</script>
+
+
+
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/assets/css/main.css"  media="screen,projection"/>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#333"
+    },
+    "button": {
+      "background": "#333333"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+    "message": "Hey there, Thank you for visiting by...\n\n\n <b>initgrep.com</b> uses cookies to ensure you get the best experience.",
+    "link": "check our privacy policy",
+    "href": "https://www.freeprivacypolicy.com/privacy/view/45d4583efa7b94a6561a193611ee4104"
+  }
+})});
+</script>
+</head>
+<body> 
+ <!--- nav content -->   
+
+<div class="navbar-fixed" id="top" >
+    <nav class=" white lighten-2 " id ="check_nav" role="navigation" style=" box-shadow: 0 0 1px 0 #DEDADA;">
+    <div class="nav-wrapper">
+
+      <a id="logo-container" href="/" 
+      class="brand-logo  
+black-text
+
+ ">initgrep</a>
+      <ul class=" nav_menu right hide-on-med-and-down">
+       <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
+      	<li><a class="pt-sans-bold 
+black-text
+
+" href="/about">About</a></li>
+         <li><a class=" pt-sans-bold 
+black-text
+
+" href="/posts" >Posts<i class="material-icons right">more_vert</i></a></li>
+
+      </ul>
+
+      <!--side menu -->
+      <ul id="slide-out" class="side-nav ">
+        
+        <li>
+              <div class="background 
+
+black
+">
+                  <a href="/"><span class="white-text  pacifo-L">initgrep</span></a>
+                  <a id="sidenav_search" class="btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">search</i></a>
+              </div> 
+        </li>
+      <li style="margin-top: 1rem; height: 20px;"></li>
+        
+         <li>
+          <a class=" 
+black-text
+
+ " href="/posts/">
+            <i class=" material-icons receipt"></i>Posts
+          </a>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a class=" 
+black-text
+
+" href="/about">
+            <i class=" material-icons android">android</i>About
+          </a>
+        </li>
+
+      </ul>
+      <a href="#" data-activates="slide-out" class=" side_menu button-collapse 
+black-text
+
+ show-on-large"><i class="material-icons">sort</i></a>
+    </div>
+    
+  </nav>
+</div>
+
+
+<div class="section ">
+
+  <div class="row ">
+    <div class="col l4 s12 m8 xl4 offset-m2 hide-on-med-and-down">
+       
+
+<div class="section toc-wrapper">
+
+     
+    <h1 class="toc-heading pt-sans-bold"> Table of Contents </h1>
+    <dl class="toc">
+                   
+        <dt>
+            
+            <a class="teal-text text-darken-3 pt-sans " href="/posts/javascript/design-patterns/observer-pattern">
+                Observer pattern in Javascript
+            </a>
+            
+        </dt>
+             
+        <dt>
+            
+            <a class="black-text pt-sans" href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)"> Publisher-Subscriber(pub-Sub) pattern in Javascript
+            </a>
+            
+        </dt>
+             
+        <dt>
+            
+            <a class="black-text pt-sans" href="/posts/javascript/design-patterns/modular-design-pattern"> Modular design pattern in JavaScript
+            </a>
+            
+        </dt>
+                                          
+    </dl>
+</div>
+
+      
+    </div>
+    <div class="col s12 m8 l8 xl8 offset-m2 ">
+
+      <!-- author -->
+      <div class="row" style="margin-bottom: 0px;">
+        <div class="col s12 m10 l0 xl12  ">
+          <div class="row " style="margin-bottom: 0px;">
+            <div class="col s12 m8 l6 xl6 ">
+              <div class="row">
+                <div class="col s4 m4 l3 xl2  ">
+                  
+
+
+
+
+
+
+
+
+  <img class="user " src="/assets/images/pp.jpeg">
+
+
+
+
+
+                </div>
+                <div class="col s6 m8 l8 xl10  margin-top-1 ">
+                  <a href="/about/sheikh irshad" class="grey-text  pt-sans-bold author" style="display: block; text-transform: capitalize;">
+                    sheikh irshad
+                  </a>
+                  <a class="grey-text pt-sans datetime ">December 30, 2017</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m4 l6 xl2 hide-on-small-only  ">
+              <div class="col s12 m12 l12 right  margin-top-2 ">
+                <span class="grey-text right pt-sans-bold readtime">
+                  
+
+  15 mins
+ read
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- author -->
+
+      <div class="row content" style="padding-top: 0px;">
+        <div class="col s12 m12 l10 xl8 ">
+          <h2 class="valign post-head center black-text pt-sans-bold">Observer pattern in Javascript</h2>
+        </div>
+        <div class=" content-text col s12 m12 l10 xl8 "><p>Design patterns are an important aspect of constructive and efficient software 
+development. To create code maintainable and reduce dependency across the modules, it is important to implement the design patterns suited for the use case.</p>
+
+<p>My analogy of the <strong>Observer pattern</strong> could be as below</p>
+<blockquote>
+  <p><em>Let’s say, In my home, I have a main switch board.  we can either switch-on the main 
+board or switch-off. Every room has one light bulb. I want to create a pattern such as 
+when ever the board is turned off or on, The light bulbs in each room are turned on or 
+off. If we are implementing <code class="highlighter-rouge">Observer pattern</code> here, I would connect all the light 
+bulbs to the main switch board. So every time I switch-off or switch-on , the bulbs 
+either turn on or turn off</em></p>
+</blockquote>
+
+<p><img src="/assets/images/observer.png" alt="observer-analogy" /></p>
+
+<p>I hope that was a clear analogy.</p>
+
+<p>Now the question arises, when do we want a similar pattern in software development. 
+Lets say I have a Data Structure(X). It could be  <code class="highlighter-rouge">Maps or Lists or trees etc</code>.  I have other functionalities that have to do some processing or house-keeping whenever the data in the Data Structure(X) changes. In order for me to do that, I could implement the <code class="highlighter-rouge">Observer pattern</code>. I would register all the dependent functionalities with the Data Structure(x) and create service(s) which notifies them whenever the data changes.</p>
+
+<p>Let’s get started by actually implementing one. Our Data Structure for this tutorial is a simple list named as <code class="highlighter-rouge">dataList</code>. Following steps would describe the implementation -</p>
+
+<p><strong>Create an Object which wraps our data structure</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/**
+    using an empty constructor function 
+    so it would easier to create new objects of Subject
+   **/</span>
+ <span class="kd">var</span> <span class="nx">Subject</span> <span class="o">=</span>   <span class="kd">function</span><span class="p">(){};</span>
+</code></pre></div></div>
+
+<p><strong>Add the data Structure to wrapper Object</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+   
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+    <span class="k">return</span><span class="p">{</span>
+		<span class="na">data</span> <span class="p">:</span> <span class="nx">dataList</span> <span class="p">,</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span>
+	<span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<p>we have added the <code class="highlighter-rouge">dataList</code> and helper functions (<code class="highlighter-rouge">push &amp; pop</code>) to add and remove the data respectively. Nothing fancy till now.</p>
+
+<p><strong>Add a List which keeps track of Observers</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+    <span class="c1">//added the Observer List</span>
+    <span class="kd">var</span> <span class="nx">observers</span> <span class="o">=</span>  <span class="p">[];</span>
+   
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+    <span class="k">return</span><span class="p">{</span>
+		<span class="na">data</span> <span class="p">:</span> <span class="nx">dataList</span> <span class="p">,</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span>
+	<span class="p">}</span>
+  <span class="p">}();</span>
+</code></pre></div></div>
+
+<p><strong>Register an Observer</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">observer</span><span class="p">){</span>
+   <span class="k">if</span><span class="p">(</span><span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">==</span> <span class="s1">'function'</span><span class="p">){</span>
+	   <span class="nx">observers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+	   <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"can not register the observer. Notify method not present"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">register</code> function takes an object as parameter and stores(registers) it in the <code class="highlighter-rouge">Observers</code> list. It is mandatory that this Object has a <code class="highlighter-rouge">notify</code> function. We have a validation in place for it. 
+we will get back to the <code class="highlighter-rouge">notify</code> function later. let’s forget it for now</p>
+
+<p><strong>Remove an Observer</strong></p>
+
+<p>if a particular Observer has registered. The <code class="highlighter-rouge">remove</code> function will remove the specific Observer.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">remove</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">observer</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">observer</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">id</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+		<span class="nx">observers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">id</span> <span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>RECAP</strong>- <em>In case you are wondering what is going on :)</em></p>
+
+<ol>
+  <li><code class="highlighter-rouge">Subject</code> is a wrapper object which contains our <code class="highlighter-rouge">dataList</code> and <code class="highlighter-rouge">Observers</code> list.</li>
+  <li>Helper functions (<code class="highlighter-rouge">push/pop</code>) to add and remove data to/from <code class="highlighter-rouge">dataList</code>.</li>
+  <li>Service functions (<code class="highlighter-rouge">register/remove</code>) to register and remove <code class="highlighter-rouge">Observer</code> from Observer List</li>
+</ol>
+
+<p>Below is the complete code template of what we have done so far.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Subject</span> <span class="o">=</span>   <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+	<span class="kd">var</span> <span class="nx">observers</span> <span class="o">=</span>  <span class="p">[];</span>
+	<span class="c1">//add the data to dataList</span>
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">observer</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">==</span> <span class="s1">'function'</span><span class="p">){</span>
+			<span class="nx">observers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="k">else</span><span class="p">{</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"can not register the observer. Notify method not present"</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">remove</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">observer</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">observer</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">id</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">observers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">id</span> <span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+    <span class="cm">/**
+    * returning the Public functions
+    **/</span>
+	<span class="k">return</span><span class="p">{</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span><span class="p">,</span>
+		<span class="na">addListener</span> <span class="p">:</span> <span class="nx">register</span> <span class="p">,</span>
+		<span class="na">removeListener</span> <span class="p">:</span> <span class="nx">remove</span>
+	<span class="p">}</span>
+<span class="p">}();</span>
+</code></pre></div></div>
+
+<p><strong>Notify function</strong> - <em>I told u, I will get back to it later ;)</em></p>
+<blockquote>
+  <p>when implementing a particular design pattern, we basically try to decouple different dependent modules. In order for this to work, their has to be a proper contract to be implemented on both sides. 
+<em>if we take the previous analogy. In order for the light bulbs to switch on/off when the main switch board is turned on/off, we have to connect the wires to appropriate nodes.</em> It is a kind of contract. 
+Similarly, when implementing a pattern, we have to have a proper contract to implement on both sides.</p>
+
+</blockquote>
+
+<p>Let’s go back and see what <code class="highlighter-rouge">notify</code> does for us.</p>
+
+<p>When the <code class="highlighter-rouge">Observer</code> registers itself for any data change in <code class="highlighter-rouge">dataList</code>. The <strong>register contract</strong> states that in case of any data change, <code class="highlighter-rouge">notify</code> me about it. The <code class="highlighter-rouge">Observers</code> use the <code class="highlighter-rouge">notify</code> method to do some processing or house keeping.
+Let’s implement it to make it more clear.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//add the data to dataList</span>
+<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+	<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="c1">//notify all the registered observers when the data is added</span>
+       <span class="nx">notifyRegistered</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+         <span class="c1">//notify all the registered observers when the data is removed</span>
+		<span class="nx">notifyRegistered</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cm">/**
+* Notify all the registered Observers
+**/</span>
+<span class="kd">var</span> <span class="nx">notifyRegistered</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">observers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">notify</span><span class="p">(</span><span class="nx">dataList</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">notifyRegistered</code> service calls the <code class="highlighter-rouge">notify</code> method of all the registered Observers.</p>
+
+<p><strong>Let’s create some test code and run it.</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//create an Observer</span>
+<span class="kd">var</span> <span class="nx">Observer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">Observer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"notified the change"</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"dataList = "</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="c1">//create a subject. in this case let's assume it is a data base</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+<span class="c1">//add the different Observer instances</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">Observer</span><span class="p">());</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">Observer</span><span class="p">());</span>
+<span class="c1">//do some data changes</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">222</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">12121221</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Output</strong>- <em>in case you are interested</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ node Observer.js 
+notified the change
+dataList =  [ 111 ]
+notified the change
+dataList =  [ 111 ]
+notified the change
+dataList =  [ 111, 222 ]
+notified the change
+dataList =  [ 111, 222 ]
+notified the change
+dataList =  [ 222 ]
+notified the change
+dataList =  [ 222 ]
+
+</code></pre></div></div>
+<p>Below is final code template:
+<script src="https://gist.github.com/igagrock/423778c9a28ea870345b8fec660722fa.js"></script></p>
+
+<p><strong>P.S</strong></p>
+
+<p>Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can be improvised and used in real world applications. 
+Although Observer design pattern provides a some level of code decoupling, <a href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)">Pub-Sub pattern</a> goes further ahead with decoupling.</p>
+
+</div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 hide-on-large-only">
+           
+
+<div class="section toc-bottom-wrapper">
+
+      <!-- | reverse -->
+    <h1 class=" pt-sans-bold"> Table of contents - <span>Design-pattern <span></h1>
+    <ul class="toc-bottom">
+                   
+        <li>
+            
+            <a class="teal-text text-darken-3 pt-sans-bold " href="/posts/javascript/design-patterns/observer-pattern">
+                Observer pattern in Javascript
+            </a>
+            
+        </li>
+             
+        <li>
+            
+            <a class="black-text pt-sans-bold" href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)"> Publisher-Subscriber(pub-Sub) pattern in Javascript
+            </a>
+            
+        </li>
+             
+        <li>
+            
+            <a class="black-text pt-sans-bold" href="/posts/javascript/design-patterns/modular-design-pattern"> Modular design pattern in JavaScript
+            </a>
+            
+        </li>
+                                          
+    </ul>
+</div>
+        </div>
+      </div>
+      <!-- comments -->
+      <div class="row">
+        <div class=" col s12 m12 l10"> <div class="content">
+<p>Please feel free to pass your feedback in the comments. Thank you for stopping by.</p>
+
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+var PAGE_URL = "https://www.initgrep.com//posts/javascript/design-patterns/observer-pattern"; 
+var PAGE_IDENTIFIER = "/posts/javascript/design-patterns/observer-pattern"
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://www-initgrep-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+      </div>
+      <!-- end -->
+    </div>
+
+  </div>
+
+ 
+  <div id="search">
+    <div class="section">
+       <div class="row">
+         <div class="col s12 m12">
+          <a class=" close btn-floating waves-effect waves-light btn-small black right ">
+              <i class="large material-icons">close</i>
+          </a>
+         </div>
+       </div> 
+       <div class="row">
+        <div class="input-field col s12 m8 offset-m2">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate doSearch" >
+          <label for="icon_prefix">Search</label>
+        </div>
+    </div>
+  <div class="row  ">
+    <div class=" container ">
+       <div class="row searchContainer ">
+        
+      </div>
+    </div>
+
+  </div>
+
+   </div> 
+</div>
+
+<footer class="page-footer white" id="">
+        
+    <div class="footer-copyright">
+      <div class="container">
+       <a class="blue-grey-text " href="/about/sheikh irshad">Made with <i class="material-icons teal-text lighten-4">favorite</i> by me</a>
+      </div>
+    </div>
+  </footer>
+
+ <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/properties.js"></script> 
+<script type="text/javascript" src="/assets/js/init.js"></script> 
+<script type="text/javascript" src="/assets/js/lunr.min.js"></script> 
+<script type="text/javascript" src="/assets/js/data.js"></script>       
+<script id="dsq-count-scr" src="//www-initgrep-com.disqus.com/count.js" async></script>
+
+
+
+
+</body>
+</html>

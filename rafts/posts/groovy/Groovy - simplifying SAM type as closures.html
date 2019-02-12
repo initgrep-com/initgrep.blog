@@ -1,0 +1,388 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png"/>
+<meta name="theme-color" content="#000000">
+<title>Groovy : simplifying SAM type as closures - www.initgrep.com  </title>
+<meta itemprop="description" name="description" content="A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method" />
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Groovy : simplifying SAM type as closures">
+<meta property="og:url" content="http://localhost:4000/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures">
+<meta property="og:image" content="http://localhost:4000/assets/images/sam.jpg" />
+<meta property="og:site_name" content="www.initgrep.com">
+<meta property="article:publisher" content="http://www.facebook.com/initgrep" />
+<meta property="article:author" content="https://www.facebook.com/irshsheikh" />
+<meta property="article:published_time" content="2016-10-31 00:00:00 +0530" />
+<meta property="og:description" content="A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method">
+<link rel="canonical" href="http://localhost:4000/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@initgrep" />
+<meta name="twitter:creator" content="@imshykh">
+<meta name="twitter:title" content="Groovy : simplifying SAM type as closures - www.initgrep.com  ">
+<meta name="twitter:description" content="A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method">
+<meta name="twitter:image" content="http://localhost:4000/assets/images/sam.jpg">
+
+<meta name="google-site-verification" content="" />
+
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "BlogPosting",
+"headline": "Groovy : simplifying SAM type as closures - www.initgrep.com  ",
+"image": "http://localhost:4000/assets/images/sam.jpg",
+"datePublished": "2016-10-31 00:00:00 +0530",
+"description": "A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method",
+"publisher": {"@type": "Organization",
+"logo": {"@type": "ImageObject",
+"url": "http://localhost:4000/assets/images/sam.jpg",
+"url": "http://localhost:4000/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures"}
+</script>
+
+
+
+<!--[if lt IE 9]>
+<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="/assets/css/main.css"  media="screen,projection"/>
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#edeff5",
+      "text": "#333"
+    },
+    "button": {
+      "background": "#333333"
+    }
+  },
+  "position": "bottom-right",
+  "content": {
+    "message": "Hey there, Thank you for visiting by...\n\n\n <b>initgrep.com</b> uses cookies to ensure you get the best experience.",
+    "link": "check our privacy policy",
+    "href": "https://www.freeprivacypolicy.com/privacy/view/45d4583efa7b94a6561a193611ee4104"
+  }
+})});
+</script>
+</head>
+<body> 
+ <!--- nav content -->   
+
+<div class="navbar-fixed" id="top" >
+    <nav class=" white lighten-2 " id ="check_nav" role="navigation" style=" box-shadow: 0 0 1px 0 #DEDADA;">
+    <div class="nav-wrapper">
+
+      <a id="logo-container" href="/" 
+      class="brand-logo  
+black-text
+
+ ">initgrep</a>
+      <ul class=" nav_menu right hide-on-med-and-down">
+       <li><a class="black-text" id="nav_search"><i class="material-icons">search</i></a></li>
+      	<li><a class="pt-sans-bold 
+black-text
+
+" href="/about">About</a></li>
+         <li><a class=" pt-sans-bold 
+black-text
+
+" href="/posts" >Posts<i class="material-icons right">more_vert</i></a></li>
+
+      </ul>
+
+      <!--side menu -->
+      <ul id="slide-out" class="side-nav ">
+        
+        <li>
+              <div class="background 
+
+black
+">
+                  <a href="/"><span class="white-text  pacifo-L">initgrep</span></a>
+                  <a id="sidenav_search" class="btn-floating btn-large waves-effect waves-light blue-grey"><i class="material-icons">search</i></a>
+              </div> 
+        </li>
+      <li style="margin-top: 1rem; height: 20px;"></li>
+        
+         <li>
+          <a class=" 
+black-text
+
+ " href="/posts/">
+            <i class=" material-icons receipt"></i>Posts
+          </a>
+        </li>
+        <li><div class="divider"></div></li>
+        <li>
+          <a class=" 
+black-text
+
+" href="/about">
+            <i class=" material-icons android">android</i>About
+          </a>
+        </li>
+
+      </ul>
+      <a href="#" data-activates="slide-out" class=" side_menu button-collapse 
+black-text
+
+ show-on-large"><i class="material-icons">sort</i></a>
+    </div>
+    
+  </nav>
+</div>
+
+
+<div class="section ">
+
+  <div class="row ">
+    <div class="col l4 s12 m8 xl4 offset-m2 hide-on-med-and-down">
+       
+
+<div class="section toc-wrapper">
+
+     
+    <h1 class="toc-heading pt-sans-bold"> Table of Contents </h1>
+    <dl class="toc">
+           
+        <dt>
+            
+            <a class="teal-text text-darken-3 pt-sans " href="/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures">
+                Groovy : simplifying SAM type as closures
+            </a>
+            
+        </dt>
+             
+        <dt>
+            
+            <a class="black-text pt-sans" href="/posts/groovy/Use%20Groovy%20Closure%20to%20create%20a%20tree%20data%20structure"> Use Groovy Closure to create a tree data structure
+            </a>
+            
+        </dt>
+                                                      
+    </dl>
+</div>
+
+      
+    </div>
+    <div class="col s12 m8 l8 xl8 offset-m2 ">
+
+      <!-- author -->
+      <div class="row" style="margin-bottom: 0px;">
+        <div class="col s12 m10 l0 xl12  ">
+          <div class="row " style="margin-bottom: 0px;">
+            <div class="col s12 m8 l6 xl6 ">
+              <div class="row">
+                <div class="col s4 m4 l3 xl2  ">
+                  
+
+
+
+
+
+
+
+
+  <img class="user " src="/assets/images/pp.jpeg">
+
+
+
+
+
+                </div>
+                <div class="col s6 m8 l8 xl10  margin-top-1 ">
+                  <a href="/about/sheikh irshad" class="grey-text  pt-sans-bold author" style="display: block; text-transform: capitalize;">
+                    sheikh irshad
+                  </a>
+                  <a class="grey-text pt-sans datetime ">October 31, 2016</a>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m4 l6 xl2 hide-on-small-only  ">
+              <div class="col s12 m12 l12 right  margin-top-2 ">
+                <span class="grey-text right pt-sans-bold readtime">
+                  
+
+  3 mins
+ read
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- author -->
+
+      <div class="row content" style="padding-top: 0px;">
+        <div class="col s12 m12 l10 xl8 ">
+          <h2 class="valign post-head center black-text pt-sans-bold">Groovy : simplifying SAM type as closures</h2>
+        </div>
+        <div class=" content-text col s12 m12 l10 xl8 "><blockquote>
+  <p>A SAM type is a type which defines a <code class="highlighter-rouge">single abstract method</code>. It includes <code class="highlighter-rouge">functional interfaces</code> and <code class="highlighter-rouge">Abstract classes with single abstract method</code> .</p>
+</blockquote>
+
+<p><strong>Functional interface:</strong>
+An Interface which permits only single Abstract method excluding the default methods. Functional Interface was introduced in Java 8. For compile time validations, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html"><code class="highlighter-rouge">@FunctionalInterface</code></a> was introduced.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+            <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">obj</span><span class="o">)</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Abstract classes with single abstract method:</strong></p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">predicateImpl</span>  <span class="kd">implements</span> <span class="n">predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{</span>
+      <span class="nd">@override</span>
+      <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">String</span> <span class="n">obj</span><span class="o">){</span>
+       <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s1">'G'</span><span class="o">)</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Groovy closures are very powerful. They can be coerced to a ` AST<code class="highlighter-rouge"> using </code>as<code class="highlighter-rouge"> operator. Since  </code>version 2.2.0<code class="highlighter-rouge"> , </code>as ` operator is optional.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@param</span> <span class="n">source</span> <span class="n">the</span> <span class="n">list</span>
+<span class="nd">@param</span> <span class="n">predicate</span> <span class="n">the</span> <span class="n">functional</span> <span class="kd">interface</span>
+<span class="nc">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">collect</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">source</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">source</span><span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>The above use case might seem alien at first. But once we go through a few examples, it would be clear that it is the most common use case used in most operations in groovy. Implementing such a use case in groovy would be like</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">],</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="s1">'G'</span><span class="o">}</span> <span class="k">as</span> <span class="n">Predicate</span><span class="o">)</span> <span class="o">-(</span><span class="mi">1</span><span class="o">)</span>
+    <span class="c1">//or </span>
+    <span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">],</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="err">'</span><span class="n">G</span> <span class="o">})</span> <span class="c1">// version 2.2.0 -(2)</span>
+</code></pre></div></div>
+
+<p>In the <code class="highlighter-rouge">(2)nd</code> case , the 2nd parameter is closure and it is coerced to an AST. so we can use the closure syntax for the method calls i.e. put the closure outside of the parenthesis which improves the readability of code and simplifies the syntax</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">])</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="err">'</span><span class="n">G</span> <span class="o">}</span>
+</code></pre></div></div>
+<p>looking closely to the above code, It is same syntax used for the collect method for collections such as</p>
+
+<p><code class="highlighter-rouge">[1,2,3,4,5].collect([]){ it*it }</code></p>
+
+</div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 hide-on-large-only">
+           
+
+<div class="section toc-bottom-wrapper">
+
+      <!-- | reverse -->
+    <h1 class=" pt-sans-bold"> Table of contents - <span>groovy <span></h1>
+    <ul class="toc-bottom">
+           
+        <li>
+            
+            <a class="teal-text text-darken-3 pt-sans-bold " href="/posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures">
+                Groovy : simplifying SAM type as closures
+            </a>
+            
+        </li>
+             
+        <li>
+            
+            <a class="black-text pt-sans-bold" href="/posts/groovy/Use%20Groovy%20Closure%20to%20create%20a%20tree%20data%20structure"> Use Groovy Closure to create a tree data structure
+            </a>
+            
+        </li>
+                                                      
+    </ul>
+</div>
+        </div>
+      </div>
+      <!-- comments -->
+      <div class="row">
+        <div class=" col s12 m12 l10"> <div class="content">
+<p>Please feel free to pass your feedback in the comments. Thank you for stopping by.</p>
+
+</div>
+
+
+
+<div id="disqus_thread"></div>
+<script>
+var PAGE_URL = "https://www.initgrep.com//posts/groovy/Groovy%20-%20simplifying%20SAM%20type%20as%20closures"; 
+var PAGE_IDENTIFIER = "/posts/groovy/Groovy - simplifying SAM type as closures"
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://www-initgrep-com.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+</div>
+      </div>
+      <!-- end -->
+    </div>
+
+  </div>
+
+ 
+  <div id="search">
+    <div class="section">
+       <div class="row">
+         <div class="col s12 m12">
+          <a class=" close btn-floating waves-effect waves-light btn-small black right ">
+              <i class="large material-icons">close</i>
+          </a>
+         </div>
+       </div> 
+       <div class="row">
+        <div class="input-field col s12 m8 offset-m2">
+          <i class="material-icons prefix">search</i>
+          <input id="icon_prefix" type="text" class="validate doSearch" >
+          <label for="icon_prefix">Search</label>
+        </div>
+    </div>
+  <div class="row  ">
+    <div class=" container ">
+       <div class="row searchContainer ">
+        
+      </div>
+    </div>
+
+  </div>
+
+   </div> 
+</div>
+
+<footer class="page-footer white" id="">
+        
+    <div class="footer-copyright">
+      <div class="container">
+       <a class="blue-grey-text " href="/about/sheikh irshad">Made with <i class="material-icons teal-text lighten-4">favorite</i> by me</a>
+      </div>
+    </div>
+  </footer>
+
+ <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+<script type="text/javascript" src="/assets/js/properties.js"></script> 
+<script type="text/javascript" src="/assets/js/init.js"></script> 
+<script type="text/javascript" src="/assets/js/lunr.min.js"></script> 
+<script type="text/javascript" src="/assets/js/data.js"></script>       
+<script id="dsq-count-scr" src="//www-initgrep-com.disqus.com/count.js" async></script>
+
+
+
+
+</body>
+</html>

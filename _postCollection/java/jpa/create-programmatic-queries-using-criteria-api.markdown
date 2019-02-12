@@ -76,6 +76,9 @@ We will begin with a simple Criteria Query and slowly build upon it more complex
 
 _The above code example retrieves the total count of students present in the database._
 
+
+Criteria queries are an Object graph where each part of the graph represents an atomic part of the query. The various steps in building the object graph roughly translate to the following steps.
+
 * A `CriteriaBuilder` interface contains all the required methods to build Criteria Queries, Expressions, Ordering, and Predicates.
 * `CriteriaQuery` interface defines functionality required to build a top-level query. It contains the methods that specify the item(s) to be returned in the query result, restrict the result based on certain conditions, group results, specify an order for the result and [much more](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaQuery.html).
 * `Root` interface represents the root entities involved in the query. There could be multiple roots defined in the Criteria Query. 

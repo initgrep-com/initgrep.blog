@@ -2,11 +2,11 @@
 layout: post
 bannercolor: "lime accent-4"
 title:  "Programmatic Queries using JPA Criteria API"
-date:   2019-12-02
-meta: "Criteria Queries in JPA are type-safe and portable. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data"
-excerpt: "Criteria Queries in JPA are type-safe and portable. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data"
+date:   2019-02-11
+meta: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data."
+excerpt: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data."
 category: jpa
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
@@ -151,7 +151,9 @@ The `select` method specifies the result to be returned by the Query. If all the
 
 
 &nbsp;
-#####  Inheritance Relationships
+###  Inheritance Relationships
+
+&nbsp;
 
 
 ![Interface relationships in Criteria API](/assets/images/apidaigram.png)
@@ -167,10 +169,10 @@ In case we want to fetch a selected attribute, we can fetch the attribute path u
 {% include ads/article-ads.html %}
 &nbsp;
 
-#### Criteria Joins
+### Criteria Joins
 
 &nbsp;
-##### Implicit Join 
+#### Implicit Join 
 
 ```java
     root.get("addresses");
@@ -210,7 +212,7 @@ Output Query for the above example looks like as below:
 Note: Since the Address is the Owner of the relationship between Student and Address. By default, the fetch type for a `OneToMany` relationship is lazy fetch. As a result, there would be extra queries fired to initialize the Student entities related to each Address. However, If we add a where clause and specify a `restriction or predicate`, it would only result in a Single Query.
 
 &nbsp;
-##### Explicit Join
+#### Explicit Join
 
 Ideally, when we define relationships in JPA, the Join will be based on the related ID column. However, if we want to define the restriction based on some other column, `Join.on(Predicate...)` can be used. `Join` also provides a way to traverse the attributes of the joined entity such as `join.get(attributeName)`.
 
@@ -267,7 +269,7 @@ Note: If a restriction is provided in `where` method of the `CritieriaQuery`. It
 
 &nbsp;
 
-#####  Fetch Join
+####  Fetch Join
 
 `FETCH` tells the JPA to override the declarative fetch definitions provided through annotation such as `@ManyToMany(fetch=FetchType.LAZY)` and initialize all the associations or relationships eagerly. As a result, only one query is created.
 
@@ -308,7 +310,7 @@ _The above query output is only a single query as below:_
 {% include ads/article-ads.html %}
 &nbsp;
 
-#### Group By and Having clause
+### Group By and Having clause
 
 `Group By` Clause is used to group rows with similar values. `Having` Clause is used to add restrictions for [aggregate functions](https://docs.oracle.com/database/121/SQLRF/functions003.htm#SQLRF20035). 
 
@@ -387,7 +389,7 @@ Hibernate:
 
 
 &nbsp;
-#### Order By
+### Order By
 
 The `order by` keyword is used to sort the fetched data either in ascending order or descending order of the value of a column. It can also include aggregate functions.
 
@@ -443,7 +445,7 @@ The output query produced by the above criteria query is below:
 
 {% include ads/article-ads.html %}
 &nbsp;
-#### Subquery
+### Subquery
 
 A `subquery` is a nested query which is embedded in the `WHERE` clause of the main query. The results of the subquery are consumed by the main query.
 
@@ -501,7 +503,7 @@ Below is the output of the final query produced--
 
 
 &nbsp;
-#### Aggregate Functions
+### Aggregate Functions
 
 Criteria API supports the aggregate functions such as `count`, `avg`, `max`, and `min` etc. All the aggregate functions are part of the  [CriteriaBuilder](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaBuilder.html) Interface. 
 
