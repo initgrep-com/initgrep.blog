@@ -73,7 +73,7 @@
   </div>
   <div class="  col s12 m10 l6 offset-m1">
  
-   <div class=" content-text col s12 m12 l12 ">{{ content }}</div>
+   <div class=" content-text col s12 m12 l12 ">{{ content | replace: '<a href="http', '<a rel="external nofollow" target="_blank" href="http' }}</div>
    <div class=" col s12 m12 l12 "> {% include util/disqus.html %}</div>
    
 

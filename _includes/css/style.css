@@ -212,6 +212,7 @@ div.highlighter-rouge{
 }
 .content ul li {
  list-style-type: square !important;
+ margin-left: 2rem;
 }
 
 

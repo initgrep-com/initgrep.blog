@@ -43,7 +43,7 @@
         <div class="col s12 m12 l10 xl8 ">
           <h2 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h2>
         </div>
-        <div class=" content-text col s12 m12 l10 xl8 ">{{ content }}</div>
+        <div class=" content-text col s12 m12 l10 xl8 ">{{ content | replace: '<a href="http', '<a rel="external nofollow" target="_blank" href="http' }}</div>
       </div>
       <div class="row">
         <div class="col s12 m12 hide-on-large-only">
