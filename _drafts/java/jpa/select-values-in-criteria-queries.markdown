@@ -1,12 +1,12 @@
 ---
 layout: post
-bannercolor: "lime accent-2"
-title:  "selection of values in JPA Criteria Query API(select , multiselect)"
-date:   2019-02-11
-meta: "djksjkdjksjdkjd"
-excerpt: "djksjkdjksjdkjd"
+bannercolor: "red dark-4"
+title:  "Select values in criteria query - select, multiselect, tuple query"
+date:   2019-02-17
+meta: "JPA specification provides different ways to select values in criteria query. select, multiselect and tuple queries are used to select single or multiple values from one or more entities"
+excerpt: "JPA specification provides different ways to select values in criteria query. select, multiselect and tuple queries are used to select single or multiple values from one or more entities"
 category: jpa
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
@@ -40,21 +40,25 @@ To get started, let's analyze the `selection` of a basic  SQL `SELECT` query.
 
 The purpose of showing the above example is to have a rough idea of how the selection works in the `SQL` queries. Criteria Queries in JPA include various methods to select **single entity**, **single value**, **multiple values from same entity or different entities** and **aggregate functions**.
 
+&nbsp;
+
 JPA Criteria API provides the following options for the selection of values.
-Such as 
+
 1. **CriteriaQuery.select** method.
 2. **CriteriaQuery.multiselect** method.
-3. creating a**CriteriaQuery** which returns a **tuple**.
+3. creating a **CriteriaQuery** which returns a **tuple**.
 
 
+&nbsp;
 
-Let's see the implementation of each method. we will be using the same domain model of the previous post. 
+We will discuss the implementation of each method. The domain model will remain same as in the previous post.
 
+{% include ads/article-ads.html %}
 
 ### CriteriaQuery.select
- This method takes one [Selection](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/Selection.html) item as a parameter. The parameter specifies the result returned by the Criteria Query. `select` method can be used to select a **single entity** or a **single value**.
+ This method takes one [Selection](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/Selection.html) item as a parameter. The parameter specifies the result returned by the Criteria Query. The `select` method can be used to select a **single entity** or a **single value**.
  
- let's select a student on the basis of its identifier (`ID column`). 
+ Let's select a student on the basis of its identifier (`ID column`). 
  
  ```java
     /** create  a Criteria Builder **/
@@ -76,7 +80,9 @@ The above example fetches a student Entity.
 
 * We build a Criteria query by calling `CriteriaBuilder.createQuery` method.
 * The `Root` instance returned from the `CriteriaQuery.from` method references the type of the entity provided in the parameter. In this case, it is the `Student` entity.
-* `select` method takes the root as the parameter
+* The `select` method takes the root as the parameter
+
+&nbsp;
 
 In order to return a __single value__ from the criteria query for each row, we have to provide a `Path` instance which refers to the attribute to be selected.
 
@@ -88,6 +94,9 @@ In order to return a __single value__ from the criteria query for each row, we h
 The `Select` method accepts the parameter of type `Selection`. The `Path` interface is a child interface of Selection which makes Path instance an ideal candidate for the parameter. 
 > *In the previous post related to [writing criteria queries in JPA](/posts/java/jpa/create-programmatic-queries-using-criteria-api), I have explained the inheritance tree of various interfaces.*
 
+&nbsp;
+&nbsp;
+
 **Aggregate Operation ---**
 If an aggregate method is used in selection, the return type of the criteria query result would be the same as the return type of the aggregate method. For example, if we use `count`, the query type should be `Long`.
 
@@ -98,8 +107,11 @@ If an aggregate method is used in selection, the return type of the criteria que
     Long resultList = em.createQuery(cq).getSingleResult();
 ```
 
+&nbsp;
+&nbsp;
+
 **Fetching Relationships ---**
-In case of the relationships such as `OneToMany`, `OneToOne` or `ManyToMany`, the output query results in an implicit join.
+In case of the relationships such as `OneToMany`, `OneToOne` or `ManyToMany`, the output query results in an implicit `join` operation.
 I have updated the above query to fetch all the addresses of a given student. 
 ```java
     CriteriaQuery<Address> cq = builder.createQuery(Address.class);
@@ -132,6 +144,10 @@ Below is the output query for the reference.
 
 ```
 
+&nbsp;
+&nbsp;
+
+{% include ads/article-ads.html %}
 
 Until now we implemented the criteria query to select an Entity or a single value. However, It is not ideal to fetch a complete entity if only a few values are required. Criteria API provides many ways to accomplish that. 
 
@@ -140,14 +156,14 @@ This method takes one or more [Selection](https://docs.oracle.com/javaee/6/api/j
 The `multiselect` method can be used to select a single entity, single or multiple values of the same entity or of different entities.
 
 There are a few things to be noted before we move on to the examples.
-* If the criteria query is of the array type i.e `CriteriaQuery<T[]>` where `T` represents a data type. The elements of the array will correspond to the arguments of the `multiselect` method in the specified order.
+* If the criteria query is of the array type i.e `CriteriaQuery<T[]>` where `T` represents a data type. The elements of the array will correspond to the arguments of the `multiselect` method in the specified order for each row.
 
 * If the criteria query is of the Type `CriteriaQuery<T>` where `T` is a user-defined class. The arguments to the `multiselect`  method will be passed to one of the constructors of the class T and an object of the type T will be returned for each row. _In case the matching constructor is not found, an exception will be thrown_.
 
 * If an only single argument is provided to `multiselect` method and no type is mentioned, the instance of the type `Object` is returned. 
 In case of more than one arguments, an instance of type `Object[]` will be instantiated and returned for each row. The elements of the array will correspond to the arguments to the `multiselect` method, in the specified order.
 
-Let's check out some examples ---
+Let's see some examples ---
 
 ```java
     CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -166,7 +182,7 @@ In the above example, The arguments to `multiselect` method expect a constructor
 
 If the constructor is not present, It will throw an exception.
 
-It might not always be possible to go ahead and add a new constructor in an existing class. To avoid that, we can create the criteria query of the array type.
+It might not always be possible to go ahead and add a new constructor in an existing class. To avoid that, we can create the criteria query of the __Array type__.
 
 ```java
     CriteriaBuilder builder = em.getCriteriaBuilder();
@@ -181,18 +197,24 @@ As explained earlier, each argument would take a specific position in the array,
     resultList.forEach(s -> log.info(" result row = {} - {}", s[0],s[1] ));
 ```
 
+&nbsp;
+&nbsp;
+
+{% include ads/article-ads.html %}
 
 ### Tuple Criteria Queries
 
-The tuple is an interface which represents the key-value pairs of data for each row. The Tuple acts as a container for the data. A typical `Tuple` implementation contains 
+The [Tuple](https://docs.oracle.com/javaee/7/api/javax/persistence/Tuple.html) is an interface which represents the key-value pairs of data for each row. The Tuple acts as a container for the data. A typical `Tuple` implementation contains 
 * an array of Objects i.e `Object[]` 
-*  Various `get` methods to fetch the values based index or alias. 
+*  Various `get` methods to fetch the values based __Index__ or __Alias__ of the arguments. 
 
 Similar to other data types, criteria query can return a list of Tuple objects or a single Tuple object.
 
 The following example shows how to fetch more than one value using a tuple criteria query.
 
 ```java
+    /** create a tuple Query **/
+    CriteriaQuery<Tuple> cq = builder.createTupleQuery();
     Root<Student> root = cq.from(Student.class);
     /** the name of the path also acts as an alias **/
     Path<String> namePath = root.get("name");
@@ -201,12 +223,14 @@ The following example shows how to fetch more than one value using a tuple crite
     /** Query returns list of Tuple objects **/
     List<Tuple> resultList = em.createQuery(cq).getResultList();
 ```
-The values can be fetched using either index or the alias.
 
+The `createTupleQuery` method returns a criteria query of the type `Tuple`. The result contains either a Tuple object or List of the Objects.  We can fetch the values using either index or the alias.
 ```java
 /** fetch the values from result based on index **/
-resultList.forEach(row -> log.info("sdk {} -> {}", row.get(0), row.get(1) ));
+resultList.forEach(row -> 
+                log.info("sdk {} -> {}", row.get(0), row.get(1) ));
 /** fetch the values from result based on the alias **/
-resultList.forEach(row -> log.info("sdk {} -> {}", row.get(idPath), row.get(namePath) ));
+resultList.forEach(row ->
+                 log.info("sdk {} -> {}", row.get(idPath), row.get(namePath) ));
 ```
 

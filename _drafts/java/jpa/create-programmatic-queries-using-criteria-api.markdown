@@ -1,10 +1,10 @@
 ---
 layout: post
-bannercolor: "lime accent-4"
-title:  "Programmatic Queries using JPA Criteria API"
+bannercolor: "red dark-2"
+title:  "Programmatic Criteria Queries using JPA Criteria API"
 date:   2019-02-11
-meta: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data."
-excerpt: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and subqueries to fetch data."
+meta: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and sub queries to fetch data."
+excerpt: "Criteria Queries in JPA are type-safe and portable way of fetching data. It provides methods such as Criteria Join, Fetch Join, aggregate functions and sub queries to fetch data."
 category: jpa
 comments: true
 author: "sheikh irshad"
@@ -19,14 +19,14 @@ Java Persistence API (JPA) provides the specification of managing data, such as 
 
 There are obviously many ways in JPA that could be used to interact with a database such as JPQL(Java Persistence Query Language), Criteria API, and Entity specific methods such as persist, merge, remove, flush etc.
 
-I initially found Criteria API quite intimidating. To be frank, I had to invest quite some time to figure out how it works. It eventually turned out to be quite fluent and simple API and I thought why not just write about the experiences. So here it is, **"Creating Programmatic Queries using JPA Criteria API"**.
+I initially found Criteria API quite intimidating. To be frank, I had to invest quite some time to figure it out. It eventually turned out to be quite fluent API. I thought why not just write about the experiences. So here it is, **"Creating Programmatic Criteria Queries using JPA Criteria API"**.
 
 Criteria Queries are type-safe and portable. They are written using Java programming language APIs. They use the abstract schema of the persistent entities to find, modify and delete persistent entities by invoking JPA Entity Operations.
 
 
 &nbsp;
 
-We will be using the following data model for building the criteria queries in this tutorial.
+We will be using the following domain model for building the criteria queries in this tutorial.
 
 ![Object Model- UML](/assets/images/Criteria-object-UML.png)
 *<ins>UML diagram describing the Object Relationship Mapping</ins>*
@@ -39,7 +39,7 @@ We have three Objects( ref. to diagram above ) `Student` , `Course` and `Passpor
 {% include ads/article-ads.html %}
 &nbsp;
 
-We will begin with a simple Criteria Query and slowly build upon it more complex queries. 
+We will begin with a simple Criteria Query and slowly try to build upon it. 
 
 ```java
     public Long getStudentsCount() {
@@ -76,12 +76,15 @@ We will begin with a simple Criteria Query and slowly build upon it more complex
 
 _The above code example retrieves the total count of students present in the database._
 
+
+Criteria queries are an Object graph where each part of the graph represents an atomic part of the query. The various steps in building the object graph roughly translates to the following steps.
+
 * A `CriteriaBuilder` interface contains all the required methods to build Criteria Queries, Expressions, Ordering, and Predicates.
-* `CriteriaQuery` interface defines functionality required to build a top-level query. It contains the methods that specify the item(s) to be returned in the query result, restrict the result based on certain conditions, group results, specify an order for the result and [much more](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaQuery.html).
+* `CriteriaQuery` interface defines functionality required to build a top-level query. The type specified for criteria query i.e `criteriaQuery<Class<T> resultClass>` would be the type of the result returned. If no type is provided, the type of result would be `Object`. Criteria Query contains the methods that specify the item(s) to be returned in the query result, restrict the result based on certain conditions, group results, specify an order for the result and [much more](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaQuery.html).
 * `Root` interface represents the root entities involved in the query. There could be multiple roots defined in the Criteria Query. 
 * `Path` interface represents the path to the attribute in the `root` entity.
     `Path` interface also `extends` to `Expression` Interface which contains methods that return Predicates.
-*  `builder.count()` is an aggregate method. It returns an expression which would be used for `Selection` of the result.
+*  `builder.count()` is an aggregate method. It returns an expression which would be used for `Selection` of the result. When aggregate methods are used as arguments in `select` method, the type of the query should match the return type of aggregate method.
 *  A `TypedQuery` instance is required to run the `CriteriaQuery`. 
 
 The final output of the above example is below :)
@@ -93,7 +96,7 @@ The final output of the above example is below :)
         student student0_
 ```
  
-It seems quite the over work--doesn't it. The output of so many lines of code is just a plain old `SELECT` query. But the Criteria API was created to serve a different purpose i.e _programmable Query API_. It helps to build queries dynamically. You could write just one program to build queries for all objects in your application or build queries depending upon your business logic.
+__It seems quite the over work--doesn't it.__ The output of so many lines of code is just a plain old `SELECT` query. But the Criteria API was created to serve a different purpose i.e _programmable Query API_. It helps to build queries dynamically. You could write just one program to build queries for all objects in your application or build queries depending upon your business logic.
 
 Let's say, we want to get the count of either Students, Courses or any other entities present in our application. We could either write different queries for each of them or we could only use Criteria API.
 
@@ -163,7 +166,7 @@ In the Above diagram, observe the classes in a blue background. The relationship
 
 `Selection` is at the top and being extended by `Expression`. `Expression` in turn is being extended by `Predicate` and `Path` interfaces. `From` interface extends path which in turn is the parent of both `Root` and `Join` Interface.
 
-`Root` Interface is also an expression. It means, we can query a complete entity by passing `Root` as a parameter to the `CriteriaQuery.select` method.
+`Root` Interface is also an expression. It means, we can query a complete entity by passing `Root` as a parameter to the `select` method.
 In case we want to fetch a selected attribute, we can fetch the attribute path using `root.get(attributeName)`. This method returns a `Path`  object which inherits `expression`.    
 
 {% include ads/article-ads.html %}
@@ -314,7 +317,7 @@ _The above query output is only a single query as below:_
 
 `Group By` Clause is used to group rows with similar values. `Having` Clause is used to add restrictions for [aggregate functions](https://docs.oracle.com/database/121/SQLRF/functions003.htm#SQLRF20035). 
 
-`groupBy` method is part of the `CriteriaQuery` Interface. It either takes a List of `Expressions` as parameters. These expressions are used to form groups over the query results. Below is the signature of the `groupBy` methods.
+**GroupBy ---** method is part of the `CriteriaQuery` Interface. It either takes  one or a List of `Expressions` as parameters. These expressions are used to form groups over the query results. Below is the signature of the `groupBy` methods.
 
 ```java
     /*
@@ -330,8 +333,9 @@ _The above query output is only a single query as below:_
     CriteriaQuery<T> groupBy(List<Expression<?>> grouping);
 ```
 
+&nbsp;
 
-Similarly, `having` method is part of the `CriteriaQuery` Interface. It either takes a simple or compound boolean `Expression` or one or more `Predicates` as parameters. The expression or predicates provided specify the restrictions over the groups of the query.
+**Having ---** method is also part of the `CriteriaQuery` Interface. It either takes a simple or compound boolean `Expression` or one or more `Predicates` as parameters. The expression or predicates provided specify the restrictions over the groups of the query.
 Below is the signature of the `having` methods.
 
 ```java
@@ -347,6 +351,8 @@ Below is the signature of the `having` methods.
      */
     CriteriaQuery<T> having(Predicate... restrictions);
 ```
+
+&nbsp;
 
 To build a Criteria Query which uses the `group by` and `having` methods--
 Let's assume, we need to fetch all the `Students` with the number of `Addresses` greater than or equal to three(3). 
@@ -506,5 +512,11 @@ Below is the output of the final query produced--
 ### Aggregate Functions
 
 Criteria API supports the aggregate functions such as `count`, `avg`, `max`, and `min` etc. All the aggregate functions are part of the  [CriteriaBuilder](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaBuilder.html) Interface. 
+
+We have already seen in our initial example, how to use aggregate functions such as `count`.
+
+&nbsp;
+
+_If you have come this far, you might also want to learn about --- [how to select values in criteria Queries](/posts/java/jpa/select-values-in-criteria-queries). This post explains various methods provided in Criteria API to select single or multiple values. It also explains  tuple criteria queries._
 
 
