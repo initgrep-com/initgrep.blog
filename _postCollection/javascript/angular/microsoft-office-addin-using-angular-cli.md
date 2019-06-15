@@ -201,6 +201,12 @@ Let's update `tsconfig.app.json` and add the new target under `compilerOptions`.
   "target": "es5"
 ```
 
+&nbsp;
+{% include ads/article-ads.html %}
+
+
+&nbsp;
+
 ## Add the missing dependencies and dev-dependencies using npm
 
 ##### npm dependencies
@@ -264,7 +270,3 @@ let's update the `main.ts` file by wrapping the bootstrap code inside the `initi
 ```
 
 The only thing left now is to side-load our Microsoft Outlook addin. You can find it in official documentation [here](https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins).
-
-&nbsp;
-{% include ads/article-ads.html %}
-&nbsp;
