@@ -3,7 +3,7 @@
 layout: post
 bannercolor: "light-green accent-3"
 title:  "Create Microsoft Office Addin using Angular CLI"
-date:   2019-06-18
+date:   2019-06-16
 meta: " Develop a Microsoft office add-in using angular v8.0.0. Use Angular CLI to generate a complete project structure. Add SSL to angular dev-server"
 excerpt: "Develop a Microsoft office add-in using angular v8.0.0. Use Angular CLI to generate a complete project structure. Add SSL to angular dev-server"
 category: angular
@@ -33,10 +33,10 @@ _Please note, It still does not support the `office-addin-debugger` plugin provi
 > I assume you have `node` and `npm` already installed
 
 
+&nbsp;
 
-Let us being --
-
-
+**Let us begin --**
+&nbsp;
 ## Generate Office add-in angular app using yeoman generator
 
   Office [official docs](https://docs.microsoft.com/en-us/outlook/add-ins/quick-start?tabs=visual-studio-code) have provided detailed steps. I will only provide concise steps.
@@ -264,3 +264,7 @@ let's update the `main.ts` file by wrapping the bootstrap code inside the `initi
 ```
 
 The only thing left now is to side-load our Microsoft Outlook addin. You can find it in official documentation [here](https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins).
+
+&nbsp;
+{% include ads/article-ads.html %}
+&nbsp;
