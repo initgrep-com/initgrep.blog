@@ -1,5 +1,4 @@
 ---
-
 layout: post
 bannercolor: "light-green accent-3"
 title:  "Create Microsoft Office Addin using Angular CLI"
@@ -16,7 +15,6 @@ image: ng-office-addin.jpg
 
 ---
 
-
 If you are reading this tutorial, you are probably one of the developers out there trying to figure out how to create a Microsoft office add-in using Angular CLI.
 
 Microsoft provides the complete process for creating add-ins using angular through a yeoman generator for VS Code editor. This method works fine but it uses the manual webpack config with angular. I also faced  issues such as:
@@ -24,48 +22,46 @@ Microsoft provides the complete process for creating add-ins using angular throu
 - **not able to use template-url in  angular components**
 - **no support for CSS files for each angular components**
 
-
 The goal of this tutorial is to demonstrate a way of creating a project structure using angualar@8.0.0 CLI, configure it and make it ready for developing office add-ins.
-
 
 _Please note, It still does not support the `office-addin-debugger` plugin provided by Microsoft. I have added it as an npm dev-dependency here and I am still trying to figure how to make it work. But you can always debug the add-in on the web app such as outlook web._
 
 > I assume you have `node` and `npm` already installed
 
-
-
 Let us being --
-
 
 ## Generate Office add-in angular app using yeoman generator
 
   Office [official docs](https://docs.microsoft.com/en-us/outlook/add-ins/quick-start?tabs=visual-studio-code) have provided detailed steps. I will only provide concise steps.
 
 - Run the following command in the command line. It will install the office Yeoman generator.
-    ```
+  
+  ```
       npm install -g yo generator-office
-    ```
+  ```
 - Generate the office adding angular project structure using the below command.
-    ```
+  
+  ```
       yo office --skip-install
-    ```
+  ```
+  
     The above command will provide interactive input. Choose the below options  
-
+  
       ```js
          Choose a project type: (Use arrow keys) 
          // choose (2) Office Add-in Task Pane project using Angular framework
-
+      
          Choose a script type: (Use arrow keys)
          // choose (1) Typescript
-        
+      
          What do you want to name your add-in? (My Office Add-in) 
          //Give any name you want. for this tutorial, I would keep demo-addin
-
+      
          Which Office client application would you like to support? 
          //choose (3) Outlook
-
+      
       ```
-
+  
     Notice `--skip-install` argument. Well, We don't want `npm` to install all the dependencies here. We would only need `manfiest.xml` file and some of the Microsoft office dependencies from package.json.
 
 Our outlook addin project structure is done using yeomen generator. Below is the structure of the generated project.
@@ -73,10 +69,10 @@ Our outlook addin project structure is done using yeomen generator. Below is the
 ```
     .
     ├── assets
-    │   ├── icon-16.png
-    │   ├── icon-32.png
-    │   ├── icon-80.png
-    │   └── logo-filled.png
+    │   ├── icon-16.png
+    │   ├── icon-32.png
+    │   ├── icon-80.png
+    │   └── logo-filled.png
     ├── CONTRIBUTING.md
     ├── LICENSE
     ├── manifest.xml
@@ -84,31 +80,25 @@ Our outlook addin project structure is done using yeomen generator. Below is the
     ├── package-lock.json
     ├── README.md
     ├── src
-    │   ├── commands
-    │   └── taskpane
+    │   ├── commands
+    │   └── taskpane
     ├── tsconfig.json
     └── webpack.config.js
-
 ```
-
-
-
-
 
 ## Creating an angular application using Angular CLI
 
 - Install the Angular CLI 
-
+  
   ```
     npm install -g @angular/cli
-  ````
+  ```
 - Generate an angular app 
-
+  
   ```
     ng new demo-angular-addin
   ```
 - Run `ng serve` to make sure the app is working
-
 
 The structure of our angular app would look like below:
 
@@ -123,8 +113,6 @@ The structure of our angular app would look like below:
       ├── src
       ├── tsconfig.json
       └── tslint.json
-
-
 ```
 
 ## Copy the addin manifest to the angular application
@@ -156,7 +144,6 @@ Let us change the default port(4200) of the angular app to 3000. Open `angular.j
 
  Run `ng-serve` to validate the port.
 
-
 ## Copy the default icons from generated office addin to angular app
 
 The default icons provided are configured in addin manifest. These icons will be shown when the add-in is loaded.
@@ -171,7 +158,6 @@ If both the projects are in the same folder, use the below command or do it manu
 
 In the `manifest.xml `, for each occurrence of `taskpane.url` or any other locations where the URL resembles like `https://localhost:3000/taskpane.html`, update **taskpane.html** to **index.html**. You can also remove the taskpane.html and only keep host: port (localhost:3000) only.
 
-
 ## Configure SSL for the angular application
 
 It is mandatory for Microsoft Office add-ins to be served over `https` connection. We need to generate an SSL certificate and key and configure our angular application to serve over `https`.
@@ -180,10 +166,10 @@ Go to this tutorial titled  [Running Angular CLI over HTTPS with a Trusted Certi
 
 If you still face any issues, try to install the certificate by choosing `local machine`.
  and use the SSL options directly in the terminal.
-  
-  ```
+
+```
   ng serve --ssl true --ssl-cert "ssl/server.crt" --ssl-key "ssl/server.key"
-  ```
+```
 
 You can also configure the same command in `package.json` inside scripts -- such as :
 
@@ -191,7 +177,7 @@ You can also configure the same command in `package.json` inside scripts -- such
 "start-ssl" : "ng serve --ssl true --ssl-cert \"ssl/server.crt\" --ssl-key \"ssl/server.key\""
 ```
 
-## Change the Typescript compiler target type to es5 instead of es2015 
+## Change the Typescript compiler target type to es5 instead of es2015
 
 While I was testing the Outlook addin for the desktop app, it did not load angular components. However, It was working fine in the outlook web app. I initially posted a [stackOverFlow question](https://stackoverflow.com/questions/56600059/microsoft-office-addin-for-outlook-does-not-load-on-outlook-desktop-app). After thorough debugging, I was able to figure out that Outlook desktop app does not support `es2015` yet.
 
@@ -219,7 +205,6 @@ You can also keep track of this issue [here](https://github.com/Microsoft/TypeSc
   npm install --save-dev @types/office-js@^1.0.1 @types/office-runtime@^1.0.7 office-addin-debugging@^2.1.13 office-addin-dev-certs@^1.0.1 office-toolbox@^0.1.1
 ```
 
-
 ##### Add the missing types
 
 During compilation, Typescript compiler is going to complain about missing types. Since we will be using Microsoft Office APIs during development, we will need to add office-js to types.
@@ -246,7 +231,6 @@ As mentioned earlier, Office-js has to be added from CDN. Along with it, if you 
    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
 
    <script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
-
 ```
 
 ## Bootstrap the angular application inside the `Office.initialize` function.
