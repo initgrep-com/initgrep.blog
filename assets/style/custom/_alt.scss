@@ -13,7 +13,7 @@ $letter-sapacing: 0.05rem;
     border-color: $c-bg;
     color: $c-icon-color;
     border-width: 2px;
-    font-family: 'Roboto',sans-serif;
+    font-family: "Roboto", sans-serif;
 
     &::placeholder {
       color: $c-icon-color;
@@ -44,6 +44,7 @@ $letter-sapacing: 0.05rem;
 //Menu Component Start
 .menu-component {
   font-weight: 500 !important;
+  position: fixed;
   ul.list-group {
     li.list-group-item {
       border-width: 0px;
@@ -54,13 +55,13 @@ $letter-sapacing: 0.05rem;
       // font-size: 1.1rem;
       &:hover {
         background: $c-bg;
-         a{
+        a {
           color: $c-icon-color;
         }
       }
       &.active {
         background: $c-bg;
-         a{
+        a {
           color: $c-icon-color;
         }
       }
@@ -69,7 +70,7 @@ $letter-sapacing: 0.05rem;
           text-decoration: none;
         }
         i {
-          font-size: 1.2rem;
+          // font-size: 1.2rem;
         }
         span {
           letter-spacing: $letter-sapacing;
@@ -78,34 +79,159 @@ $letter-sapacing: 0.05rem;
     }
   }
 }
+@include media-breakpoint-up(xs) {
+  .menu-component {
+    position: relative;
+    overflow-x: scroll;
+    font-size: 0.8rem;
+    ul.list-group {
+      flex-direction: row;
+      li.list-group-item {
+        padding-left:0px;
+        padding-right: 0px;
+        padding:10px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        background: transparent;
+        
+        &:hover {
+          background-color: transparent;
+          a {
+            color: $c-icon-color;
+          }
+        }
+        &.active {
+          background: transparent;
+          a {
+            color: $c-icon-color;
+          }
+        }
 
+        a {
+          // border:1px solid blue;
+          transition: all .2s linear;
+          display: block;
+         i{
+            display: block;
+            font-size: 2rem;
+            margin-right: auto;
+            margin-left: 25%;
+          }
+          span {
+            display: block;
+            padding-left: 5px;
+            // border:1px solid red;
+            // width: 100px;
+            
+          }
+        }
+      }
+    }
+  }
+}
 
 @include media-breakpoint-up(sm) {
-}
-@include media-breakpoint-up(md) {
   .menu-component {
-    font-weight: 500 !important;
     ul.list-group {
       li.list-group-item {
-        margin-left: 0rem;
-        margin-right: 3rem;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .menu-component {
+    ul.list-group {
+      li.list-group-item {
       }
     }
   }
 }
 @include media-breakpoint-up(lg) {
   .menu-component {
-    font-weight: 500 !important;
+    position: fixed;
+    overflow: auto;
+    font-size: 1rem;
     ul.list-group {
+      flex-direction: column;
+      margin-left: 0rem;
       li.list-group-item {
-        margin-left: 4rem;
-        margin-right: 1rem;
+        position: relative;
+        display: block;
+        padding-left:0px;
+        padding-right: 0px;
+        padding:.6rem;
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        margin-left: 15%;
+
+        &:hover {
+          background-color: $c-bg;
+          a {
+            color: $c-icon-color;
+          }
+        }
+        &.active {
+          background: $c-bg;
+          a {
+            color: $c-icon-color;
+          }
+        }
+        a {
+          // border:1px solid blue;
+          transition: all .2s linear;
+          display: inline;
+         i{
+            display: inline;
+            font-size: 1.5rem;
+            margin-right: auto;
+            margin-left: auto;
+          }
+          span {
+            display: inline;
+            padding-left: 10px;
+            
+          }
+        }
       }
     }
   }
 }
 @include media-breakpoint-up(xl) {
-  
+  .menu-component {
+    ul.list-group {
+      li.list-group-item {
+      }
+    }
+  }
 }
 
 //Menu Component Ends
+
+//Content component start
+
+.content-component {
+  left: 25%;
+}
+
+@include media-breakpoint-up(xs) {
+  .content-component {
+    left: 0px;
+  }
+}
+@include media-breakpoint-up(sm) {
+  .content-component {
+  }
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+  .content-component {
+    left: 25%;
+  }
+}
+@include media-breakpoint-up(xl) {
+ 
+}
+
+//content component ends
