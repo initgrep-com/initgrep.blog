@@ -1,6 +1,7 @@
 $c-bg: #fc456b1f;
 $c-icon-color: #fc456bfc;
 $c-bg-black: #212529;
+$c-color-black: #433e3f;
 $letter-sapacing: 0.05rem;
 
 //search Start
@@ -86,14 +87,15 @@ $letter-sapacing: 0.05rem;
     font-size: 0.8rem;
     ul.list-group {
       flex-direction: row;
+
       li.list-group-item {
-        padding-left:0px;
+        padding-left: 0px;
         padding-right: 0px;
-        padding:10px;
+        padding: 10px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
         background: transparent;
-        
+
         &:hover {
           background-color: transparent;
           a {
@@ -109,9 +111,9 @@ $letter-sapacing: 0.05rem;
 
         a {
           // border:1px solid blue;
-          transition: all .2s linear;
+          transition: all 0.2s linear;
           display: block;
-         i{
+          i {
             display: block;
             font-size: 2rem;
             margin-right: auto;
@@ -122,7 +124,6 @@ $letter-sapacing: 0.05rem;
             padding-left: 5px;
             // border:1px solid red;
             // width: 100px;
-            
           }
         }
       }
@@ -158,9 +159,9 @@ $letter-sapacing: 0.05rem;
       li.list-group-item {
         position: relative;
         display: block;
-        padding-left:0px;
+        padding-left: 0px;
         padding-right: 0px;
-        padding:.6rem;
+        padding: 0.6rem;
         border-top-right-radius: 50px;
         border-bottom-right-radius: 50px;
         margin-left: 15%;
@@ -179,9 +180,9 @@ $letter-sapacing: 0.05rem;
         }
         a {
           // border:1px solid blue;
-          transition: all .2s linear;
+          transition: all 0.2s linear;
           display: inline;
-         i{
+          i {
             display: inline;
             font-size: 1.5rem;
             margin-right: auto;
@@ -190,7 +191,6 @@ $letter-sapacing: 0.05rem;
           span {
             display: inline;
             padding-left: 10px;
-            
           }
         }
       }
@@ -231,7 +231,34 @@ $letter-sapacing: 0.05rem;
   }
 }
 @include media-breakpoint-up(xl) {
- 
 }
 
 //content component ends
+
+//top card component start
+.content-component {
+  .top-card {
+    border-radius: 20px;
+    border-color: #c7c9ca47;
+    img {
+      height: 350px;
+      object-fit: cover;
+      border-top-right-radius: 20px;
+      border-top-left-radius: 20px;
+    }
+    .card-body {
+      p.card-meta{
+
+        .small.read-time{
+          float: right;
+        }
+      }
+      h1 {
+        font-weight: 700;
+        color: $c-color-black;
+      }
+    }
+  }
+}
+
+//Top Card Component end
