@@ -1,94 +1,133 @@
 {% include head.html %}
 
-<div class="container-fluid">
-    <!--START NAV-->
-    <div class="row pt-3">
-        <div class="col-3  ">
-            <a class="navbar-brand" href="#">>_ init | grep</a>
+<div class="container-fluid sticky-top ">
+    <!--START Header-->
+    <div class="row py-3 border">
+        <div class="col-4 col-sm-4 col-md-3 col-lg-3 py-2 ">
+            <a class="brand" href="#" alt=""> >_ init | grep</a>
         </div>
-        <div class="col-9 col-lg-5 ">
-            <div class="input-group mb-3 search-component">
-                <input type="text" class="form-control form-control-lg pl-3 " placeholder="search" aria-label="search"
-                    aria-describedby="search initgrep">
+        <div class="col-1 col-sm-1 col-md-1 col-lg-4 ">
+            <div class="input-group  search-component ">
+                <input type="text" class="form-control form-control-lg pl-3 " placeholder="search"
+                    aria-label="search initgrep" aria-describedby="search initgrep">
                 <div class="input-group-append">
                     <span class="input-group-text" id="search-icon"><i class="fas fa-search"></i></span>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-6 col-sm-7 col-md-7 col-lg-4  d-lg-none">
+
+            <div class="setting-wrapper float-right py-2">
+                <span>
+                    <i class="fas fa-sliders-h"></i>
+                </span>
+                <div class="basic-overlay">as</div>
+                <div class="setting-overlay">
+                    setting overlay
+                    <div class="water-mark">
+                            <i class="fas fa-sliders-h"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="search-wrapper float-right  py-2">
+                <span>
+                    <i class="fas fa-search"></i>
+                </span>
+                <div class="basic-overlay">as</div>
+                <div class="search-overlay ">
+                        <div class="water-mark">
+                                <i class="fas fa-search"></i>
+                        </div>
+                         
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--END NAV-->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-12 col-lg-2 col-xl-3 menu-component">
-            <!-- menu list-->
-            <ul class="list-group list-group-flush ">
-                <li class="list-group-item  active my-1">
-                    <a href="#">
-                        <i class="fas fa-scroll"></i>
-                        <span class="menu-label  ">All Posts</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fab fa-js-square"></i>
-                        <span class="menu-label ">Javascript</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fab fa-js-square"></i>
-                        <span class="menu-label ">Typescript</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fas fa-paint-roller"></i>
-                        <span class="menu-label ">Design patterns</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fab fa-angular"></i>
-                        <span class="menu-label ">Angular</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fab fa-angular"></i>
-                        <span class="menu-label ">AngularJs</span>
-                    </a>
-                </li>
-                <li class="list-group-item  my-1">
-                    <a href="#">
-                        <i class="fab fa-java"></i>
-                        <span class="menu-label ">Java</span>
-                    </a>
-                </li>
-            </ul>
 
+</div>
+<!--END HEADER-->
+<div class="container-fluid">
+
+    <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 menu-component">
+            <!-- menu list-->
+            <nav>
+                <ul class="list-group list-group-flush ">
+                    <li class="list-group-item my-1">
+                        <a href="#">
+                            <i class="far fa-newspaper"></i>
+                            <span class="menu-label  ">Home</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1">
+                        <a href="#">
+                            <i class="fab fa-js-square"></i>
+                            <span class="menu-label ">Javascript</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1 active">
+                        <a href="#">
+                            <i class="fab fa-js-square"></i>
+                            <span class="menu-label  ">Typescript</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1">
+                        <a href="#">
+                            <i class="fas fa-paint-roller"></i>
+                            <span class="menu-label ">Design</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1">
+                        <a href="#">
+                            <i class="fab fa-angular"></i>
+                            <span class="menu-label ">Angular</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1">
+                        <a href="#">
+                            <i class="fab fa-angular"></i>
+                            <span class="menu-label ">AngularJs</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item  my-1">
+                        <a href="#">
+                            <i class="fab fa-java"></i>
+                            <span class="menu-label ">Java</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
-        <div class="col-xs-12 col-lg-5  col-xl-6  content-component">
-            <div class="row">
-                <div class="col-xs-12  col-xl-8 ">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9  content-component">
+
+            <div class="row ">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8 col-lg-5 col-xl-5 ">
                     <div class="card top-card">
                         <img class="card-img-top img-fluid" src="/assets/images/closure.jpg" alt="Card image cap">
                         <div class="card-body">
                             <p class="card-meta">
                                 <a href="#">
-                                    <small class="text-muted">IRSHSHEIKH</small>
-                                 </a>
-                                <small class="text-muted read-time">5 MIN READ</small>
+                                    <small class="text-user">irshsheikh</small>
+                                </a>
+                                <small class="text-filler">in</small>
+                                <small class="text-category">angular</small>
+                                <small class=" read-time">5 min read</small>
 
                             </p>
-                            <h1 class="card-title">Create Microsoft Office addins using Angular@8.0 CLI</h1>
+                            <h5 class="card-title">Create Microsoft Office addins using Angular@8.0 CLI</h5>
                             <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                 additional content. This content is a little bit longer.</p> -->
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 col-xl-4 border">asd</div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-7 border">top articles</div>
+
+
             </div>
         </div>
     </div>
