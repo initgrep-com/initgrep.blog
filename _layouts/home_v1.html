@@ -1,12 +1,12 @@
 {% include head.html %}
 
-<div class="container-fluid sticky-top ">
+<div class="container-fluid">
     <!--START Header-->
-    <div class="row py-3 border">
-        <div class="col-4 col-sm-4 col-md-3 col-lg-3 py-2 ">
-            <a class="brand" href="#" alt=""> >_ init | grep</a>
+    <div class="row py-3">
+        <div class="col-4 col-sm-4 col-md-3 col-lg-3 py-2 brand-component ">
+            <a class="brand " href="#" alt=""> >_ init | grep</a>
         </div>
-        <div class="col-1 col-sm-1 col-md-1 col-lg-4 ">
+        <div class="col-1 col-sm-1 col-md-1 col-lg-4 search-col">
             <div class="input-group  search-component ">
                 <input type="text" class="form-control form-control-lg pl-3 " placeholder="search"
                     aria-label="search initgrep" aria-describedby="search initgrep">
@@ -25,9 +25,7 @@
                 <div class="basic-overlay">as</div>
                 <div class="setting-overlay">
                     setting overlay
-                    <div class="water-mark">
-                            <i class="fas fa-sliders-h"></i>
-                    </div>
+
                 </div>
 
             </div>
@@ -38,10 +36,8 @@
                 </span>
                 <div class="basic-overlay">as</div>
                 <div class="search-overlay ">
-                        <div class="water-mark">
-                                <i class="fas fa-search"></i>
-                        </div>
-                         
+
+
                 </div>
             </div>
         </div>
@@ -53,10 +49,10 @@
 
     <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
 
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 menu-component">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 h-100 menu-component  ">
             <!-- menu list-->
             <nav>
-                <ul class="list-group list-group-flush ">
+                <ul class="list-group list-group-flush">
                     <li class="list-group-item my-1">
                         <a href="#">
                             <i class="far fa-newspaper"></i>
@@ -102,6 +98,41 @@
                 </ul>
             </nav>
 
+            <aside>
+                <ul class="list-group list-group-flush setting-component  ">
+                    <li class="list-group-item my-1">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="nightSwtich">
+                            <label class="custom-control-label" for="nightSwtich">Night mode</label>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="list-group list-group-flush social-component  ">
+                    <li class="list-group-item my-1">
+                        <a href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li class="list-group-item my-1">
+                        <a href="#">
+                            <i class="fab fa-medium"></i>
+                        </a>
+                    </li>
+                    <li class="list-group-item my-1">
+                        <a href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="list-group-item my-1">
+                        <a href="#">
+                            <i class="fab fa-dev"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </aside>
+
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9  content-component">
 
@@ -124,6 +155,7 @@
                                 additional content. This content is a little bit longer.</p> -->
                         </div>
                     </div>
+                  
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-7 border">top articles</div>
 
