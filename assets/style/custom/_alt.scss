@@ -1,5 +1,5 @@
 $c-bg: #fc456b1f;
-$c-icon-color: #fc456bfc;
+$c-icon-color: #da1e43fc;
 $c-bg-black: #212529;
 $c-color-black: #433e3f;
 $letter-sapacing: 0.05rem;
@@ -237,7 +237,9 @@ $bg-overlay: rgba(122, 118, 118, 0.4);
     position: relative;
     overflow-x: scroll;
     font-size: 0.8rem;
-    padding-bottom: 10px;
+    margin-bottom: 2rem;
+    padding: 0.2rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
     nav {
       ul.list-group {
         flex-direction: row;
@@ -406,15 +408,14 @@ $bg-overlay: rgba(122, 118, 118, 0.4);
         top: 75%;
         width: 90%;
         border-top: 1px solid $c-bg;
-        background:transparent;
+        background: transparent;
         li.list-group-item {
-          
           border-width: 0px;
           font-size: 1.4rem;
-          background:transparent;
-          
-          a{
-            &:hover{
+          background: transparent;
+
+          a {
+            &:hover {
               color: $c-icon-color;
             }
           }
@@ -462,7 +463,8 @@ $bg-overlay: rgba(122, 118, 118, 0.4);
     border-radius: 20px;
     background: transparent;
     // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-    box-shadow: 0 0 0 0;
+    // box-shadow: 0 0 0 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
     img {
       height: 150px;
       object-fit: cover;
@@ -507,7 +509,9 @@ $bg-overlay: rgba(122, 118, 118, 0.4);
     border-color: #c7c9ca47;
     background: transparent;
     // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-    box-shadow: 0 1px 1px rgba(154, 160, 185, 0.05), 0 2px 5px rgba(166, 173, 201, 0.2);
+    // box-shadow: 0 1px 1px rgba(154, 160, 185, 0.05), 0 2px 5px rgba(166, 173, 201, 0.2);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     img {
       height: 250px;
       object-fit: cover;
@@ -544,3 +548,128 @@ $bg-overlay: rgba(122, 118, 118, 0.4);
 }
 @include media-breakpoint-up(xl) {
 }
+
+/** TOP POST COMPONENT **/
+
+@include media-breakpoint-up(xs) {
+  .top-post-component {
+    ul.list-group {
+      margin-top: 2rem;
+      li.list-group-item.top-heading {
+        border:none;
+        box-shadow: none;
+        background: transparent;
+       div.media{
+         div.media-body{
+           font-size:1.4rem;
+           font-weight: 500;
+           color:$c-icon-color;
+           i{
+             color:$c-icon-color;
+             margin-right: .5rem;
+             font-size: 2rem;
+           }
+           span{
+             letter-spacing: $letter-sapacing;
+           }
+         }
+       }
+
+        
+      }
+      li.list-group-item {
+        padding: 0 0 0 0;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border: 1px solid $c-bg;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: transparent;
+        a {
+          text-decoration: none;
+          display: block;
+          padding: 0.4rem;
+          div.media {
+            img {
+              width: 72px;
+              height: 72px;
+              border-radius: 10px;
+              margin-right: 0.6rem;
+            }
+            .media-body {
+              h5{
+                letter-spacing: $letter-sapacing;
+                color:$c-icon-color;
+                font-size: 1.1rem;
+              }
+              p {
+                font-size: 0.8rem;
+                margin: 0 0 0 0;
+              }
+            }
+          }
+        }
+        &:hover {
+          background: $c-bg;
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(md) {
+  .top-post-component {
+    ul.list-group {
+      margin-top: 0;
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  .top-post-component {
+    ul.list-group {
+      margin-top: 0;
+      li.list-group-item.top-heading {
+        border:none;
+        box-shadow: none;
+        background: transparent;
+
+      }
+      li.list-group-item {
+        padding: 0 0 0 0;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border: 1px solid $c-bg;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: transparent;
+        a {
+          text-decoration: none;
+          display: block;
+          padding: 0.4rem;
+          div.media {
+            img {
+              width: 72px;
+              height: 72px;
+              border-radius: 10px;
+              margin-right: 0.6rem;
+            }
+            .media-body {
+              p {
+                font-size: 0.8rem;
+                margin: 0 0 0 0;
+              }
+            }
+          }
+        }
+        &:hover {
+          background: $c-bg;
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-up(xl) {
+}
+
+/** TOP POST COMPONENT END **/
