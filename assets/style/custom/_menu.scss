@@ -1,0 +1,241 @@
+
+//Menu Component Start
+.menu-component {
+    font-weight: 500 !important;
+    // position: fixed;
+    nav {
+      ul.list-group {
+        li.list-group-item {
+          border-width: 0px;
+          // border: 1px solid $c-bg;
+          border-top-right-radius: 50px;
+          border-bottom-right-radius: 50px;
+          color: $c-icon-color !important;
+          // font-size: 1.1rem;
+          background: transparent;
+          &:hover {
+            background: $c-bg;
+            a {
+              color: $c-icon-color;
+            }
+          }
+          &.active {
+            background: $c-bg;
+            a {
+              color: $c-icon-color;
+            }
+          }
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+            i {
+              // font-size: 1.2rem;
+            }
+            span {
+              letter-spacing: $letter-sapacing;
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(xs) {
+    .menu-component {
+      position: relative;
+      overflow-x: scroll;
+      font-size: 0.8rem;
+      margin-bottom: 2rem;
+      padding: 0.2rem;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
+      nav {
+        ul.list-group {
+          flex-direction: row;
+  
+          li.list-group-item {
+            border-radius: 0px;
+            padding: 0 0 0 0;
+            padding-bottom: 5px;
+            padding-top: 5px;
+            margin-right: 10px;
+            margin-left: 10px;
+  
+            a {
+              transition: all 0.2s linear;
+              display: block;
+              width: auto;
+              text-align: center;
+  
+              i {
+                display: none;
+              }
+              span {
+                display: block;
+                text-align: center;
+                text-transform: uppercase;
+                font-weight: 400;
+                line-height: 20px !important;
+                letter-spacing: 0.05em !important;
+              }
+            }
+  
+            &:hover {
+              background: transparent;
+              border-bottom: 4px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+  
+                span {
+                  font-weight: 700;
+                }
+              }
+            }
+            &.active {
+              background: transparent;
+              border-bottom: 4px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+                span {
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+        }
+      }
+      aside {
+        display: none;
+      }
+    }
+  }
+  
+  @include media-breakpoint-up(sm) {
+  }
+  
+  @include media-breakpoint-up(md) {
+  }
+  @include media-breakpoint-up(lg) {
+    .menu-component {
+      position: fixed;
+      overflow: auto;
+      font-size: 1rem;
+      nav {
+        position: relative;
+        width: 80%;
+        left: 20%;
+        ul.list-group {
+          flex-direction: column;
+          margin-left: 0rem;
+          li.list-group-item {
+            position: relative;
+            display: block;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding: 0.6rem;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-left: 15%;
+  
+            &:hover {
+              background-color: $c-bg;
+              border-bottom: 0px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+              }
+            }
+            &:active {
+              background-color: $c-bg;
+              border-right: 2px solid $c-icon-color;
+              border-bottom: 5px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+              }
+            }
+            &.active {
+              background: $c-bg;
+              border-bottom: 4px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+              }
+            }
+            a {
+              // border:1px solid blue;
+              transition: all 0.2s linear;
+              display: inline;
+              i {
+                display: inline;
+                font-size: 1.5rem;
+                margin-right: auto;
+                margin-left: auto;
+              }
+              span {
+                display: inline;
+                padding-left: 10px;
+                text-transform: capitalize;
+              }
+            }
+          }
+        }
+      }
+      aside {
+        display: block;
+        border-top: 1px solid $c-bg;
+        margin-top: 3rem;
+        ul.setting-component {
+          flex-direction: column;
+          margin-left: 0rem;
+          li.list-group-item {
+            position: relative;
+            display: block;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding: 0.6rem;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            margin-left: 15%;
+            color: $c-bg-black;
+            background: transparent;
+            font-weight: 600;
+            border-width: 0px;
+  
+            div.custom-control {
+              .custom-control-input {
+                &:checked {
+                  ~ .custom-control-label {
+                    &:before {
+                      border-color: $c-icon-color;
+                      background: $c-icon-color;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  
+        ul.social-component {
+          position: absolute;
+          flex-direction: row;
+          top: 75%;
+          width: 90%;
+          border-top: 1px solid $c-bg;
+          background: transparent;
+          li.list-group-item {
+            border-width: 0px;
+            font-size: 1.4rem;
+            background: transparent;
+  
+            a {
+              &:hover {
+                color: $c-icon-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(xl) {
+  }
+  
+  //Menu Component Ends

@@ -1,0 +1,147 @@
+//Content component start
+
+.content-component {
+    left: 25%;
+  }
+  
+  @include media-breakpoint-up(xs) {
+    .content-component {
+      left: 0px;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+    .content-component {
+    }
+  }
+  @include media-breakpoint-up(md) {
+  }
+  @include media-breakpoint-up(lg) {
+    .content-component {
+      left: 25%;
+    }
+  }
+  @include media-breakpoint-up(xl) {
+  }
+  
+  //content component ends
+  
+  //top card component start
+  
+  @include media-breakpoint-up(xs) {
+    .top-card {
+      border-radius: 20px;
+      background: transparent;
+      // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+      // box-shadow: 0 0 0 0;
+      box-shadow: 0 1px 1px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      img {
+        height: 200px;
+        object-fit: cover;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+      }
+      .card-body {
+        .card-meta {
+          letter-spacing: $letter-sapacing;
+          color: $mute-color;
+          a {
+            text-decoration: none;
+            small.text-user {
+              font-weight: 500 !important;
+              color: $mute-color;
+            }
+          }
+  
+          small.read-time {
+            float: right;
+          }
+          small.text-filler {
+            text-transform: lowercase;
+          }
+          small.text-category {
+            text-transform: capitalize;
+          }
+        }
+        h5.card-title {
+          color: $c-color-black;
+          letter-spacing: $letter-sapacing;
+        }
+        p.card-text {
+          letter-spacing: $letter-sapacing;
+          font-size: .9rem;
+        }
+      }
+
+      &:hover{
+        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+      }
+    }
+  }
+  @include media-breakpoint-up(sm) {
+  }
+  @include media-breakpoint-up(md) {
+  }
+  @include media-breakpoint-up(lg) {
+    .top-card {
+      border-radius: 20px;
+      border-color: #c7c9ca47;
+      background: transparent;
+      // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
+      // box-shadow: 0 1px 1px rgba(154, 160, 185, 0.05), 0 2px 5px rgba(166, 173, 201, 0.2);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      img {
+        height: 250px;
+        object-fit: cover;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+      }
+      .card-body {
+        .card-meta {
+          letter-spacing: $letter-sapacing;
+          color: $mute-color;
+          a {
+            text-decoration: none;
+            small.text-user {
+              font-weight: 500 !important;
+              color: $mute-color;
+            }
+          }
+  
+          small.read-time {
+            float: right;
+          }
+          small.text-filler {
+            text-transform: lowercase;
+          }
+          small.text-category {
+            text-transform: capitalize;
+          }
+        }
+        h5.card-title {
+          color: $c-color-black;
+          letter-spacing: $letter-sapacing;
+          a{
+            text-decoration: none;
+          }
+        }
+        p.card-text {
+          letter-spacing: $letter-sapacing;
+          font-size: .9rem;
+        }
+      }
+
+      &:hover{
+        h5.card-title{
+          a{
+            color:$c-icon-color;
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(xl) {
+  }
+  
+  

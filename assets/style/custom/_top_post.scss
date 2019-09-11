@@ -1,0 +1,131 @@
+
+  /** TOP POST COMPONENT **/
+  @include media-breakpoint-up(xs) {
+    .top-post-component {
+      ul.list-group {
+        margin-top: 2rem;
+        li.list-group-item.top-heading {
+          border: none;
+          box-shadow: none;
+          background: transparent;
+          div.media {
+            div.media-body {
+              font-size: 1.4rem;
+              font-weight: 500;
+              color: $c-icon-color;
+              i {
+                color: $c-icon-color;
+                margin-right: 0.5rem;
+                font-size: 2rem;
+              }
+              span {
+                letter-spacing: $letter-sapacing;
+                background: transparent;
+              }
+            }
+          }
+
+          &:hover{
+            box-shadow: none;
+          }
+        }
+        li.list-group-item {
+          padding: 0 0 0 0;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          border: 1px solid $c-bg;
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          background: transparent;
+          a {
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem;
+            div.media {
+              img {
+                width: 72px;
+                height: 72px;
+                border-radius: 10px;
+                margin-right: 0.6rem;
+              }
+              .media-body {
+                h5 {
+                  letter-spacing: $letter-sapacing;
+                  color: $c-icon-color;
+                  font-size: 1.1rem;
+                }
+                p {
+                  font-size: 0.8rem;
+                  margin: 0 0 0 0;
+                }
+              }
+            }
+          }
+          &:hover {
+            // background: $c-bg;
+            box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(sm) {
+  }
+  @include media-breakpoint-up(md) {
+    .top-post-component {
+      ul.list-group {
+        margin-top: 0;
+      }
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .top-post-component {
+      ul.list-group {
+        margin-top: 0;
+        li.list-group-item.top-heading {
+          border: none;
+          box-shadow: none;
+          background: transparent;
+        }
+        li.list-group-item {
+          padding: 0 0 0 0;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          border: 1px solid $c-bg;
+          box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
+          transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+          background: transparent;
+          a {
+            text-decoration: none;
+            display: block;
+            padding: 0.4rem;
+            div.media {
+              img {
+                width: 72px;
+                height: 72px;
+                border-radius: 10px;
+                margin-right: 0.6rem;
+              }
+              .media-body {
+                h5 {
+                  letter-spacing: $letter-sapacing;
+                }
+                p {
+                  font-size: 0.8rem;
+                  letter-spacing: $letter-sapacing;
+                  margin: 0 0 0 0;
+                }
+              }
+            }
+          }
+          &:hover {
+            // background: $c-bg;
+          }
+        }
+      }
+    }
+  }
+  @include media-breakpoint-up(xl) {
+  }
+  
+  /** TOP POST COMPONENT END **/
