@@ -1,6 +1,6 @@
 
   /** TOP POST COMPONENT **/
-  @include media-breakpoint-up(xs) {
+  // @include media-breakpoint-up(xs) {
     .top-post-component {
       ul.list-group {
         margin-top: 2rem;
@@ -55,7 +55,7 @@
                   font-size: 1.1rem;
                 }
                 p {
-                  font-size: 0.8rem;
+                  font-size: .9rem;
                   margin: 0 0 0 0;
                 }
               }
@@ -68,7 +68,7 @@
         }
       }
     }
-  }
+  // }
   @include media-breakpoint-up(sm) {
   }
   @include media-breakpoint-up(md) {
@@ -111,7 +111,7 @@
                   letter-spacing: $letter-sapacing;
                 }
                 p {
-                  font-size: 0.8rem;
+                  font-size: .9rem;
                   letter-spacing: $letter-sapacing;
                   margin: 0 0 0 0;
                 }
