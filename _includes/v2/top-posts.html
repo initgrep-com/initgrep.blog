@@ -1,0 +1,43 @@
+<div class="col-xs-12 col-sm-12 col-md-5 col-lg-6 col-xl-7 ">
+    <div class="row">
+
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 top-post-component ">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item top-heading  px-1 pt-1">
+                    <div class="media">
+                        <div class="media-body">
+                            <i class="fas fa-meteor"></i>
+                            <span>Latest posts</span>
+                        </div>
+                    </div>
+                </li>
+
+                {% for collection in site.collections %}
+                {% assign colsname  = collection.label  %}
+                {% if colsname != 'authors'%}
+                {% assign items = site.[colsname] | sort: 'date' | reverse %}
+                {% for post in items limit: 4  offset:1 %}
+                <li class="list-group-item">
+                    <a href="{{site.baseurl}}{{post.url}}" alt="">
+                        <div class="media">
+                            <img class="align-self-center" src="{{site.baseurl}}/assets/images/{{post.image}}"
+                                alt="Generic placeholder image">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{post.category | upcase}}</h5>
+                                <p>{{post.title }} </p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+
+            </ul>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 ">Empty space</div>
+    </div>
+
+</div>
