@@ -1,66 +1,145 @@
+.all-post-component{
+  span{
+    font-size: 1.25rem;
+    color:$c-icon-color;
+    font-weight: 600;
+    i{
+      margin-right: .9rem;
+      font-size: 2rem;
+    }
+  }
+}
 
-.sub-content-component{
+.sub-content-component {
   background: transparent;
-  // border:1px solid red;
-  div.app-card{
-    border:1px solid $c-bg;
-    position: relative;
-    height: auto;
+  width: 100%;
+  margin: 0 auto;
+  div.app-card {
+    display: block;
     overflow: auto;
+    clear: both;
     box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-    // min-height: 128px;
-    // width: 100%;
-    border-radius: 10px;
-   div.app-card-poster{
-      float:left;
-      width: 140px;
-      height: 100px;
-      margin-right: .8rem;
-      border-radius: 10px;
-      object-fit: contain;
-    img{
-      width: 100%;
+    border-radius: 5px;
+    div.app-card-poster {
+      float: left;
+      width: 30%;
       height: 100%;
-      // border-width: 5px;
-      border-radius: 10px;
-    }
-   }
-    .app-card-meta{
-      // padding:1rem; 
-      small{
-        font-size: .7rem;
-      }
-      small.read-time{
-        // float: right;
-        display: block;
-        padding: .5rem;
+
+      border-radius: 5px;
+      margin-top: auto;
+      margin-bottom: auto;
+      margin-right: 0.5rem;
+      img {
+        width: 100%;
+        border-radius: inherit;
       }
     }
-    .app-card-body{
-      h5 {
-        font-size: 100%;
+
+    .app-card-body {
+      float: left;
+      width: 60%;
+      .app-card-meta {
+        // padding: 0.4rem;
+
+        small {
+          font-size: 0.7rem;
+          color: $c-icon-color;
+        }
+        small.text-filler {
+          color: $c-bg-black;
+        }
+      }
+      h5.app-card-heading {
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        letter-spacing: $letter-sapacing;
         a {
           text-decoration: none;
-          color: $c-bg-black;
-          letter-spacing: $letter-sapacing;
         }
       }
     }
 
+    &:hover {
+      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
 
+      .app-card-body {
+        h5 a {
+          color: $c-icon-color;
+        }
+      }
+    }
   }
 }
 
-
-@include media-breakpoint-up(sm) { 
-
-
-
- }
-@include media-breakpoint-up(md) { 
+@include media-breakpoint-up(sm) {
   .sub-content-component {
     background: transparent;
+    width: 100%;
+    margin: 0 auto;
+    div.app-card {
+      display: block;
+      overflow: auto;
+      clear: both;
+      box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
+      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-radius: 5px;
+      div.app-card-poster {
+        float: left;
+        width: 30%;
+        height: 100%;
+  
+        border-radius: 5px;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: 0.5rem;
+        img {
+          width: 100%;
+          border-radius: inherit;
+        }
+      }
+  
+      .app-card-body {
+        float: left;
+        width: 60%;
+        .app-card-meta {
+          // padding: 0.4rem;
+  
+          small {
+            font-size: 0.7rem;
+            color: $c-icon-color;
+          }
+          small.text-filler {
+            color: $c-bg-black;
+          }
+        }
+        h5.app-card-heading {
+          margin-top: 1rem;
+          font-size: 0.7rem;
+          letter-spacing: $letter-sapacing;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+  
+      &:hover {
+        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+  
+        .app-card-body {
+          h5 a {
+            color: $c-icon-color;
+          }
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-up(md) {
+
+  .sub-content-component {
+    background: transparent;
+    margin: 0px;
     div.app-card {
       position: relative;
       width: 100%;
@@ -74,12 +153,11 @@
       margin-right: 2rem;
       min-height: 300px;
       border: 1px solid $c-bg;
-  
-      div.app-card-poster{
+
+      div.app-card-poster {
+        float: none;
         width: 100%;
         min-height: 180px;
-        
-        // border:1px solid green;
         img {
           width: 100%;
           height: 180px;
@@ -87,58 +165,56 @@
           border-top-right-radius: 10px;
           object-fit: cover;
         }
-        
       }
-      .app-card-meta {
-        left:0px;
+
+      .app-card-body {
         width: 100%;
-        padding: .5rem;
-        margin-top: 1rem;
-        padding-bottom: 0px;
-        // border:1px solid red;
-        
-  
-        small {
-          font-weight: 500 !important;
-          letter-spacing: $letter-sapacing;
-          font-size: .8rem;
-        }
-        small.text-filler {
-          font-weight: 400 !important;
-        }
-  
-        small.read-time {
-          display: inline;
-          // float: right;
-          margin-left: 1rem;
-          line-height: 1rem;
-          margin-top: .4rem;
-          color: $text-user-color;
-        }
-  
-        a {
-          text-decoration: none;
-          small.text-user {
-            text-transform: capitalize;
-            color: $text-user-color;
-            // font-size: .7rem;
+        padding: 0.5rem;
+        margin-left: 0px;
+        float: none;
+
+        .app-card-meta {
+          left: 0px;
+          width: 100%;
+
+          small {
+            font-weight: 500 !important;
+            letter-spacing: $letter-sapacing;
+            font-size: 0.8rem;
           }
-  
-          &:hover {
+          small.text-filler {
+            font-weight: 400 !important;
+          }
+
+          small.read-time {
+            display: inline;
+            // float: right;
+            margin-left: 1rem;
+            line-height: 1rem;
+            // margin-top: .4rem;
+            color: $text-user-color;
+            display: none;
+          }
+
+          a {
+            text-decoration: none;
             small.text-user {
-              color: $c-icon-color;
+              text-transform: capitalize;
+              color: $text-user-color;
+              // font-size: .7rem;
+            }
+
+            &:hover {
+              small.text-user {
+                color: $c-icon-color;
+              }
             }
           }
         }
-      }
-      .app-card-body {
-        padding: .5rem;
-        margin-top: 1rem;
-        // border:1px solid red;
-        h5 {
-          // border:1px solid red;
-          // text-align: left;
+        h5.app-card-heading {
           font-size: 1rem;
+          font-weight: 400;
+          margin-top: .6rem;
           a {
             // border:1px solid blue;
             text-decoration: none;
@@ -147,39 +223,35 @@
             // font-size: .9rem;
           }
         }
-  
+
         p {
           letter-spacing: $letter-sapacing;
           font-size: 0.85rem;
           // word-wrap: initial;
         }
       }
-  
+
       &:hover {
         box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
-        
-        .app-card-poster{
-          box-shadow: 0 14px 28px rgba($color: #000000, $alpha: .2), 0 10px 10px rgba($color: #000000, $alpha: .2);
+
+        .app-card-poster {
+          box-shadow: 0 14px 28px rgba($color: #000000, $alpha: 0.2), 0 10px 10px rgba($color: #000000, $alpha: 0.2);
         }
         .app-card-body {
+          margin-top: 1rem;
+          transition: margin-top .7s cubic-bezier(0.25, 0.8, 0.25, 1);
           h5 a {
             color: $c-icon-color;
-            // animation: myfirst 2s;
-            // -moz-animation: myfirst 2s infinite; /* Firefox */
-            // -webkit-animation: myfirst 2s infinite; /* Safari and Chrome */
           }
         }
       }
     }
   }
-
- }
-@include media-breakpoint-up(lg) {  }
-@include media-breakpoint-up(xl) { 
-
-
-
- }
+}
+@include media-breakpoint-up(lg) {
+}
+@include media-breakpoint-up(xl) {
+}
 
 @-moz-keyframes myfirst /* Firefox */ {
   0% {
