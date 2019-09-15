@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: directive1.jpg
+categories:
+  - angularjs
+  - javascript
+  - all
 
 ---
 

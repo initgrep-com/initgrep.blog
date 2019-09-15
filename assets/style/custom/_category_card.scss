@@ -1,0 +1,233 @@
+.app-category-card {
+  border: 1px solid $c-bg;
+  border-radius: 10px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border:1px solid $border-color;
+  .app-card-header {
+    margin-top: 1.5rem;
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      float: left;
+      margin-right: 0.4rem;
+      border: .2rem solid $c-icon-color;
+      padding:2px;
+    //   border-top-color: transparent;
+    //   border-bottom-color:transparent;
+      
+    }
+    .app-card-meta {
+      a {
+        display: block;
+        text-decoration: none;
+        small {
+          color: $c-icon-color;
+          letter-spacing: $letter-sapacing;
+        }
+      }
+      small {
+        letter-spacing: $letter-sapacing;
+        color: $mute-color;
+      }
+    }
+
+    small.read-time {
+      float: right;
+      color: $c-icon-color;
+    }
+  }
+
+  .app-card-body {
+    //   border:1px solid red;
+    margin-top: 1.5rem;
+
+    i {
+      float: left;
+      font-size: 1.5rem;
+      color: $c-icon-color;
+      margin-top: 0.5rem;
+      margin-right: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    h5 {
+      letter-spacing: 0.1rem;
+      font-size: 1rem;
+      color: $c-bg-black;
+      line-height: 1.5;
+      a{
+          text-decoration: none;
+      }
+    }
+
+    p {
+      display: none;
+      letter-spacing: $letter-sapacing;
+      font-weight: 300;
+      word-break: break-all;
+    }
+  }
+
+  .app-card-footer {
+    padding-top: .5rem;
+    //    border:1px solid red;
+
+    .control {
+      overflow: auto;
+      a {
+        float: right;
+        margin-right: 1rem;
+        padding: 0.4rem;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+        // border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        // font-weight: 500;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        margin-bottom: 1rem;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+
+    .app-card-body{
+        h5{
+            a{
+                color: $c-icon-color;
+            }
+           
+        
+        }
+    }
+    .app-card-footer {
+      .control {
+        a {
+            color: $c-icon-color;
+          box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+        }
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-up(sm) {  }
+@include media-breakpoint-up(md) {  }
+@include media-breakpoint-up(lg) {
+
+    .app-category-card {
+        border: 1px solid $c-bg;
+        border-radius: 10px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border:1px solid $border-color;
+        .app-card-header {
+          margin-top: 1.5rem;
+          img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            float: left;
+            margin-right: 0.4rem;
+            border: .2rem solid $c-icon-color;
+            padding:2px;
+          //   border-top-color: transparent;
+          //   border-bottom-color:transparent;
+            
+          }
+          .app-card-meta {
+            a {
+              display: block;
+              small {
+                color: $c-icon-color;
+                letter-spacing: $letter-sapacing;
+              }
+            }
+            small {
+              letter-spacing: $letter-sapacing;
+              color: $mute-color;
+            }
+          }
+      
+          small.read-time {
+            float: right;
+            color: $c-icon-color;
+          }
+        }
+      
+        .app-card-body {
+          //   border:1px solid red;
+          margin-top: 1.5rem;
+      
+          i {
+            float: left;
+            font-size: 1.5rem;
+            color: $c-icon-color;
+            margin-top: 0.5rem;
+            margin-right: 0.6rem;
+            margin-bottom: 2rem;
+          }
+          h5 {
+            letter-spacing: 0.1rem;
+            font-size: 1rem;
+            color: $c-bg-black;
+            line-height: 1.5;
+          }
+      
+          p {
+            // border: 1px solid red;
+            display: block;
+            letter-spacing: $letter-sapacing;
+            font-weight: 300;
+            word-break: break-all;
+          }
+        }
+      
+        .app-card-footer {
+          padding: 1rem;
+          //    border:1px solid red;
+      
+          .control {
+            overflow: auto;
+            a {
+              float: right;
+              margin-right: 1rem;
+              padding: 0.4rem;
+              padding-left: 0.6rem;
+              padding-right: 0.6rem;
+              border: 1px solid rgba(0, 0, 0, 0.2);
+              border-radius: 10px;
+              font-size: 0.7rem;
+              text-transform: uppercase;
+              // font-weight: 500;
+              box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+              transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+              margin-bottom: 1rem;
+              text-decoration: none;
+            }
+          }
+        }
+      
+        &:hover {
+          box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+      
+          .app-card-footer {
+            .control {
+              a {
+                box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+              }
+            }
+          }
+        }
+      }
+  }
+@include media-breakpoint-up(xl) {  }
+

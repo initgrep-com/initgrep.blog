@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: ngfilter2.jpg
+categories:
+  - angularjs
+  - javascript
+  - all
 
 ---
 

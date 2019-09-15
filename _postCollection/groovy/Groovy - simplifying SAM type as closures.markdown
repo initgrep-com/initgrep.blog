@@ -12,6 +12,9 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: sam.jpg
+categories:
+    - groovy
+    - all
 ---
 
 > A SAM type is a type which defines a `single abstract method`. It includes `functional interfaces` and `Abstract classes with single abstract method` .

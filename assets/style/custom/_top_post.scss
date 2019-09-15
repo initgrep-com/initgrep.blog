@@ -1,8 +1,8 @@
 
   /** TOP POST COMPONENT **/
   // @include media-breakpoint-up(xs) {
-    .top-post-component {
-      ul.list-group {
+     
+      ul.top-post-component {
         margin-top: 2rem;
         li.list-group-item.top-heading {
           border: none;
@@ -50,9 +50,9 @@
               }
               .media-body {
                 h5 {
-                  letter-spacing: $letter-sapacing;
+                  letter-spacing: 0.09rem;
                   color: $c-icon-color;
-                  font-size: 1.1rem;
+                  font-size: .9rem;
                 }
                 p {
                   font-size: .9rem;
@@ -67,20 +67,19 @@
           }
         }
       }
-    }
+    
   // }
   @include media-breakpoint-up(sm) {
   }
   @include media-breakpoint-up(md) {
-    .top-post-component {
-      ul.list-group {
+   ul.top-post-component{
         margin-top: 0;
       }
     }
-  }
+  
   @include media-breakpoint-up(lg) {
-    .top-post-component {
-      ul.list-group {
+    ul.top-post-component {
+      
         margin-top: 0;
         li.list-group-item.top-heading {
           border: none;
@@ -108,7 +107,7 @@
               }
               .media-body {
                 h5 {
-                  letter-spacing: $letter-sapacing;
+                  // letter-spacing: $letter-sapacing;
                 }
                 p {
                   font-size: .9rem;
@@ -124,7 +123,7 @@
         }
       }
     }
-  }
+  
   @include media-breakpoint-up(xl) {
   }
   

@@ -12,7 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: mod.jpg
-
+categories:
+  - Design-pattern
+  - javascript
+  - all
 ---
 
 JavaScript is an object-based language. During the development of an application, it is important to keep the code clean and avoid name-space collisions. In order to keep the code modular, it is important to split each functionality into different chunks of code to separate the concerns. It helps in efficient development, future maintainability, debugging and testing.

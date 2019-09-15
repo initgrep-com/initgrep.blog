@@ -13,6 +13,11 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: ng-office-addin.jpg
+categories:
+  - angular
+  - javascript
+  - typescript
+  - all
 
 ---
 

@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: cmplink.jpg
+categories:
+  - angularjs
+  - javascript
+  - all
 
 ---
 

@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: regapi.jpg
+categories:
+  - angularjs
+  - javascript
+  - all
 
 ---
 

@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: ts.jpeg
+categories:
+  - typescript
+  - javascript
+  - all
 
 ---
 

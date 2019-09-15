@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: pub-sub.jpg
+categories:
+  - Design-pattern
+  - javascript
+  - all
 ---
 
 Publisher Subscriber(Pub-Sub) pattern goes further ahead by decoupling the registration process of subscribers and publishers compared to [Observer pattern](/posts/javascript/design-patterns/observer-pattern) . It introduces a message broker or Event Bus which acts as a bridge between a publisher(Subject) and various Subscribers. The topics are published by Subject for different kinds of events. The subscriber registers for the respective topics to get notified.

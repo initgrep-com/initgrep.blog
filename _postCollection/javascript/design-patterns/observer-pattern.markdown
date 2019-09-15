@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: observer.jpg
+categories:
+  - Design-pattern
+  - javascript
+  - all
 ---
 
 

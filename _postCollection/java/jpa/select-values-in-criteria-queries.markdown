@@ -12,6 +12,10 @@ twitter: imshykh
 facebook: irshsheikh
 github: igagrock
 image: cq1.jpg
+categories:
+    - jpa
+    - java
+    - all
 
 ---
 
