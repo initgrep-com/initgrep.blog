@@ -13,6 +13,21 @@
           color: $c-icon-color !important;
           // font-size: 1.1rem;
           background: transparent;
+         
+          a {
+           
+            i {
+              // font-size: 1.2rem;
+            }
+            span {
+              letter-spacing: $letter-sapacing;
+            }
+             
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
           &:hover {
             background: $c-bg;
             a {
@@ -23,17 +38,6 @@
             background: $c-bg;
             a {
               color: $c-icon-color;
-            }
-          }
-          a {
-            &:hover {
-              text-decoration: none;
-            }
-            i {
-              // font-size: 1.2rem;
-            }
-            span {
-              letter-spacing: $letter-sapacing;
             }
           }
         }
@@ -136,28 +140,7 @@
             border-bottom-right-radius: 50px;
             margin-left: 15%;
   
-            &:hover {
-              background-color: $c-bg;
-              border-bottom: 0px solid $c-icon-color;
-              a {
-                color: $c-icon-color;
-              }
-            }
-            &:active {
-              background-color: $c-bg;
-              border-right: 2px solid $c-icon-color;
-              border-bottom: 5px solid $c-icon-color;
-              a {
-                color: $c-icon-color;
-              }
-            }
-            &.active {
-              background: $c-bg;
-              border-bottom: 4px solid $c-icon-color;
-              a {
-                color: $c-icon-color;
-              }
-            }
+            
             a {
               // border:1px solid blue;
               transition: all 0.2s linear;
@@ -172,6 +155,37 @@
                 display: inline;
                 padding-left: 10px;
                 text-transform: capitalize;
+                font-size: 1rem;
+                font-weight: 500;
+              }
+            }
+
+            &:hover {
+              background-color: $c-bg;
+              border-bottom: 1px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+                span{
+                  font-weight: 500;
+                }
+              }
+            }
+            // &:active {
+            //   background-color: $c-bg;
+            //   border-right: 2px solid $c-icon-color;
+            //   border-bottom: 5px solid $c-icon-color;
+            //   a {
+            //     color: $c-icon-color;
+            //   }
+            // }
+            &.active {
+              background: $c-bg;
+              border-bottom: 1px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+                span{
+                  font-weight: 500;
+                }
               }
             }
           }

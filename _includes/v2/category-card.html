@@ -5,9 +5,10 @@
     - untill the new design is launched. category property will be kept for backward compatability
 
     - type "all" will be used in all the posts to denote that category belong to all types as a more generalised view
+    - page.type desribes which category it belongs
 -->
 
-{% assign postCategory = include.category %}
+{% assign postCategory = include.type %}
 {% assign sortedPosts = (site.postCollection | sort: 'date') | reverse %}
 {% for post in sortedPosts %}
 {% for category in post.categories%}
@@ -15,10 +16,10 @@
 
 <!-- category-card start-->
 
-<div class="col-11 col-md-5 col-lg-12 my-2 mx-2 mx-md-4 mx-lg-1 app-category-card">
+<div class="col-11 col-md-5 col-lg-12 my-2 mx-md-4 mx-lg-1 app-category-card">
     <div class="app-card-header">
         <small class="read-time">{% include util/minRead.liquid content= post.content  %} read</small>
-        <img src="{{site.baseurl}}/assets/images/{{post.image}}" alt="image">
+        <img src="{% include util/insertDp-v2.liquid name = post.author %}" alt="image">
         <div class="app-card-meta">
             <a href="#"><small>{{post.author}}</small></a>
             <small>{{post.date | date: '%B %d, %Y'}}</small>

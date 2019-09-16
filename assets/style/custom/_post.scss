@@ -1,0 +1,48 @@
+.page-component {
+  //   border: 1px solid red;
+
+  .page-header {
+    margin-bottom: 2rem;
+    small.read-time {
+      float: right;
+      color: $c-icon-color;
+    }
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      float: left;
+      margin-right: 0.4rem;
+      border: 0.2rem solid $c-icon-color;
+      padding: 2px;
+    }
+    .page-header-meta {
+      a {
+        display: block;
+        small {
+          color: $c-icon-color;
+          letter-spacing: $letter-sapacing;
+        }
+      }
+      small {
+        letter-spacing: $letter-sapacing;
+        color: $mute-color;
+      }
+    }
+  }
+  .page-poster{
+      img{
+          width: 100%;
+          height: 300px;
+        
+      }
+  }
+  .page-content{
+      letter-spacing: $letter-sapacing;
+      text-align: justify;
+
+      a{
+          border:2px solid $c-bg;
+      }
+  }
+}

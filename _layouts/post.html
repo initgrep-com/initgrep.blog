@@ -1,96 +1,54 @@
-{% include head.html %}
-{% include nav.html %}
-<div class=" content ">
-{% if page.posterimage != nil%}
-<div class="row">
-<div class="col s12 m10 l10 offset-l1 offset-m1 " style="padding: 0;">
-  <img class="post-img  " src='{{site.baseurl}}/assets/images/{{page.posterimage}}'>
-</div>
-<div class="row">
-    <div class="post-img-floater col s12 m10 l10 offset-l1 offset-m1  ">
-    <div class="row " style="margin-bottom: 0px;">
-    <div class="col s12 m6 l6 ">
-    <div class="col s4 m3 l2  ">
-    {% include util/insertDp.liquid name = page.author  class = "user" %}
+{% include v2/head.html %}
+{% include v2/header.html %}
+
+<div class="container-fluid">
+
+    <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
+
+        {%  include v2/sidenav.html %}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9  content-component">
+
+            <div class="row ">
+                <div class="col-12 col-lg-7 col-xl-6 ">
+                    <div class="row page-component">
+                        <div class="col-11 page-header">
+                                <small class="read-time">{% include util/minRead.liquid content= page.content  %}
+                                    read</small>
+                                <img src=" {% include util/insertDp-v2.liquid name = page.author %}" alt="profile image">
+                                <div class="page-header-meta">
+                                    <a href="#"><small>{{page.author}}</small></a>
+                                    <small>{{page.date | date: '%B %d, %Y'}}</small>
+                                </div>
+
+                        </div>
+                        <!-- <div class="col-11 page-poster">
+                            <img src="{{site.baseurl}}/assets/images/{{page.image}}" alt="{{page.title}}">
+                        </div> -->
+                        <div class="col-12 page-content">
+                            <div class="page-content-title">
+                                <h1>{{page.title}}</h1>
+                            </div>
+                            {{content}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5 col-xl-4">
+                    {% include v2/top-posts.html %}
+                </div>
+
+
+            </div>
+
+
+        </div>
     </div>
-    <div class="col s6 m9 l8  margin-top-1">
-    <a  href="{{site.baseurl}}/about/{{page.author}}" class="white-text  pt-sans-bold author" style="display: block;">{{page.author }}</a>
-    <a class="white-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
-    </div>
-    </div>
-    <div class="col s12 m6 l6 hide-on-small-only">
-    <div class="col s12 m4 right  margin-top-2">
-    <span class="white-text right pt-sans-bold readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
-    </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="col s12 m10 l8 offset-m1 offset-l2 ">
-    <h1 class=" post-head center white-text pt-sans-bold">{{page.title}}</h1>
-    </div>
-    </div> 
-  </div>
 </div>
-</div>
-{% else %}
-
-<div class="row " style="margin-bottom: 0;">
-<div class="col s12 m10 l8 offset-m1 offset-l2 ">
-<div class="row " style="margin-bottom: 0px;">
-<div class="col s12 m6 l6 ">
-<div class="col s4 m3 l2  ">
-{% include util/insertDp.liquid name = page.author  class = "user" %}
-</div>
-<div class="col s6 m9 l8  margin-top-1">
-<a  href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans-bold author" style="display: block;">{{page.author }}</a>
-<a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>         
-</div>
-</div>
-<div class="col s12 m6 l6 hide-on-small-only">
-<div class="col s12 m4 right  margin-top-2">
-<span class="grey-text right pt-sans-bold readtime" >{% include util/minRead.liquid content =  page.content  %} read</span> 
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col s12 m10 l6 offset-m1 offset-l3 ">
-<h1 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h1>
-</div>
-</div>
-
-{% endif %}
-
-  <div class="row">
-  <div class="col s12 m12 l3  hide-on-med-and-down">
-   <div class="col l12 " style="min-height: 500px;"></div>
-   <div class="row">
-     <div class="col l12">
-      {% include ads/homepage-adunit-vert-300-600.html %}
-   </div>
-   </div>
-  </div>
-  <div class="  col s12 m10 l6 offset-m1">
- 
-   <div class=" content-text col s12 m12 l12 ">{{ content | replace: '<a href="http', '<a rel="external nofollow" target="_blank" href="http' }}</div>
-   <div class=" col s12 m12 l12 "> {% include util/disqus.html %}</div>
-   
-
-   </div>
-  <div class="col s12 m12 l3  hide-on-med-and-down ">
-     <div class="col l12 " style="min-height: 500px;"></div>
-   <div class="row">
-     <div class="col l12">
-      {% include ads/homepage-adunit-vert-300-600.html %}
-   </div>
-   </div>
-  </div>
-  </div>
 
 </div>
 
-{% include footer.html %}
 
 
 
+</body>
+
+</html>

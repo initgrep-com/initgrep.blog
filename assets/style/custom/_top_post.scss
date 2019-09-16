@@ -57,6 +57,7 @@
                 p {
                   font-size: .9rem;
                   margin: 0 0 0 0;
+                  font-weight: 500;
                 }
               }
             }
@@ -90,7 +91,7 @@
           padding: 0 0 0 0;
           border-radius: 10px;
           margin-bottom: 1rem;
-          border: 1px solid $c-bg;
+          border: 1px solid $border-color;
           box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
           transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           background: transparent;
@@ -113,6 +114,7 @@
                   font-size: .9rem;
                   letter-spacing: $letter-sapacing;
                   margin: 0 0 0 0;
+                  font-weight: 500;
                 }
               }
             }

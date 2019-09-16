@@ -1,63 +1,54 @@
-{% include head.html %} {% include nav.html %}
-<div class="section ">
+{% include v2/head.html %}
+{% include v2/header.html %}
 
-  <div class="row ">
-    <div class="col l4 s12 m8 xl4 offset-m2 hide-on-med-and-down">
-      {% include toc/series.html currentCollection = site.postCollection %}
+<div class="container-fluid">
 
-      {% include ads/homepage-adunit-vert-300-600.html %}
-    </div>
-    <div class="col s12 m8 l8 xl8 offset-m2 ">
+    <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
 
-      <!-- author -->
-      <div class="row" style="margin-bottom: 0px;">
-        <div class="col s12 m10 l0 xl12  ">
-          <div class="row " style="margin-bottom: 0px;">
-            <div class="col s12 m8 l6 xl6 ">
-              <div class="row">
-                <div class="col s4 m4 l3 xl2  ">
-                  {% include util/insertDp.liquid name = page.author class = "user" %}
+        {%  include v2/sidenav.html %}
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9  content-component">
 
+            <div class="row ">
+                <div class="col-12 col-lg-7 col-xl-6 ">
+                    <div class="row page-component">
+                        <div class="col-11 page-header">
+                                <small class="read-time">{% include util/minRead.liquid content= page.content  %}
+                                    read</small>
+                                <img src=" {% include util/insertDp-v2.liquid name = page.author %}" alt="profile image">
+                                <div class="page-header-meta">
+                                    <a href="#"><small>{{page.author}}</small></a>
+                                    <small>{{page.date | date: '%B %d, %Y'}}</small>
+                                </div>
+
+                        </div>
+                        <!-- <div class="col-11 page-poster">
+                            <img src="{{site.baseurl}}/assets/images/{{page.image}}" alt="{{page.title}}">
+                        </div> -->
+                        <div class="col-12 page-content">
+                            <div class="page-content-title">
+                                <h1>{{page.title}}</h1>
+                            </div>
+                            {{content}}
+                        </div>
+                    </div>
                 </div>
-                <div class="col s6 m8 l8 xl10  margin-top-1 ">
-                  <a href="{{site.baseurl}}/about/{{page.author}}" class="grey-text  pt-sans-bold author" style="display: block; text-transform: capitalize;">
-                    {{page.author }}
-                  </a>
-                  <a class="grey-text pt-sans datetime ">{{page.date | date: '%B %d, %Y'}}</a>
+                <div class="col-12 col-lg-5 col-xl-4">
+                    {% include v2/top-posts.html %}
                 </div>
-              </div>
-            </div>
-            <div class="col s12 m4 l6 xl2 hide-on-small-only  ">
-              <div class="col s12 m12 l12 right  margin-top-2 ">
-                <span class="grey-text right pt-sans-bold readtime">
-                  {% include util/minRead.liquid content = page.content %} read
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- author -->
 
-      <div class="row content" style="padding-top: 0px;">
-        <div class="col s12 m12 l10 xl8 ">
-          <h2 class="valign post-head center black-text pt-sans-bold">{{page.title}}</h2>
+
+            </div>
+
+
         </div>
-        <div class=" content-text col s12 m12 l10 xl8 ">{{ content | replace: '<a href="http', '<a rel="external nofollow" target="_blank" href="http' }}</div>
-      </div>
-      <div class="row">
-        <div class="col s12 m12 hide-on-large-only">
-          {% include toc/series-bottom.html currentCollection = site.postCollection %}
-        </div>
-      </div>
-      <!-- comments -->
-      <div class="row">
-        <div class=" col s12 m12 l10"> {% include util/disqus.html %}</div>
-      </div>
-      <!-- end -->
     </div>
+</div>
 
-  </div>
+</div>
 
- 
-  {% include footer.html %}
+
+
+
+</body>
+
+</html>
