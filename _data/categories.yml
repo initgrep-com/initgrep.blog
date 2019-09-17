@@ -1,0 +1,50 @@
+all:
+  type: all
+  title: Home
+  icon: far fa-newspaper
+  link: /
+home:
+  type: home
+  title: Home
+  icon: far fa-newspaper
+  link: /  
+javascript:
+  type: javascript
+  title: JavaScript
+  icon: fab fa-js-square
+  link: /posts/javascript
+angular:
+  type: angular
+  title: Angular
+  icon: fab fa-angular
+  link: /posts/javascript/angular
+angularjs:
+  type: angularjs
+  title: AngularJs
+  icon: fab fa-angular
+  link: /posts/javascript/angularjs
+Design-pattern:
+  type: Design-pattern
+  title: Design Pattern
+  icon: fas fa-paint-roller
+  link: /posts/javascript/design-patterns
+typescript:
+  type: typescript
+  title: Typescript
+  icon: fab fa-js-square
+  link: /posts/typescript
+java:
+  type: java
+  title: Java
+  icon: fab fa-java
+  link: /posts/java
+jpa:
+  type: jpa
+  title: JPA
+  icon: fas fa-cube
+  link: /posts/java/jpa
+groovy:
+  type: groovy
+  title: Groovy
+  icon: fab fa-google-wallet
+  link: /posts/groovy

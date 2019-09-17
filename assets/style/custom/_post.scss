@@ -40,7 +40,13 @@
   .page-content{
       letter-spacing: $letter-sapacing;
       text-align: justify;
-
+      padding-left: 1rem;
+      padding-right: 1rem;
+      .page-content-title{
+        text-align: left;
+        letter-spacing: 0.2rem;
+        margin-bottom: 1rem;
+      }
       a{
           border:2px solid $c-bg;
       }

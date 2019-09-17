@@ -1,6 +1,13 @@
 <ul class="list-group list-group-flush top-post-component">
-    
-        {% if page.category %}
+
+    {% if page.category %}
+
+    {% for collection in site.collections %}
+    {% assign colsname  = collection.label  %}
+    {% if colsname != 'authors'%}
+    {% assign items = site.[colsname]  %}
+    {% for post in items  %}
+    {% if post.category == page.category  and post.title != page.title %}
 
     <li class="list-group-item top-heading  px-1 pt-1">
         <div class="media">
@@ -10,13 +17,19 @@
             </div>
         </div>
     </li>
+    {% break %}
+    {%endif%}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
 
-{% for collection in site.collections %}
+
+    {% for collection in site.collections %}
     {% assign colsname  = collection.label  %}
     {% if colsname != 'authors'%}
     {% assign items = site.[colsname]  %}
     {% for post in items  %}
-    {% if post.category == page.category %}
+    {% if post.category == page.category  and post.title != page.title %}
     <li class="list-group-item">
         <a href="{{site.baseurl}}{{post.url}}" alt="">
             <div class="media">
@@ -35,35 +48,34 @@
     {% endfor %}
     {%endif%}
 
+
     <li class="list-group-item top-heading  px-1 pt-1">
+        <div class="media">
+            <div class="media-body">
+                <i class="fas fa-meteor"></i>
+                <span>Latest posts</span>
+            </div>
+        </div>
+    </li>
+
+    {% for collection in site.collections %}
+    {% assign colsname  = collection.label  %}
+    {% if colsname != 'authors'%}
+    {% assign items = site.[colsname] | sort: 'date' | reverse %}
+    {% for post in items limit: 4  offset:0 %}
+    <li class="list-group-item">
+        <a href="{{site.baseurl}}{{post.url}}" alt="">
             <div class="media">
+                <img class="align-self-center" src="{{site.baseurl}}/assets/images/{{post.image}}"
+                    alt="Generic placeholder image">
                 <div class="media-body">
-                    <i class="fas fa-meteor"></i>
-                    <span>Latest posts</span>
+                    <h5 class="mt-0">{{post.category | upcase}}</h5>
+                    <p>{{post.title }} </p>
                 </div>
             </div>
-        </li>
-    
-    
-    
-        {% for collection in site.collections %}
-        {% assign colsname  = collection.label  %}
-        {% if colsname != 'authors'%}
-        {% assign items = site.[colsname] | sort: 'date' | reverse %}
-        {% for post in items limit: 4  offset:0 %}
-        <li class="list-group-item">
-            <a href="{{site.baseurl}}{{post.url}}" alt="">
-                <div class="media">
-                    <img class="align-self-center" src="{{site.baseurl}}/assets/images/{{post.image}}"
-                        alt="Generic placeholder image">
-                    <div class="media-body">
-                        <h5 class="mt-0">{{post.category | upcase}}</h5>
-                        <p>{{post.title }} </p>
-                    </div>
-                </div>
-            </a>
-        </li>
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
+        </a>
+    </li>
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
 </ul>

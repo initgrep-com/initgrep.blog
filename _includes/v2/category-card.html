@@ -12,7 +12,7 @@
 {% assign sortedPosts = (site.postCollection | sort: 'date') | reverse %}
 {% for post in sortedPosts %}
 {% for category in post.categories%}
-{% if category == postCategory %}
+{% if category == postCategory%}
 
 <!-- category-card start-->
 

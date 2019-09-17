@@ -1,26 +1,26 @@
 <!-- menu list-->
 <nav>
     <ul class="list-group list-group-flush">
-        <li class="list-group-item my-1">
-            <a href="#">
+        <!-- <li class="list-group-item my-1">
+            <a href="{{site.baseurl}}">
                 <i class="far fa-newspaper"></i>
                 <span class="menu-label  ">Home</span>
             </a>
         </li>
         <li class="list-group-item  my-1">
-            <a href="#">
+            <a href="{{site.baseurl}}{{site.data.categories.javascript.link}}">
                 <i class="fab fa-js-square"></i>
                 <span class="menu-label ">Javascript</span>
             </a>
         </li>
         <li class="list-group-item  my-1 active">
-            <a href="#">
+            <a href="{{site.baseurl}}{{site.data.categories.typescript.link}}">
                 <i class="fab fa-js-square"></i>
                 <span class="menu-label  ">Typescript</span>
             </a>
         </li>
         <li class="list-group-item  my-1">
-            <a href="#">
+            <a href="{{site.baseurl}}{{site.data.categories.Design-pattern.link}}">
                 <i class="fas fa-paint-roller"></i>
                 <span class="menu-label ">Design</span>
             </a>
@@ -42,6 +42,22 @@
                 <i class="fab fa-java"></i>
                 <span class="menu-label ">Java</span>
             </a>
+        </li> -->
+        {% for category in site.data.categories%}
+        {% for entry in category%}
+        {% if entry.title  and entry.type != 'all'  %}
+        {% if entry.type == include.type%}
+        <li class="list-group-item  my-1 active">
+        {% else %}
+        <li class="list-group-item  my-1">
+        {% endif %}
+            <a href="{{site.baseurl}}{{entry.link}}">
+                <i class="{{entry.icon}}"></i>
+                <span class="menu-label ">{{entry.title}}</span>
+            </a>
         </li>
+        {%endif%}
+        {%endfor%}
+        {%endfor%}
     </ul>
 </nav>

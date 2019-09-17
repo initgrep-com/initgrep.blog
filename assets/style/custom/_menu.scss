@@ -13,6 +13,7 @@
           color: $c-icon-color !important;
           // font-size: 1.1rem;
           background: transparent;
+          white-space: nowrap;
          
           a {
            
@@ -63,7 +64,7 @@
             padding-top: 5px;
             margin-right: 10px;
             margin-left: 10px;
-  
+            white-space: nowrap;
             a {
               transition: all 0.2s linear;
               display: block;
