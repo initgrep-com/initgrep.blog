@@ -21,7 +21,7 @@
         <small class="read-time">{% include util/minRead.liquid content= post.content  %} read</small>
         <img src="{% include util/insertDp-v2.liquid name = post.author %}" alt="image">
         <div class="app-card-meta">
-            <a href="#"><small>{{post.author}}</small></a>
+            <a href="{{site.baseurl}}/about/{{post.author}}"><small>{{post.author}}</small></a>
             <small>{{post.date | date: '%B %d, %Y'}}</small>
         </div>
 

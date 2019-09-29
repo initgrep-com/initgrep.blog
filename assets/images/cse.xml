@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomSearchEngine id="0ouka41f0ma" creator="000297669988019007071" keywords="java, javaee,jpa, hibernate, javascript, typsecript, angular, angularjs, react, reactjs, flutter, groovy" language="en" encoding="UTF-8" autocompletions="true">
+  <Title>Initgrep</Title>
+  <Context>
+    <BackgroundLabels>
+      <Label name="_cse_0ouka41f0ma" mode="FILTER"/>
+      <Label name="_cse_exclude_0ouka41f0ma" mode="ELIMINATE"/>
+    </BackgroundLabels>
+  </Context>
+  <LookAndFeel element_layout="8" theme="7" custom_theme="false" url_length="full" element_branding="show" enable_cse_thumbnail="true" promotion_url_length="full" font="2">
+    <Logo/>
+    <Colors/>
+    <Promotions/>
+    <SearchControls/>
+    <Results/>
+  </LookAndFeel>
+  <ImageSearchSettings enable="false"/>
+  <autocomplete_settings/>
+  <sort_by_keys label="Relevance" key=""/>
+  <sort_by_keys label="Date" key="date"/>
+</CustomSearchEngine>

@@ -42,18 +42,27 @@
           display: block;
           position: fixed;
           width: 100%;
-          height: 90%;
+          height: 100%;
           left: 0%;
           background: $pure-white;
-          top: 10%;
-          border-top-right-radius: 20px;
-          border-top-left-radius: 20px;
+          top: 0%;
+          
           animation: slidein 2s linear;
           // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
           -webkit-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
           -moz-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
           box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
           z-index: 3;
+          overflow-y:scroll;
+          overflow-x: hidden;
+          padding:10px;
+          
+            span{
+              padding: 0 0 0 0;
+              background: transparent;
+              border-width: 0px;
+            }
+          
         }
       }
   

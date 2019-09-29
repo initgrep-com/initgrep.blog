@@ -6,12 +6,12 @@
         <img class="card-img-top img-fluid" src="{{site.baseurl}}/assets/images/{{post.image}}" alt="Card image cap">
         <div class="card-body">
             <p class="card-meta">
-                <a href="">
+                <a href="{{site.baseurl}}/about/{{post.author}}">
                     <small class="text-user">{{post.author}}</small>
                 </a>
                 <small class="text-filler">in</small>
                 <small class="text-category">
-                    <a href="#">{{post.category}}</a> </small>
+                    <a href="{{site.baseurl}}{{site.data.categories[post.category].link}}">{{post.category}}</a> </small>
                 <small class=" read-time">{% include util/minRead.liquid content= post.content  %} read</small>
 
             </p>

@@ -36,12 +36,13 @@
       box-shadow: 0 1px 1px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       img {
-        height: 200px;
+        height: 220px;
         object-fit: cover;
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;
       }
       .card-body {
+        // border: 1px solid red;
         .card-meta {
           letter-spacing: $letter-sapacing;
           color: $mute-color;
@@ -70,6 +71,7 @@
         p.card-text {
           letter-spacing: $letter-sapacing;
           font-size: .9rem;
+          display: none;
         }
       }
 
