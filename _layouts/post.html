@@ -12,13 +12,13 @@
                 <div class="col-12 col-lg-7 col-xl-6 ">
                     <div class="row page-component">
                         <div class="col-11 page-header">
-                                <small class="read-time">{% include util/minRead.liquid content= page.content  %}
-                                    read</small>
-                                <img src=" {% include util/insertDp-v2.liquid name = page.author %}" alt="profile image">
-                                <div class="page-header-meta">
-                                    <a href="#"><small>{{page.author}}</small></a>
-                                    <small>{{page.date | date: '%B %d, %Y'}}</small>
-                                </div>
+                            <small class="read-time">{% include util/minRead.liquid content= page.content  %}
+                                read</small>
+                            <img src=" {% include util/insertDp-v2.liquid name = page.author %}" alt="profile image">
+                            <div class="page-header-meta">
+                                <a href="#"><small>{{page.author}}</small></a>
+                                <small>{{page.date | date: '%B %d, %Y'}}</small>
+                            </div>
 
                         </div>
                         <!-- <div class="col-11 page-poster">
@@ -36,10 +36,7 @@
                     {% include v2/top-posts.html %}
                 </div>
 
-
             </div>
-
-
         </div>
     </div>
 </div>
@@ -47,8 +44,7 @@
 </div>
 
 
-
-
+{% include v2/footer.html %}
 </body>
 
 </html>
