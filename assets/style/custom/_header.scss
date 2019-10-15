@@ -1,159 +1,174 @@
 //search Start
 
-@include media-breakpoint-up(xs) {
-  .search-component {
-    display: none;
-  }
+.search-component {
+  display: none;
+}
 
-  .search-wrapper {
-    margin-right: 20px;
-    margin: 5px;
-    span {
-      border: 2px solid $c-icon-color;
-      border-radius: 10px;
-      padding: 10px;
+.search-wrapper {
+  margin-right: 20px;
+  margin: 5px;
+  span {
+    border: 2px solid $c-icon-color;
+    border-radius: 10px;
+    padding: 10px;
 
-      i {
-        font-size: 1rem;
-        color: $c-icon-color;
-      }
-    }
-
-    .basic-overlay {
-      display: flex;
-      position: fixed;
-      height: 100%;
-      width: 100%;
-      left: 0%;
-      background: $bg-overlay;
-      top: 0%;
-      z-index: 1;
-    }
-
-    .search-overlay {
-      display: block;
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      left: 0%;
-      background: $pure-white;
-      top: 0%;
-      -webkit-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-      -moz-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-      box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-      z-index: 3;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 10px;
-
-      div.close-search-wrapper {
-        i.close-search-button {
-          font-size: 2rem;
-          color: $c-icon-color;
-
-          &:hover {
-            font-size: 2.1rem;
-            cursor: pointer;
-          }
-        }
-      }
-
-      span/**google search selector-dynamic**/ {
-        padding: 0 0 0 0 !important;
-        background: transparent !important;
-        border-width: 0px;
-      }
-      div.gsc-input-box /* google search - dynamic input*/ {
-        border: 2px solid $c-icon-color !important;
-        padding: 0.3rem;
-        border-radius: 5px;
-        margin-right: 0.5rem;
-      }
-
-      /* googlesearch -dynamic button*/
-      button.gsc-search-button {
-        padding: 0.9rem;
-        border-radius: 5px;
-        background: $c-icon-color;
-        border: $c-icon-color;
-      }
-    }
-
-    &:hover {
-      span {
-        background: $c-icon-color;
-        i {
-          color: $white-color;
-        }
-      }
+    i {
+      font-size: 1rem;
+      color: $c-icon-color;
     }
   }
 
-  .setting-wrapper {
-    margin-right: 20px;
-    margin: 5px;
-    span {
-      border: 2px solid $c-icon-color;
-      border-radius: 10px;
-      padding: 10px;
+  .basic-overlay {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0%;
+    background: $bg-overlay;
+    top: 0%;
+    z-index: 1;
+  }
 
-      i {
-        font-size: 1rem;
-        transform: rotate(-90deg);
+  .search-overlay {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    background: $pure-white;
+    top: 0%;
+    -webkit-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    z-index: 3;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
+
+    div.close-search-wrapper {
+      i.close-search-button {
+        font-size: 2rem;
         color: $c-icon-color;
-      }
-    }
 
-    &:hover,
-    &:active {
-      span {
-        background: $c-icon-color;
-        cursor: pointer;
-        i {
-          color: $white-color;
+        &:hover {
+          font-size: 2.1rem;
+          cursor: pointer;
         }
       }
-      .basic-overlay {
-        display: flex;
-        position: fixed;
-        height: 100%;
-        width: 100%;
-        left: 0%;
-        background: $bg-overlay;
-        top: 0%;
-        z-index: 1;
-      }
-
-      .setting-overlay {
-        display: block;
-        position: fixed;
-        width: 100%;
-        height: 40%;
-        left: 0%;
-        background: $pure-white;
-        top: 60%;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-        animation: slidein 2s linear;
-        // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-        -webkit-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-        -moz-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-        box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
-        z-index: 3;
-      }
     }
 
-    .setting-overlay {
-      display: none;
+    span/**google search selector-dynamic**/ {
+      padding: 0 0 0 0 !important;
+      background: transparent !important;
+      border-width: 0px;
     }
-    .basic-overlay {
-      display: none;
+    div.gsc-input-box /* google search - dynamic input*/ {
+      border: 2px solid $c-icon-color !important;
+      padding: 0.3rem;
+      border-radius: 5px;
+      margin-right: 0.5rem;
+    }
+
+    /* googlesearch -dynamic button*/
+    button.gsc-search-button {
+      padding: 0.9rem;
+      border-radius: 5px;
+      background: $c-icon-color;
+      border: $c-icon-color;
+    }
+  }
+
+  &:hover {
+    span {
+      background: $c-icon-color;
+      i {
+        color: $white-color;
+      }
     }
   }
 }
+
+.setting-wrapper {
+  margin-right: 20px;
+  margin: 5px;
+  span {
+    border: 2px solid $c-icon-color;
+    border-radius: 10px;
+    padding: 10px;
+
+    i {
+      font-size: 1rem;
+      transform: rotate(-90deg);
+      color: $c-icon-color;
+    }
+  }
+
+  .basic-overlay {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0%;
+    background: rgba(0, 0, 0, 0.3); //$bg-overlay;
+    top: 0%;
+    z-index: 1;
+  }
+
+  .setting-overlay {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 40%;
+    left: 0%;
+    background: $pure-white;
+    top: 60%;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    animation: slidein 2s linear;
+    // box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px -1px 5px -2px rgba(0, 0, 0, 0.65);
+    z-index: 3;
+
+    div.close-setting-wrapper {
+      i.close-setting-button {
+        font-size: 2rem;
+        color: $c-icon-color;
+
+        &:hover {
+          font-size: 2.1rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    span {
+      background: $c-icon-color;
+      cursor: pointer;
+      i {
+        color: $white-color;
+      }
+    }
+  }
+}
+
 @include media-breakpoint-up(sm) {
 }
 @include media-breakpoint-up(md) {
+
+  .setting-wrapper {
+   
+    .setting-overlay{
+      width: 60%;
+      height: 30%;
+      left: 15%;
+      top: 35%;
+      border-radius: 10px;
+    }
+  }
 }
 @include media-breakpoint-up(lg) {
   .brand-component {
@@ -174,10 +189,19 @@
       top: 0%;
     }
   }
+
+  .setting-wrapper {
+   
+    .setting-overlay{
+      width: 40%;
+      height: 30%;
+      left: 30%;
+      top: 35%;
+      border-radius: 10px;
+    }
+  }
 }
 
 @include media-breakpoint-up(xl) {
 }
 //Search Component ENDS
-
-
