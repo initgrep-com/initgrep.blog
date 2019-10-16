@@ -142,6 +142,13 @@
         }
       }
     }
+
+  div.nightmode-wrapper{
+    border:1px solid transparent; //in nightmode- keep a color
+    border-radius: 5px;
+    padding: 1rem;
+    padding-top: 1.3rem;
+  }
   }
 
   &:hover {
@@ -193,9 +200,9 @@
   .setting-wrapper {
    
     .setting-overlay{
-      width: 40%;
+      width: 30%;
       height: 30%;
-      left: 30%;
+      left: 35%;
       top: 35%;
       border-radius: 10px;
     }
