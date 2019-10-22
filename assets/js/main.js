@@ -15,7 +15,7 @@ class InitGrep {
     openSearchWrapper() {
         $('.search-open-wrapper').click(function () {
             $('.search-overlay').show(300);
-            $('.basic-overlay').show();
+            $('.basic-overlay').show(300);
         });
     }
     closeSearchWrapper() {

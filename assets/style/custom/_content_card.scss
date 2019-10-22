@@ -1,12 +1,14 @@
 .all-post-component{
+  margin-top: 2rem;
+
   span{
     font-size: 1.25rem;
     color:$c-icon-color;
     font-weight: 600;
     margin-top:2rem;
     i{
-      margin-right: .9rem;
-      font-size: 2rem;
+      margin-right: .4rem;
+      font-size: 1.5rem;
     }
   }
 }
@@ -138,6 +140,9 @@
 }
 @include media-breakpoint-up(md) {
 
+  .all-post-component{
+    margin-top: 0rem;
+  }
   .sub-content-component {
     background: transparent;
     margin: 0px;

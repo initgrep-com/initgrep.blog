@@ -39,16 +39,56 @@
   }
   .page-content{
       letter-spacing: $letter-sapacing;
-      text-align: justify;
+      text-align: left;
       padding-left: 1rem;
       padding-right: 1rem;
       .page-content-title{
         text-align: left;
-        letter-spacing: 0.2rem;
+        letter-spacing: 0.1rem;
         margin-bottom: 1rem;
+       
+      }
+      h1{
+        font-size: 1.9rem;
+      }
+      h2{
+        font-size: 1.4rem;
       }
       a{
-          border:2px solid $c-bg;
+          border-bottom:2px dashed $c-icon-color;
+          // font-style: italic;
+          cursor: pointer;  
+          text-decoration: none;
+          transition: all 0.2s ease-out;
+          &:hover{
+            color:$c-icon-color;
+            font-weight: 600;
+            border-bottom-width: 0px;
+           
+          }
+      }
+      p{
+          letter-spacing: 0.035rem;
       }
   }
 }
+
+
+@include media-breakpoint-up(sm) {  }
+@include media-breakpoint-up(md) {  }
+@include media-breakpoint-up(lg) { 
+  .page-component {
+  
+    .page-content{
+     
+        h1{
+          font-size: 2.5rem;
+        }
+        h2{
+          font-size: 2rem;
+        }
+       
+    }
+  }
+ }
+@include media-breakpoint-up(xl) {  }
