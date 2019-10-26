@@ -29,20 +29,18 @@
   
   @include media-breakpoint-up(xs) {
     .top-card {
-      border-radius: 20px;
+      border-radius: 5px;
       background: transparent;
-      // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-      // box-shadow: 0 0 0 0;
-      box-shadow: 0 1px 1px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+      border:1px solid $border-color;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       img {
         height: 220px;
         object-fit: cover;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
       }
       .card-body {
-        // border: 1px solid red;
         .card-meta {
           letter-spacing: $letter-sapacing;
           color: $mute-color;
@@ -71,7 +69,6 @@
         p.card-text {
           letter-spacing: $letter-sapacing;
           font-size: .9rem;
-          // display: none;
         }
       }
 
@@ -86,18 +83,14 @@
   }
   @include media-breakpoint-up(lg) {
     .top-card {
-      border-radius: 20px;
-      border-color: #c7c9ca47;
       background: transparent;
-      // box-shadow: 0 5px 10px rgba(154,160,185,.05), 0 15px 40px rgba(166,173,201,.2);
-      // box-shadow: 0 1px 1px rgba(154, 160, 185, 0.05), 0 2px 5px rgba(166, 173, 201, 0.2);
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border:1px solid $border-color;
       img {
         height: 250px;
         object-fit: cover;
-        border-top-right-radius: 20px;
-        border-top-left-radius: 20px;
+        
       }
       .card-body {
         .card-meta {

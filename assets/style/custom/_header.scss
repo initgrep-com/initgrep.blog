@@ -9,7 +9,7 @@
   margin: 5px;
   span {
     border: 2px solid $c-icon-color;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
 
     i {
@@ -19,7 +19,7 @@
   }
 
   .basic-overlay {
-    display: flex;
+    // display: flex;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -27,10 +27,12 @@
     background: $bg-overlay;
     top: 0%;
     z-index: 1;
+    display: none;
+    
   }
 
   .search-overlay {
-    display: block;
+    display: none;
     position: fixed;
     width: 100%;
     height: 100%;
@@ -93,7 +95,7 @@
   margin: 5px;
   span {
     border: 2px solid $c-icon-color;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
 
     i {
@@ -104,7 +106,7 @@
   }
 
   .basic-overlay {
-    display: flex;
+    display: none;
     position: fixed;
     height: 100%;
     width: 100%;
@@ -115,7 +117,7 @@
   }
 
   .setting-overlay {
-    display: block;
+    display: none;
     position: fixed;
     width: 100%;
     height: 40%;

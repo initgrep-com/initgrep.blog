@@ -8,6 +8,7 @@
           border: none;
           box-shadow: none;
           background: transparent;
+         
           div.media {
             div.media-body {
               font-size: 1.4rem;
@@ -31,10 +32,10 @@
         }
         li.list-group-item {
           padding: 0 0 0 0;
-          border-radius: 10px;
+          border-radius: 5px;
           margin-bottom: 1rem;
-          border: 1px solid $c-bg;
-          box-shadow: 1px 2px 1px $shadow-color, 0 1px 1px $shadow-color;
+          border:1px solid $border-color;
+          box-shadow: 0px 1px 1px $shadow-color, 0 1px 1px $shadow-color;
           transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           background: transparent;
           a {
@@ -45,7 +46,7 @@
               img {
                 width: 72px;
                 height: 72px;
-                border-radius: 10px;
+                border-radius: 5px;
                 margin-right: 0.6rem;
               }
               .media-body {
@@ -65,6 +66,9 @@
           &:hover {
             // background: $c-bg;
             box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+          }
+          &:last-child{
+            margin-bottom: 1rem !important;
           }
         }
       }
@@ -89,9 +93,9 @@
         }
         li.list-group-item {
           padding: 0 0 0 0;
-          border-radius: 10px;
+          border-radius: 5px;
           margin-bottom: 1rem;
-          border: 1px solid transparent;
+          border:1px solid $border-color;
           box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
           transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           background: transparent;
@@ -103,7 +107,7 @@
               img {
                 width: 72px;
                 height: 72px;
-                border-radius: 10px;
+                border-radius: 5px;
                 margin-right: 0.6rem;
               }
               .media-body {

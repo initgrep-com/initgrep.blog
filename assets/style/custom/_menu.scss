@@ -7,19 +7,12 @@
       ul.list-group {
         li.list-group-item {
           border-width: 0px;
-          // border: 1px solid $c-bg;
-          // border-top-right-radius: 50px;
-          // border-bottom-right-radius: 50px;
           color: $c-icon-color !important;
-          // font-size: 1.1rem;
           background: transparent;
           white-space: nowrap;
          
           a {
            
-            i {
-              // font-size: 1.2rem;
-            }
             span {
               letter-spacing: $letter-sapacing;
             }
