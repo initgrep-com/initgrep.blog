@@ -1,6 +1,13 @@
-{% include head.html %}
-<div class="author-wrapper ">
-{% include about/wleft.html %}
-{% include about/wright.html %}
+{% include v2/head.html %}
+{% include v2/header.html %}
+
+<div class="container-fluid">
+        <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
+                {%  include v2/sidenav.html %}
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9 content-component  ">
+                   {% include v2/site-profile.html %}           
+                </div>
+        </div>
 </div>
-{% include scripts/baseScript.html%}
+
+{% include v2/footer.html %}

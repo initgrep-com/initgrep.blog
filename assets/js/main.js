@@ -1,5 +1,25 @@
 class InitGrep {
 
+    enableScrollProgress() {
+        
+        document.addEventListener(
+            "scroll",
+            function () {
+                console.log("oncroll called");
+                const scrollTop =
+                    document.documentElement["scrollTop"] || document.body["scrollTop"];
+                const scrollBottom =
+                    (document.documentElement["scrollHeight"] ||
+                        document.body["scrollHeight"]) - document.documentElement.clientHeight;
+               const scrollPercent = scrollTop / scrollBottom * 100 + "%";
+                document
+                    .getElementById("progress")
+                    .style.setProperty("--scroll", scrollPercent);
+            },
+            { passive: true }
+        );
+    }
+
     hideSearchWrapper() {
         // $('.search-overlay').hide();
         $('.search-overlay').hide();
@@ -46,7 +66,7 @@ class InitGrep {
 //run scripts below
 
 const initgrep = new InitGrep();
-
+initgrep.enableScrollProgress();
 initgrep.hideBasicOverlay();
 initgrep.hideSearchWrapper();
 initgrep.hideSettingWrapper();

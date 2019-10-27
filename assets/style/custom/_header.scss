@@ -1,5 +1,41 @@
 //search Start
 
+#progress {
+  --scroll: 0%;
+  background: linear-gradient(to right, $c-icon-color var(--scroll), transparent 0);
+  position: fixed;
+  width: 100%;
+  height: 5px;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+}
+
+.brand-component {
+  // border:1px solid red;
+  a.brand {
+    text-decoration: none;
+    i {
+      background: $c-icon-color;
+      border: 2px solid $c-icon-color;
+      padding: 0.2rem;
+      padding-top: 0.3rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      color: white;
+    }
+    span {
+      color: $c-icon-color;
+      font-size: 1.1rem;
+      font-weight: bold;
+      top: .2rem;
+      position: relative;
+      letter-spacing: .06rem;
+      // text-transform: capitalize;
+    }
+  }
+}
+
 .search-component {
   display: none;
 }
@@ -28,7 +64,6 @@
     top: 0%;
     z-index: 1;
     display: none;
-    
   }
 
   .search-overlay {
@@ -145,12 +180,12 @@
       }
     }
 
-  div.nightmode-wrapper{
-    border:1px solid transparent; //in nightmode- keep a color
-    border-radius: 5px;
-    padding: 1rem;
-    padding-top: 1.3rem;
-  }
+    div.nightmode-wrapper {
+      border: 1px solid transparent; //in nightmode- keep a color
+      border-radius: 5px;
+      padding: 1rem;
+      padding-top: 1.3rem;
+    }
   }
 
   &:hover {
@@ -165,12 +200,55 @@
 }
 
 @include media-breakpoint-up(sm) {
+  .brand-component {
+    a.brand {
+      text-decoration: none;
+      i {
+        background: $c-icon-color;
+        border: 2px solid $c-icon-color;
+        padding: 0.2rem;
+        padding-top: 0.3rem;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: white;
+      }
+      span {
+        color: $c-icon-color;
+        font-size: 1.5rem;
+        font-weight: bold;
+        top: .2rem;
+        // text-transform: capitalize;
+      }
+    }
+  }
 }
 @include media-breakpoint-up(md) {
 
+  .brand-component {
+    a.brand {
+      text-decoration: none;
+      i {
+        background: $c-icon-color;
+        border: 2px solid $c-icon-color;
+        padding: 0.2rem;
+        padding-top: 0.3rem;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: white;
+      }
+      span {
+        color: $c-icon-color;
+        font-size: 1.5rem;
+        font-weight: bold;
+        top: .2rem;
+        position: relative;
+        letter-spacing: .08rem;
+        // text-transform: capitalize;
+      }
+    }
+  }
   .setting-wrapper {
-   
-    .setting-overlay{
+    .setting-overlay {
       width: 60%;
       height: 30%;
       left: 15%;
@@ -200,8 +278,7 @@
   }
 
   .setting-wrapper {
-   
-    .setting-overlay{
+    .setting-overlay {
       width: 30%;
       height: 30%;
       left: 35%;
