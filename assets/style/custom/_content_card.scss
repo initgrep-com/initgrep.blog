@@ -49,6 +49,7 @@
         small {
           font-size: 0.7rem;
           color: $c-icon-color;
+          letter-spacing: $letter-sapacing;
         }
         small.text-filler {
           color: $c-bg-black;
@@ -57,6 +58,7 @@
       h5.app-card-heading {
         margin-top: 1rem;
         font-size: 0.9rem;
+        font-weight: 700;
         letter-spacing: $letter-sapacing;
         a {
           text-decoration: none;
@@ -112,6 +114,7 @@
           small {
             font-size: 0.7rem;
             color: $c-icon-color;
+            // letter-spacing: $letter-sapacing;
           }
           small.text-filler {
             color: $c-bg-black;

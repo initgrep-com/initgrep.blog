@@ -44,12 +44,10 @@
         .card-meta {
           letter-spacing: $letter-sapacing;
           color: $mute-color;
+
+
           a {
             text-decoration: none;
-            small.text-user {
-              font-weight: 500 !important;
-              color: $mute-color;
-            }
           }
   
           small.read-time {
@@ -60,11 +58,19 @@
           }
           small.text-category {
             text-transform: capitalize;
+            a{
+              color: $c-icon-color;
+            }
           }
         }
         h5.card-title {
+          
           color: $c-color-black;
           letter-spacing: $letter-sapacing;
+          font-weight: 700;
+          a{
+            text-decoration: none;
+          }
         }
         p.card-text {
           letter-spacing: $letter-sapacing;
@@ -72,8 +78,15 @@
         }
       }
 
+      
+
       &:hover{
         box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+        h5.card-title{
+          a{
+            color:$c-icon-color;
+          }
+        }
       }
     }
   }
@@ -98,10 +111,7 @@
           color: $mute-color;
           a {
             text-decoration: none;
-            small.text-user {
-              font-weight: 500 !important;
-              color: $mute-color;
-            }
+            
           }
   
           small.read-time {
@@ -123,7 +133,7 @@
         }
         p.card-text {
           letter-spacing: $letter-sapacing;
-          font-size: .9rem;
+          font-size: 1rem;
         }
       }
 
