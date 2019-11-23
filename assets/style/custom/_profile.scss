@@ -36,11 +36,24 @@
           border-width: 0px !important;
           background: transparent;
           a {
+            text-decoration: none;
             span {
               letter-spacing: 0.025rem;
               i {
                 font-size: 1.2rem;
                 color: $c-icon-color;
+              }
+            }
+          }
+
+          &:hover{
+            a{
+              span{
+                color: $c-icon-color;
+                font-weight: 700;
+                i{
+                  font-weight: 500;
+                }
               }
             }
           }
