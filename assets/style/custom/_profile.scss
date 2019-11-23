@@ -54,6 +54,7 @@
       h5 {
         margin-top: 1rem;
         margin-bottom: 1rem;
+        
         color: $c-icon-color;
       }
     }
@@ -74,8 +75,10 @@
           }
           h5{
             letter-spacing: 0.035rem;
+            font-weight: 700 ;
             a{
               text-decoration: none;
+              font-weight: 700;
             }
           }
           p{

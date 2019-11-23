@@ -260,9 +260,13 @@
 @include media-breakpoint-up(lg) {
   .brand-component {
     position: fixed;
+    margin-left: 7%;
   }
   .search-col {
     left: 25%;
+  }
+  .parent-setting-wrapper{
+    margin-left: 45%;
   }
 
   .search-wrapper {
