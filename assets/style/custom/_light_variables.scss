@@ -1,10 +1,14 @@
 :root{
  --c-icon-color:#ee1843fc;
  --c-text-color: #e22248;
+ --border-color: #ee184341;
+ --shadow-hover-color: #33333287;
+ --pre-color: #ee9818fc;
 }
 
 
 $primary: #333;
+$body-bg: #f1f1f1;
 $font-family-base: 'Karla', sans-serif;
 $c-bg: #fc456a13;
 $c-text-color: var(--c-text-color);
@@ -17,10 +21,10 @@ $white-color: #f1f1f1;
 $pure-white: white;
 $bg-overlay: rgba(122, 118, 118, 0.4);
 $shadow-color:rgba(0, 0, 0, 0.2);
-$shadow-hover-color: #fc456a3a;//rgba(0,0,0,0.25);
+$shadow-hover-color: var(--shadow-hover-color);//rgba(0,0,0,0.25);
 
 $text-user-color:#6c757d;
-$border-color: #c7c9ca47;
+$border-color: var(--border-color);
 
 $custom-control-indicator-border-width : 2px;
 $custom-control-indicator-size: 2rem; 

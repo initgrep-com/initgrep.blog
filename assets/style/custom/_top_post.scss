@@ -70,7 +70,7 @@ ul.top-post-component {
     }
     &:last-child {
       margin-bottom: 1rem !important;
-      border-bottom-width: 1px !important;
+      border-bottom-width: 10px !important;
       border-bottom-style: solid !important;
       border-bottom-color: var(--boder-color) !important;
     }
@@ -133,7 +133,7 @@ ul.top-post-component {
       }
 
       &:last-child {
-        border-bottom-width: 1px !important;
+        border-bottom-width: 0px !important;
         border-bottom-style: solid !important;
         border-bottom-color: var(--boder-color) !important;
       }
