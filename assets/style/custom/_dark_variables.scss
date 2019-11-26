@@ -1,0 +1,35 @@
+:root{
+ --c-icon-color:#ee9818fc;
+ --c-text-color: #e22248;
+ --border-color: #ffc10787;
+ --shadow-hover-color: #ffc10787;
+ --pre-color: #ee9818fc;
+}
+
+
+$primary: #f1f1f1;
+$body-bg: #333;
+$body-color: #f1f1f1;
+$font-family-base: 'Karla', sans-serif;
+$c-bg: #fc456a13;
+$c-text-color: var(--c-text-color);
+$c-icon-color: var(--c-icon-color);
+$c-bg-black: #212529;
+$c-color-black: #433e3f;
+$letter-sapacing: 0.025rem;
+$mute-color: #6c757d;
+$white-color: #f1f1f1;
+$pure-white: white;
+$bg-overlay: rgba(122, 118, 118, 0.4);
+$shadow-color:rgba(0, 0, 0, 0.2);
+$shadow-hover-color:var(--shadow-hover-color);//rgba(0,0,0,0.25);
+$pre-color: var(--pre-color);
+
+$text-user-color:#6c757d;
+$border-color:var(--border-color);
+
+$custom-control-indicator-border-width : 2px;
+$custom-control-indicator-size: 2rem; 
+$custom-switch-width:                           $custom-control-indicator-size * 1.75 !default;
+$custom-switch-indicator-border-radius:         $custom-control-indicator-size / 2 !default;
+$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator-border-width * 4}) !default;

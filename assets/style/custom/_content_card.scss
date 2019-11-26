@@ -67,7 +67,7 @@
     }
 
     &:hover {
-      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+      box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
 
       .app-card-body {
         h5 a {
@@ -131,7 +131,7 @@
       }
   
       &:hover {
-        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+        box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
   
         .app-card-body {
           h5 a {
@@ -162,7 +162,7 @@
       margin-bottom: 1rem;
       margin-right: 2rem;
       min-height: 300px;
-      border: 1px solid $c-bg;
+      border: 1px solid $border-color;
 
       div.app-card-poster {
         float: none;
@@ -228,7 +228,7 @@
           a {
             // border:1px solid blue;
             text-decoration: none;
-            color: $c-bg-black;
+            // color: $c-bg-black;
             letter-spacing: $letter-sapacing;
             // font-size: .9rem;
           }
@@ -242,7 +242,7 @@
       }
 
       &:hover {
-        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+        box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
 
         .app-card-poster {
           // box-shadow: 0 14px 28px rgba($color: #000000, $alpha: 0.2), 0 10px 10px rgba($color: #000000, $alpha: 0.2);

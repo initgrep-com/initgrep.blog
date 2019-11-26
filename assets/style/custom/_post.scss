@@ -128,6 +128,10 @@
       width: 100%;
     }
 
+    pre{
+      color: $pre-color;
+    }
+    
     pre.highlight {
       border: 4px solid $c-bg;
       border-radius: 5px;

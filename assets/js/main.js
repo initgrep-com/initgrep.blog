@@ -33,12 +33,12 @@ class InitGrep {
     }
 
     changeMenuOpacityOnScroll(scrollPercent) {
-        if (scrollPercent >= 3000 && !this.hasMenuOpacityEnabled) {
+        if (scrollPercent >= 500 && !this.hasMenuOpacityEnabled) {
             console.log("add the opacity");
             this.hasMenuOpacityEnabled = true;
             $('.menu-component').addClass('scroll-opactity');
         }
-        if (scrollPercent < 3000 && this.hasMenuOpacityEnabled) {
+        if (scrollPercent < 500 && this.hasMenuOpacityEnabled) {
             this.hasMenuOpacityEnabled = false;
             console.log("remove the opacity");
             $('.menu-component').removeClass('scroll-opactity');
@@ -100,6 +100,10 @@ class InitGrep {
             $('.setting-overlay').hide();
             $('.basic-overlay').hide();
         })
+    }
+
+    changeTheme(){
+        
     }
 
 

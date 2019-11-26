@@ -1,5 +1,5 @@
 .app-category-card {
-  border: 1px solid $c-bg;
+  border: 1px solid $border-color;
   border-radius: 10px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -96,7 +96,7 @@
   }
 
   &:hover {
-    box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+    box-shadow: 0 1px 5px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
 
     .app-card-body {
       h5 {
@@ -109,7 +109,7 @@
       .control {
         a {
           color: $c-icon-color;
-          box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+          box-shadow: 0 1px 5px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
         }
       }
     }
@@ -122,7 +122,7 @@
 }
 @include media-breakpoint-up(lg) {
   .app-category-card {
-    border: 1px solid $c-bg;
+    border: 1px solid $border-color;
     border-radius: 10px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -217,12 +217,12 @@
     }
 
     &:hover {
-      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+      box-shadow: 0 1px 5px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
 
       .app-card-footer {
         .control {
           a {
-            box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+            box-shadow: 0 1px 5px $shadow-hover-color, 0 1px 1px $shadow-hover-color;
           }
         }
       }
