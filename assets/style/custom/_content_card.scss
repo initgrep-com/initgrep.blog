@@ -21,8 +21,8 @@
     display: block;
     overflow: auto;
     clear: both;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
-    border:1px solid $border-color;
+    box-shadow: 0 1px 3px $shadow-color, 0 1px 3px $shadow-color;
+    border:1px solid $content-card-border-color;
     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
     border-radius: 5px;
     div.app-card-poster {
@@ -67,7 +67,7 @@
     }
 
     &:hover {
-      box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
+      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
 
       .app-card-body {
         h5 a {
@@ -87,7 +87,7 @@
       display: block;
       overflow: auto;
       clear: both;
-      box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
+      box-shadow: 0 1px 3px $shadow-color, 0 1px 3px $shadow-color;
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
       border-radius: 5px;
       div.app-card-poster {
@@ -131,7 +131,7 @@
       }
   
       &:hover {
-        box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
+        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
   
         .app-card-body {
           h5 a {
@@ -157,12 +157,12 @@
       flex-direction: column;
       border-radius: 5px;
       background: transparent;
-      box-shadow: 0 1px 1px $shadow-color, 0 1px 1px $shadow-color;
+      box-shadow: 0 1px 3px $shadow-color, 0 1px 3px $shadow-color;
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
       margin-bottom: 1rem;
       margin-right: 2rem;
       min-height: 300px;
-      border: 1px solid $border-color;
+      // border: 1px solid $border-color;
 
       div.app-card-poster {
         float: none;
@@ -242,7 +242,7 @@
       }
 
       &:hover {
-        box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
+        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
 
         .app-card-poster {
           // box-shadow: 0 14px 28px rgba($color: #000000, $alpha: 0.2), 0 10px 10px rgba($color: #000000, $alpha: 0.2);

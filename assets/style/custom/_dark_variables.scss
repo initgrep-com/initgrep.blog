@@ -2,7 +2,7 @@
  --c-icon-color:#ee9818fc;
  --c-text-color: #e22248;
  --border-color: #ffc10787;
- --shadow-hover-color: #ffc10787;
+ --shadow-hover-color: rgba(0,0,0,0.22);
  --pre-color: #ee9818fc;
 }
 
@@ -27,6 +27,7 @@ $pre-color: var(--pre-color);
 
 $text-user-color:#6c757d;
 $border-color:var(--border-color);
+$content-card-border-color : $border-color;
 
 $custom-control-indicator-border-width : 2px;
 $custom-control-indicator-size: 2rem; 

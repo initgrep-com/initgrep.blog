@@ -1,9 +1,10 @@
 :root{
  --c-icon-color:#ee1843fc;
  --c-text-color: #e22248;
- --border-color: #ee184341;
- --shadow-hover-color: #33333287;
+ --border-color: transparent;
+ --shadow-hover-color: rgba(0, 0, 0, 0.2);
  --pre-color: #ee9818fc;
+ --content-card-border : transparent;
 }
 
 
@@ -20,11 +21,12 @@ $mute-color: #6c757d;
 $white-color: #f1f1f1;
 $pure-white: white;
 $bg-overlay: rgba(122, 118, 118, 0.4);
-$shadow-color:rgba(0, 0, 0, 0.2);
+$shadow-color:rgba(0, 0, 0, 0.1);
 $shadow-hover-color: var(--shadow-hover-color);//rgba(0,0,0,0.25);
 
 $text-user-color:#6c757d;
 $border-color: var(--border-color);
+$content-card-border-color: var(--content-card-border);
 
 $custom-control-indicator-border-width : 2px;
 $custom-control-indicator-size: 2rem; 

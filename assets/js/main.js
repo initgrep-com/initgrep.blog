@@ -102,11 +102,31 @@ class InitGrep {
         })
     }
 
-    changeTheme(){
-        
+     changeTheme(cssFile, cssLinkIndex) {
+
+
+        const oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+        console.log("old link = ", oldlink);
+        const finalPath = `/assets/style/${cssFile}.css`;
+        const newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", finalPath);
+    
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
     }
 
-
+    switchTheme(){
+        $('#nightSwtich').click(()=>{
+            const isChecked = $('#nightSwtich').prop('checked');
+            console.log("isChecked = ",isChecked);
+            if(isChecked){
+                this.changeTheme('dark_theme',5);
+            }else{
+                this.changeTheme('light_theme',5);
+            }
+        })
+    }
 
 }
 
@@ -123,3 +143,4 @@ initgrep.openSearchWrapper();
 initgrep.openSettingWrapper();
 initgrep.closeSettingWrapper();
 initgrep.changeMenuOpactiyOnHover();
+initgrep.switchTheme();

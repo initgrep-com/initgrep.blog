@@ -31,7 +31,7 @@
     .top-card {
       border-radius: 5px;
       background: transparent;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
       border:1px solid $border-color;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       img {
@@ -81,7 +81,7 @@
       
 
       &:hover{
-        box-shadow: 0 1px 5px var(--shadow-hover-color), 0 1px 1px var(--shadow-hover-color);
+        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
         h5.card-title{
           a{
             color:$c-icon-color;
@@ -97,7 +97,7 @@
   @include media-breakpoint-up(lg) {
     .top-card {
       background: transparent;
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
       border:1px solid $border-color;
       img {
