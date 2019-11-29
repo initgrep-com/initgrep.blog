@@ -135,8 +135,9 @@
             background: transparent;
   
             a {
+              color: $c-icon-color;
               &:hover {
-                color: $c-icon-color;
+                color: $primary;
               }
             }
           }
