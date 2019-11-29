@@ -1,16 +1,17 @@
-:root{
- --c-icon-color:#ee1843fc;
- --c-text-color: #e22248;
- --border-color: transparent;
- --shadow-hover-color: rgba(0, 0, 0, 0.2);
- --pre-color: #ee9818fc;
- --content-card-border : transparent;
+:root {
+  --c-icon-color: #C3073F;
+  --c-text-color: #C3073F;
+  --border-color: transparent;
+  --shadow-hover-color: rgba(0, 0, 0, 0.2);
+  --pre-color:  #333;
+  --content-card-border: transparent;
+  --primary-color: #333;
+  --body-color:  #f1f1f1;
+  
 }
 
-
-$primary: #333;
-$body-bg: #f1f1f1;
-$font-family-base: 'Karla', sans-serif;
+$primary: var(--primary-color);
+$body-bg: var(--body-color);
 $c-bg: #fc456a13;
 $c-text-color: var(--c-text-color);
 $c-icon-color: var(--c-icon-color);
@@ -21,15 +22,12 @@ $mute-color: #6c757d;
 $white-color: #f1f1f1;
 $pure-white: white;
 $bg-overlay: rgba(122, 118, 118, 0.4);
-$shadow-color:rgba(0, 0, 0, 0.1);
-$shadow-hover-color: var(--shadow-hover-color);//rgba(0,0,0,0.25);
+$shadow-color: rgba(0, 0, 0, 0.1);
+$shadow-hover-color: var(--shadow-hover-color); //rgba(0,0,0,0.25);
+$pre-color: var(--pre-color);
 
-$text-user-color:#6c757d;
+$text-user-color: #6c757d;
 $border-color: var(--border-color);
 $content-card-border-color: var(--content-card-border);
 
-$custom-control-indicator-border-width : 2px;
-$custom-control-indicator-size: 2rem; 
-$custom-switch-width:                           $custom-control-indicator-size * 1.75 !default;
-$custom-switch-indicator-border-radius:         $custom-control-indicator-size / 2 !default;
-$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator-border-width * 4}) !default;
+

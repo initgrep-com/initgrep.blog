@@ -12,14 +12,11 @@ ul.top-post-component {
       div.media-body {
         font-size: 1.4rem;
         font-weight: 700;
-        color: $c-icon-color;
         i {
-          color: $c-icon-color;
           margin-right: 0.5rem;
           font-size: 2rem;
         }
         span {
-          letter-spacing: $letter-sapacing;
           background: transparent;
         }
       }
@@ -33,8 +30,6 @@ ul.top-post-component {
     padding: 0 0 0 0;
     border-radius: 5px;
     margin-bottom: 1rem;
-    border: 1px solid $border-color;
-    box-shadow: 0px 1px 3px $shadow-color, 0 1px 2px $shadow-color;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     background: transparent;
     a {
@@ -51,7 +46,6 @@ ul.top-post-component {
         .media-body {
           h5 {
             letter-spacing: 0.025rem;
-            color: $c-icon-color;
             font-size: 0.9rem;
             font-weight: 700;
             text-transform: lowercase;
@@ -64,15 +58,11 @@ ul.top-post-component {
         }
       }
     }
-    &:hover {
-      // background: $c-bg;
-      box-shadow: 0 14px 28px$shadow-hover-color, 0 10px 10px $shadow-hover-color;
-    }
+    
     &:last-child {
       margin-bottom: 1rem !important;
-      border-bottom-width: 10px !important;
+      border-bottom-width: 1px !important;
       border-bottom-style: solid !important;
-      border-bottom-color: var(--boder-color) !important;
     }
   }
 }
@@ -121,7 +111,6 @@ ul.top-post-component {
             }
             p {
               font-size: 1rem;
-              letter-spacing: $letter-sapacing;
               margin: 0 0 0 0;
               font-weight: 500;
             }
@@ -129,17 +118,8 @@ ul.top-post-component {
         }
       }
      
-
-      &:last-child {
-        border-bottom-width: 1px !important;
-        border-bottom-style: solid !important;
-        border-bottom-color: $border-color !important;
-      }
     }
   }
-}
-
-@include media-breakpoint-up(xl) {
 }
 
 /** TOP POST COMPONENT END **/

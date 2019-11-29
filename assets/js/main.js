@@ -102,18 +102,44 @@ class InitGrep {
         })
     }
 
-     changeTheme(cssFile, cssLinkIndex) {
-
-
+     changeTheme(cssFile, cssLinkIndex, isDark) {
         const oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
-        console.log("old link = ", oldlink);
         const finalPath = `/assets/style/${cssFile}.css`;
         const newlink = document.createElement("link");
         newlink.setAttribute("rel", "stylesheet");
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", finalPath);
-    
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+        this.setTheToggle(isDark);
+
+        newlink.onload = function(){
+            console.log("load");
+        }
+
+
+        newlink.onprogress = function(){
+            console.log("progress mela");
+        }
+        
+
+        newlink.onloadstart = function(){
+            console.log("load start");
+        }
+
+
+        newlink.onloadend = function(){
+            console.log("load end");
+        }
+    }
+
+    setTheToggle(isDark){
+        if(isDark){
+            $('#nightSwtich').attr("checked",true);  
+            localStorage.setItem("theme", "dark");
+        }else{
+            $('#nightSwtich').attr("checked",false);
+            localStorage.setItem("theme", "light");
+        }
     }
 
     switchTheme(){
@@ -121,26 +147,43 @@ class InitGrep {
             const isChecked = $('#nightSwtich').prop('checked');
             console.log("isChecked = ",isChecked);
             if(isChecked){
-                this.changeTheme('dark_theme',5);
+                this.changeTheme('dark_theme',0,true);
+                
             }else{
-                this.changeTheme('light_theme',5);
+                this.changeTheme('light_theme',0, false);
+        
             }
         })
+    }
+
+    loadThemeOnLoad(){
+        const currentTheme = localStorage.getItem("theme");
+        if(currentTheme === "dark"){
+            // document.body.style.setProperty('background',"#16141a");
+            this.changeTheme("dark_theme",0, true);
+        }else{
+            this.changeTheme("light_theme",0, false); 
+        }
+        
     }
 
 }
 
 
 //run scripts below
+//run scripts below
+$(function(){
+    const initgrep = new InitGrep();
+    initgrep.loadThemeOnLoad();
+    initgrep.updateScrollChangeEvents();
+    initgrep.hideBasicOverlay();
+    initgrep.hideSearchWrapper();
+    initgrep.hideSettingWrapper();
+    initgrep.closeSearchWrapper();
+    initgrep.openSearchWrapper();
+    initgrep.openSettingWrapper();
+    initgrep.closeSettingWrapper();
+    initgrep.changeMenuOpactiyOnHover();
+    initgrep.switchTheme();
 
-const initgrep = new InitGrep();
-initgrep.updateScrollChangeEvents();
-initgrep.hideBasicOverlay();
-initgrep.hideSearchWrapper();
-initgrep.hideSettingWrapper();
-initgrep.closeSearchWrapper();
-initgrep.openSearchWrapper();
-initgrep.openSettingWrapper();
-initgrep.closeSettingWrapper();
-initgrep.changeMenuOpactiyOnHover();
-initgrep.switchTheme();
+});

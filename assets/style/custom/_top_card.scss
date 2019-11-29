@@ -31,8 +31,6 @@
     .top-card {
       border-radius: 5px;
       background: transparent;
-      box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
-      border:1px solid $border-color;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       img {
         height: 220px;
@@ -42,8 +40,6 @@
       }
       .card-body {
         .card-meta {
-          letter-spacing: $letter-sapacing;
-          color: $mute-color;
 
 
           a {
@@ -59,35 +55,21 @@
           small.text-category {
             text-transform: capitalize;
             a{
-              color: $c-icon-color;
             }
           }
         }
         h5.card-title {
           
-          color: $c-color-black;
-          letter-spacing: $letter-sapacing;
           font-weight: 700;
           a{
             text-decoration: none;
           }
         }
         p.card-text {
-          letter-spacing: $letter-sapacing;
           font-size: .9rem;
         }
       }
 
-      
-
-      &:hover{
-        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
-        h5.card-title{
-          a{
-            color:$c-icon-color;
-          }
-        }
-      }
     }
   }
   @include media-breakpoint-up(sm) {
@@ -96,10 +78,7 @@
   }
   @include media-breakpoint-up(lg) {
     .top-card {
-      background: transparent;
-      box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
       transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border:1px solid $border-color;
       img {
         height: 250px;
         object-fit: cover;
@@ -107,8 +86,6 @@
       }
       .card-body {
         .card-meta {
-          letter-spacing: $letter-sapacing;
-          color: $mute-color;
           a {
             text-decoration: none;
             
@@ -125,25 +102,16 @@
           }
         }
         h5.card-title {
-          color: $c-color-black;
-          letter-spacing: $letter-sapacing;
           a{
             text-decoration: none;
           }
         }
         p.card-text {
-          letter-spacing: $letter-sapacing;
           font-size: 1rem;
         }
       }
 
-      &:hover{
-        h5.card-title{
-          a{
-            color:$c-icon-color;
-          }
-        }
-      }
+    
     }
   }
   @include media-breakpoint-up(xl) {

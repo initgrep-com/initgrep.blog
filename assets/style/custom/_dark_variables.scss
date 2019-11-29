@@ -1,16 +1,16 @@
 :root{
  --c-icon-color:#ee9818fc;
  --c-text-color: #e22248;
- --border-color: #ffc10787;
+ --border-color: #d3ac3687;
  --shadow-hover-color: rgba(0,0,0,0.22);
  --pre-color: #ee9818fc;
+ --primary-color: #f1f1f1;
+ --body-color:  #16141a;;
 }
 
 
-$primary: #f1f1f1;
-$body-bg: #333;
-$body-color: #f1f1f1;
-$font-family-base: 'Karla', sans-serif;
+$primary: var(--primary-color);
+$body-bg: var(--body-color);
 $c-bg: #fc456a13;
 $c-text-color: var(--c-text-color);
 $c-icon-color: var(--c-icon-color);
@@ -29,8 +29,3 @@ $text-user-color:#6c757d;
 $border-color:var(--border-color);
 $content-card-border-color : $border-color;
 
-$custom-control-indicator-border-width : 2px;
-$custom-control-indicator-size: 2rem; 
-$custom-switch-width:                           $custom-control-indicator-size * 1.75 !default;
-$custom-switch-indicator-border-radius:         $custom-control-indicator-size / 2 !default;
-$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator-border-width * 4}) !default;

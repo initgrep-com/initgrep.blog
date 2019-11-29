@@ -1,0 +1,56 @@
+.page-component {
+  .page-header {
+    small.read-time {
+      color: $c-icon-color;
+    }
+    img {
+      border: 0.2rem solid $c-icon-color;
+    }
+    .page-header-meta {
+      a {
+        small {
+          color: $c-icon-color;
+          letter-spacing: $letter-sapacing;
+        }
+        
+      }
+      small {
+        letter-spacing: $letter-sapacing;
+        color: $mute-color;
+      }
+
+    }
+    
+  }
+ 
+  .page-content {
+    letter-spacing: $letter-sapacing;
+    .page-content-title {
+    }
+    
+    a {
+      border-bottom: 2px dashed $c-icon-color;
+      &:hover {
+        color: $c-icon-color;
+      }
+    }
+   
+    blockquote:before,
+    blockquote:after {
+      color: $c-text-color;
+    }
+    
+    pre{
+      color: $pre-color;
+    }
+    
+    pre.highlight {
+      border: 4px solid $c-bg;
+    }
+  }
+}
+.page-comments {
+  .message {
+    border: 3px dotted $c-icon-color;
+  }
+}

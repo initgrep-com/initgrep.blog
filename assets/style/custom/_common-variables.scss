@@ -1,0 +1,10 @@
+// $primary: #f1f1f1;
+// $body-bg: #16141a;
+$font-family-base: "Karla", sans-serif;
+
+
+$custom-control-indicator-border-width : 2px;
+$custom-control-indicator-size: 2rem; 
+$custom-switch-width:                           $custom-control-indicator-size * 1.75 !default;
+$custom-switch-indicator-border-radius:         $custom-control-indicator-size / 2 !default;
+$custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator-border-width * 4}) !default;

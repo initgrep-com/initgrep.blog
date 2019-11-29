@@ -1,0 +1,134 @@
+//search Start
+#progress {
+  --scroll: 0%;
+  background: linear-gradient(to right, $c-icon-color var(--scroll), transparent 0);
+}
+
+body{
+  background-color: $body-bg !important;
+  color: $primary !important;
+  transition: background-color 200ms linear;
+
+  a{
+    color: $primary;
+  }
+}
+
+.brand-component {
+  a.brand {
+    i {
+      background: $c-icon-color;
+      border: 2px solid $c-icon-color;
+    }
+    span {
+      color: $c-icon-color;
+    }
+  }
+}
+
+
+.search-wrapper {
+  span {
+    border: 2px solid $c-icon-color;
+
+    i {
+      color: $c-icon-color;
+    }
+  }
+
+  .basic-overlay {
+    background: $bg-overlay;
+  }
+
+  .search-overlay {
+    background: $body-bg;
+
+    div.close-search-wrapper {
+      i.close-search-button {
+        color: $c-icon-color;
+      }
+    }
+    div{
+      div{
+        background: $body-bg !important;
+        border:$border-color;
+      }
+    }
+
+  
+    div.gsc-input-box /* google search - dynamic input*/ {
+      border: 2px solid $border-color !important;
+      background: var(--white) !important;
+    }
+
+    /* googlesearch -dynamic button*/
+    button.gsc-search-button {
+      background: $c-icon-color;
+      border: $c-icon-color;
+    }
+  }
+
+  &:hover {
+    span {
+      background: $c-icon-color;
+      i {
+        color: $white-color;
+      }
+    }
+  }
+}
+
+.setting-wrapper {
+  span {
+    border: 2px solid $c-icon-color;
+
+    i {
+      color: $c-icon-color;
+    }
+  }
+
+  .basic-overlay {
+    background: rgba(0, 0, 0, 0.3); //$bg-overlay;
+  }
+
+  .setting-overlay {
+    background: $body-bg;
+
+    div.close-setting-wrapper {
+      i.close-setting-button {
+        color: $c-icon-color;
+      }
+    }
+
+    div.nightmode-wrapper {
+      border: 1px solid transparent; //in nightmode- keep a color
+    }
+
+    ul.list-group.setting-component{
+      li.list-group-item{
+        background: transparent;
+        div.nightmode-wrapper{
+          div.custom.switch{
+            label.custom-control-label{
+              &:after{
+                background: $body-bg;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    span {
+      background: $c-icon-color;
+      cursor: pointer;
+      i {
+        color: $white-color;
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,42 @@
+.all-post-component{
+  span{
+    color:$c-icon-color;
+  }
+}
+
+.sub-content-component {
+  background: transparent;
+  div.app-card {
+    box-shadow: 0 1px 3px $shadow-color, 0 1px 3px $shadow-color;
+    border:1px solid $content-card-border-color;
+    
+
+    .app-card-body {
+      .app-card-meta {
+
+        small {
+          color: $c-icon-color;
+          letter-spacing: $letter-sapacing;
+        }
+        small.text-filler {
+          color: $c-bg-black;
+        }
+      }
+      h5.app-card-heading {
+        letter-spacing: $letter-sapacing;
+        a {
+        }
+      }
+    }
+
+    &:hover {
+      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+
+      .app-card-body {
+        h5 a {
+          color: $c-icon-color;
+        }
+      }
+    }
+  }
+}

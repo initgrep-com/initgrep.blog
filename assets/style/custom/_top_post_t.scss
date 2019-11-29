@@ -1,0 +1,44 @@
+/** TOP POST COMPONENT **/
+// @include media-breakpoint-up(xs) {
+
+ul.top-post-component {
+  li.list-group-item.top-heading {
+    background: transparent;
+    div.media {
+      div.media-body {
+        color: $c-icon-color;
+        i {
+          color: $c-icon-color;
+        }
+        span {
+          letter-spacing: $letter-sapacing;
+          background: transparent;
+        }
+      }
+    }
+
+  }
+  li.list-group-item {
+    border: 1px solid $border-color;
+    box-shadow: 0px 1px 3px $shadow-color, 0 1px 2px $shadow-color;
+    background: transparent;
+    a {
+      div.media {
+        .media-body {
+          h5 {
+            color: $c-icon-color;
+          }
+        }
+      }
+      &:hover{
+        color: $c-icon-color !important;
+      }
+    }
+    &:hover {
+      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+    }
+    &:last-child {
+      border-bottom-color: $border-color !important;
+    }
+  }
+}

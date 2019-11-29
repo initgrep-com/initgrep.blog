@@ -1,0 +1,147 @@
+
+//Menu Component Start
+.menu-component {
+    // position: fixed;
+    nav {
+      ul.list-group {
+        li.list-group-item {
+          color: $c-icon-color !important;
+          background: transparent;
+         
+          a {
+           
+            span {
+              letter-spacing: $letter-sapacing;
+            }
+             
+            
+          }
+
+          &:hover {
+            background: $c-bg;
+            a {
+              color: $c-icon-color;
+            }
+          }
+          &.active {
+            background: $c-bg;
+            a {
+              color: $c-icon-color;
+            }
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 576px) {
+    .menu-component {
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
+      nav {
+        ul.list-group {
+  
+          li.list-group-item {
+            a {
+              span {
+                letter-spacing: $letter-sapacing;
+              }
+            }
+            
+  
+            &:hover {
+              background: transparent;
+              border-bottom: 4px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+              }
+            }
+            &.active {
+              background: $c-bg;
+              border-bottom: 4px solid $c-icon-color;
+              a {
+                color: $c-icon-color;
+                
+              }
+            }
+          }
+        }
+      }
+     
+    }
+  }
+  
+
+  @media (min-width: 992px) {
+    .menu-component {
+      nav {
+        ul.list-group {
+          li.list-group-item {
+
+            .slider {
+              background-color: $c-icon-color;
+          }
+
+            &:hover {
+              border-bottom: 1px solid transparent;
+              a {
+                color: $c-icon-color;
+                
+              }
+              .slider{
+                width: 100%;
+                color: $c-icon-color;
+              }
+            }
+            
+            &.active {
+              background: $c-bg;
+              border-bottom: 3px solid transparent;
+
+              a {
+                color: $c-icon-color;
+                
+              }
+              .slider{
+                width: 100%;
+                color: $c-icon-color;
+              }
+            }
+          }
+        }
+      }
+      aside {
+        ul.setting-component {
+          li.list-group-item {
+            color: $c-bg-black;
+            background: transparent;
+            div.custom-control {
+              .custom-control-input {
+                &:checked {
+                  ~ .custom-control-label {
+                    &:before {
+                      border-color: $c-icon-color;
+                      background: $c-icon-color;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+  
+        ul.social-component {
+          border-top: 1px solid $c-bg;
+          background: transparent;
+          li.list-group-item {
+            background: transparent;
+  
+            a {
+              &:hover {
+                color: $c-icon-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  //Menu Component Ends

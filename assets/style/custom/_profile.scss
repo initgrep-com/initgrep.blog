@@ -6,7 +6,6 @@
       width: 50%;
       left: 25%;
       border-radius: 50%;
-      border: 0.3rem solid $c-icon-color;
       padding: 0.3rem;
     }
     h5 {
@@ -21,7 +20,6 @@
     // margin-top: 1rem;
 
     div.auth-msg-wrapper {
-      border: 1px solid $border-color;
       padding: 1rem;
       p.author-msg {
         font-size: 1rem;
@@ -30,7 +28,6 @@
     }
 
     div.social {
-      border: 1px dotted $border-color;
       ul.list-group {
         li.list-group-item {
           border-width: 0px !important;
@@ -41,7 +38,6 @@
               letter-spacing: 0.025rem;
               i {
                 font-size: 1.2rem;
-                color: $c-icon-color;
               }
             }
           }
@@ -49,7 +45,6 @@
           &:hover{
             a{
               span{
-                color: $c-icon-color;
                 font-weight: 700;
                 i{
                   font-weight: 500;
@@ -68,7 +63,6 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         
-        color: $c-icon-color;
       }
     }
     .post-list-body {
@@ -76,8 +70,6 @@
         li.item {
           margin-top: .5rem;
           margin-bottom:.5rem;
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2);
-          border:1px solid $border-color;
           transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
           border-radius: 5px;
           padding:.5rem;
@@ -98,16 +90,7 @@
             letter-spacing: 0.035rem;
           }
 
-          &:hover{
-            box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
-            
-            h5{
-              
-              a{
-                color: $c-icon-color;
-              }
-            }
-          }
+        
         }
       }
     }
@@ -126,7 +109,6 @@
         width: 80%;
         left: 10%;
         border-radius: 50%;
-        border: 0.2rem solid $c-icon-color;
         padding: 0.2rem;
       }
       h5 {
@@ -137,7 +119,6 @@
       margin-top: 1rem;
 
       div.auth-msg-wrapper {
-        border: 1px solid $border-color;
         padding: 1rem;
         p.author-msg {
           font-size: 1rem;
@@ -146,7 +127,6 @@
       }
 
       div.social {
-        border: 1px dotted $border-color;
         ul.list-group {
           li.list-group-item {
             border-width: 0px !important;
@@ -156,7 +136,6 @@
                 letter-spacing: 0.025rem;
                 i {
                   font-size: 1.2rem;
-                  color: $c-icon-color;
                 }
               }
             }
