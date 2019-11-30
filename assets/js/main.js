@@ -141,7 +141,7 @@ class InitGrep {
         if (currentTheme === this.LIGHT_INDIGO ||
             currentTheme === this.LIGHT_ORANGE ||
             currentTheme === this.DARK_INDIGO) {
-            console.log("dooes it call here");
+            // console.log("dooes it call here");
             this.changeTheme(currentTheme, 0);
         }
     }
@@ -153,11 +153,11 @@ class InitGrep {
 //run scripts below
 $(function () {
     const initgrep = new InitGrep();
-   
+
     initgrep.hideBasicOverlay();
     initgrep.hideSearchWrapper();
     initgrep.hideSettingWrapper();
-    
+
     initgrep.loadThemeOnLoad();
     initgrep.updateScrollChangeEvents();
 
