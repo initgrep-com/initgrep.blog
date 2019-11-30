@@ -2,6 +2,11 @@ class InitGrep {
     hasMenuOpacityEnabled = false;
     hoveredIn = false;
 
+    LIGHT_ORANGE = "light_orange_theme";
+    LIGHT_INDIGO = "light_indigo_theme";
+    DARK_ORANGE = "dark_orange_theme";
+    DARK_INDIGO = "dark_indigo_theme";
+
     updateScrollChangeEvents() {
 
         document.addEventListener(
@@ -102,7 +107,7 @@ class InitGrep {
         })
     }
 
-     changeTheme(cssFile, cssLinkIndex, isDark) {
+    changeTheme(cssFile, cssLinkIndex) {
         const oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
         const finalPath = `/assets/style/${cssFile}.css`;
         const newlink = document.createElement("link");
@@ -110,61 +115,35 @@ class InitGrep {
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", finalPath);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-        this.setTheToggle(isDark);
-
-        newlink.onload = function(){
-            console.log("load");
-        }
-
-
-        newlink.onprogress = function(){
-            console.log("progress mela");
-        }
-        
-
-        newlink.onloadstart = function(){
-            console.log("load start");
-        }
-
-
-        newlink.onloadend = function(){
-            console.log("load end");
-        }
     }
 
-    setTheToggle(isDark){
-        if(isDark){
-            $('#nightSwtich').attr("checked",true);  
-            localStorage.setItem("theme", "dark");
-        }else{
-            $('#nightSwtich').attr("checked",false);
-            localStorage.setItem("theme", "light");
-        }
+    switchTheme() {
+        $('button#light-orange').click(() => {
+            this.changeTheme(this.LIGHT_ORANGE, 0);
+            localStorage.setItem("theme", this.LIGHT_ORANGE);
+        });
+        $('button#light-indigo').click(() => {
+            this.changeTheme(this.LIGHT_INDIGO, 0);
+            localStorage.setItem("theme", this.LIGHT_INDIGO);
+        });
+        $('button#dark-orange').click(() => {
+            this.changeTheme(this.DARK_ORANGE, 0);
+            localStorage.setItem("theme", this.DARK_ORANGE);
+        });
+        $('button#dark-indigo').click(() => {
+            this.changeTheme(this.DARK_INDIGO, 0);
+            localStorage.setItem("theme", this.DARK_INDIGO);
+        });
     }
 
-    switchTheme(){
-        $('#nightSwtich').click(()=>{
-            const isChecked = $('#nightSwtich').prop('checked');
-            console.log("isChecked = ",isChecked);
-            if(isChecked){
-                this.changeTheme('dark_theme',0,true);
-                
-            }else{
-                this.changeTheme('light_theme',0, false);
-        
-            }
-        })
-    }
-
-    loadThemeOnLoad(){
+    loadThemeOnLoad() {
         const currentTheme = localStorage.getItem("theme");
-        if(currentTheme === "dark"){
-            // document.body.style.setProperty('background',"#16141a");
-            this.changeTheme("dark_theme",0, true);
-        }else{
-            this.changeTheme("light_theme",0, false); 
+        if (currentTheme === this.LIGHT_INDIGO ||
+            currentTheme === this.LIGHT_ORANGE ||
+            currentTheme === this.DARK_INDIGO) {
+            console.log("dooes it call here");
+            this.changeTheme(currentTheme, 0);
         }
-        
     }
 
 }
@@ -172,13 +151,16 @@ class InitGrep {
 
 //run scripts below
 //run scripts below
-$(function(){
+$(function () {
     const initgrep = new InitGrep();
-    initgrep.loadThemeOnLoad();
-    initgrep.updateScrollChangeEvents();
+   
     initgrep.hideBasicOverlay();
     initgrep.hideSearchWrapper();
     initgrep.hideSettingWrapper();
+    
+    initgrep.loadThemeOnLoad();
+    initgrep.updateScrollChangeEvents();
+
     initgrep.closeSearchWrapper();
     initgrep.openSearchWrapper();
     initgrep.openSettingWrapper();
