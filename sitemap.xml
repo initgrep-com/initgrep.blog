@@ -15,6 +15,7 @@ layout: null
     <priority>1.0</priority>
   </url>
   {% endfor %}
+
     {% for collection in site.collections %}
     {% assign colsname  = collection.label  %}
     {% if colsname != 'authors'%}
@@ -33,6 +34,22 @@ layout: null
     {% endfor %}
      {% endif %}
     {% endfor %}
+ 
+{% for category in site.data.categories%}
+{% for entry in category%}
+{% if entry.title  and entry.type != 'all'  %}
+
+    <url>
+      <loc>{{ site.url }}{{ site.baseurl }}{{ entry.link }}</loc>
+      <lastmod>{{ "now" | date: "%Y-%m-%d" | date_to_xmlschema }}</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+  </url>
+ {%endif%}
+  {%endfor%}
+  {%endfor%}
+
+
   {% for page in site.pages %}
   {% if page.sitemap != null and page.sitemap != empty %}
   <url>
