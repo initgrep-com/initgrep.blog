@@ -1,0 +1,30 @@
+div.row.fof-wrapper{
+    ul.list-group{
+        li.list-group-item{
+            
+            i.fab.fa-accessible-icon{
+                color: $c-icon-color;
+            }
+            p.f0f-label{
+                font-size: 1.2rem;
+                
+            }
+
+            &:last-child {
+                text-align: center;
+                a{
+                    border-color: $c-icon-color;
+                    color: $c-icon-color;
+
+                    &:hover{
+                        background: $c-icon-color;
+                        color: $primary;
+                    }
+                    &:focus{
+                        box-shadow: 0px 1px 3px $shadow-color, 0 1px 2px $shadow-color;
+                    }
+                }
+            }
+        }
+    }
+}

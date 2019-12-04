@@ -1,0 +1,25 @@
+div.row.fof-wrapper{
+    text-align: center;
+    ul.list-group{
+        li.list-group-item{
+            background: transparent;
+            border-width: 0px;
+            i.fab.fa-accessible-icon{
+                font-size: 4rem;
+                // color: $c-icon-color;
+                padding-right: 1rem;
+            }
+            p.f0f-label{
+                font-size: 1.2rem;
+                font-weight: 700;
+            }
+
+            &:last-child {
+                text-align: center;
+                a{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
