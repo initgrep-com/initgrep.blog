@@ -1,0 +1,479 @@
+I"�<p>Java Persistence API (JPA) provides the specification of managing data, such as accessing and persisting data, between Java Objects and the databases.</p>
+
+<p>There are obviously many ways in JPA that could be used to interact with a database such as JPQL(Java Persistence Query Language), Criteria API, and Entity specific methods such as persist, merge, remove, flush etc.</p>
+
+<p>I initially found Criteria API quite intimidating. To be frank, I had to invest quite some time to figure it out. It eventually turned out to be quite fluent API. I thought why not just write about the experiences. So here it is, <strong>“Creating Programmatic Criteria Queries using JPA Criteria API”</strong>.</p>
+
+<p>Criteria Queries are type-safe and portable. They are written using Java programming language APIs. They use the abstract schema of the persistent entities to find, modify and delete persistent entities by invoking JPA Entity Operations.</p>
+
+<p> </p>
+
+<p>We will be using the following domain model for building the criteria queries in this tutorial.</p>
+
+<p><img src="/assets/images/Criteria-object-UML.png" alt="Object Model- UML" />
+<em><ins>UML diagram describing the Object Relationship Mapping</ins></em></p>
+
+<p>We have three Objects( ref. to diagram above ) <code class="highlighter-rouge">Student</code> , <code class="highlighter-rouge">Course</code> and <code class="highlighter-rouge">Passport</code>. Each of the Objects has a relationship with each other:</p>
+<ul>
+  <li><code class="highlighter-rouge">Student</code> has a <code class="highlighter-rouge">One-To-One</code> relationship with <code class="highlighter-rouge">Passport</code>. It means that Each Student can only have one Passport and vice versa.</li>
+  <li><code class="highlighter-rouge">Student</code> has a <code class="highlighter-rouge">One-To-Many</code> relationship with <code class="highlighter-rouge">Address</code> which means that a Student can have one or more addresses and an address is always assigned to one student.</li>
+  <li><code class="highlighter-rouge">Student</code> has a <code class="highlighter-rouge">Many-To-Many</code> relationship with <code class="highlighter-rouge">Course</code> which means that Each Student can enroll in many courses and one course can have many Students enrolled.</li>
+</ul>
+
+<p> </p>
+
+<p>We will begin with a simple Criteria Query and slowly try to build upon it.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">public</span> <span class="nc">Long</span> <span class="nf">getStudentsCount</span><span class="o">()</span> <span class="o">{</span>
+            
+        <span class="cm">/** CriteriaBuilder instance**/</span> 
+        <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">entityManager</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+        
+        <span class="cm">/** create a criteriaQuery Object **/</span>
+        <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">studentQuery</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        
+        <span class="cm">/** create a Root Object -&gt; references to the queried entity **/</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">studentRoot</span> <span class="o">=</span> <span class="n">studentQuery</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        
+        <span class="cm">/** Path Object to refer the attribute name of entity **/</span>
+        <span class="cm">/** we are not using it for now **/</span>
+        <span class="nc">Path</span><span class="o">&lt;</span><span class="nc">Object</span><span class="o">&gt;</span> <span class="n">namePath</span> <span class="o">=</span> <span class="n">studentRoot</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"name"</span><span class="o">);</span>
+        
+        <span class="cm">/** Aggregate Expression for count operation  **/</span>
+        <span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">countExpression</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">studentRoot</span><span class="o">);</span>
+        
+        <span class="cm">/** **/</span>
+        <span class="n">studentQuery</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">countExpression</span><span class="o">);</span>
+        
+        <span class="cm">/** instance of Typed Query */</span>
+        <span class="nc">TypedQuery</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">typedStudentQuery</span> <span class="o">=</span> 
+                            <span class="n">entityManager</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">studentQuery</span><span class="o">);</span>
+        
+        <span class="cm">/** return the result **/</span>
+        <span class="nc">Long</span> <span class="n">count</span> <span class="o">=</span> <span class="n">typedStudentQuery</span><span class="o">.</span><span class="na">getSingleResult</span><span class="o">();</span>
+        
+        <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p><em>The above code example retrieves the total count of students present in the database.</em></p>
+
+<p>Criteria queries are an Object graph where each part of the graph represents an atomic part of the query. The various steps in building the object graph roughly translates to the following steps.</p>
+
+<ul>
+  <li>A <code class="highlighter-rouge">CriteriaBuilder</code> interface contains all the required methods to build Criteria Queries, Expressions, Ordering, and Predicates.</li>
+  <li><code class="highlighter-rouge">CriteriaQuery</code> interface defines functionality required to build a top-level query. The type specified for criteria query i.e <code class="highlighter-rouge">criteriaQuery&lt;Class&lt;T&gt; resultClass&gt;</code> would be the type of the result returned. If no type is provided, the type of result would be <code class="highlighter-rouge">Object</code>. Criteria Query contains the methods that specify the item(s) to be returned in the query result, restrict the result based on certain conditions, group results, specify an order for the result and <a href="https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaQuery.html">much more</a>.</li>
+  <li><code class="highlighter-rouge">Root</code> interface represents the root entities involved in the query. There could be multiple roots defined in the Criteria Query.</li>
+  <li><code class="highlighter-rouge">Path</code> interface represents the path to the attribute in the <code class="highlighter-rouge">root</code> entity.
+  <code class="highlighter-rouge">Path</code> interface also <code class="highlighter-rouge">extends</code> to <code class="highlighter-rouge">Expression</code> Interface which contains methods that return Predicates.</li>
+  <li><code class="highlighter-rouge">builder.count()</code> is an aggregate method. It returns an expression which would be used for <code class="highlighter-rouge">Selection</code> of the result. When aggregate methods are used as arguments in <code class="highlighter-rouge">select</code> method, the type of the query should match the return type of aggregate method.</li>
+  <li>A <code class="highlighter-rouge">TypedQuery</code> instance is required to run the <code class="highlighter-rouge">CriteriaQuery</code>.</li>
+</ul>
+
+<p>The final output of the above example is below :)</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">select</span>
+        <span class="k">count</span><span class="p">(</span><span class="n">student0_</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">as</span> <span class="n">col_0_0_</span> 
+    <span class="k">from</span>
+        <span class="n">student</span> <span class="n">student0_</span>
+</code></pre></div></div>
+
+<p><strong>It seems quite the over work–doesn’t it.</strong> The output of so many lines of code is just a plain old <code class="highlighter-rouge">SELECT</code> query. But the Criteria API was created to serve a different purpose i.e <em>programmable Query API</em>. It helps to build queries dynamically. You could write just one program to build queries for all objects in your application or build queries depending upon your business logic.</p>
+
+<p>Let’s say, we want to get the count of either Students, Courses or any other entities present in our application. We could either write different queries for each of them or we could only use Criteria API.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nc">Long</span> <span class="nf">getCountOfEntity</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">claz</span><span class="o">)</span> <span class="o">{</span>
+            
+        <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+        <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">studentQuery</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">studentQuery</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="n">claz</span><span class="o">);</span>
+        <span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">countExpression</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+        <span class="n">studentQuery</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">countExpression</span><span class="o">);</span>
+        <span class="nc">TypedQuery</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">typedStudentQuery</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">studentQuery</span><span class="o">);</span>
+        
+        <span class="k">return</span> <span class="n">typedStudentQuery</span><span class="o">.</span><span class="na">getSingleResult</span><span class="o">();</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>I have only updated the previous example to allow the generic parameter which specifies the <code class="highlighter-rouge">Class</code> of the <code class="highlighter-rouge">Entity</code>. Rest of the Code stays the same. You can learn more about Java Generics <a href="https://docs.oracle.com/javase/tutorial/java/generics/index.html">here</a>.</p>
+
+<p>Let’s look at the above example in detail.</p>
+
+<p><strong>Criteria Query</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">createQuery</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">resultClass</span><span class="o">);</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">CreateQuery</code> method takes the <code class="highlighter-rouge">Class</code> name of the result type as an argument.</p>
+<ul>
+  <li>If the result is returned as a data-set related to the entity e.g all the students or one of the student. The parameter should be <code class="highlighter-rouge">Student.class</code>.
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>If the query returns any other result irrespective of which entity it works on, It should have a parameter of the returned type. As we saw above, when the count was returned, the parameter type was  <code class="highlighter-rouge">Long.class</code></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>Root</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">Root</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">studentQuery</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">Class</span><span class="o">)</span>
+</code></pre></div></div>
+<p>The <code class="highlighter-rouge">Root</code> refers to the entity on which the query would be run such as <code class="highlighter-rouge">Student.class</code> in the above example.</p>
+
+<p><strong>Select</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">studentQuery</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">countExpression</span><span class="o">);</span>    
+</code></pre></div></div>
+
+<p>The <code class="highlighter-rouge">select</code> method specifies the result to be returned by the Query. If all the attributes of an entity are supposed to be returned instead of just returning the count, we could pass the <code class="highlighter-rouge">root</code> entity as the parameter such as below.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">studentQuery</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">studentRoot</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p> </p>
+<h3 id="inheritance-relationships">Inheritance Relationships</h3>
+
+<p> </p>
+
+<p><img src="/assets/images/apidaigram.png" alt="Interface relationships in Criteria API" />
+<em><ins>Interface relationships in Criteria API</ins></em></p>
+
+<p>In the Above diagram, observe the classes in a blue background. The relationship tree explains the inheritance hierarchy among various interfaces present in the Criteria API.</p>
+
+<p><code class="highlighter-rouge">Selection</code> is at the top and being extended by <code class="highlighter-rouge">Expression</code>. <code class="highlighter-rouge">Expression</code> in turn is being extended by <code class="highlighter-rouge">Predicate</code> and <code class="highlighter-rouge">Path</code> interfaces. <code class="highlighter-rouge">From</code> interface extends path which in turn is the parent of both <code class="highlighter-rouge">Root</code> and <code class="highlighter-rouge">Join</code> Interface.</p>
+
+<p><code class="highlighter-rouge">Root</code> Interface is also an expression. It means, we can query a complete entity by passing <code class="highlighter-rouge">Root</code> as a parameter to the <code class="highlighter-rouge">select</code> method.
+In case we want to fetch a selected attribute, we can fetch the attribute path using <code class="highlighter-rouge">root.get(attributeName)</code>. This method returns a <code class="highlighter-rouge">Path</code>  object which inherits <code class="highlighter-rouge">expression</code>.</p>
+
+<p> </p>
+
+<h3 id="criteria-joins">Criteria Joins</h3>
+
+<p> </p>
+<h4 id="implicit-join">Implicit Join</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"addresses"</span><span class="o">);</span>
+</code></pre></div></div>
+<p>When a collection parameter is passed to the get method, it creates a path to corresponding referenced <strong>collection-valued attribute</strong>. This results in the creation of an <code class="highlighter-rouge">INNER JOIN</code> query.</p>
+
+<p>Let’s go back to our domain objects. <code class="highlighter-rouge">Student</code> has a <code class="highlighter-rouge">OneToMany</code> relationship with <code class="highlighter-rouge">Address</code>. To fetch the <code class="highlighter-rouge">address</code>, we can use the <code class="highlighter-rouge">root.get('address')</code>. Below is an example.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+        <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">cq</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"addresses"</span><span class="o">));</span>
+        <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Output Query for the above example looks like as below:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">select</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_code</span> <span class="n">as</span> <span class="n">city_cod2_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_lang</span> <span class="n">as</span> <span class="n">city_lan3_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_name</span> <span class="n">as</span> <span class="n">city_d</span> <span class="n">nam4_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">country</span> <span class="n">as</span> <span class="n">country5_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">house_number</span> <span class="n">as</span> <span class="n">house_nu6_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">street</span> <span class="n">as</span> <span class="n">street7_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span> <span class="n">as</span> <span class="n">student_9_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">zip_code</span> <span class="n">as</span> <span class="n">zip_code8_0_</span> 
+    <span class="n">from</span>
+        <span class="n">student</span> <span class="n">student0_</span> 
+    <span class="n">inner</span> <span class="n">join</span>
+        <span class="n">address</span> <span class="n">addresses1_</span> 
+            <span class="n">on</span> <span class="n">student0_</span><span class="o">.</span><span class="na">id</span><span class="o">=</span><span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span>
+</code></pre></div></div>
+
+<p>Note: Since the Address is the Owner of the relationship between Student and Address. By default, the fetch type for a <code class="highlighter-rouge">OneToMany</code> relationship is lazy fetch. As a result, there would be extra queries fired to initialize the Student entities related to each Address. However, If we add a where clause and specify a <code class="highlighter-rouge">restriction or predicate</code>, it would only result in a Single Query.</p>
+
+<p> </p>
+<h4 id="explicit-join">Explicit Join</h4>
+
+<p>Ideally, when we define relationships in JPA, the Join will be based on the related ID column. However, if we want to define the restriction based on some other column, <code class="highlighter-rouge">Join.on(Predicate...)</code> can be used. <code class="highlighter-rouge">Join</code> also provides a way to traverse the attributes of the joined entity such as <code class="highlighter-rouge">join.get(attributeName)</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+        <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Join</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">,</span> <span class="nc">Address</span><span class="o">&gt;</span> <span class="n">join</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"addresses"</span><span class="o">);</span>
+        <span class="cm">/** the below statement is only for the illustration only.
+            the join relationship will by-default be id and reference id
+        **/</span>
+        <span class="n">join</span><span class="o">.</span><span class="na">on</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">),</span> <span class="n">join</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"student"</span><span class="o">)));</span>
+        <span class="n">cq</span><span class="o">.</span><span class="na">multiselect</span><span class="o">(</span><span class="n">join</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The output of the above code example is quite different than what we saw in the implicit join. The initial query only fetches the address id by doing the <code class="highlighter-rouge">INNER JOIN</code>. Each of the entities in the relationship is fetched lazily using separate queries</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">select</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">col_0_0_</span> 
+    <span class="n">from</span>
+        <span class="n">student</span> <span class="n">student0_</span> 
+    <span class="n">inner</span> <span class="n">join</span>
+        <span class="n">address</span> <span class="n">addresses1_</span> 
+            <span class="n">on</span> <span class="n">student0_</span><span class="o">.</span><span class="na">id</span><span class="o">=</span><span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span> 
+</code></pre></div></div>
+
+<p>After all the Id’s are fetched, One query is used to fetch Student and Address details by doing an <code class="highlighter-rouge">OUTER JOIN</code> on Student id and address.Student_id.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">select</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">city_code</span> <span class="n">as</span> <span class="n">city_cod2_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">city_lang</span> <span class="n">as</span> <span class="n">city_lan3_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">city_name</span> <span class="n">as</span> <span class="n">city_nam4_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">country</span> <span class="n">as</span> <span class="n">country5_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">house_number</span> <span class="n">as</span> <span class="n">house_nu6_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">street</span> <span class="n">as</span> <span class="n">street7_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">student_id</span> <span class="n">as</span> <span class="n">student_9_0_0_</span><span class="o">,</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">zip_code</span> <span class="n">as</span> <span class="n">zip_code8_0_0_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_4_1_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">name</span> <span class="n">as</span> <span class="n">name2_4_1_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">passport_id</span> <span class="n">as</span> <span class="n">passport3_4_1_</span> 
+    <span class="n">from</span>
+        <span class="n">address</span> <span class="n">address0_</span> 
+    <span class="n">left</span> <span class="n">outer</span> <span class="n">join</span>
+        <span class="n">student</span> <span class="n">student1_</span> 
+            <span class="n">on</span> <span class="n">address0_</span><span class="o">.</span><span class="na">student_id</span><span class="o">=</span><span class="n">student1_</span><span class="o">.</span><span class="na">id</span> 
+    <span class="n">where</span>
+        <span class="n">address0_</span><span class="o">.</span><span class="na">id</span><span class="o">=?</span>
+</code></pre></div></div>
+<p>Note: If a restriction is provided in <code class="highlighter-rouge">where</code> method of the <code class="highlighter-rouge">CritieriaQuery</code>. It would result in a single query.</p>
+
+<p> </p>
+
+<h4 id="fetch-join">Fetch Join</h4>
+
+<p><code class="highlighter-rouge">FETCH</code> tells the JPA to override the declarative fetch definitions provided through annotation such as <code class="highlighter-rouge">@ManyToMany(fetch=FetchType.LAZY)</code> and initialize all the associations or relationships eagerly. As a result, only one query is created.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+        <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">root</span><span class="o">.</span><span class="na">fetch</span><span class="o">(</span><span class="s">"addresses"</span><span class="o">);</span>
+        <span class="n">cq</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p><em>The above query output is only a single query as below:</em></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="n">select</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_4_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_0_1_</span><span class="o">,</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">name</span> <span class="n">as</span> <span class="n">name2_4_0_</span><span class="o">,</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">passport_id</span> <span class="n">as</span> <span class="n">passport3_4_0_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_code</span> <span class="n">as</span> <span class="n">city_cod2_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_lang</span> <span class="n">as</span> <span class="n">city_lan3_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">city_name</span> <span class="n">as</span> <span class="n">city_nam4_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">country</span> <span class="n">as</span> <span class="n">country5_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">house_number</span> <span class="n">as</span> <span class="n">house_nu6_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">street</span> <span class="n">as</span> <span class="n">street7_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span> <span class="n">as</span> <span class="n">student_9_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">zip_code</span> <span class="n">as</span> <span class="n">zip_code8_0_1_</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span> <span class="n">as</span> <span class="n">student_9_0_0__</span><span class="o">,</span>
+        <span class="n">addresses1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_0_0__</span> 
+    <span class="n">from</span>
+        <span class="n">student</span> <span class="n">student0_</span> 
+    <span class="n">inner</span> <span class="n">join</span>
+        <span class="n">address</span> <span class="n">addresses1_</span> 
+            <span class="n">on</span> <span class="n">student0_</span><span class="o">.</span><span class="na">id</span><span class="o">=</span><span class="n">addresses1_</span><span class="o">.</span><span class="na">student_id</span>
+</code></pre></div></div>
+
+<p> </p>
+
+<h3 id="group-by-and-having-clause">Group By and Having clause</h3>
+
+<p><code class="highlighter-rouge">Group By</code> Clause is used to group rows with similar values. <code class="highlighter-rouge">Having</code> Clause is used to add restrictions for <a href="https://docs.oracle.com/database/121/SQLRF/functions003.htm#SQLRF20035">aggregate functions</a>.</p>
+
+<p><strong>GroupBy —</strong> method is part of the <code class="highlighter-rouge">CriteriaQuery</code> Interface. It either takes  one or a List of <code class="highlighter-rouge">Expressions</code> as parameters. These expressions are used to form groups over the query results. Below is the signature of the <code class="highlighter-rouge">groupBy</code> methods.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/*
+    * @param grouping  zero or more grouping expressions
+    * @return the modified query
+    */</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">groupBy</span><span class="o">(</span><span class="nc">Expression</span><span class="o">&lt;?&gt;...</span> <span class="n">grouping</span><span class="o">);</span>
+
+    <span class="cm">/*
+    * @param grouping  list of zero or more grouping expressions
+    * @return the modified query
+    */</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">groupBy</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Expression</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">grouping</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p> </p>
+
+<p><strong>Having —</strong> method is also part of the <code class="highlighter-rouge">CriteriaQuery</code> Interface. It either takes a simple or compound boolean <code class="highlighter-rouge">Expression</code> or one or more <code class="highlighter-rouge">Predicates</code> as parameters. The expression or predicates provided specify the restrictions over the groups of the query.
+Below is the signature of the <code class="highlighter-rouge">having</code> methods.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cm">/**
+     * @param restriction  a simple or compound boolean expression
+     * @return the modified query
+     */</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">having</span><span class="o">(</span><span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Boolean</span><span class="o">&gt;</span> <span class="n">restriction</span><span class="o">);</span>
+
+    <span class="cm">/**
+     * @param restrictions  zero or more restriction predicates
+     * @return the modified query
+     */</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="no">T</span><span class="o">&gt;</span> <span class="nf">having</span><span class="o">(</span><span class="nc">Predicate</span><span class="o">...</span> <span class="n">restrictions</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p> </p>
+
+<p>To build a Criteria Query which uses the <code class="highlighter-rouge">group by</code> and <code class="highlighter-rouge">having</code> methods–
+Let’s assume, we need to fetch all the <code class="highlighter-rouge">Students</code> with the number of <code class="highlighter-rouge">Addresses</code> greater than or equal to three(3).</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="cm">/** Query the address entity **/</span>
+    <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Address</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="cm">/** join with student to fetch the student_id **/</span>
+    <span class="nc">Join</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">,</span> <span class="nc">Student</span><span class="o">&gt;</span> <span class="n">joinOnStudent</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
+    <span class="cm">/** count expression on the address_id **/</span>
+    <span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">count</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">));</span>
+    <span class="cm">/** fetch students , group by student_id , habving count &gt;= 3 **/</span>
+    <span class="n">cq</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">joinOnStudent</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="n">joinOnStudent</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">))</span>
+        <span class="o">.</span><span class="na">having</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">ge</span><span class="o">(</span><span class="n">count</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The output results in an SQL with an <code class="highlighter-rouge">INNER JOIN</code> between Student and Address on Student_id column. It fetches students with restrictions provided by <code class="highlighter-rouge">HAVING</code> clause on aggregate function mentioned by <code class="highlighter-rouge">Group By</code> clause.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">Hibernate:</span> 
+    <span class="n">select</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_4_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">name</span> <span class="n">as</span> <span class="n">name2_4_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">passport_id</span> <span class="n">as</span> <span class="n">passport3_4_</span> 
+    <span class="n">from</span>
+        <span class="n">address</span> <span class="n">address0_</span> 
+    <span class="n">inner</span> <span class="n">join</span>
+        <span class="n">student</span> <span class="n">student1_</span> 
+            <span class="n">on</span> <span class="n">address0_</span><span class="o">.</span><span class="na">student_id</span><span class="o">=</span><span class="n">student1_</span><span class="o">.</span><span class="na">id</span> 
+    <span class="n">group</span> <span class="n">by</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">id</span> 
+    <span class="n">having</span>
+        <span class="nf">count</span><span class="o">(</span><span class="n">address0_</span><span class="o">.</span><span class="na">id</span><span class="o">)&gt;=</span><span class="mi">3</span>
+</code></pre></div></div>
+
+<p> </p>
+<h3 id="order-by">Order By</h3>
+
+<p>The <code class="highlighter-rouge">order by</code> keyword is used to sort the fetched data either in ascending order or descending order of the value of a column. It can also include aggregate functions.</p>
+
+<p>The <code class="highlighter-rouge">Order</code> interface provides the below methods</p>
+<ul>
+  <li><code class="highlighter-rouge">reverse()</code> method switches the ordering.</li>
+  <li><code class="highlighter-rouge">isAscending()</code> checks whether ascending order is in place.</li>
+  <li><code class="highlighter-rouge">getExpression()</code> fetches the expression that is used for ordering.</li>
+</ul>
+
+<p> </p>
+
+<p>The <code class="highlighter-rouge">CriteriaBuilder</code> interface provides the following methods to enforce order in a criteria query.</p>
+<ul>
+  <li><code class="highlighter-rouge">asc(Expression&lt;?&gt; x)</code>: this method returns an <code class="highlighter-rouge">Order</code> instance which enforces an ascending order by the value of the expression provided as the parameter.</li>
+  <li><code class="highlighter-rouge">desc(Expression&lt;?&gt; x)</code>: this method returns an <code class="highlighter-rouge">Order</code> instance which enforces a descending order by the value of the expression provided as the parameter.</li>
+</ul>
+
+<p>Let’s modify the above example to add the descending order such that we have all the students in descending order of the number of addresses.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Address</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">Join</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">,</span> <span class="nc">Student</span><span class="o">&gt;</span> <span class="n">joinOnStudent</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
+
+    <span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">count</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">));</span>
+    <span class="n">cq</span>
+        <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">joinOnStudent</span><span class="o">)</span>
+            <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="n">joinOnStudent</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">having</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">ge</span><span class="o">(</span><span class="n">count</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span>
+                        <span class="o">.</span><span class="na">orderBy</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="n">count</span><span class="o">));</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>The output query produced by the above criteria query is below:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">select</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_4_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">name</span> <span class="n">as</span> <span class="n">name2_4_</span><span class="o">,</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">passport_id</span> <span class="n">as</span> <span class="n">passport3_4_</span> 
+    <span class="n">from</span>
+        <span class="n">address</span> <span class="n">address0_</span> 
+    <span class="n">inner</span> <span class="n">join</span>
+        <span class="n">student</span> <span class="n">student1_</span> 
+            <span class="n">on</span> <span class="n">address0_</span><span class="o">.</span><span class="na">student_id</span><span class="o">=</span><span class="n">student1_</span><span class="o">.</span><span class="na">id</span> 
+    <span class="n">group</span> <span class="n">by</span>
+        <span class="n">student1_</span><span class="o">.</span><span class="na">id</span> 
+    <span class="n">having</span>
+        <span class="nf">count</span><span class="o">(</span><span class="n">address0_</span><span class="o">.</span><span class="na">id</span><span class="o">)&gt;=</span><span class="mi">3</span>
+    <span class="n">order</span> <span class="n">by</span>
+        <span class="nf">count</span><span class="o">(</span><span class="n">address0_</span><span class="o">.</span><span class="na">id</span><span class="o">)</span> <span class="n">asc</span>
+</code></pre></div></div>
+
+<p> </p>
+<h3 id="subquery">Subquery</h3>
+
+<p>A <code class="highlighter-rouge">subquery</code> is a nested query which is embedded in the <code class="highlighter-rouge">WHERE</code> clause of the main query. The results of the subquery are consumed by the main query.</p>
+
+<p><code class="highlighter-rouge">subquery</code> method is part of <a href="https://docs.oracle.com/javaee/7/api/javax/persistence/criteria/CommonAbstractCriteria.html">CommonAbstractCriteria</a> interface. This interface provides functionality which is common to both top-level criteria queries as well as subqueries.</p>
+
+<p>Let’s change the above example to include a subquery.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">CriteriaBuilder</span> <span class="n">builder</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">getCriteriaBuilder</span><span class="o">();</span>
+    <span class="nc">CriteriaQuery</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">cq</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">root</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Student</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">cq</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+        <span class="cm">/** Subquery is created from the main criteria query **/</span>
+        <span class="nc">Subquery</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">subquery</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="na">subquery</span><span class="o">(</span><span class="nc">Long</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Root</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">&gt;</span> <span class="n">subRoot</span> <span class="o">=</span> <span class="n">subquery</span><span class="o">.</span><span class="na">from</span><span class="o">(</span><span class="nc">Address</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="nc">Join</span><span class="o">&lt;</span><span class="nc">Address</span><span class="o">,</span> <span class="nc">Student</span><span class="o">&gt;</span> <span class="n">joinOnStudent</span> <span class="o">=</span> <span class="n">subRoot</span><span class="o">.</span><span class="na">join</span><span class="o">(</span><span class="s">"student"</span><span class="o">);</span>
+        <span class="nc">Path</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">idPath</span> <span class="o">=</span> <span class="n">joinOnStudent</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">);</span>
+        <span class="nc">Expression</span><span class="o">&lt;</span><span class="nc">Long</span><span class="o">&gt;</span> <span class="n">idCountExp</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">count</span><span class="o">(</span><span class="n">subRoot</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">));</span>
+        <span class="n">subquery</span>
+            <span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">idPath</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">groupBy</span><span class="o">(</span><span class="n">idPath</span><span class="o">)</span>
+                    <span class="o">.</span><span class="na">having</span><span class="o">(</span><span class="n">builder</span><span class="o">.</span><span class="na">ge</span><span class="o">(</span><span class="n">idCountExp</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
+
+    <span class="cm">/** subquery is provided as a parameter to the where method **/</span>
+    <span class="n">cq</span><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"id"</span><span class="o">).</span><span class="na">in</span><span class="o">(</span><span class="n">subquery</span><span class="o">));</span>
+
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Student</span><span class="o">&gt;</span> <span class="n">resultList</span> <span class="o">=</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="n">cq</span><span class="o">).</span><span class="na">getResultList</span><span class="o">();</span>
+</code></pre></div></div>
+
+<p>Below is the output of the final query produced–</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">select</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">id</span> <span class="n">as</span> <span class="n">id1_4_</span><span class="o">,</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">name</span> <span class="n">as</span> <span class="n">name2_4_</span><span class="o">,</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">passport_id</span> <span class="n">as</span> <span class="n">passport3_4_</span> 
+    <span class="n">from</span>
+        <span class="n">student</span> <span class="n">student0_</span> 
+    <span class="n">where</span>
+        <span class="n">student0_</span><span class="o">.</span><span class="na">id</span> <span class="nf">in</span> <span class="o">(</span>
+            <span class="n">select</span>
+                <span class="n">student2_</span><span class="o">.</span><span class="na">id</span> 
+            <span class="n">from</span>
+                <span class="n">address</span> <span class="n">address1_</span> 
+            <span class="n">inner</span> <span class="n">join</span>
+                <span class="n">student</span> <span class="n">student2_</span> 
+                    <span class="n">on</span> <span class="n">address1_</span><span class="o">.</span><span class="na">student_id</span><span class="o">=</span><span class="n">student2_</span><span class="o">.</span><span class="na">id</span> 
+            <span class="n">group</span> <span class="n">by</span>
+                <span class="n">student2_</span><span class="o">.</span><span class="na">id</span> 
+            <span class="n">having</span>
+                <span class="nf">count</span><span class="o">(</span><span class="n">address1_</span><span class="o">.</span><span class="na">id</span><span class="o">)&gt;=</span><span class="mi">3</span>
+        <span class="o">)</span>
+            
+</code></pre></div></div>
+
+<p> </p>
+<h3 id="aggregate-functions">Aggregate Functions</h3>
+
+<p>Criteria API supports the aggregate functions such as <code class="highlighter-rouge">count</code>, <code class="highlighter-rouge">avg</code>, <code class="highlighter-rouge">max</code>, and <code class="highlighter-rouge">min</code> etc. All the aggregate functions are part of the  <a href="https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaBuilder.html">CriteriaBuilder</a> Interface.</p>
+
+<p>We have already seen in our initial example, how to use aggregate functions such as <code class="highlighter-rouge">count</code>.</p>
+
+<p> </p>
+
+<p><em>If you have come this far, you might also want to learn about — <a href="/posts/java/jpa/select-values-in-criteria-queries">how to select values in criteria Queries</a>. This post explains various methods provided in Criteria API to select single or multiple values. It also explains  tuple criteria queries.</em></p>
+
+:ET

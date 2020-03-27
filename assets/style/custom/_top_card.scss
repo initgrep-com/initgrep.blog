@@ -29,14 +29,14 @@
   
   @include media-breakpoint-up(xs) {
     .top-card {
-      border-radius: 5px;
+      // border-radius: 5px;
       background: transparent;
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       img {
         height: 220px;
         object-fit: cover;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
+        // border-top-right-radius: 5px;
+        // border-top-left-radius: 5px;
       }
       .card-body {
         .card-meta {
@@ -58,7 +58,7 @@
             }
           }
         }
-        h5.card-title {
+        h3.card-title {
           
           font-weight: 700;
           a{
@@ -66,7 +66,7 @@
           }
         }
         p.card-text {
-          font-size: .9rem;
+          font-size: 1.2rem;
         }
       }
 

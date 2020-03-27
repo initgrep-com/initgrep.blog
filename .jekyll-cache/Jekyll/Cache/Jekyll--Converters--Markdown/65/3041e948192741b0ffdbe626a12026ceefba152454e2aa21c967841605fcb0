@@ -1,0 +1,44 @@
+I":<blockquote>
+  <p>A SAM type is a type which defines a <code class="highlighter-rouge">single abstract method</code>. It includes <code class="highlighter-rouge">functional interfaces</code> and <code class="highlighter-rouge">Abstract classes with single abstract method</code> .</p>
+</blockquote>
+
+<p><strong>Functional interface:</strong>
+An Interface which permits only single Abstract method excluding the default methods. Functional Interface was introduced in Java 8. For compile time validations, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html"><code class="highlighter-rouge">@FunctionalInterface</code></a> was introduced.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+            <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">obj</span><span class="o">)</span>
+        <span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>Abstract classes with single abstract method:</strong></p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">predicateImpl</span>  <span class="kd">implements</span> <span class="n">predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;{</span>
+      <span class="nd">@override</span>
+      <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">String</span> <span class="n">obj</span><span class="o">){</span>
+       <span class="k">return</span> <span class="n">obj</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s1">'G'</span><span class="o">)</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Groovy closures are very powerful. They can be coerced to a ` AST<code class="highlighter-rouge"> using </code>as<code class="highlighter-rouge"> operator. Since  </code>version 2.2.0<code class="highlighter-rouge"> , </code>as ` operator is optional.</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@param</span> <span class="n">source</span> <span class="n">the</span> <span class="n">list</span>
+<span class="nd">@param</span> <span class="n">predicate</span> <span class="n">the</span> <span class="n">functional</span> <span class="kd">interface</span>
+<span class="nc">public</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">collect</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">source</span><span class="o">,</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">source</span><span class="o">.</span><span class="na">findAll</span> <span class="o">{</span> <span class="n">predicate</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">it</span><span class="o">)</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>The above use case might seem alien at first. But once we go through a few examples, it would be clear that it is the most common use case used in most operations in groovy. Implementing such a use case in groovy would be like</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">],</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="s1">'G'</span><span class="o">}</span> <span class="k">as</span> <span class="n">Predicate</span><span class="o">)</span> <span class="o">-(</span><span class="mi">1</span><span class="o">)</span>
+    <span class="c1">//or </span>
+    <span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">],</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="err">'</span><span class="n">G</span> <span class="o">})</span> <span class="c1">// version 2.2.0 -(2)</span>
+</code></pre></div></div>
+
+<p>In the <code class="highlighter-rouge">(2)nd</code> case , the 2nd parameter is closure and it is coerced to an AST. so we can use the closure syntax for the method calls i.e. put the closure outside of the parenthesis which improves the readability of code and simplifies the syntax</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">collect</span><span class="o">([</span><span class="s1">'Java'</span><span class="o">,</span><span class="s1">'Groovy'</span><span class="o">])</span> <span class="o">{</span> <span class="n">it</span><span class="o">.</span><span class="na">contains</span> <span class="err">'</span><span class="n">G</span> <span class="o">}</span>
+</code></pre></div></div>
+<p>looking closely to the above code, It is same syntax used for the collect method for collections such as</p>
+
+<p><code class="highlighter-rouge">[1,2,3,4,5].collect([]){ it*it }</code></p>
+
+:ET

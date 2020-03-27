@@ -1,0 +1,238 @@
+I"?[<p>Design patterns are an important aspect of constructive and efficient software 
+development. To create code maintainable and reduce dependency across the modules, it is important to implement the design patterns suited for the use case.</p>
+
+<p>My analogy of the <strong>Observer pattern</strong> could be as below</p>
+<blockquote>
+  <p><em>Let’s say, In my home, I have a main switch board.  we can either switch-on the main 
+board or switch-off. Every room has one light bulb. I want to create a pattern such as 
+when ever the board is turned off or on, The light bulbs in each room are turned on or 
+off. If we are implementing <code class="highlighter-rouge">Observer pattern</code> here, I would connect all the light 
+bulbs to the main switch board. So every time I switch-off or switch-on , the bulbs 
+either turn on or turn off</em></p>
+</blockquote>
+
+<p><img src="/assets/images/observer.png" alt="observer-analogy" /></p>
+
+<p>I hope that was a clear analogy.</p>
+
+<p>Now the question arises, when do we want a similar pattern in software development. 
+Lets say I have a Data Structure(X). It could be  <code class="highlighter-rouge">Maps or Lists or trees etc</code>.  I have other functionalities that have to do some processing or house-keeping whenever the data in the Data Structure(X) changes. In order for me to do that, I could implement the <code class="highlighter-rouge">Observer pattern</code>. I would register all the dependent functionalities with the Data Structure(x) and create service(s) which notifies them whenever the data changes.</p>
+
+<p>Let’s get started by actually implementing one. Our Data Structure for this tutorial is a simple list named as <code class="highlighter-rouge">dataList</code>. Following steps would describe the implementation -</p>
+
+<p><strong>Create an Object which wraps our data structure</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/**
+    using an empty constructor function 
+    so it would easier to create new objects of Subject
+   **/</span>
+ <span class="kd">var</span> <span class="nx">Subject</span> <span class="o">=</span>   <span class="kd">function</span><span class="p">(){};</span>
+</code></pre></div></div>
+
+<p><strong>Add the data Structure to wrapper Object</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+   
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+    <span class="k">return</span><span class="p">{</span>
+		<span class="na">data</span> <span class="p">:</span> <span class="nx">dataList</span> <span class="p">,</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span>
+	<span class="p">}</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+<p>we have added the <code class="highlighter-rouge">dataList</code> and helper functions (<code class="highlighter-rouge">push &amp; pop</code>) to add and remove the data respectively. Nothing fancy till now.</p>
+
+<p><strong>Add a List which keeps track of Observers</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+    <span class="c1">//added the Observer List</span>
+    <span class="kd">var</span> <span class="nx">observers</span> <span class="o">=</span>  <span class="p">[];</span>
+   
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+    <span class="k">return</span><span class="p">{</span>
+		<span class="na">data</span> <span class="p">:</span> <span class="nx">dataList</span> <span class="p">,</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span>
+	<span class="p">}</span>
+  <span class="p">}();</span>
+</code></pre></div></div>
+
+<p><strong>Register an Observer</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">observer</span><span class="p">){</span>
+   <span class="k">if</span><span class="p">(</span><span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">){</span>
+	   <span class="nx">observers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span>
+	<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+	   <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">can not register the observer. Notify method not present</span><span class="dl">"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p><code class="highlighter-rouge">register</code> function takes an object as parameter and stores(registers) it in the <code class="highlighter-rouge">Observers</code> list. It is mandatory that this Object has a <code class="highlighter-rouge">notify</code> function. We have a validation in place for it. 
+we will get back to the <code class="highlighter-rouge">notify</code> function later. let’s forget it for now</p>
+
+<p><strong>Remove an Observer</strong></p>
+
+<p>if a particular Observer has registered. The <code class="highlighter-rouge">remove</code> function will remove the specific Observer.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">remove</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">observer</span><span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">observer</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">id</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+		<span class="nx">observers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">id</span> <span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>RECAP</strong>- <em>In case you are wondering what is going on :)</em></p>
+
+<ol>
+  <li><code class="highlighter-rouge">Subject</code> is a wrapper object which contains our <code class="highlighter-rouge">dataList</code> and <code class="highlighter-rouge">Observers</code> list.</li>
+  <li>Helper functions (<code class="highlighter-rouge">push/pop</code>) to add and remove data to/from <code class="highlighter-rouge">dataList</code>.</li>
+  <li>Service functions (<code class="highlighter-rouge">register/remove</code>) to register and remove <code class="highlighter-rouge">Observer</code> from Observer List</li>
+</ol>
+
+<p>Below is the complete code template of what we have done so far.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Subject</span> <span class="o">=</span>   <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">Subject</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="kd">var</span> <span class="nx">dataList</span> <span class="o">=</span>  <span class="p">[];</span>
+	<span class="kd">var</span> <span class="nx">observers</span> <span class="o">=</span>  <span class="p">[];</span>
+	<span class="c1">//add the data to dataList</span>
+	<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+	<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">register</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">observer</span><span class="p">){</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">observer</span><span class="p">.</span><span class="nx">notify</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">){</span>
+			<span class="nx">observers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">observer</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="k">else</span><span class="p">{</span>
+			<span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">"</span><span class="s2">can not register the observer. Notify method not present</span><span class="dl">"</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+	<span class="kd">var</span> <span class="nx">remove</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">observer</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">observer</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">id</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+			<span class="nx">observers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">id</span> <span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+    <span class="cm">/**
+    * returning the Public functions
+    **/</span>
+	<span class="k">return</span><span class="p">{</span>
+		<span class="na">push</span> <span class="p">:</span> <span class="nx">push</span><span class="p">,</span>
+		<span class="na">pop</span> <span class="p">:</span> <span class="nx">pop</span><span class="p">,</span>
+		<span class="na">addListener</span> <span class="p">:</span> <span class="nx">register</span> <span class="p">,</span>
+		<span class="na">removeListener</span> <span class="p">:</span> <span class="nx">remove</span>
+	<span class="p">}</span>
+<span class="p">}();</span>
+</code></pre></div></div>
+
+<p><strong>Notify function</strong> - <em>I told u, I will get back to it later ;)</em></p>
+<blockquote>
+  <p>when implementing a particular design pattern, we basically try to decouple different dependent modules. In order for this to work, their has to be a proper contract to be implemented on both sides. 
+<em>if we take the previous analogy. In order for the light bulbs to switch on/off when the main switch board is turned on/off, we have to connect the wires to appropriate nodes.</em> It is a kind of contract. 
+Similarly, when implementing a pattern, we have to have a proper contract to implement on both sides.</p>
+
+</blockquote>
+
+<p>Let’s go back and see what <code class="highlighter-rouge">notify</code> does for us.</p>
+
+<p>When the <code class="highlighter-rouge">Observer</code> registers itself for any data change in <code class="highlighter-rouge">dataList</code>. The <strong>register contract</strong> states that in case of any data change, <code class="highlighter-rouge">notify</code> me about it. The <code class="highlighter-rouge">Observers</code> use the <code class="highlighter-rouge">notify</code> method to do some processing or house keeping.
+Let’s implement it to make it more clear.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//add the data to dataList</span>
+<span class="kd">var</span> <span class="nx">push</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+	<span class="nx">dataList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="c1">//notify all the registered observers when the data is added</span>
+       <span class="nx">notifyRegistered</span><span class="p">();</span>
+<span class="p">};</span>
+<span class="kd">var</span> <span class="nx">pop</span> <span class="o">=</span>  <span class="kd">function</span><span class="p">(</span> <span class="nx">val</span> <span class="p">){</span>
+	<span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="nx">dataList</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">index</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+		<span class="nx">dataList</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+         <span class="c1">//notify all the registered observers when the data is removed</span>
+		<span class="nx">notifyRegistered</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+<span class="cm">/**
+* Notify all the registered Observers
+**/</span>
+<span class="kd">var</span> <span class="nx">notifyRegistered</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+	<span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">observers</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">observers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">notify</span><span class="p">(</span><span class="nx">dataList</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">notifyRegistered</code> service calls the <code class="highlighter-rouge">notify</code> method of all the registered Observers.</p>
+
+<p><strong>Let’s create some test code and run it.</strong></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//create an Observer</span>
+<span class="kd">var</span> <span class="nx">Observer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
+<span class="nx">Observer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">notify</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">notified the change</span><span class="dl">"</span><span class="p">);</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">dataList = </span><span class="dl">"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="c1">//create a subject. in this case let's assume it is a data base</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Subject</span><span class="p">();</span>
+<span class="c1">//add the different Observer instances</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">Observer</span><span class="p">());</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">new</span> <span class="nx">Observer</span><span class="p">());</span>
+<span class="c1">//do some data changes</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">222</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">111</span><span class="p">);</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="mi">12121221</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><strong>Output</strong>- <em>in case you are interested</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ node Observer.js 
+notified the change
+dataList =  [ 111 ]
+notified the change
+dataList =  [ 111 ]
+notified the change
+dataList =  [ 111, 222 ]
+notified the change
+dataList =  [ 111, 222 ]
+notified the change
+dataList =  [ 222 ]
+notified the change
+dataList =  [ 222 ]
+
+</code></pre></div></div>
+<p>Below is final code template:
+<script src="https://gist.github.com/igagrock/423778c9a28ea870345b8fec660722fa.js"></script></p>
+
+<p><strong>P.S</strong></p>
+
+<p>Observer pattern is easier to implement. you can enhance the code by adding different types of notifications. There is no limit in how it can be improvised and used in real world applications. 
+Although Observer design pattern provides a some level of code decoupling, <a href="/posts/javascript/design-patterns/publisher-Subscriber(pub-sub)">Pub-Sub pattern</a> goes further ahead with decoupling.</p>
+
+:ET

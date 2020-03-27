@@ -1,0 +1,64 @@
+I"-<blockquote>
+  <p>As per <a href="http://groovy-lang.org/">Apache groovy Documentation</a>, “Groovy is a powerful, optionally typed and dynamic language, with static-typing and static compilation capabilities, for the Java platform aimed at improving developer productivity thanks to a concise, familiar and easy to learn syntax. It integrates smoothly with any Java program, and immediately delivers to your application powerful features, including scripting capabilities, Domain-Specific Language authoring, runtime and compile-time meta-programming and functional programming.”</p>
+</blockquote>
+
+<p>I recently started using Groovy. Part of my job is heavily dependent on creating a tree structure based on a data table with each row having a relationship with other row. i.e <code class="highlighter-rouge">id</code> of one row will be equal to <code class="highlighter-rouge">parent_id</code> of other row.</p>
+
+<p>Groovy has this amazing feature called <code class="highlighter-rouge">closures</code>. As a simple form, <code class="highlighter-rouge">closures</code> look like</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kt">def</span> <span class="n">closureName</span> <span class="o">=</span> <span class="o">{</span> <span class="n">param1</span><span class="o">,</span> <span class="n">param2</span> <span class="o">-&gt;</span>
+  <span class="n">println</span> <span class="n">param1</span>
+  <span class="n">println</span> <span class="n">param2</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+<blockquote>
+  <p>As per the documentation, “Closure is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable. A closure may reference variables declared in its surrounding scope. “
+Let’s say, we have a closure nested inside another closure. you can call a top level using <code class="highlighter-rouge">Delegation strategy</code>. <code class="highlighter-rouge">owner</code> corresponds to the enclosing object where the closure is defined, which may be either a class or a closure.</p>
+</blockquote>
+
+<p>For example:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="c1">//top level closure -- (1)</span>
+<span class="kt">def</span> <span class="n">closureName</span> <span class="o">=</span> <span class="o">{</span> <span class="n">hetorgenousArray</span> <span class="o">-&gt;</span>
+      
+      <span class="cm">/**java.util.List contains each(Closure closure) method 
+      * which takes closure as    parameter
+      * this is our inner closure --(2)
+      **/</span>
+      <span class="n">hetorgenousArray</span><span class="o">.</span><span class="na">each</span><span class="o">{</span> <span class="n">item</span><span class="o">-&gt;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">item</span> <span class="k">instanceof</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">ArrayList</span><span class="o">){</span>
+          <span class="c1">//call the top level closure</span>
+          <span class="n">owner</span><span class="o">.</span><span class="na">call</span><span class="o">(</span><span class="n">item</span><span class="o">)</span>
+       <span class="o">}</span>
+       <span class="k">else</span> <span class="n">println</span> <span class="n">item</span>
+      
+      <span class="o">}</span>
+      
+ <span class="o">}</span>
+<span class="c1">//heterogenous array.contains Integer and array of integers as its elements</span>
+<span class="kt">def</span> <span class="n">heteroArray</span> <span class="o">=</span> <span class="o">[</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">,[</span><span class="mi">11</span><span class="o">,</span><span class="mi">22</span><span class="o">,</span><span class="mi">33</span><span class="o">,[</span><span class="mi">111</span><span class="o">,</span><span class="mi">222</span><span class="o">,</span><span class="mi">333</span><span class="o">]],</span><span class="mi">4</span><span class="o">,</span><span class="mi">5</span><span class="o">]</span>
+
+<span class="c1">//call the closure on this array</span>
+<span class="n">closureName</span> <span class="n">heteroArray</span>
+</code></pre></div></div>
+
+<p>The output of the above code is</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">1
+2
+11
+22
+33
+111
+222
+333
+4
+5
+
+
+</span></code></pre></div></div>
+
+<p>Referring to the code above, it becomes pretty easy to call a top level enclosing closure <code class="highlighter-rouge">(1)</code> with in a nested inner closure <code class="highlighter-rouge">(2)</code>.</p>
+
+<p>Except <code class="highlighter-rouge">Owner</code>, Groovy closures also contain Other Delegation strategy. you can check <a href="http://groovy-lang.org/closures.html#_delegation_strategy">Offical Groovy Documentation for closure</a> for a detailed explaination.</p>
+:ET

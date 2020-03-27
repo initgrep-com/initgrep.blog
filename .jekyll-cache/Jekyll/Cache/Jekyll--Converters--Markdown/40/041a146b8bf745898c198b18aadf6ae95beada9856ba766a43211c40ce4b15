@@ -1,0 +1,465 @@
+I"��<p>This post is in continuation with the <a href="/posts/typescript/Learn-TypeScript-fundamentals-in-60-ish-minutes-part(1)">previous</a> post. If you have directly landed here, I would suggest you read the previous post first.</p>
+
+<h4 id="classes">Classes</h4>
+
+<p>TypeScript uses the object-oriented approach to handle the creation of objects and inheritance. Typescript classes are essentially compiled to the given JavaScript version which allows greater browser compatibility. ES6(ECMAScript-2015) also includes a similar approach.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/**
+        A Person class is declared.
+        name:string is a memeber variable
+        introduce() is a method
+    **/</span>
+    <span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
+      <span class="nl">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+      <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">introduce</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`HI my name is </span><span class="p">${</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="cm">/**
+        create sam as an Object of type Person
+    **/</span>
+
+    <span class="kd">var</span> <span class="nx">sam</span><span class="p">:</span><span class="nx">Person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">sam</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">sam</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>  <span class="c1">// Hi my name is sam</span>
+
+</code></pre></div></div>
+
+<h5 id="inheritance-and-access-modifiers">Inheritance and Access Modifiers</h5>
+
+<p>A class can extend to other classes and thus Inherit all the <code class="highlighter-rouge">protected</code>
+and <code class="highlighter-rouge">public</code> members of the class. <code class="highlighter-rouge">private</code> members are not inherited.
+Each member is <code class="highlighter-rouge">public</code> by default. 
+Methods also follow a similar rule as the members.</p>
+
+<blockquote>
+  <p>Constructor can be marked as <code class="highlighter-rouge">protected</code> which means the class can only be instantiated and is accessible within the class declaration. However, it can be extended by other classes.</p>
+</blockquote>
+
+<blockquote>
+  <p>If a constructor is declared <code class="highlighter-rouge">private</code>, the corresponding class cannot be extended to and is only accessible within the class declaration.</p>
+</blockquote>
+
+<p>The below example is self-explanatory.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="kd">class</span> <span class="nx">Person</span> <span class="p">{</span>
+      <span class="kr">private</span> <span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+      <span class="kr">protected</span> <span class="nx">age</span><span class="p">:</span><span class="nx">number</span><span class="p">;</span>
+      <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">,</span> <span class="nx">age</span><span class="p">:</span><span class="nx">number</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nx">introduce</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`HI my name is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="p">}</span>
+
+    <span class="p">}</span>
+    
+    <span class="cm">/** Student inherits all public and protected members 
+        from class Person 
+    **/</span>
+    <span class="kd">class</span> <span class="nx">Student</span> <span class="kd">extends</span> <span class="nx">Person</span> <span class="p">{</span>
+         <span class="kr">public</span> <span class="nx">grade</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+         <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span> <span class="p">,</span> <span class="nx">age</span><span class="p">:</span><span class="nx">number</span><span class="p">,</span> <span class="nx">grade</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+           <span class="cm">/** super has to be the first statement in the 
+               constructor of the deriving class 
+            **/</span>
+           <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span><span class="nx">age</span><span class="p">);</span> 
+         <span class="p">}</span>
+         <span class="nx">introduce</span><span class="p">(){</span>
+           <span class="cm">/** call the method of the parent class **/</span>  
+           <span class="k">super</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>  
+
+          <span class="cm">/**ERROR: name is a private memeber of parent class **/</span>   
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`HI my name is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> 
+
+          <span class="cm">/** age can be accessed here as it is a protected member */</span>
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`My age is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> 
+
+          <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`My grade is </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">grade</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+         <span class="p">}</span>
+
+    <span class="p">}</span>
+        <span class="cm">/** declare x as person **/</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">x</span><span class="dl">"</span><span class="p">,</span><span class="mi">12</span><span class="p">);</span>
+        <span class="nx">x</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>
+
+        <span class="cm">/** declare a variable jack of the type Person 
+            representing a Student  
+        **/</span>
+        <span class="kd">var</span> <span class="nx">jack</span><span class="p">:</span><span class="nx">Person</span> <span class="o">=</span>  <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="dl">"</span><span class="s2">jack</span><span class="dl">"</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">student</span><span class="p">.</span><span class="nx">introduce</span><span class="p">();</span>
+
+</code></pre></div></div>
+
+<h5 id="readonly-modifier-and-parameter-properties">ReadOnly modifier and Parameter properties</h5>
+
+<p>Declaring a member as <code class="highlighter-rouge">readonly</code> cannot be modified except in constructor or at the place of declaration using parameter properties.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+     <span class="cm">/**declare using paramter properties */</span>
+    <span class="kd">class</span> <span class="nx">ReadonlyType</span><span class="p">{</span>
+      <span class="nx">readonly</span> <span class="nx">name</span><span class="p">:</span><span class="nx">string</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">james</span><span class="dl">'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** use a constructor to initailize */</span>
+    <span class="kd">class</span> <span class="nx">ReadonlyTypeWithConstructor</span><span class="p">{</span>
+      <span class="nx">readonly</span> <span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+      <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h5 id="accessors-getters-and-setters">Accessors: Getters and Setters</h5>
+
+<p>TypeScript supports <code class="highlighter-rouge">getters</code>/<code class="highlighter-rouge">setters</code> as a way of intercepting access to a member of an object. <code class="highlighter-rouge">Get</code> and <code class="highlighter-rouge">Set</code> keywords are used to provide the same. TypeScript compilers lower the ECMAScript 5 does not support this feature.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/**
+    Declare a class Employee with a private member username.
+    set getters and setters for the member.
+    **/</span>
+    <span class="kd">class</span> <span class="nx">Employee</span><span class="p">{</span>
+        <span class="kr">private</span> <span class="nx">username</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+        <span class="kd">constructor</span><span class="p">(</span><span class="nx">theUsername</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">theUsername</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">get</span> <span class="nx">userName</span><span class="p">(){</span>
+          <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">username</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">set</span> <span class="nx">userName</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">jack</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Employee</span><span class="p">(</span><span class="dl">'</span><span class="s1">Jack</span><span class="dl">'</span><span class="p">);</span>
+    <span class="cm">/**setter called**/</span>
+    <span class="nx">jack</span><span class="p">.</span><span class="nx">userName</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">emanuel</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="cm">/** getter called **/</span>
+    <span class="kd">var</span> <span class="nx">uName</span> <span class="o">=</span> <span class="nx">jack</span><span class="p">.</span><span class="nx">userName</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h5 id="static-properties">Static Properties</h5>
+
+<p>Static properties are available to class itself rather than on the instances.
+<code class="highlighter-rouge">static</code> keyword is used to declare a property as static.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">class</span> <span class="nx">Printer</span><span class="p">{</span>
+  <span class="cm">/** static method **/</span>  
+  <span class="kd">static</span> <span class="nx">printDocument</span><span class="p">(</span><span class="nx">path</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">document is printed</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/** call the static method using the class name **/</span>
+<span class="nx">Printer</span><span class="p">.</span><span class="nx">printDocument</span><span class="p">(</span><span class="dl">"</span><span class="s2">path://to/the/document</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h5 id="abstract-class">Abstract class</h5>
+
+<p><code class="highlighter-rouge">Abstract</code> keyword is used to declare a class as abstract. An abstract class can not be instantiated. It can be inherited by other classes. Methods declared as <code class="highlighter-rouge">abstract</code> only have the method declaration. However, non-abstract methods can also be present.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="nx">abstract</span> <span class="kd">class</span> <span class="nx">Person</span><span class="p">{</span>
+
+       <span class="kr">private</span> <span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+       <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+       <span class="p">}</span>
+      <span class="nx">printName</span><span class="p">(){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`hey yo.. I m </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="nx">abstract</span> <span class="nx">printAge</span><span class="p">(</span><span class="nx">age</span><span class="p">:</span><span class="nx">number</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">class</span> <span class="nx">realPerson</span> <span class="kd">extends</span> <span class="nx">Person</span><span class="p">{</span>
+      <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">:</span><span class="nx">string</span><span class="p">){</span><span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">);}</span>
+      <span class="nx">printAge</span><span class="p">(</span><span class="nx">age</span><span class="p">:</span><span class="nx">number</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`I am </span><span class="p">${</span><span class="nx">age</span><span class="p">}</span><span class="s2"> years old`</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** Cannot create an instance of an abstract class. */</span>
+    <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+
+    <span class="kd">var</span> <span class="nx">rp</span><span class="p">:</span><span class="nx">Person</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">realPerson</span><span class="p">(</span><span class="dl">"</span><span class="s2">sparrow</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">rp</span><span class="p">.</span><span class="nx">printAge</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<p> </p>
+
+<p> </p>
+
+<h4 id="generics">Generics</h4>
+<p>Generics is a facility of generic programming to produce reusable software components.</p>
+<blockquote>
+  <p>Generic programming is a style of computer programming in which algorithms are written in terms of types <strong>to-be-specified-later</strong> that are then instantiated when needed for specific types provided as parameters– <a href="https://en.wikipedia.org/wiki/Generic_programming">wikipedia</a></p>
+</blockquote>
+
+<p>A generic type could be represented by any character, commonly represented by any Capital letter such as <strong><code class="highlighter-rouge">T</code></strong>.</p>
+
+<h5 id="generic-functions">Generic Functions</h5>
+<p>When used in a function, TypeScript compiler will enforce correct use of the generic types inside the function. A typical Generic function in TypeScript is written as follows:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** generic function to declare a variable of various types */</span>
+    <span class="kd">function</span> <span class="nx">declareVariable</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">parameter</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span><span class="nx">T</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nx">parameter</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/** declare type as number as number **/</span>
+    <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span>  <span class="nx">declareVariable</span><span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+
+    <span class="cm">/**ERROR:  Type '"a dummy sring"' is not assignable to type 'number'. **/</span>
+    <span class="nx">x</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">a dummy string </span><span class="dl">"</span>
+
+    <span class="cm">/** declare type as number as string **/</span>
+    <span class="kd">let</span> <span class="nx">yx</span> <span class="o">=</span> <span class="nx">declareVariable</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span><span class="p">(</span><span class="dl">"</span><span class="s2">iota</span><span class="dl">"</span><span class="p">);</span>
+    
+</code></pre></div></div>
+
+<p>A generic type typically represents an identity(type) of the Type. <em>It does not control the structure of the parameters.</em></p>
+
+<p>The below example clears a little bit air about it. We have declared a function with generic type <strong><code class="highlighter-rouge">T</code></strong>. If we try to access the <code class="highlighter-rouge">length</code> property, the TypeScript compiler is going to complain about it.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** Declare a function with generic type T
+        and try to access the length property 
+    **/</span>
+    <span class="kd">function</span> <span class="nx">declareVariable</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">parameter</span><span class="p">:</span> <span class="nx">T</span><span class="p">):</span><span class="nx">T</span><span class="p">{</span>
+        <span class="cm">/** ERROR": Property 'length' does not exist on type 'T' */</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">parameter</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="nx">parameter</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>Let’s take a step back and think– if our generic function is dealing the types having a <code class="highlighter-rouge">length</code> property, then our declaration of parameters is wrong. Typically, indexable types such as  <code class="highlighter-rouge">array</code> have a length property. It does not necessarily have to be an <code class="highlighter-rouge">array</code>. It could be any type with a <code class="highlighter-rouge">length</code> property.</p>
+
+<p>Let’s change the parameter type of the function.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** Parameter includes an array of T type **/</span>
+    <span class="kd">function</span> <span class="nx">processIndexableGenericTypes</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">params</span><span class="p">:</span><span class="nb">Array</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">):</span><span class="nx">T</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`length = </span><span class="p">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">firstElement</span> <span class="o">=</span> <span class="nx">processIndexableGenericTypes</span><span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+
+</code></pre></div></div>
+<p>we could use a user-defined type as below</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** lengthPropType has a property length:number */</span>
+    <span class="kr">interface</span> <span class="nx">lengthPropType</span><span class="p">{</span>
+        <span class="nl">length</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** Parameter includes an array of T type **/</span>
+        <span class="kd">function</span> <span class="nx">processIndexableGenericTypes</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">params</span><span class="p">:</span><span class="nx">lengthPropType</span><span class="p">):</span><span class="nx">T</span><span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`length = </span><span class="p">${</span><span class="nx">params</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+            <span class="k">return</span> <span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">}</span>
+
+        <span class="cm">/**
+         * Since the array has a length property.
+         * the below statement will still work with array parameter 
+         */</span>
+        <span class="kd">var</span> <span class="nx">firstElement</span> <span class="o">=</span> <span class="nx">processIndexableGenericTypes</span><span class="o">&lt;</span><span class="nx">number</span><span class="o">&gt;</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<h5 id="generic-function-types">Generic Function Types</h5>
+<p>Generic function types are created as a typical function type except the explicit type name is replaced with a generic type.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** represents a function with parameter of any given type */</span>
+    <span class="kd">var</span> <span class="nx">genType</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">param</span><span class="p">:</span><span class="nx">T</span><span class="p">)</span><span class="o">=&gt;</span><span class="nx">T</span><span class="p">;</span>
+
+    <span class="cm">/** assign a function of similar type */</span>
+    <span class="nx">genType</span> <span class="o">=</span>  <span class="nx">declareVariable</span><span class="p">;</span>
+    <span class="nx">declareVariable</span><span class="p">(</span><span class="mi">1212</span><span class="p">);</span>
+
+    <span class="cm">/** declare a type of a function with array parameters of a type T */</span>
+    <span class="kd">var</span> <span class="nx">indexgenType</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">params</span><span class="p">:</span> <span class="nx">T</span><span class="p">[])</span> <span class="o">=&gt;</span><span class="nx">T</span><span class="p">;</span>
+    <span class="nx">indexgenType</span> <span class="o">=</span> <span class="nx">processIndexableGenericTypes</span><span class="p">;</span>
+    <span class="nx">indexgenType</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<h5 id="generic-interface">Generic Interface</h5>
+<p>The below example describes a generic interface</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** declare an interface which specifies
+        a function type 
+    **/</span>
+    <span class="kr">interface</span> <span class="nx">genFunctionType</span><span class="o">&lt;</span><span class="nx">T</span><span class="p">,</span><span class="nx">U</span><span class="o">&gt;</span><span class="p">{</span>
+        <span class="o">&lt;</span><span class="nx">T</span><span class="p">,</span><span class="nx">U</span><span class="o">&gt;</span><span class="p">(</span><span class="na">param1</span><span class="p">:</span><span class="nx">T</span><span class="p">,</span><span class="na">param2</span><span class="p">:</span><span class="nx">U</span><span class="p">):</span> <span class="nx">T</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">function</span> <span class="nx">logOuput</span><span class="o">&lt;</span><span class="nx">T</span><span class="p">,</span><span class="nx">U</span><span class="o">&gt;</span><span class="p">(</span><span class="na">a</span><span class="p">:</span> <span class="nx">T</span><span class="p">,</span> <span class="na">b</span><span class="p">:</span><span class="nx">U</span><span class="p">):</span><span class="nx">T</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="na">logNumStringOutPut</span> <span class="p">:</span> <span class="nx">genFunctionType</span><span class="o">&lt;</span><span class="nx">number</span><span class="p">,</span> <span class="nx">string</span><span class="o">&gt;</span> <span class="o">=</span>  <span class="nx">logOuput</span><span class="p">;</span>
+    <span class="nx">logNumStringOutPut</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="dl">"</span><span class="s2">dashing</span><span class="dl">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h5 id="generic-constraints">Generic constraints</h5>
+<p>Normally, Generic types can allow any predefined and user-defined types. To have limits on what a generic type can represent, constraints come in picture. The <code class="highlighter-rouge">extends</code> keyword is used to constrain a generic type.</p>
+
+<p>The following example will provide a better picture of constraint usage.</p>
+
+<ul>
+  <li>Let’s say we want a function to accept only those types of parameters which have a <code class="highlighter-rouge">name</code> property of type <code class="highlighter-rouge">string</code>.
+    <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="cm">/** declare a type which has a name:string property **/</span>
+  <span class="kr">interface</span> <span class="nx">nameType</span><span class="p">{</span>
+      <span class="nl">value</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="cm">/**getName function excepts parameters which extend to nameType **/</span>
+  <span class="kd">function</span> <span class="nx">getName</span><span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="nx">nameType</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">nameobj</span><span class="p">:</span><span class="nx">T</span><span class="p">){</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nameobj</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">getName</span><span class="p">({</span><span class="na">value</span><span class="p">:</span><span class="dl">"</span><span class="s2">Batis</span><span class="dl">"</span><span class="p">});</span> <span class="c1">//OUTPUT: Batis</span>
+</code></pre></div>    </div>
+  </li>
+  <li>How about making things a little complex– Let’s say we want to create a class <code class="highlighter-rouge">Person</code>. It can take any types as parameters which have <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">age</code> property. Also, it wants to make sure the <code class="highlighter-rouge">name</code> is of the type which has at least a <code class="highlighter-rouge">value</code> property of type <code class="highlighter-rouge">string</code> and <code class="highlighter-rouge">age</code> is of a type which has at least a <code class="highlighter-rouge">value</code> of the property of type <code class="highlighter-rouge">number</code></li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="cm">/** ageType has a property value:number */</span>
+    <span class="kr">interface</span> <span class="nx">ageType</span> <span class="p">{</span>
+        <span class="nl">value</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="cm">/** nameType has a prperty value:age*/</span>
+    <span class="kr">interface</span> <span class="nx">nameType</span> <span class="p">{</span>
+        <span class="nl">value</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** declare an interface with T which has a property T and U.
+       Both T and U extend to nameType and ageType respectively.
+     */</span>
+    <span class="kr">interface</span> <span class="nx">PersonType</span><span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="nx">nameType</span><span class="p">,</span> <span class="nx">U</span> <span class="kd">extends</span> <span class="nx">ageType</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="nx">T</span><span class="p">;</span>
+        <span class="nl">age</span><span class="p">:</span> <span class="nx">U</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** Person class takes type P which extends 
+        to PersonType Interface 
+     **/</span>
+    <span class="kd">class</span> <span class="nx">Person</span><span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="nx">PersonType</span><span class="o">&lt;</span><span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="nx">string</span> <span class="p">},</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="nx">number</span> <span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+        <span class="nl">age</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+        <span class="kd">constructor</span><span class="p">(</span><span class="na">param</span><span class="p">:</span> <span class="nx">T</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">param</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">param</span><span class="p">.</span><span class="nx">age</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">let</span> <span class="nx">personOne</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="dl">'</span><span class="s1">batis</span><span class="dl">'</span> <span class="p">},</span> <span class="na">age</span><span class="p">:</span> <span class="p">{</span> <span class="na">value</span><span class="p">:</span> <span class="mi">31</span> <span class="p">}</span> <span class="p">});</span>
+</code></pre></div></div>
+
+<h5 id="class-types-in-generics">Class Types In Generics</h5>
+
+<p>It is essentially useful when creating factories to generate classes which <code class="highlighter-rouge">extends</code> from a certain type. A slight twist here is– the factory function will take constructor signature as the parameter type.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**function type of class based generic factory**/</span> 
+<span class="kd">var</span> <span class="nx">genericFactoryType</span> <span class="p">:</span> <span class="o">&lt;</span><span class="nx">T</span> <span class="kd">extends</span> <span class="nx">Entity</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">param</span><span class="p">:</span> <span class="k">new</span> <span class="p">()</span><span class="o">=&gt;</span><span class="nx">T</span><span class="p">)</span> <span class="o">=&gt;</span><span class="nx">T</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">new ()=&gt;T</code> represents a constructor signature with no arguments and returning a generic type.</p>
+
+<p>The implementation looks as below–</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">class</span> <span class="nx">Entity</span><span class="p">{</span>
+        <span class="nl">name</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">class</span> <span class="nx">Student</span> <span class="kd">extends</span> <span class="nx">Entity</span><span class="p">{</span>
+        <span class="nl">GPA</span><span class="p">:</span><span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">class</span> <span class="nx">PrimeryGrader</span> <span class="kd">extends</span> <span class="nx">Student</span><span class="p">{</span>
+        <span class="nl">GRADE</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">class</span> <span class="nx">Professor</span> <span class="kd">extends</span> <span class="nx">Entity</span><span class="p">{</span>
+        <span class="nl">Band</span><span class="p">:</span> <span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">class</span> <span class="nx">UniversityPropessor</span> <span class="kd">extends</span> <span class="nx">Professor</span><span class="p">{</span>
+        <span class="nl">Department</span><span class="p">:</span><span class="nx">string</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/** factory function takes a constructor type parameters
+        of type E which extends to Entity
+    **/</span>
+    <span class="kd">function</span> <span class="nx">createEntity</span><span class="o">&lt;</span><span class="nx">E</span> <span class="kd">extends</span> <span class="nx">Entity</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">e</span> <span class="p">:</span> <span class="k">new</span> <span class="p">()</span><span class="o">=&gt;</span><span class="nx">E</span><span class="p">):</span><span class="nx">E</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">e</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">student</span> <span class="o">=</span> <span class="nx">createEntity</span><span class="o">&lt;</span><span class="nx">Student</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">PrimeryGrader</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">professor</span> <span class="o">=</span> <span class="nx">createEntity</span><span class="o">&lt;</span><span class="nx">Professor</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">UniversityPropessor</span><span class="p">);</span>
+
+</code></pre></div></div>
+
+<h4 id="type-compatibility">Type Compatibility</h4>
+<p>TypeScript uses structural typing for comparison of the types unlike <a href="https://en.wikipedia.org/wiki/Nominal_type_system">nominal typing</a> using by object-oriented languages.</p>
+
+<blockquote>
+  <h5 id="type-x-is-compatible-with-type-y-if-y-has-at-least-same-members-as-x">Type <code class="highlighter-rouge">X</code> is compatible with type <code class="highlighter-rouge">Y</code> if <code class="highlighter-rouge">Y</code> has at least same members as <code class="highlighter-rouge">X</code></h5>
+</blockquote>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kr">interface</span> <span class="nx">X</span><span class="p">{</span>
+        <span class="nl">a</span><span class="p">:</span><span class="nx">number</span><span class="p">;</span>
+        <span class="nl">b</span><span class="p">:</span><span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kr">interface</span> <span class="nx">Y</span><span class="p">{</span>
+        <span class="nl">a</span><span class="p">:</span><span class="nx">number</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">x</span><span class="p">:</span><span class="nx">X</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">y</span><span class="p">:</span><span class="nx">Y</span><span class="p">;</span>
+
+    <span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span> <span class="c1">//OK</span>
+  
+    <span class="cm">/** 
+        ERROR: Type 'Y' is not assignable to type 'X'.
+        Property 'b' is missing in type 'Y'.
+    **/</span>
+    <span class="nx">x</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <h5 id="function-type-x-is-compatible-with-function-type-y-if-the-y-has-at-most-or-less-number-of-parameters-of-the-same-type-than-x-and-the-return-type-of-y-is-either-same-or-a-subtype-of-return-of-x">Function type <code class="highlighter-rouge">X</code> is compatible with function type <code class="highlighter-rouge">Y</code> if the <code class="highlighter-rouge">Y</code> has at most or less number of parameters( of the same type) than <code class="highlighter-rouge">X</code> and the return type of <code class="highlighter-rouge">Y</code> is either same or a subtype of return of <code class="highlighter-rouge">X</code></h5>
+</blockquote>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">let</span> <span class="nx">X</span> <span class="p">:</span> <span class="p">(</span><span class="nx">a</span><span class="p">:</span><span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span><span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">number</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">Y</span> <span class="p">:(</span><span class="nx">a</span><span class="p">:</span><span class="nx">number</span> <span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">number</span><span class="p">;</span>
+    <span class="nx">X</span> <span class="o">=</span> <span class="nx">Y</span>  <span class="c1">//OK</span>
+    <span class="cm">/**
+     ERROR: Type '(a: number, b: number) =&gt; number' is not assignable 
+     to type '(a: number) =&gt; number'.
+     **/</span>
+    <span class="nx">Y</span> <span class="o">=</span> <span class="nx">X</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><strong>Optional Parameters</strong> hold an optional place in comparison also. If the types are not compatible, optional parameters can pitch in and satisfy the compatibility– given if they are of same types. Let’s take the above example and add an optional parameter <code class="highlighter-rouge">b</code> to type <code class="highlighter-rouge">Y</code></p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">X</span> <span class="p">:</span> <span class="p">(</span><span class="nx">a</span><span class="p">:</span><span class="nx">number</span><span class="p">,</span> <span class="nx">b</span><span class="p">:</span><span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">number</span><span class="p">;</span>
+<span class="c1">// b is an optional parameter</span>
+<span class="kd">let</span> <span class="nx">Y</span> <span class="p">:(</span><span class="nx">a</span><span class="p">:</span><span class="nx">number</span> <span class="p">,</span> <span class="nx">b</span><span class="p">?:</span><span class="nx">number</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">number</span><span class="p">;</span> 
+
+<span class="nx">x</span><span class="o">=</span><span class="nx">y</span>  <span class="c1">//OK</span>
+<span class="nx">y</span><span class="o">=</span><span class="nx">x</span>  <span class="c1">//ok</span>
+</code></pre></div></div>
+
+<p>If we remove the parameter <code class="highlighter-rouge">b</code> from type, <code class="highlighter-rouge">X</code> and <code class="highlighter-rouge">Y</code> being compatible would still hold true.</p>
+
+<p><strong>Rest Parameters</strong> are considered an infinite series of optional parameters.</p>
+
+<p><strong>Overloaded Function</strong> each overload in the source type must be matched by a compatible signature on the target type.</p>
+
+<p><strong>Class Compatibility</strong>. Since constructor and static side of the class are not considered, It is similar to comparing interface types. However <code class="highlighter-rouge">private</code> and <code class="highlighter-rouge">protected</code> affect the compatibility. Target type should have equal numbers of <code class="highlighter-rouge">private</code> or <code class="highlighter-rouge">protected</code> members as the source.</p>
+
+:ET

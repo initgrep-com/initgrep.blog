@@ -1,0 +1,53 @@
+I"�<p>AngularJS Directives is a unit of reusable code which is used to add custom behavior to HTML elements or attributes. Directives can be added to HTML  elements, attributes, CSS classes or comments. AngularJS HTML compiler identifies each directive and attaches the specific behavior to Document Object Model(DOM) elements through event listeners.</p>
+
+<p>Directives can be of following types:</p>
+
+<ol>
+  <li><code class="highlighter-rouge">E</code> - Element based</li>
+  <li><code class="highlighter-rouge">A</code> - Attributes based</li>
+  <li><code class="highlighter-rouge">C</code> -  CSS class based</li>
+  <li><code class="highlighter-rouge">M</code> -  Comment based.</li>
+</ol>
+
+<p>The type is specified by the <code class="highlighter-rouge">restrict</code> property of directive configuration object.  During the compilation process, directives are matched based on their type. If nothing is specified, the default options used for matching are <strong><code class="highlighter-rouge">EA</code></strong>.</p>
+
+<p>Let’s start with a basic directive example…</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//app.js   </span>
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">app</span><span class="dl">'</span><span class="p">,</span> <span class="p">[])</span>
+<span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="dl">"</span><span class="s2">appCtrl1</span><span class="dl">"</span><span class="p">,[</span><span class="dl">"</span><span class="s2">$scope</span><span class="dl">"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">){</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Irshad</span><span class="dl">"</span><span class="p">,</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">company</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">initgrep inc</span><span class="dl">"</span>
+    <span class="nx">$scope</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">www.initgrep.com</span><span class="dl">"</span>
+<span class="p">}])</span>
+<span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="dl">"</span><span class="s2">userInfo</span><span class="dl">"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">userInfoDefinitionObject</span> <span class="o">=</span><span class="p">{</span>
+    <span class="na">template</span> <span class="p">:</span> <span class="dl">"</span><span class="s2">&lt;div&gt; &lt;b&gt;Name:&lt;/b&gt;{{name}}&lt;br/&gt;&lt;b&gt;Organisation:&lt;/b&gt;{{company}}&lt;br/&gt; &lt;b&gt;website:&lt;/b&gt;{{url}}&lt;/div&gt;</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">userInfoDefinitionObject</span><span class="p">;</span>
+<span class="p">})</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>I have created a directive named <code class="highlighter-rouge">userInfo</code>. The factory function returns <code class="highlighter-rouge">userInfoDefinitionObject</code>. The <code class="highlighter-rouge">template</code> includes variables such as <code class="highlighter-rouge">company</code>, <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">URL</code> which refer to the current scope defined in <code class="highlighter-rouge">appCtrl1</code> controller. <code class="highlighter-rouge">templateUrl</code> can be used instead of <code class="highlighter-rouge">template</code> and the template URL can be specified. It can also take a function which returns a template URL.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!--app.html --&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"app"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"appCtrl1"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">user-info</span> <span class="nt">&gt;&lt;/div&gt;</span>
+    <span class="nt">&lt;user-info&gt;&lt;/user-info&gt;</span>
+
+	<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+<p>In the HTML file, I have added <code class="highlighter-rouge">appCtrl1</code> controller. Inside the controller, I have added directive <code class="highlighter-rouge">user-Info</code> as an element and an attribute. As I stated earlier, by default the directive type is <code class="highlighter-rouge">EA</code>. If we want to <code class="highlighter-rouge">restrict</code> the attribute type to a distinct type, we will have to explicitly add <code class="highlighter-rouge">restrict</code> property with values among <code class="highlighter-rouge">EACM</code></p>
+
+<h4 id="normalization-of-the-directive-name">Normalization of the directive name</h4>
+
+<p>Directives names are defined in camel case such as <code class="highlighter-rouge">myDirective</code>. Since HTML is case insensitive, the directive names are matched with their dashed name <code class="highlighter-rouge">my-directive</code>.  Also, the prefixes such as <code class="highlighter-rouge">data-</code> are stripped. This process is referred to as  An example of the same is below…</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">.</span><span class="nx">directive</span><span class="p">(</span><span class="dl">"</span><span class="s2">userInfo</span><span class="dl">"</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="nx">directiveDefinitionObject</span><span class="p">{}});</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">user-info</span> <span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;user-info&gt;&lt;/user-info&gt;</span>
+</code></pre></div></div>
+
+:ET

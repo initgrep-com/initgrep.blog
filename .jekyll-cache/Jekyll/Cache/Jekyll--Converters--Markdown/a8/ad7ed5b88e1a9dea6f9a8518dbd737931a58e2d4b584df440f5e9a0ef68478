@@ -1,0 +1,156 @@
+I"�H<p>Filters are one of the AngularJS features which help in filtering or formatting the data for the end user.
+There are a number of built-in filters such as <code class="highlighter-rouge">filter</code>, <code class="highlighter-rouge">currency</code>. <a href="https://docs.angularjs.org/api/ng/filter">Built-in-filters</a> section in AngularJs documentation has a complete list.</p>
+
+<p>A sample usage of Filters in view templates is as below:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{{ expression | filter:argument1:argument2:...  }}
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">expression</code> is a valid JavaScript expression. Filter is separated with  pipe(<code class="highlighter-rouge">|</code>) symbol and can have one or more arguments separated by a colon(<code class="highlighter-rouge">:</code>).</p>
+
+<p>We can use Filters in the Controllers, Services or Directives as well. I will explain it a little later…</p>
+
+<p>Let’s begin with a simple filter example.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// _.js</span>
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">customFilterApp</span><span class="dl">'</span><span class="p">,</span> <span class="p">[])</span>
+<span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="dl">'</span><span class="s1">MainCtrl</span><span class="dl">'</span><span class="p">,[</span><span class="dl">"</span><span class="s2">$scope</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">;</span>
+<span class="p">}])</span>
+<span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="dl">'</span><span class="s1">initcaps</span><span class="dl">'</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="kd">var</span> <span class="nx">initcaps</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="o">+</span><span class="nx">value</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">initcaps</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- _.html --&gt;</span>
+  <span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">"customFilterApp"</span> <span class="na">ng-cloak</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"MainCtrl"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>initcaps {{ name | initcaps }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>I have created an AngularJs module <code class="highlighter-rouge">customFilterApp</code> with a controller registered as  <code class="highlighter-rouge">MainCtrl</code>. I have also added a variable <code class="highlighter-rouge">name</code> to the controller’s scope.</p>
+
+<blockquote>
+  <p>To register a filter, you have to add a factory function which returns a new filter function. 
+The filter function should follow below rules:</p>
+  <ol>
+    <li>
+      <p>It has to be a <code class="highlighter-rouge">pure function</code>. i.e. For the same input, the result output returned should always be the same.</p>
+    </li>
+    <li>
+      <p>The filter function takes the input value as the first argument. It can have additional arguments also.</p>
+
+      <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">app</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="dl">'</span><span class="s1">filter-name</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">});</span>
+</code></pre></div>      </div>
+    </li>
+    <li>
+      <p>It should not change the external state.</p>
+    </li>
+    <li>
+      <p>Filters should be valid AngularJs Expression identifiers such as <code class="highlighter-rouge">uppercase</code> or <code class="highlighter-rouge">orderBy</code>. Names with special characters, such as hyphens and dots, are not allowed.</p>
+    </li>
+  </ol>
+</blockquote>
+
+<p>Before we move ahead, let me briefly explain a few core concepts.</p>
+
+<h5 id="digest-cycle">Digest Cycle:</h5>
+
+<p><a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$digest">Digest Cycle</a> is AngularJS way of tracking each change in the scope and updating the template views and vice versa. Scope at its core is a set of key-value pairs of data. AngularJS registers <a href="https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$watch">watchers</a> on each of the scope value. The value could be a primitive or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">Javascript object</a>. When a Digest Cycle is initiated, all the watchers are called. If the value has changed since the last Digest cycle, the listener functions are run to update the corresponding expressions where the values are used.</p>
+
+<h5 id="interpolation">Interpolation:</h5>
+
+<p><a href="https://docs.angularjs.org/guide/interpolation">Interpolation</a> expressions such as <code class="highlighter-rouge">{{ an-expression }}</code> is used to provide two-way data binding for text nodes or attribute values of DOM. During the compilation process, text nodes and attribute values are scanned by <code class="highlighter-rouge">$compile</code>  service. If the interpolation is found, <code class="highlighter-rouge">InterpolationDirective</code> is added to the node and an Interpolation function is computed. After that <code class="highlighter-rouge">watchers</code>  are added to the computed function. During the <code class="highlighter-rouge">Digest Cycle</code>, these watches are used to update the corresponding text nodes or attribute value.</p>
+
+<p>I hope that was clear enough.</p>
+
+<p>Let’s get Back to Filters…</p>
+
+<h5 id="filter-execution">Filter execution:</h5>
+
+<p>Since filter functions are <a href="https://en.wikipedia.org/wiki/Pure_function">pure functions</a>.  AngularJs depends on this contract during the digest cycle.</p>
+<ol>
+  <li>If the value is primitive, Filters in templates are executed only when the input has changed.</li>
+  <li>If the value is Object or the filters are registered as stateful, Filters are executed on every digest.</li>
+</ol>
+
+<h5 id="stateful-filters">Stateful filters</h5>
+
+<p>Stateful filters depend on the external state. If the external state changes, the result returned for the same input to filter function might vary. As a result, the filter is executed one or more times during the Digest Cycle. It is recommended to avoid stateful filter.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//_.js</span>
+<span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">customFilterApp</span><span class="dl">'</span><span class="p">,</span> <span class="p">[])</span>
+<span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="dl">'</span><span class="s1">MainCtrl</span><span class="dl">'</span><span class="p">,[</span><span class="dl">"</span><span class="s2">$scope</span><span class="dl">"</span><span class="p">,</span><span class="dl">"</span><span class="s2">position</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span><span class="nx">position</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">hellothere</span><span class="dl">'</span><span class="p">;</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="nx">position</span><span class="p">;</span>
+<span class="p">}])</span>
+<span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="dl">'</span><span class="s1">anycaps</span><span class="dl">'</span><span class="p">,[</span><span class="dl">'</span><span class="s1">position</span><span class="dl">'</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">position</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">anycapsFilter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">position</span><span class="p">.</span><span class="nx">val</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">pos</span><span class="p">)</span>
+        <span class="o">+</span><span class="nx">value</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">pos</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span>
+        <span class="o">+</span><span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="nx">anycapsFilter</span><span class="p">.</span><span class="nx">$stateful</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">anycapsFilter</span><span class="p">;</span>
+<span class="p">}])</span>
+<span class="p">.</span><span class="nx">value</span><span class="p">(</span><span class="dl">'</span><span class="s1">position</span><span class="dl">'</span><span class="p">,{</span><span class="na">val</span><span class="p">:</span><span class="mi">0</span><span class="p">});</span>
+</code></pre></div></div>
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- _.html --&gt;</span>
+
+ <span class="nt">&lt;body</span> <span class="na">ng-app=</span><span class="s">"customFilterApp"</span> <span class="na">ng-cloak</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">ng-controller=</span><span class="s">"MainCtrl"</span><span class="nt">&gt;</span>
+      caps position: <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">ng-model=</span><span class="s">"position.val"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;h1&gt;</span>anycaps {{ name | anycaps }}<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+</code></pre></div></div>
+
+<p>I have created a stateful filter above. It is dependent on a value service to fetch the position. It is also registered as stateful. The code points are explained below.</p>
+
+<h5 id="_js-">_.js :</h5>
+
+<p><code class="highlighter-rouge">position</code> is a value service. It stores the position. <code class="highlighter-rouge">anycaps</code> is the filter name. It returns a filter function which in turn returns a string with any given character(in UPPERCASE). The filter is registered as stateful by adding <code class="highlighter-rouge">anycapsFilter.$stateful = true;</code>.  It means the filter will be executed one or more times during the Digest cycle. <code class="highlighter-rouge">position</code> service is injected as a dependency to the filter. The filter function uses the <code class="highlighter-rouge">val</code> attribute to get the position.</p>
+
+<h5 id="_html-">_.html :</h5>
+
+<p><code class="highlighter-rouge">position.val</code> is binded to the value of <code class="highlighter-rouge">input</code> element as <code class="highlighter-rouge">&lt;input type="text" ng-model="position.val"&gt;</code>. As the value changes, the filter gets executed.to</p>
+
+<p>It might not be easy to figure out the difference as much from the code. But once you put some log statements and keep changing the input, you would notice the execution cycles are much higher for the stateful filter. During the execution, I noticed for every input change, Stateless filter gets called only once but Stateful filter gets called twice.</p>
+
+<h5 id="filters-usage-in-controllers">Filters usage in Controllers</h5>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">angular</span>
+  <span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="dl">'</span><span class="s1">customFilterApp</span><span class="dl">'</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="dl">'</span><span class="s1">MainCtrl</span><span class="dl">'</span><span class="p">,</span> <span class="p">[</span><span class="dl">'</span><span class="s1">$scope</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">initcapsFilter</span><span class="dl">'</span><span class="p">,</span>  				                 <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">initcapsFilter</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">hello</span><span class="dl">'</span><span class="p">;</span>
+          <span class="nx">$scope</span><span class="p">.</span><span class="nx">internalName</span> <span class="o">=</span> <span class="nx">initcapsFilter</span><span class="p">(</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+          <span class="nx">$scope</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="nx">position</span><span class="p">;</span>
+    <span class="p">},</span>
+  <span class="p">])</span>
+  <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="dl">'</span><span class="s1">initcaps</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">initcapsFilter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">pos</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">pos</span><span class="p">)</span> <span class="o">+</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">pos</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span>
+        <span class="nx">value</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">pos</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+      <span class="p">);</span>
+    <span class="p">};</span>
+    <span class="k">return</span> <span class="nx">initcapsFilter</span><span class="p">;</span>
+  <span class="p">})</span>
+</code></pre></div></div>
+
+<p>Custom filters can be passed as dependency much like services. You need to prepend Filter at the end of filter name. i.e. <code class="highlighter-rouge">initcaps</code> filter will be passed as <code class="highlighter-rouge">initcapsFilter</code> as the dependency.  AngularJs takes care of the rest of the <a href="https://docs.angularjs.org/guide/di">dependency management</a> and the filter function is passed as a parameter. It can further be used as a normal JavaScript function.</p>
+
+<p>You can check the <a href="https://next.plnkr.co/edit/rxGiA5vpJoB9YuTJ?preview">Create-Custom-filters </a> plunker for the details…</p>
+
+:ET

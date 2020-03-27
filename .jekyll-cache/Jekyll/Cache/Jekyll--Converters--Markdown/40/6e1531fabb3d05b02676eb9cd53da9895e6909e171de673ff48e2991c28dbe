@@ -1,0 +1,94 @@
+I"f,<p>Publisher Subscriber(Pub-Sub) pattern goes further ahead by decoupling the registration process of subscribers and publishers compared to <a href="/posts/javascript/design-patterns/observer-pattern">Observer pattern</a> . It introduces a message broker or Event Bus which acts as a bridge between a publisher(Subject) and various Subscribers. The topics are published by Subject for different kinds of events. The subscriber registers for the respective topics to get notified.</p>
+
+<p>Let me try an analogy for it:</p>
+<blockquote>
+  <p><em>lets say we have 10 radio stations in a city. Each radio station works at their own frequency
+In case we want to listen to radio station(A) with frequency equal to 100, we have to switch to the given frequency. 
+Radio station(A) publishes its episodes at the frequency(topic/event) 100. As a subscriber, if we want to listen to it, we have to listen at this frequency(topic/event)</em></p>
+
+</blockquote>
+
+<p><img src="/assets/images/pub-sub.svg" alt="pubsub-analogy" /></p>
+
+<p>Lets implement the publisher subscriber design pattern using Javascript.</p>
+
+<p><strong>Create an Event Bus object which has the registration and publishing API</strong></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	
+    <span class="kd">var</span> <span class="nx">EventBus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">eventTopics</span> <span class="o">=</span>  <span class="p">{};</span>
+    
+    <span class="k">this</span><span class="p">.</span><span class="nx">addEventListener</span> <span class="o">=</span>  <span class="kd">function</span> <span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">listener</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">||</span> <span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="p">}</span>
+         <span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">listener</span><span class="p">);</span>
+    <span class="p">};</span>
+   
+    <span class="k">this</span><span class="p">.</span><span class="nx">emitEventListeners</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">eventName</span> <span class="p">,</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">]</span> <span class="o">||</span> <span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+          <span class="nx">eventTopics</span><span class="p">[</span><span class="nx">eventName</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">listener</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">listener</span><span class="p">(</span> <span class="o">!!</span><span class="nx">params</span> <span class="p">?</span> <span class="nx">params</span> <span class="p">:</span> <span class="p">{}</span> <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+    
+<span class="p">}</span> <span class="c1">//END EventBus</span>
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">addEventListener</code> and <code class="highlighter-rouge">emitEventListeners</code> functions lets the subscriber and publisher to subscribe and publish on events respectively.</p>
+
+<p><strong>An EventBus can be used as an independent object for registration and publishing such as</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//initialize the event bus</span>
+<span class="kd">var</span> <span class="nx">EventService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EventBus</span><span class="p">();</span>
+<span class="c1">//add the event listener</span>
+<span class="nx">EventService</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span> <span class="nx">callback1</span><span class="p">);</span>
+<span class="nx">EventService</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span> <span class="nx">callback2</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">EmailService</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="nx">createEmail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">subject</span><span class="p">){</span>
+		<span class="c1">//some business here</span>
+		<span class="nx">EventService</span><span class="p">.</span><span class="nx">emitEventListeners</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span> <span class="p">,</span> <span class="nx">subject</span><span class="p">);</span>
+	<span class="p">}</span> 
+<span class="p">}</span>
+</code></pre></div></div>
+<p>we can also let <code class="highlighter-rouge">EmailService extend EventBus</code>. This would make <code class="highlighter-rouge">EmailService</code>
+have all the characteristics of <code class="highlighter-rouge">EventBus</code>. Based on the need, we can customize the API also.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//extend the EventBus</span>
+<span class="kd">var</span> <span class="nx">EmailService</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+  <span class="nx">EventBus</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">createEmail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">subject</span><span class="p">){</span>
+      <span class="c1">//send the email</span>
+      <span class="c1">//publish/emit the event = order/new </span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">emitEventListeners</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span><span class="nx">Subject</span><span class="p">)</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">EmailService</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">EventBus</span><span class="p">.</span><span class="nx">prototype</span><span class="p">)</span>
+<span class="nx">EmailService</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">EmailService</span><span class="p">;</span>
+</code></pre></div></div>
+<p><em>Note: you can use the new features of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">ES6</a> classes to extend to the EventBus object</em></p>
+
+<p>Now that we have extended to <code class="highlighter-rouge">EventBus</code>. lets create the <code class="highlighter-rouge">EmailService</code> Object</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	<span class="kd">var</span> <span class="nx">emailService</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">EmailService</span><span class="p">();</span>
+	<span class="nx">emailService</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre></div></div>
+<p>When a business service extends to the EventBus. It makes it representational while keeping the benefits of decoupling and customization.
+For example:
+	In a different module, if I want to add a listener to <code class="highlighter-rouge">SEND</code> Event . I can do either</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	  <span class="nx">EventBus</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</code></pre></div></div>
+<p>or</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>	 <span class="nx">EmailService</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">SEND</span><span class="dl">'</span><span class="p">,</span><span class="nx">callback</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As you notice, in the later case it is very clear to what purpose and service are we subscribing to.</p>
+
+<p>checkout the complete example in the below pen</p>
+
+<p data-height="700" data-theme-id="dark" data-slug-hash="eVZGYO" data-default-tab="js,result" data-user="igagrock" data-embed-version="2" data-pen-title="pub-sub js" class="codepen">See the Pen <a href="https://codepen.io/igagrock/pen/eVZGYO/">pub-sub js</a> by s://irshad:ahmad.(sheikh) (<a href="https://codepen.io/igagrock">@igagrock</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async="" src="https://production-assets.codepen.io/assets/embed/ei.js"></script>
+
+:ET
