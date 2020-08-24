@@ -1,195 +1,451 @@
-# State management in angular app - ngRx
+###### NgRx framework is a Reactive state management for angular.
+
+This tutorial will help you to quickly --
 
 
 
+- **setup ngrx in angular app**
 
-
-
-
-create the app using angular CLI
-
-add users component: `ng g c users --skipTests`
-
-add users/user component: `ng g c users/user --skipTests`
-
-add user service to handle http requests: `ng g s users/user` 
-
-add user service to handle http requests: `ng g s users/user-remote` - 
-
-add user modal `user.modal.ts`
-
-- store:   
+- **implement ngrx store**
   
-  - `ng add @ngrx/store@latest`
+  - **create actions**
   
-  - `npm install @ngrx/store --save`
+  - **create reducers**
 
-- effects
+- **create side effects**
 
-- `ng add @ngrx/effects@latest`
+- **fetch data using selectors**
 
-- `npm install @ngrx/effects --save`
+- **create effects to handle side effects**
 
-- # import httpClientModule
+
+
+---
+
+## Project setup
+
+Before we start, Let me quickly explain our example app for the tutorial. To get you started quickly,  I have provided  below all the commands to generate the similar structure.  you can also  checkout the complete project [stackblitz](https://stackblitz.com/github/igagrock/angular-redux/tree/v1.0?)
+
+ The app has
+
+-    Three(3) components -
   
-  we will be using test apis from [https://reqres.in/](https://reqres.in/)
+  - `AppComponent` - required to bootstrap the app 
   
-  - get: [https://reqres.in/api/users?](https://reqres.in/api/users?)
+  - `UsersComponent`- shows the list of users .
   
-  - get UserbyId: [[https://reqres.in/api/users?]](https://reqres.in/api/users?%5D)([https://reqres.in/api/users/id](https://reqres.in/api/users/id)
+  - `UserComponent` - shows the details of a single user
+
+- Two(2) services:
   
-  - post [https://reqres.in/api/users?](https://reqres.in/api/users?)
+  - `UserService` to handle all the store operations such as selecting data or dispatching actions
   
-   
+  - `UserRemoteService` to handle the remote API calls using `HttpClient`
+    
+    
 
-```
-.
-├── app
-│   ├── app.component.html
-│   ├── app.component.scss
-│   ├── app.component.spec.ts
-│   ├── app.component.ts
-│   ├── app.module.ts
-│   ├── app-routing.module.ts
-│   └── users
-│       ├── user
-│       │   ├── user.component.html
-│       │   ├── user.component.scss
-│       │   └── user.component.ts
-│       ├── user.modal.ts
-│       ├── user-remote.service.ts
-│       ├── users.component.html
-│       ├── users.component.scss
-│       ├── users.component.ts
-│       └── user.service.ts
-├── assets
-├── environments
-│   ├── environment.prod.ts
-│   └── environment.ts
-├── favicon.ico
-├── index.html
-├── main.ts
-├── polyfills.ts
-├── styles.scss
-└── test.ts
+The app contains three routes -
 
-```
+- `/` - home route
 
-Statement Management in Variables:
+- `/users` - points to `UsersComponent`
+
+- `/users/id` - points to `UserComponent`
 
 
 
-If you are already aware about the how to  fetch the data and maintain the state in services using variables. you can skip this section and go to `statement mangement using redux` 
 
 
 
-if you wont use a state mangement tool in angular application, you would most probably store the state in services. It works pretty fine for a smaller app. However if the application size is large and there are various types of operations performed on data. it becomes difficult to manage the state in services.
 
-In a typical non redux state management, the state is saved in service. for example:
+Below are the commandst to generate the above structure along with required dependencies.
 
-```typescript
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { User } from './user.modal';
-import { map, tap, take } from 'rxjs/operators';
+It may or may not apply to you depending on the angular/angular CLI versions.
 
-const usersUrl = 'https://reqres.in/api/users';
-@Injectable({
-  providedIn: 'root'
-})
-export class UserRemoteService {
-  users: User[];
+```bash
+# applicable to angular v10.0.6 or above
 
-  constructor(private httpClient: HttpClient) { }
+# install angular CLI
+npm install -g @angular/cli 
 
+#create the angular app using angular CLI. Give any name you like
+ng new ngrx-demo
 
-  /**
-   * 1) fetch all the users from the remote server
-   * 2) save the users array
-   * 
-   */
-  users$ = this.httpClient.get<{ data: User[] }>(usersUrl)
-    .pipe(
-      tap(resp => {
-        console.log('tap response =>', resp);
+#go to the project directory
+cd ngrx-demo
 
-      }),
-      map(response => response.data),
-      //store users in users array for future use
-      tap(users => this.users = users)
-    );
+#install ngRx store
+ng add @ngrx/store@latest
 
+#install ngrx effects
+ng add @ngrx/effects@latest
 
-  /** create a new user */
-  createUser(user: User) {
-    return this.httpClient.post<User>(usersUrl, user)
-      .pipe(
-        take(1)
-      )
-  }
+#install ngRx entity
+ng add @ngrx/entity@latest
 
+#create users component
+ng g c users --skipTests
 
+#create user component inside users component folder
+ng g c users/user --skipTests
+
+#create userService 
+ng g s users/user --skipTests
+
+#create userRemoteService - this will have all the http methods to fetch remote data
+ng g s users/user-remote --skipTests
+
+#create user.modal.ts. It will have an interface representing user data
+touch src/app/users/user.modal.ts
+
+#create store related dir/files for app Module
+
+$ mkdir src/app/store
+$ touch src/app/store/app.reducer.ts
+
+#create store related dir/files for users
+
+$ mkdir src/app/users/store
+$ touch src/app/users/store/user-feature.reducer.ts
+$ touch src/app/users/store/user-feature.actions.ts
+$ touch src/app/users/store/user-feature.effects.ts
+$ touch src/app/users/store/user-feature.selectors.ts
+
+#add HttpClientModule to App.module.ts imports array
+import { HttpClientModule } from '@angular/common/http';
+imports{
+    ...
+    HttpClientModule
 }
 
 ```
 
 
 
-In the above example, once we fetch the users from a remote server, it is stored in users member as an array.
+So far our app `src` directory should look like below: 
 
-There are few things to be noted here:
+```bash
+│   favicon.ico
+│   index.html
+│   main.ts
+│   polyfills.ts
+│   styles.scss
+│   test.ts
+│
+├───app
+│   │   app.component.html
+│   │   app.component.scss
+│   │   app.component.spec.ts
+│   │   app.component.ts
+│   │   app.module.ts
+│   │
+│   ├───store
+│   │       app.reducer.ts
+│   │
+│   └───users
+│       │   user-remote.service.ts
+│       │   user.modal.ts
+│       │   user.service.ts
+│       │   users.component.html
+│       │   users.component.scss
+│       │   users.component.ts
+│       │
+│       ├───store
+│       │       user-feature.actions.ts
+│       │       user-feature.effects.ts
+│       │       user-feature.reducer.ts
+│       │       user-feature.selectors.ts
+│       │
+│       └───user
+│               user.component.html
+│               user.component.scss
+│               user.component.ts
+│
+├───assets
+│       .gitkeep
+│
+└───environments
+        environment.prod.ts
+        environment.ts
 
-- state is tighly coupled with the http requests.
+```
 
-- we have to design the CRUD operations ourselves 
-
-- there is no memoization for repeated operations.
-
-- side effects are not seperated.
-
-
-
-When should you use NgRx in your app:
+> To view the app structure like above:
+> 
+> - go to the projects src directory- `cd src`
+> 
+> - use `TREE /F` in windows
+> 
+> - use `tree -L 1` in linux
 
 
 
-As per the docs:
+Also, `app.module.ts` file should look like
 
-> In particular, you might use NgRx when you build an application with a lot of user interactions and multiple data sources, when managing state in services are no longer sufficient.
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 
+import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
 
+@NgModule({
+  declarations: [
+    AppComponent,
+    UsersComponent,
+    UserComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 
-NgRx store is type safe, provides encapsulation for side effects.
-
-
-
-
-
-
-
-#### Manage side effects using NgRx effects:
-
-The component has multiple responsibilities:
-
-- Managing the *state* of the movies.
-- Using the service to perform a *side effect*, reaching out to an external API to fetch the movies
-- Changing the *state* of the movies within the component.
-
-
-
-To isolate side-effects from your component, you must create an `Effects` class to listen for events and perform tasks.
-
-Effects are injectable service classes with distinct parts:
-
-- An injectable [Actions](https://ngrx.io/api/effects/Actions) service that provides an observable stream of *all* actions dispatched *after* the latest state has been reduced.
-- Metadata is attached to the observable streams using the [createEffect](https://ngrx.io/api/effects/createEffect) function. The metadata is used to register the streams that are subscribed to the store. Any action returned from the effect stream is then dispatched back to the [Store](https://ngrx.io/api/store/Store).
-- Actions are filtered using a pipeable [`ofType` operator](https://ngrx.io/guide/effects/operators#oftype). The [ofType](https://ngrx.io/api/effects/ofType)`operator takes one or more action types as arguments to filter on which actions to act upon.
-- Effects are subscribed to the [Store](https://ngrx.io/api/store/Store) observable.
-- Services are injected into effects to interact with external APIs and handle streams.
+```
 
 
 
+---
 
+
+
+Lets describle our user modal 
+
+```typescript
+export interface User {
+    id: number,
+    email: string,
+    first_name: string,
+    last_name: string,
+    avatar: string
+}
+```
+
+Now that we have a modal in place, lets go to `user-remote.service.ts` file and create the methods to `fetch` and `create` user(s)
+
+
+
+To test the complete flow of the app, I am using the below API's to `fetch`and `create`the users
+
+- `GET https://reqres.in/api/users` will fetch users
+
+- `POST https://reqres.in/api/users` will add a user
+  
+  - `body: user`
+
+- `GET https://reqres.in/api/users/id`
+
+
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { User } from './user.modal';
+import { map, take } from 'rxjs/operators'
+
+const usersUrl = 'https://reqres.in/api/users';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserRemoteService {
+
+  /** inject HttpClient in constructor */
+  constructor(private httpClient: HttpClient) { }
+
+  // fetch the users
+
+  // GET: https://reqres.in/api/users
+  users$ = this.httpClient.get<{ data: User[] }>(usersUrl)
+    .pipe(
+      map(response => response.data),
+      take(1)
+    );
+
+  //fetch user by a specific id 
+
+ // GET: https://reqres.in/api/users/id
+
+  user$ = (id: number) => 
+  this.httpClient.get<{ data: User }>(`${usersUrl}/${id}`)
+    .pipe(map(response => response.data), take(1));
+
+ 
+
+  //create a random user
+
+  //POST: https://reqres.in/api/users
+
+  createUser(user: User) {
+    return this.httpClient.post<User>(usersUrl, user).pipe(take(1));
+  }
+}
+
+```
+
+## Implement NgRx store:
+
+Ngrx Store contains the global state of the app.
+
+ Think of it as a large object which contains all the state of the application. To avoid the confusion between the `data` and the `state` of app. Data refers to overall data present in data based while as `state` could be just a snapshot of it specific to a particular user 
+
+
+
+To Implement NgRx store, we have to - 
+
+1. design the state 
+
+2. create actions to `load`,`save` data in store
+
+3. create reducers to to tell NgRx, how to store and transition from one state to another. More about it later.
+
+
+
+### Design the state
+
+Designing of the state is always relevant to the data, the app is using.
+
+It is similar to designing a data model for data base.
+
+For example: in our demo app, we are working with user modal since we would be fetching users and creating new users.
+
+Lets head to `src/app/users/store/user-feature.reducer.ts` file  and create an interface to represent a state 
+
+
+
+```typescript
+export interface State {
+    users: User[];
+}
+```
+
+Now, lets figure out what would be the inital value of this state before fetching any data from remote server. In that case, the app will not have any users so it would be `null`
+
+
+
+```typescript
+export const initialState: State = {
+    users: null,
+}
+```
+
+
+
+### Create the actions:
+
+An `Action `in Ngrx represents an `event`. During the lifecycle of the app, the events can be triggered to *load the data from remote server* or it could be when the *user clicks a button*. 
+
+As such, it is important to design events in such a way so that event transition required in the state of the system has a specific event to it.
+
+Ngrx has `CreateAction` method. it takes a `type` and `props` function and returns a function. The returned function when called, returns an object of type `Action`
+
+
+
+```typescript
+interface Action {
+  type: string; //represents the type of action. it should be unique
+  metadata:strings // meta data associated with action
+      // the props method in createAction method is used to define additional metadata
+     
+
+}
+```
+
+lets head to `user-feature.actions.ts` file and create some actions. 
+
+```typescript
+import { createAction, props } from '@ngrx/store';
+import { User } from '../user.modal';
+
+/**
+ * loadUsers action is used to inform NgRx effect to load the users from remote system
+ */
+export const loadUsers = createAction(
+    '[users] load users'
+);
+
+/**
+ * addUsers action is used to Inform store to add the users to existing state
+ */
+export const addUsers = createAction(
+    '[users] add users',
+    props<{ users: User[] }>()
+);
+
+/**
+ * addUser action is used to inform store to add a user to existing users state
+ */
+export const addUser = createAction(
+    '[users] add user',
+    props<{ user: User }>()
+)
+
+/**
+ * createUser action informs effects to save a user in data source
+ */
+export const createUser = createAction(
+    '[users] add user',
+    props<{ user: User }>()
+)
+
+```
+
+
+
+### Create reducer
+
+Reducers handle the data transtions in the store. For example: when we load the users, the reducers will add these users to the store state. hence the users state will be transitioned from `null => [...users]`.Reducer function are listeners to specific actions. Based on the action, a specific transition is performed. 
+
+> Reducers are pure functions and function synchonously. They perform immutable operations on the state such that the original state is  not modifed. Every asynchrounous task (side-effects ) should be handled inside NgRx effects. 
+
+Reducers are created by `createReducer` function. This function take multiple arguments. the first argument is the `initial state` followed by **N** number of `action vs state transition` provided by `on` function.
+
+
+
+lets go back to `user-feature.reducer.ts` file and create reducer function
+
+
+
+```typescript
+import { createReducer, on, Action } from "@ngrx/store"
+import * as UserFeatureActions from './user-feature.actions';
+
+export interface State {
+    users: []
+}
+export const initialState: State = {
+    users: null
+}
+
+const theReducer = createReducer(
+    initialState,
+    on(UserFeatureActions.addUsers, (state, { users }) => ({
+        ...state,
+        users: [...users]
+    })),
+    on(UserFeatureActions.addUser, (state, { user }) => ({
+        ...state,
+        users: [...state.users, { ...user }]
+    }))
+)
+
+export function UserReducer(state: State = initialState, action: Action) {
+    return theReducer(state, action);
+}
+```
+
+
+
+ 
 
 
 
