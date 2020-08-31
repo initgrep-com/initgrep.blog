@@ -1,259 +1,221 @@
-# NgRX statement management in angular app - quick tutorial
+# NgRx statement management in angular app - quick tutorial
 
+NgRx provides reactive state management for angular application. It is the redux implementation developed specifically for angular applications and provides rxjs observable API .
 
+#### TLRD;
 
-NgRx framework provides  reactive state management for angular applications. 
+`Actions` represents the unique events in the application.
 
-#### TLDR;
-
-`Action` represents the unique events in the application.
-
- `Reducers` are pure functions which react to events to perform a state transitions.
+`Reducers` are pure functions which react to events to perform state transitions.
 
 `Selectors` are pure functions that return a state or compose a slice of state.
 
-`Effects` are  services that listen to observable of every action and perform a side-effect by reacting to an action of specific type and returns a new action.
+`Effects` are services that listen to observable of every action and perform a side-effect by reacting to an action of specific type and may or may not return a new action.
 
 
 
-
-
-- project setup
-
-- Fetch data using some test apis using HttpClient
-
-- create different actions
-
-- create effects for side -effects such asynchronous http calls
-
-- create reducer to manage data transitions
-
-- create selectors
-
-- implment Ngrx Entity to simplify reducer creation
-
-- use input Entity adapter selectors
-
-
-
-## Project Setup
+Before we go ahead, Make sure you have a filestructure as below:
 
 ```bash
-ng new ngrx-angular-demo
-ng add @ngrx/store@latest
-ng add @ngrx/effects@latest
-ng add @ngrx/entity@latest
-ng g s app-remote --skipTests
-ng g s app --skipTests
-touch src/app/user.modal.ts
-mkdir src/app/store
-touch src/app/store/app.actions.ts
-touch src/app/store/app.reducer.ts
-touch src/app/store/app.effects.ts
-touch src/app/store/app.selectors.ts
+ _app 
+    |──store
 
+        |_ app.actions.ts
 
+        |_ app.effects.ts
+
+        |_ app.reducer.ts
+
+        |_ app.selectors.ts
 ```
 
-our project structure would look like below:
+*This structure is for the illustration purpose. During this post, we will be aggregating the code in the above files under **store**  folder*
 
-```bash
-src
-├───app
-│   │   app-remote.service.ts
-│   │   app.component.html
-│   │   app.component.scss
-│   │   app.component.spec.ts
-│   │   app.component.ts
-│   │   app.module.ts
-│   │   app.service.ts
-│   │   user.modal.ts
-│   │
-│   └───store
-│           app.actions.ts
-│           app.effects.ts
-│           app.reducer.ts
-│           app.selectors.ts      
+- `app.actions.ts` file will contain the NgRX actions
 
-```
+- `app.effects.ts `file will contain the NgRx effects 
 
- 
+- `app.reducer.ts` file will contain the `State` design and its intialization and reducer functions
+
+- `app.selectors.ts` will contain the NgRx selectors.
 
 
 
-SInce we will be fetching users from  an API, lets have an interface in place for a user.
+## State
+
+The state represents a large object which contains the data of the application.
+
+Let's assume, our demo appliction requires user data to - 
+
+- show a list of users 
+
+- show the details of a specific user by its id.
+
+
+
+To design the state of user account, we can safely assume that the state should contain an array of users. lets call this state as `UserFeatureState`.  
+
+below are the few steps we should follow:
+
+##### Design the State.
 
 ```typescript
-export interface User {
+interface User {
+
     id: number,
     email: string,
     first_name: string,
     last_name: string,
     avatar: string
 }
-```
 
-In order for us to proceed, we will fetch data from [reqres test  server](https://reqres.in/api/users).  Two operations will be done
+interface UserFeatureState {
 
-1. fetch users `GET: /users`
-
-2. create a new user `POST: /users`
-
-lets go to `app-remote.service` and create methods to fetch users and create a new user. you would need to import `HttpClientModule` in your project.  ref to [HttpClientModule docs]([https://angular.io/guide/http](https://angular.io/guide/http)
-
-
-
-```typescript
-/** base API path*/
-const USER_PATH = 'https://reqres.in/api/users';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AppRemoteService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  /** fetch users from the remote server */
-
-  remoteUsers$ = this.httpClient
-
-    .get<{ data: User[] }>(USER_PATH)
-    .pipe(map(response => response.data), take(1));
-
-  /**  create a user in remote server  */
-
-  createUser$ = (user: User) => this.httpClient
-    .post<User>(USER_PATH, user).pipe(take(1));
-
+  users: User[];
 }
 ```
 
-Our setup is done. 
+##### Initialize the State
 
-
-before we start. lets have a look at the architechture of NgRx store:****
-
-**diagram here**
-
-
-
-## Describe the state.
-
-The state represents a large object which contains which contains the data of the application.
-
-It is ideal to think about the proper data structures which will compose an application state.
-
-
-
-In our demo app, the state represents the `{users: User[]}`. Every new User created will be added to this array.
-
-s.
-
-Lets go to `app.reducer.ts`
+The state (`user[]`) would be `null` initially as it would not contain any data.
 
 ```typescript
-//app.reducer.ts
-export interface State { 
-   users: User[];
-}
+const initialState: UserFeatureState = {
 
-export const initialState: State = {
-    users: null
+  users: null
 };
 ```
 
-`State` interface desribes the structure of the application state and the `initalState` provides an intial value to the state. In our case, the users array would be `null `initially.
-
-we will get back to this file and create `reducers` . lets first decide on the type of events we are intersted in .
-
-## NgRx action:
-
-###### what are Actions?
-
-Actions represent events in the system. it can be an event to load the data, or click of a button or START or END of an operation.
+Before we move ahead - please note the  `userFeatureState` is part of the global state of the application. Lets call our application state as `AppState`
 
 ```typescript
-interface Action{
-    type: string,
-    //optional metadata
-    [key:string]:any
+interface AppState{
+    profile: UserFeatureState,
+    //..other features here
 }
 ```
 
-the above Action interface consists of  one mandatory member which is `type` . `type` represents an action. It is specified as `[source] Event name`. 
-
-For example:
+At this point, `app.reducer.ts` file should look like below:
 
 ```typescript
-{
-    type: '[profile] add users',
-    users: User[]
+/*app.reducer.ts*/
+
+
+// user interface can also be put in a seperate file such as user.modal.ts
+export interface User {
+
+    id: number,
+    email: string,
+    first_name: string,
+    last_name: string,
+    avatar: string
 }
-```
 
-The above code descibes an action whose type suggests that `profile` module/component dispatched the event `load users`.  It also carries  `Users[]` array as the metadata .
-
-
-
-###### How to write an Action:
-
-`createAction` method is used to create an action. It takes `type` and `props` method as parameters. `props` defines the additional metadata.
-
-
-
-Lets head to the `app.actions.ts` file and add the below actions
-
-```typescript
-//app.actions.ts
-import { createAction, props } from '@ngrx/store';
-import { User } from '../user.modal';
-
-export const loadUsers = createAction(
-    '[profile] load users'
-);
-export const addUsers = createAction(
-    '[profile] add users',
-    props<{ users: User[] }>()
-);
-export const createUser = createAction(
-    '[profile] add user',
-    props<{ user: User }>()
-);
-```
-
-In the above snippet, `loadUsers` action will be dispatched when app  has to load the users.
-
-`addUsers` action will be dispatched to intimate reducers to transtion the `user` state from  empty to `user[]`. `createUsers` action will be dispatched when a new user has to be created.
-
-if you have noticed, the actions are descriptive and provide a clear message as to what it should **obey** ~~change the word later~~
-
-
-
-> **`NgRx effects`** provides an injectable service named `Actions` . It provides access to stream of all actions dispatched after the latest state transition. 
-
-
-
-## Reducer
-
-Reducers help the transition of the state based on the latest action dispatcted. They are essentially pure functions and perform all the changes to state in an immutable manner.
-
-
-
-###### creating reducers -
-
-Below is our complete `app.reducer.ts` file
-
-```typescript
-export interface State {
+export interface UserFeatureState {
   users: User[];
 }
 
-export const initialState: State = {
+export const initialState: UserFeatureState = {
   users: null
 };
 
-const theReducer = createReducer(
+export interface AppState {
+  profile: UserFeatureState;
+
+}
+```
+
+
+
+Lets move ahead and design our actions.
+
+## Actions:
+
+Actions represent events in the application. 
+
+```typescript
+interface Action{
+    type:string
+    //optional metadata properties
+}
+```
+
+The `Action` interface contains a required property `type`. Type identifies the action. Actions can also contain optional metadata. *I will explain it in detail once we create the actions.*
+
+
+
+NgRx provides `createAction` method to easily create the actions. Lets go ahead and create some actions. The first param is mandatory and presents the `type` . The second parameter is optional `props` method. `props`method is used to provide additional metadata to the action.
+
+
+
+```typescript
+//file: app.actions.ts
+
+export const loadUsers = createAction(
+  '[profile] load users'
+);
+export const addUsers = createAction(
+  '[profile] add users',
+  props<{ users: User[] }>()
+);
+
+export const createUser = createAction(
+  '[profile] create user',
+  props<{ user: User }>()
+);
+
+export const addUser = createAction(
+  '[profile] add user',
+  props<{ user: User }>()
+);
+
+export const log = createAction(
+
+  '[profile] log click',
+  props<{ value: string }>()
+);
+```
+
+
+
+- `loadUsers` Action will be dispatched when the app requires to load the users from remote server.
+
+- `addUsers` action will be dispatched when the users are fetched from remote server. This action also contains a payload in the form of `User[]` . this array will contain the latest fetched users.
+
+- `createUser` action will be dispatched when a new user is created and needs to saved to remote server. it is contains the metadata in the form of `User`. this user represents 
+
+- `addUser` action will be dispatched when a new user is saved successfully in the remote server. The metadata  presents the new `User` created.
+
+- `log` action will be dispatched  whenever a log should be printed to console.  Its metadata contains string`value `to be logged.
+  
+  
+
+> Actions represent the events and not the commands or operations . There could be one command/operation generating many types of Actions. For example: If we create a new user, this operation can generate Actions such  `[Account] user created` or `[Account] user creation failed` .
+
+
+
+***OK --***   we have designed the state and we have created the actions. Time to dive into creating reducers.
+
+## NgRx Reducer -
+
+Reducers help the transition of the state based on the latest action dispatcted. `reducers` pure functions and perform all the changes to state in an immutable manner.
+
+**NgRx** provides `createReducer` function to create reducers. 
+
+```typescript
+function createReducer<S, A extends Action = Action>(initialState: S, ...ons: On<S>[]): ActionReducer<S, A>;
+```
+
+It takes `initialState` as the first param and  `any` number of `on` functions.  the `On` functions map the action to the *reducer state transtion*
+
+ Lets go to `app.reducer.ts ` file and create the reducer functions.
+
+
+
+```typescript
+
+const userReducer = createReducer(
+
   initialState,
   on(AppActions.addUsers, (state, { users }) => ({
     ...state,
@@ -264,107 +226,17 @@ const theReducer = createReducer(
     user: [...state.users, { ...user }]
   }))
 );
-
-/** Note: The exported reducer function is necessary as function calls are not supported the View Engine AOT compiler. It is no longer required if you use the default Ivy AOT compiler (or JIT).*/
-
-export function appReducer(state: State = initialState, action: Action) {
-  return theReducer(state, action);
-}
 ```
 
-NGRX provides `createReducer` function to create a reducer function which handles the state change. its first param is the `initalState` and other parameters is set of `on` functions.
+`createReducer` function above handles two actions. Each action handles state transtion immutably.
 
-the `on's` describe map the action(s) to the state change.
+- `addUsers` action creates a new Users array and assigns it to users in `UserFeatureState`
 
-In the example above -
-
-- `addUsers` action triggers a state change from empty `[]` to users fetched from remote server.
-
-- `addUser` action adds to the existing state one more user.  
+- `addUsers` action copies the existing users in state and adds the newly created user to it and finally assigns it back to users in `UserFeatureState`.
   
   
 
-It is important to note that the changes to the existin state should be immutable. The spread operator `...` copies all the properties of existing object into a new object and creates a new reference. Hence the state changes are immutable. If you are using complex objects or Typescript clases, you could use liberaries like `loadsh` to clone or deepClone the Objects.
-
-###### register reducers in the module.
-
-Inside the `app.module.ts`, we will have import the `StoreModule` and provide our reducer function.
-
-```javascript
-imports: [
-    StoreModule.forRoot({ profile: fromApp.reducer })
-]
-```
-
-###### select
-
-
-
-## write ngRx effects
-
-before writing the ngrx effects, it is important to understand what kind of side effects are present in the app. On a very trivial look, it would be the http requests. However, the side-effects could also be UI interactions, User clicks on something. 
-
-You may think, The component can handle it itself. yes, the component should handle the `click` event but not what should be done on the click event. We could load a set of new users on the click event or we could simply check the cache of users first and if it is not present in the cache, then we may want to load it from remote server . To keep the components clean and testable, we should ideally seperate all the side-effects from the component and keep it in a seperate service.
-
-
-
-Hence, the birth of NgRx effects. 
-
-NgRx effect is a service which isolates the side effects from the components. Effects at its core are `injectable` services which listen to a stream of events. If an event matches or a described event, it performs an asynchonous or synchonous operation and returns another event without cancelling the event stream.
-
-Effects are created in similar way as angular services are created. They are decorated with `@injectable()` decorater.
-
-Lets go to `app.effects.ts` file and create effects
-
-- load the users from the remote sytem implemented in remoteService
-
-- create a new user
-  
-  
-
-```typescript
-@Injectable()
-export class UserFeatureEffects {
-
-  constructor(
-    private action$: Actions,
-    private remoteService: AppRemoteService
-  ) { }
-
-
-
-  loadUsers$ = createEffect(() => this.action$.pipe(
-    ofType(AppActions.loadUsers),
-    mergeMap(() => this.remoteService.remoteUsers$
-      .pipe(
-        map(users => AppActions.addUsers({ users })),
-        catchError(error => of(error))
-      )),
-  ));
-
-  createUser$ = createEffect(() => this.action$.pipe(
-    ofType(AppActions.createUser),
-    mergeMap((action) => this.remoteService.createUser$(action.user)
-      .pipe(
-        map(user => AppActions.addUser({ user })),
-        catchError(error => of(error))
-      )),
-  ));
-
-  logClick$ = createEffect(() => this.action$.pipe(
-    ofType(AppActions.logClick),
-    tap((action) => console.log(`logClick effect => ${action.value}`))
-  ),
-    { dispatch: false });
-
-}
-```
-
-- `loadUsers$` effect  looks for  the Action `loadUsers` and loads the users from remote server. Once the users are loaded, it dispatches the action of type`addUsers` . `addUsers` action also carries additional metadata in the form of `Users[]` .
-
-- `createUser$` effect looks for the Action `createUser` . The `createUser`action carries the additional metadata in the form of `User` . Upon recieving of the action, it calls the`createUser` method which creates a new user in remote server and return the created User. Once the operation is complete, it dispatches the `addUser` action which also carries additional metadata in the form of  `User`
-
-- `logClick$` effect listens to `logClick` action. it only logs the action value and does not dispatch any action. `{ dispatch: false }` specifies that this effect is not dispatching any action. this is particularly useful when we only want to navigate or perform logging w.rt an `Action`.
+> All the actions created do not necessarily handle a state transition. Some actions are used to trigger a side-effect in `NgRx Effect` services.
 
 
 
