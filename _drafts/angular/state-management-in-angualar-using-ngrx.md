@@ -76,7 +76,6 @@ export interface ProfileFeatureState {
   users: User[];
   addresses: Address[];
 }
-
 ```
 
 ##### Initialize the State
@@ -210,8 +209,6 @@ export const logClick = createAction(
 - `createUser` action will be dispatched when a new user is created and needs to saved to remote server. it is contains the metadata in the form of `User`. 
 
 - `addUser` action will be dispatched when a new user is saved successfully in the remote server. The metadata  presents the new `User` created.
-  
-  
 
 ##### The below actions are related to loading,creating and adding the users to the state.
 
@@ -223,19 +220,11 @@ export const logClick = createAction(
 
 - `addAddress` action will be dispatched when a new user is saved successfully in the remote server. The metadata presents the new `User` created.
 
-
-
 - `log` action will be dispatched whenever a log should be printed to console. Its metadata contains string`value`to be logged.
-
-
 
 > Actions represent the events and not the commands or operations . There could be one command/operation generating many types of Actions. For example: If we create a new user, this operation can generate Actions such `[Account] user created` or `[Account] user creation failed` .
 
 ***OK --***   we have designed the state and we have created the actions. Time to dive into creating reducers.
-
-
-
-
 
 ## NgRx Reducer -
 
@@ -272,12 +261,9 @@ const theReducer = createReducer(
     posts: [...state.posts, { ...post }]
   }))
 );
-
 ```
 
 `createReducer` function  maps many actions returns an `ActionReducer` object.  Each action handles state transtion immutably.
-
-
 
 - `addUsers` action creates a new Users array and assigns it to users in `ProfileFeatureState`
 
@@ -286,8 +272,6 @@ const theReducer = createReducer(
 - `addPosts`action creates a new Posts array and assigns it to users in`ProfileFeatureState`
 
 - `addPost` action copies the existing users in state and adds the newly created user to it and finally assigns it back to users in `ProfileFeatureState`.
-
-
 
 ## Create ActionReducerMap
 
@@ -306,11 +290,7 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 
 > **Note:**  The `profileFeatureReducer` function is necessary as [function calls are not supported](https://angular.io/guide/aot-compiler#function-calls-are-not-supported)  in the **View Engine AOT compiler.** It is no longer required if you use the **default Ivy AOT compiler (or JIT)**
 
-
-
 `AppActionReducerMap` map contains the mapping for `profile` feature . It can have mappings for many app sepecific feature states. You can  also register feature states seperately in their own module.  You do not necessarily have to create an `ActionReducerMap` seperately. It makes registeration of States easier and provides get better type intellisence .
-
-
 
 At this point, our `app.reducer.ts` file should look like :
 
@@ -360,13 +340,15 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 };
 ```
 
-
+## 
 
 ## Register the App State
 
 Once the reducer is created, it has to be registered in the app Module . 
 
 The state can be registered using one of the two options:
+
+
 
 - **Register Root state**
   
@@ -376,7 +358,11 @@ The state can be registered using one of the two options:
   StoreModule.forRoot({ profile: profileFeatureReducer })
   ```
   
-  `StoreModule.forRoot()` takes `ActionReducerMap` as an argument. The map contains  `key` and `ActionReducer` Object returned by `createReducer` function. Besides 
+  `StoreModule.forRoot()` takes `ActionReducerMap` as an argument. The map contains  `key` and `ActionReducer` Object returned by `createReducer` function. 
+  
+  [register Root Reducer]()
+  
+  
 
 - **Register each feature state seperately -**
   
@@ -387,33 +373,105 @@ The state can be registered using one of the two options:
   ```
 
         I have created an example of registering the feature states in their own module. You can check         it out here.
+        [register feature reducers]()
 
 
 
 ## NgRx Selectors -
 
-we have designed the `State `and created `Actions `and `Reducers`. It is time to select the data from the store. 
+Selectors return  part of the state. The state is a large object where feature states are stored as a `key-value` pair. The key to the feature state can be used to obtain the feature state.
 
-`NgRx Selectors` are pure functions whose job is to select a slice of store state. Since the selectors are pure function, they provide [memoization]([https://en.wikipedia.org/wiki/Memoization](https://en.wikipedia.org/wiki/Memoization) in additional to being portable and testable  and provide features for composing the selection.
+`Selectors` are pure functions and they select a slice of store state.  selectors function provide [**memoization** ](https://en.wikipedia.org/wiki/Memoization)among other features.
 
-`createSelector` function is used to create a selector and return a slice of state.
+ 
 
-There are few parts to creating selectors.
+Selectors can be created using two ways.
 
-- Old way - string selectors
+1. ##### Using `store.select` -
+   
+   Ngrx store provide `select` method to select a state.  Using the select method, you can select a piece of the state by providing the key as a `string` and it returns an observable.
+   
+   ```typescript
+   constructor(private store: Store<AppState>) {} 
+   
+   profile$ = this.store.select('profile');
+   ```
+   
+   we injected the `store ` in constructor and provide the type as `AppState` . To select the profile, we called the `store.select` and provided `profile` key.
+   
+   Although this is the easiest option. The `createSelector`  method is the recommended approach as it provides better type checking in typescript.
+   
+   
 
-- new way
-  
-  - create a selector 
-  
-  - create selector from multiple states
-  
-  - select the selector in the store.pipe
+2. #### Using `createSelector or createFeatureSelector` functions -
+   
+   `createSelector `function is used to create a selector and return a slice of state.
+   
+   There are few steps to retrieve the slice of state using `createSelector` function.
+   
+   
+   
+   ```typescript
+   // (1) : select profile
+   export const selectProfile = (state: fromApp.AppState) => state.profile;
+   
+   // (2): return the users from profile state
+   export const selectUsers = createSelector(
+     selectProfile,
+     (state: fromApp.ProfileFeatureState) => state.users
+   );
+   
+   //(3) : in the service or component
+   constructor(private store: Store<fromApp.AppState>) { }
+    //select users from store
+    users$ = this.store.pipe(select(fromSelectors.selectUsers));
+   
+   ```
+   
+   1. select the profile from state.
+   
+   2. create a selector to fetch the users from profile
+   
+   3. use `store.pipe` and provide `select` method as argument with associate selector to be fetched.
+   
+   
+   
+   we can also compose state from multiple pieces of the state. In the below example, we fetch the user and posts by the user's `id` . `props` is used to select a piece of state based on data that isn't available in the store. 
+   
+   ```typescript
+   export const selectUserWithPosts = createSelector(
+     selectUsers,
+     selectPosts,
+     (users: User[], posts: Post[], props: { id: number; }) => {
+         //select user w.r.t ID
 
+       const selectedUser = users?.find(user => user.id === props.id);
+       //select posts for user using id
 
+       const usersPosts = posts?.filter(post => post.userId === props.id);
+       //return the user and associated posts
 
+       if (!!usersPosts) {
+         return { user: { ...selectedUser }, posts: [...usersPosts] };
+       }
+       return null;
+     }
+   );
+   ```
+   
+   **select the state**
+   
+   ```typescript
+   
+     constructor(private store: Store<fromApp.AppState>) { }
+     //select users from store
+     users$ = this.store.pipe(select(fromSelectors.selectUsers));
+     //select user and its posts from the store where user's id == 1
 
-
+     usersPosts$ = this.store.pipe(select(fromSelectors.selectUserWithPosts, { id: 1 }));
+   ```
+   
+   
 
 
 
@@ -426,12 +484,12 @@ Before you go ahead, I would suggest you to have a clear understanding of [side-
 > - Changing the value of a variable;
 > - Writing some data to disk;
 > - Enabling or disabling a button in the User Interface.
->   
->   
 
         *src: <u>[https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect)</u>*
 
-Since we are fetching data from a remote server using httpclient methods, it would be a sideeffect.
+A few examples would of side effects would be `http` calls to remote server since it is an asynchronous method or UI interactions.
+
+
 
 NgRx effect is a service which isolates the side effects from the components. Effects at its core are `injectable` services which listen to a stream of events. If an event matches or a described event, it performs an asynchonous or synchonous operation and may return another event without cancelling the event stream.
 
@@ -439,8 +497,104 @@ Before we move ahead , lets create  a file named `app-remote.service.ts`  and ad
 
 ```typescript
 
+const USERS_PATH = 'https://jsonplaceholder.typicode.com/users';
+const POSTS_PATH = 'https://jsonplaceholder.typicode.com/posts';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AppRemoteService {
+
+
+  constructor(private httpClient: HttpClient) { }
+
+  /** 1) - fetch users from the remote server */
+  remoteUsers$ = this.httpClient
+    .get<User[]>(USERS_PATH)
+    .pipe(map(response => response), take(1));
+
+  /** 1) - fetch posts from the remote server */
+  remotePosts$ = this.httpClient
+    .get<Post[]>(POSTS_PATH)
+    .pipe(map(response => response), take(1));
+
+  /** create a user in remote server  */
+  createUser$ = (user: User) => this.httpClient
+    .post<User>(USERS_PATH, user).pipe(take(1));
+
+  /** create a post in remote server  */
+  createPost$ = (post: Post) => this.httpClient
+    .post<Post>(POSTS_PATH, post).pipe(take(1))
+}
 ```
 
-
-
 Effects are created in similar way as angular services are created. They are decorated with `@injectable()` decorater.
+
+
+
+```typescript
+//app.effects.ts
+
+@Injectable()
+export class AppEffects {
+
+  constructor(
+    private action$: Actions,
+    private remoteService: AppRemoteService
+  ) { }
+
+
+  loadUsers$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.loadUsers),
+    mergeMap(() => this.remoteService.remoteUsers$
+
+      .pipe(
+        map(users => AppActions.addUsers({ users })),
+        catchError(error => {
+
+          console.log('error in load users ', error);
+          return of(error);
+        })
+      )),
+  ));
+
+  loadPosts$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.loadPosts),
+     mergeMap(() => this.remoteService.remotePosts$
+
+      .pipe(
+        map(posts => AppActions.addPosts({ posts })),
+        catchError(error => {
+          console.log('error in load users ', error);
+          return of(error);
+        })
+      )),
+  ));
+
+  createUser$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.createUser),
+    mergeMap((action) => this.remoteService.createUser$(action.user)
+      .pipe(
+        map(user => AppActions.addUser({ user })),
+        catchError(error => of(error))
+      )),
+  ));
+
+  createPost$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.createPost),
+    mergeMap((action) => this.remoteService.createPost$(action.post)
+      .pipe(
+        map(post => AppActions.addPost({ post })),
+        catchError(error => of(error))
+      )),
+  ));
+
+  logClick$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.logClick),
+    tap((action) => console.log(`logClick effect => ${action.value}`))
+  ),
+    { dispatch: false });
+
+}
+
+```
