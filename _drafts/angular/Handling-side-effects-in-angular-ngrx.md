@@ -1,26 +1,71 @@
-## NgRx Effects -
+## Ngrx Effects - Handle side-effects in angular apps
 
-Before you go ahead, I would suggest you to have a clear understanding of [side-effects](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect)
+A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29) refers simply to the modification of some kind of state - for instance:
 
-> A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29) refers simply to the modification of some kind of state - for instance:
-> 
-> - Changing the value of a variable;
-> - Writing some data to disk;
-> - Enabling or disabling a button in the User Interface.
+- Changing the value of a variable;
+
+- Writing some data to disk;
+
+- Enabling or disabling a button in the User Interface.
 
 *src: <u>[https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect)</u>*
 
-NgRx effect is a service which isolates the side effects from the components. Effects at its core are `injectable` services which listen to a stream of events. If an event matches or a described event, it performs an asynchonous or synchonous operation and may return another event without cancelling the event stream.
 
-Before we move ahead , lets create a file named `app-remote.service.ts` and add few method to fetch the users and posts.
+
+Before we actually create NgRx Effects, lets take  a step back and see how we would usually handle a side-effect in an Angular application. 
+
+Let's assume, We have to load Users using an http call. Since http calls are asynchonous which means it a side-effect. So we would
+
+
+
+- create a service and inject `HttpClient`
+
+- create a method `loadUsers():User`  which will call the `HTTP:Get` method and return a a list of users. 
+  
+  ```typescript
+  users$ = this.httpClient
+   .get<User[]>(USERS_PATH)
+   .pipe(map(response => response), take(1));
+  ```
+
+- In our component, we we will call the `loadUsers` method and render the users in UI.
+  
+  ```typescript
+  loadUsers(){
+      //handle the subscription here
+      this.remoteService.users$.subscrible(
+          users => this.localUsers = users;
+      );
+  ```
+  
+  ```html
+  <div class="user-container" *ngIf="localUsers">
+      <app-user *ngfor="let user of localUsers" [inputUser]="user">
+  </div>
+  ```
+
+       *you could also directly use access the observable using `async `pipe*
+
+
+
+The above solution will work without  any issues. But if you notice carefully, the component is directly handling side-effects which would lead to impure components. 
+
+
+
+NgRx effects solves this problem by taking away the responsibilty to handle the side-effects from components.  Thus, allowing for pure components. 
+
+NgRx effects  are long running services that listen to an observable stream of *all* actions dispatched. If an Action matches , it performs a side-effect and returns another Action back to Action Stream. 
+
+> *NgRx Effects may not always dispatch a new action upon completion of a side-effect.*
+
+
+
+Now before we move ahead, Lets create an angular service which does an creates an http Post call to create a new user.
 
 ```typescript
 
-const USERS_PATH = 'https://jsonplaceholder.typicode.com/users';const POSTS_PATH = 'https://jsonplaceholder.typicode.com/posts';@Injectable({  providedIn: 'root'})export class AppRemoteService {  constructor(private httpClient: HttpClient) { }  /** 1) - fetch users from the remote server */  remoteUsers$ = this.httpClient    .get(USERS_PATH)    .pipe(map(response => response), take(1));  /** 1) - fetch posts from the remote server */  remotePosts$ = this.httpClient    .get(POSTS_PATH)    .pipe(map(response => response), take(1));  /** create a user in remote server  */  createUser$ = (user: User) => this.httpClient    .post(USERS_PATH, user).pipe(take(1));  /** create a post in remote server  */  createPost$ = (post: Post) => this.httpClient    .post(POSTS_PATH, post).pipe(take(1))}
 ```
 
-Effects are created in similar way as angular services are created. They are decorated with `@injectable()` decorater.
 
-```typescript
-//app.effects.ts@Injectable()export class AppEffects {  constructor(    private action$: Actions,    private remoteService: AppRemoteService  ) { }  loadUsers$ = createEffect(() => this.action$.pipe(    ofType(AppActions.loadUsers),    mergeMap(() => this.remoteService.remoteUsers$      .pipe(        map(users => AppActions.addUsers({ users })),        catchError(error => {          console.log('error in load users ', error);          return of(error);        })      )),  ));  loadPosts$ = createEffect(() => this.action$.pipe(    ofType(AppActions.loadPosts),     mergeMap(() => this.remoteService.remotePosts$      .pipe(        map(posts => AppActions.addPosts({ posts })),        catchError(error => {          console.log('error in load users ', error);          return of(error);        })      )),  ));  createUser$ = createEffect(() => this.action$.pipe(    ofType(AppActions.createUser),    mergeMap((action) => this.remoteService.createUser$(action.user)      .pipe(        map(user => AppActions.addUser({ user })),        catchError(error => of(error))      )),  ));  createPost$ = createEffect(() => this.action$.pipe(    ofType(AppActions.createPost),    mergeMap((action) => this.remoteService.createPost$(action.post)      .pipe(        map(post => AppActions.addPost({ post })),        catchError(error => of(error))      )),  ));  logClick$ = createEffect(() => this.action$.pipe(    ofType(AppActions.logClick),    tap((action) => console.log(`logClick effect => ${action.value}`))  ),    { dispatch: false });}
-```
+
+
