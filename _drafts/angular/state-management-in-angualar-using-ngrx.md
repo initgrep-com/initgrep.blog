@@ -591,15 +591,13 @@ export const selectUsersWithPosts = createSelector(
   });
 ```
 
-and `app.service.ts` -
+and `app.component.ts` -
 
 ```typescript
-//app.service.ts
+//app.component.ts
 import * as fromSelectors from './store/app.selectors';
-@Injectable({
-  providedIn: 'root'
-})
-export class AppService {
+
+export class AppComponent{
   constructor(private store: Store) { }
 
 
@@ -612,10 +610,4 @@ export class AppService {
   user$ = this.store.select(fromSelectors.selectUserById, { userId: 1 });
 ```
 
-
-
-
-
 The next important feature of Ngrx State mangement is to handle the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx]()  .
-
-
