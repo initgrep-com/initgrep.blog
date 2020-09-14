@@ -1,14 +1,40 @@
-# NgRx statement management in the angular app
+---
+layout: post
+bannercolor: "light-green accent-3"
+title: "Reactive State management in the angular - NgRx Store, actions, selectors.RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API."
+date: 2020-09-16
+meta: "Reactive State management in the angular - NgRx Store, actions, selectors.RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API"
+category: angular
+comments: true
+author: "sheikh irshad"
+twitter: imshykh
+facebook: irshsheikh
+github: igagrock
+image: rxjs-state.jpg
+categories:
+ - angular
+ - javascript
+ - typescript
+ - all
+---
 
-NgRx provides reactive state management for the angular application. It is the redux implementation developed specifically for angular applications and provides RxJs observable API.
+# Reactive State management in the angular - NgRx Store, actions, selectors
 
-#### TLDR;
+NgRx framework helps to build reactive angular applications.
 
-`store`  is`Rxjs` implementation of Redux. It provides global state management for creating maintainable angular applications by providing a single state. 
-`state` is an immutable data structure that is a single source of truth. 
-`Actions` represent the unique events in the application which may be used to perform state changes or trigger side-effects.
-`Reducers `are pure functions that react to Actions to perform state transitions.
-`Selectors `are pure functions that select, derive, or compose a slice of the state.
+## Basic Concepts
+
+- `RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API.
+
+- `state` is an immutable data structure that is a single source of truth for the whole application. 
+
+- `Actions` represent the unique events in the application which may be used to perform state transition or trigger side-effects.
+
+- `Reducers `are pure functions that react to `Actions `to perform state transitions.
+
+- `Selectors `are pure functions that select, derive, or compose a slice of the state.
+
+- `Effects` allow  the isolation of side-effects.
 
 ## Prerequisites -
 
@@ -39,7 +65,7 @@ ng add @ngrx/store@latest
 ng serve
 ```
 
-**To begin with**, let us have a look at an example file structure. A file structure like this would be helpful to split up each feature of `NgRx `state management in your app. I usually replicate the same structure in each feature module.
+**To begin with**, let us have a look at an example file structure. A structure like this would be helpful to split up each feature of `NgRx `state management in your app. I usually replicate the same structure in each feature module.
 
 ```bash
 
@@ -58,17 +84,15 @@ ng serve
 
 - `app.selectors.ts` will contain the `NgRx selectors`.
 
-*Here is the complete [project setup](https://github.com/igagrock/ngrx-demo.git)*. 
-
-*I have also create a seperate post for [NgRx Effects]().*
+Here is the complete [project setup](https://github.com/initgrep-post-demos/ngrx-demo/tree/master/src/app/store). 
 
 ## State
 
-The state represents an immutable object that contains the state of an application. It is read-only, so every state transition will return a new state rather than modifying the existing state. The Application state contains one or more feature states.
+The state represents an immutable object that contains the state of an application. It is read-only, so every state transition will return a new state rather than modifying the existing state. As the application grows, each feature should contain a seperate state which are part of the global app state. As such, application state contains one or more feature states.
 
-*Similar to a `Javascript` object, the application state contains `key-value` pairs where the  `key`is represents a feature state and the `value ` is the feature state object.*
+The state is similar to `Javascript` objects. It contains the feature states as the `key-value` pairs *where the  `key` represents a feature state and the `value ` is the feature state object.*
 
-The state related to a feature module is referred to as `feature state` and it is part of the `Root state` of the application. 
+The state related to a feature module is referred to as `feature state`.
 
 ```typescript
 interface State{
@@ -80,11 +104,9 @@ interface State{
 
 ### Design the State
 
-A typical angular application will have many feature modules. Each feature module will be consuming specific kinds of data. As such there could be many `feature states` . 
+Let's assume, our angular application has many feature modules. One of the feature modules is responsible for user's profile. The `profile `module is responsible for rendering the list of  `users `and the related `posts `.
 
-Let us assume, we have a blog application that has a feature module called `profile`. The profile module requires data related to `users `and `posts `.
-
-To design the state, we can assume that the state required for the profile module should contain **list of users** and **list of posts**. 
+To design the state, we can assume that the state required for the profile module should contain **List of users** and **List of posts**. 
 
 Let's call the profile state as `ProfileFeatureState`.
 
@@ -116,7 +138,7 @@ export interface ProfileFeatureState {
 }
 ```
 
-We created defined the type for `User `and `Post`. We also created an interface for ProfileFeatureState. 
+We defined the type for `User `and `Post` and also created an interface for `ProfileFeatureState`. 
 
 Finally, we would add `ProfileFeatureState`to applications root state -`AppState`. The `profile` key represents the `profileFeatureState`.
 
@@ -179,7 +201,7 @@ export interface AppState {
 
 ## Actions:
 
-Actions represent events in the application. They may trigger a state transition or  trigger a side-effect in `NgRx Effect` services.
+NgRx Actions represent events in the application. They may trigger a state transition or  trigger a side-effect in `NgRx Effect` services.
 
 ```typescript
 interface Action{
@@ -190,63 +212,35 @@ interface Action{
 
 The `Action `interface contains a property called `Type`. The `Type `property **identifies** the action. Actions can also contain optional `metadata`. 
 
- `createAction `function is used to create the actions and it returns an `ActionCreator` function.  `ActionCreator` function  when called returns an action of type `Action`. Optionally, we can also supply additional metadata using `props `function.
+ `createAction `function is used to create the actions and it returns an [ActionCreator](https://ngrx.io/api/store/ActionCreator) function.  `ActionCreator` function  when called returns an action of type `TypedAction`. Optionally, we can also supply additional metadata using [props](https://ngrx.io/api/store/props) function.
+
+Let's go ahead and create an action for add users to `ProfileFeatureState`.
+
+```ts
+export const addUsers = createAction(
+ '[profile] add users',
+ props<{ users: User[] }>()
+);
+```
+
+Notice the type of addusers action as `[profile] add users`. The `[profile]` represents the source of action. Also the props contains the array of users as the metadata.
+
+Similarly, we can create an action for adding posts to the feature state.
 
 ```typescript
 //file: app.actions.ts
 
-export const loadUsers = createAction(
-  '[profile] load users'
-);
-export const addUsers = createAction(
-  '[profile] add users',
-  props<{ users: User[] }>()
-);
-
-export const createUser = createAction(
-  '[profile] create user',
-  props<{ user: User }>()
-);
-
-export const addUser = createAction(
-  '[profile] add user',
-  props<{ user: User }>()
-);
-
-export const loadPosts = createAction(
-  '[profile] load posts'
-);
 export const addPosts = createAction(
   '[profile] add posts',
   props<{ posts: Post[] }>()
 );
-
-export const createPost = createAction(
-  '[profile] create post',
-  props<{ post: Post }>()
-);
-
-export const addPost = createAction(
-  '[profile] add post',
-  props<{ post: Post }>()
-);
 ```
 
-**The below actions are related to loading, creating, and adding the users to the state.**
+**`addUsers`** action is dispatched to indicate that the users should added to state. It will also contain `user[]` as metadata.
 
-- **`loadUser`** action is dispatched to indicate that the application should fetch the **users**  from a remote server.
+*Similarly the Actions related to posts are dispatched*
 
-- **`addUsers`** action is dispatched to indicate that the users should added to state. It will also contain `user[]` as metadata.
-
-- **`createUser`** is dispatched when a new user shouls be created. It would contain `User` object as the metadata.
-
-- **`addUser`** action is dispatched to indicate that a new user should be added to existing users in the State.
-
-*similarly the Actions related to posts are dispatched*
-
-> Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[Account] user created` or `[Account] user creation failed` .
-
-## 
+> Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[profile] user created` or `[profile] user creation failed` .
 
 ## NgRx Reducer -
 
@@ -254,15 +248,16 @@ Reducers are [**pure functions**](https://en.wikipedia.org/wiki/Pure_function) w
 
 ### CreateReducer
 
-**NgRx** provides a `createReducer` function to create reducers. It takes `initialState` as the first param and `any` number of `on` functions. The `on` function provide associations between actions and the state changes.
+**NgRx** provides a [createReducer](https://ngrx.io/api/store/createReducer) function to create reducers. It takes `initialState` as the first param and `any` number of `on` functions. The `on` function provide association between actions and the state changes.
 
 *When an action is dispatched, all the reducers receive the action. The `on` function mapping determines whether the reducer should handle the action.*
 
-`createReducer function` returns an `ActionReducer function` . ActionReducer function takes an [Action](https://ngrx.io/api/store/Action) and a [State](https://ngrx.io/api/store/State)  as input, and when called, it returns a new computed State.
+`createReducer` function returns an [ActionReducer](https://ngrx.io/api/store/ActionReducer) function . ActionReducer function takes an [Action](https://ngrx.io/api/store/Action) and a [State](https://ngrx.io/api/store/State)  as input, and returns a new computed State.
 
 Let's go ahead a create reducer which handles transitions for `ProfileFeatureState`.
 
 ```typescript
+import * as AppActions from './app.actions';
 
 const theProfFeatureReducer = createReducer(
   initialProfileFeatureState,
@@ -270,26 +265,19 @@ const theProfFeatureReducer = createReducer(
     ...state,
     users: [...users]
   })),
-  on(AppActions.addUser, (state, { user }) => ({
-    ...state,
-    user: [...state.users, { ...user }]
-  })),
   on(AppActions.addPosts, (state, { posts }) => ({
     ...state,
     posts: [...posts]
   })),
-  on(AppActions.addPost, (state, { post }) => ({
-    ...state,
-    posts: [...state.posts, { ...post }]
-  }))
+
 );
 ```
 
 `createReducer` function  maps many actions and returns an `ActionReducer` function.  
 
 - `addUsers` action is **mapped** to a *function that creates a new `User` array and returns a newly computed state*.
-
-- `addUser` action is **mapped** to a *function that copies the existing users from state, adds the new user from action metadata, and returns the newly computed state.*
+  
+  Similarly the `addPosts` action is mapped.
 
 > *The [...] <code>spread operator</code> copies the properties of the object and returns a new object. It only performs the shallow copying and does not copy the nested structures. You should always consider a better alternative if you are dealing with a state that contains nested data structures. Libraries like <strong>lodash</strong> provide methods to clone nested structures.*
 
@@ -315,7 +303,7 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 };
 ```
 
-> *It is not necessary to create an `ActionReducerMap`. You can directly provide the mapping  in `StoreModule.forRoot({key: ActionReducer})`while registering the reducer in app.module.ts.  You can also separately register the feature state in the feature module. I prefer creating the `ActionReducerMap `separately as it provides a better type checking in Typescript.*
+*It is not necessary to create an `ActionReducerMap`. You can directly provide the mapping  in `StoreModule.forRoot({key: ActionReducer})`while registering the reducer in app.module.ts.  You can also separately register the feature state in the feature module. I prefer creating the `ActionReducerMap `separately as it provides a better type checking in Typescript.*
 
 At this point, our `app.reducer.ts` file should look like :
 
@@ -341,17 +329,9 @@ const theProfFeatureReducer = createReducer(
     ...state,
     users: [...users]
   })),
-  on(AppActions.addUser, (state, { user }) => ({
-    ...state,
-    user: [...state.users, { ...user }]
-  })),
   on(AppActions.addPosts, (state, { posts }) => ({
     ...state,
     posts: [...posts]
-  })),
-  on(AppActions.addPost, (state, { post }) => ({
-    ...state,
-    posts: [...state.posts, { ...post }]
   }))
 );
 
@@ -367,25 +347,23 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 
 #### Register the  State
 
-Once the reducer is created, it should be registered in the application Module . 
+Once the reducer is created, It should be registered in the Module . 
 
 The state can be registered using one of the two options:
 
 - **Register Root state**
   
+  To register the global store in the application
+  
   ```typescript
   StoreModule.forRoot({ AppActionReducerMap })
-  /** or **/
-  StoreModule.forRoot({ profile: profileFeatureReducer })
   ```
   
   `StoreModule.forRoot()` takes `ActionReducerMap` as an argument. The map contains  `key` and `ActionReducer` Object returned by `createReducer` function. 
-  
-  you can check [register Root Reducer]() example for a detailed example of registering the root state.
 
 - **Register each feature state separately -**
   
-  Feature states are similar to root states but they represent the state of  a specific features of an application. Typically, each feature should be registed in its own module. 
+  Feature states are similar to root states but they represent the state of specific features of an application. Typically, each feature should be registed in its own module. 
   
   ```typescript
   StoreModule.forFeature({ profile: profileFeatureReducer })
@@ -409,7 +387,7 @@ export interface AppState{
 
 If we have to select the `profileFeatureState` , we would do as `AppState.profile` and it would return the `profileFeatureState`.
 
-Similarly to create a function which returns `profileFeatureState` from `AppState`, we would do like
+Similarly to create a selector function which returns `profileFeatureState` from `AppState`, we would do like
 
 ```typescript
 selectProfile = function(state:AppState){ return state.profile; }
@@ -446,15 +424,17 @@ profile$ = this.store.pipe(select(fromSelectors.selectProfile));
 
 ### createSelector functions
 
-NgRx provides `createSelector`  function to create selectors. It keeps track of last arguments in which the selector functions were invoked. If the arguments remain same, it simply returns the last result without doing the computation again. This provides performance benefits for selectors where computation of state is expensive.
+NgRx provides [createSelector](https://ngrx.io/api/store/createSelector) function to create selectors. It keeps track of last arguments in which the selector functions were invoked. If the arguments remain same, it simply returns the last result without doing the computation again. This provides performance benefits for selectors where computation of state is expensive.
 
- `createSelector` function takes up to **8** selector functions and a projector function.  the return value of all the selectors gets passed to projector function.
+ `createSelector` function takes up to **8** selector functions and a projector function.  The return value of all the selectors gets passed to projector function.
 
 > *Imagine a table structure with rows and columns. **Selector**  function will select a specific **row** and the **projector** function will return the specific **column** from the selected **row**.*
 
-#### select single peice of state
+We can use createSelector function to return a complete feature state or slice of it using projector function.
 
-let us  use `createSelector `function to return the `users` from `profileFeatureState`
+#### Select a Single piece of state
+
+Let's  use `createSelector `function to return the `users` from `profileFeatureState`
 
 ```typescript
 //profile selector.
@@ -463,6 +443,7 @@ export const selectProfile = (state: fromApp.AppState) => state.profile;
 // user selector
 export const selectUsers = createSelector(
   selectProfile,
+  //projector function return users from the feature state
   (state: fromApp.ProfileFeatureState) => state.users
 );
 
@@ -472,7 +453,7 @@ users$ = this.store.select(fromSelectors.selectUsers);
 
 The  `selectProfile` selector and a `projector `function is used to retrieve all the users in `ProfileFeatureState`. Since the arguments will never change, it means the computations will be done only once to get the users unless the `AppState` is modified. Hence, the memoization at the place. 
 
-> *`createSelector` functions returns a `MemoizedSelector` . It is a subtype of `Selector` and provides `release()` method which helps to remove the stored memoized value. A selectors  memoized value  is stored in memory indefinitely. If the value is a large object and is no longer needed. `selector.release()` can be used to remove the stored value such as `selectUsers.release()`*
+> *`createSelector` functions returns a [MemoizedSelector](https://ngrx.io/api/store/MemoizedSelector) or  [MemoizedSelectorWithProps](https://ngrx.io/api/store/MemoizedSelectorWithProps). These are  subtypes of `Selector` and `SelectorWithProps` respectively. They provide `release()` method which helps to remove the stored memoized value. A selectors  memoized value  is stored in memory indefinitely. If the value is a large object and is no longer needed. `selector.release()` can be used to remove the stored value such as `selectUsers.release()`*
 
 Similar to selecting users, we can also select Posts from `ProfileFeatureState`.
 
@@ -490,9 +471,9 @@ export const selectPosts = createSelector(
 posts$ = this.store.select(fromSelectors.selectPosts);
 ```
 
-#### select multiple peices of state
+#### Select multiple peices of state
 
-Now let us assume, we want to select users and its associated posts as a data structure like below
+Now let us assume, we want to select users and its associated posts. This involves two different pieces of the profilefeature state.
 
 ```typescript
 interface usersWithPosts{
@@ -501,7 +482,7 @@ interface usersWithPosts{
 } 
 ```
 
-we will pass `selectUsers` and `selectPosts` selector in the createSelector function and calculate the associated posts of users.
+ `createSelector` function can take up to **8** selector functions which means we can pass `selectUsers` and `selectPosts` selector in the createSelector function and calculate the associated posts of users.
 
 ```typescript
 
@@ -610,4 +591,4 @@ export class AppComponent{
   user$ = this.store.select(fromSelectors.selectUserById, { userId: 1 });
 ```
 
-The next important feature of Ngrx State mangement is to handle the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx]()  .
+The next important feature of Ngrx State mangement is to handle the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx]().

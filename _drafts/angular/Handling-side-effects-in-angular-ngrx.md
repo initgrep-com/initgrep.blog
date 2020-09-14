@@ -1,8 +1,25 @@
 ---
-
+layout: post
+bannercolor: "light-green accent-3"
+title:  "Ngrx Effects - Handle side-effects in angular applications"
+date:   2020-09-16
+meta: "NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of all Actions dispatched. If the effect is interested in any action , it performs a task(side-effects) and return another Action back to Action Stream."
+excerpt: "NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of all Actions dispatched. If the effect is interested in any action , it performs a task(side-effects) and return another Action back to Action Stream."
+category: angular
+comments: true
+author: "sheikh irshad"
+twitter: imshykh    
+facebook: irshsheikh
+github: igagrock
+image: rxjs-effects.jpg
+categories:
+  - angular
+  - javascript
+  - typescript
+  - all
 ---
 
-## Ngrx Effects - Handle side-effects in angular apps
+## Ngrx Effects - Handle side-effects in angular applications
 
 ## Side-effects
 
@@ -16,53 +33,57 @@ A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29)
 
 -- *[source](<u><a href="https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect">https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect</a></u>)*
 
-It is recommended to keep components as pure as possible. A pure component has an immutable input and produces the  events as ouput. These components are essentially dumb and most of the computations are done outside of it. A pure component has a single responsibilty similar to *pure functions*. 
+In an Angular application, it is recommended to keep components as pure as possible. A pure component has an immutable input and produces the events as output. These components are essentially dumb and most of the computations are done outside of it. A pure component has a single responsibility similar to *pure functions*.
 
-Now, If the components are not doing any computations(*which they never should do unless it  is end of the world and u got no other option*), most of the computations and side-effects are  present in the services. That is the first hand use of angular services. It is easy to inject them in components and perform various computations. 
+Now, If the components are not doing any computations, most of the computations and side-effects would be moved inside the services. That is the first-hand use of angular services. It is easy to inject them into components and perform various computations.
 
-Now here are few things you should consider -
+Now here are a few things you should consider -
 
-- First of all, if your app is growing fast and your are storing/managing state inside your components or services, you should definetly consider a state management solution.
+- First of all, if your application is growing fast and you are storing/managing state inside your components or services, you should consider a state management solution.
 
-- The services are an ideal choice but you have to mannually take care of storing the state, making sure the state remain immutable, consistent, and  available for all the dependent  components as well as services.
+- The services are an ideal choice but you have to manually take care of storing the state, making sure the state remains immutable, consistent, and available for all the dependent components as well as services.
 
-- Let's assume, you have a service taking care of communicating via API's to some remote server.  You inject the service in a component and call the method inside the component.
+- Let's assume, you have a service taking care of communicating via APIs to some remote server. You inject the service in a component and call the method of the service inside the component.
 
-- Lets assume, you have another service, which performs some computation which is supposed to be run when user interacts with UI such as click of a button. Again, you would inject the service in component and on `click` of the button, the  method/computation is called.
+- ...and if  you have another service, which performs some computation which is supposed to be run when the user interacts with UI such as a click of a button. Again, you would inject the service in component, and on `click` of the button, a method of the service is called.
 
-It works great.. But if you notice, the component knows about what operations to perform when a user clicks a button or when an API should be called. The very first disadvantage of this pattern you would come across  is components are hard to test since they are dependent on many services. you would also notice that is almost impossible to reuse the components. 
+It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user clicks a button or when an API should be called. 
 
-*So what is the alternative approach?*
+The very first disadvantage of this pattern you would come across is components are hard to test since they are dependent on many services. You would also notice that It is almost impossible to reuse the components.
 
-The alternative approach is to make components is let them be free and not let them be responsible for managing the state or performing the computations. Instead make them reactive so that when an input data is available, it renders it to UI and when there are UI interactions, it generates some Events. 
+***So what is the alternative approach?***
 
-That is it.. 
+The alternative approach is to let components be pure and not responsible for managing the state or performing the unwanted computations. Instead make them reactive so that when an input data is available, it renders it to UI and when there are UI interactions, it generates the relevant Events.
+
+That is it...
 
 The component does not have to know, how the Input data is made available or how the events are handled.
 
-The services are still an important part of the application. Infact, they still contain all the methods to do various computations or communicate via API's. But Now the services are no longer being injected inside the component. 
+**The services are nevertheless an important part of the application. They still contain all the methods to do various computations or communicate via APIs. But now the services are no longer being injected inside the component.**
 
- I have already  written a post about reactive state management using NgRx store, actions and selectors. I would advise you to go through that.
+I have already written a post about [ reactive state management using NgRx store, actions, and selectors.]() You can go through it to have an understanding of NgRx state management.
 
-we discussed the two approaches. Let's see a comparison between the two approaches. 
+We discussed the service based approach above. Let's see a comparison between the service based design and Implementing NgRx effects. You might notice fewer elements in play during service based design but don't let it fool you. It is better to have create more elements than to have a lousy app.
 
-**service based apporach**
+### Service based design
 
-Suppose, our appcomponent requires a list of users. 
+Suppose, our `AppComponent `requires a list of users. 
 
-- we have a service `AppRemoteService`  and it contains  `users$ observable`  which would provide us users upon a subscription. 
+- We have a service `AppRemoteService`  and it contains  `users$ observable`  which can be subscribed to get a list of users.
   
   ```typescript
   users$ = this.httpClient.get<User[]>(URL).pipe(take(1));
   ```
 
-- we have injected the `AppRemoteService` in side the `AppComponent` and we are subscribing to `AppRemoteService.users$` observable . 
+- We have injected the `AppRemoteService` in side the `AppComponent` and we would subscribe to `AppRemoteService.users$` observable . 
   
   ```typescript
   @Component({
       template: `
-      <div class="user-container" *ngIf="localUsers">
-       <app-user *ngfor="let user of localUsers" [inputUser]="user">
+      <div class="user-container" 
+          *ngIf="localUsers">
+       <app-user *ngfor="let user of localUsers" 
+                  [inputUser]="user">
       </div>
       `
   })
@@ -73,33 +94,27 @@ Suppose, our appcomponent requires a list of users.
   constructor(private remoteService: RemoteService){}
   
     ngOnInit(){
-  
         //handle the subscription here
        this.remoteService.users$.subscrible(
            users => this.localUsers = users;
           );
     }
+    } 
   ```
 
-  }
+### NgRx Effects based design
 
-```
+Here is how NgRx effects will change it:- 
 
-
-
- **NgRx Effects based approach**
-
-Here is how NgRx effects will change it:
-
-- The AppComponent would only require `NgRx Store` to select the `state` or dispatch `actions`. 
-
+- The AppComponent would only require `NgRx Store` to select the `state` or dispatch `actions`.
+  
   ```typescript
   export class AppComponent implements OnInit {
    constructor(private store: Store<fromApp.AppState>) { }
-  }
-```
+   }
+  ```
 
-- As soon as the component requires the list of users, it would dispatch an action `loadUsers`. Most probably when the component is initialized.
+- As soon as the component requires the list of users, it would dispatch an action `loadUsers` when the component is initialized.
   
   ```typescript
   export class AppComponent implements OnInit {
@@ -119,8 +134,10 @@ Here is how NgRx effects will change it:
   
   @Component({
    template: `
-       <div class="user-container" *ngIf="localUsers$ | async as users">
-           <app-user *ngfor="let user of users" [inputUser]="user">
+       <div class="user-container" 
+           *ngIf="localUsers$ | async as users">
+           <app-user *ngfor="let user of users" 
+                      [inputUser]="user">
        </div>
    `
   })
@@ -135,9 +152,9 @@ Here is how NgRx effects will change it:
   }
   ```
 
-- NgRx Effects will be listening to the stream of actions dispatched since the latest state change. `loadUsers$` effect is intersted in `loadUsers` action dispatched by `AppComponent`. As such, when the component is initialized, the `loadUsers` action is dispatched. The effect reacts to it and subscribes `remoteservice.users$` .
+- **NgRx Effects** will be listening to the stream of actions dispatched since the latest state change. `loadUsers$` effect is interested in `loadUsers` action dispatched by `AppComponent`. As such, when the component is initialized, the `loadUsers` action is dispatched. The effect reacts to it and subscribes `remoteservice.users$` .
 
-- Once the data is fetched, the `loadUsers$` effect will dispatch another action, `addUsers` with associated metadata. The reducer will add the data to store.
+- Once the data is fetched, the `loadUsers$` effect will dispatch `addUsers` action with associated metadata - users. The respective reducer function will transition the state. The latest state will contain recently feteched users.
   
   ```typescript
   //app.effects.ts
@@ -169,13 +186,13 @@ Here is how NgRx effects will change it:
   );
   ```
 
-- As soon as the data is available, the component will have the data to render.
+- As soon as the data is available, the `localusers$` observable subsrciption will have users list ready for the component to render.
 
-Compared to earlier service based approach, the component is not dependent on a service. Neither is it concerned how the data is loaded. Besides allowing the component to be pure, It will also make testing components easier.
+Compared to service based approach, isolating the side-effects using NgRx Effects, the component is not dependent on a service. Neither is it concerned how the data is loaded. Besides allowing the component to be pure, It will also make testing components easier and will increase the chances of reusability.
 
-## NgRx effects
+## NgRx Effects
 
-NgRx effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of *all* actions dispatched. If the effect is intersted in any action , it  performs a task(side-effects) and return another Action back to Action Stream. 
+NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of *all* Actions dispatched. If the effect is interested in any action , it  performs a task(side-effects) and return another Action back to Action Stream. 
 
 > *NgRx Effects may not always dispatch a new action upon completion of a side-effect.*
 
@@ -188,7 +205,7 @@ ng add @ngrx/effects@latest
 npm install @ngrx/effects --save
 ```
 
-This is the `AppRemoteService` which contains methods for calling API's
+Below is the service which contains methods for fetching data via API's.
 
 ```typescript
 //app-remote.service.ts
@@ -211,13 +228,11 @@ export class AppRemoteService {
 }
 ```
 
-## 
-
 ## Implementation
 
-- Lets create an `Effect` service  such as `AppEffects`  and make it injectable using `@Injectable` decorator.
+- We would require an injectable service for create effects. Let's go ahead and create an `Effect` service, name it `AppEffects`   and make it injectable using `@Injectable` decorator.
 
-- Effects require an instance of  `Actions` service . Actions is an injectable service that  provides an Observable stream of all actions dispatched after the lastest state change.
+- NgRx Effects listens to an Observable Action stream dispatched since the latest state change and it provided by `Actions` service. Let's inject an instance of  `Actions` service in our AppEffects service.
   
   ```typescript
   import { Actions } from '@ngrx/effects/';
@@ -229,7 +244,7 @@ export class AppRemoteService {
    }
   ```
 
-- Other services can also be injected into `AppEffect` service. These services are used to interact with external apis or perfrom computations. We will inject `AppRemoteService`.
+- The sole purpose of NgRx Effects is to isolate the side-effects from components. Instead of directly calling side-effects inside components, we would now call them in NgRx effects. As such, other services can also be injected into `AppEffect` service. These services can be used to interact with external apis or perfrom computations. We will inject our `AppRemoteService` which contains methods to fetch data via APIs.
   
   ```typescript
   import { Actions } from '@ngrx/effects/';
@@ -247,7 +262,7 @@ export class AppRemoteService {
   }
   ```
 
-Inside the Effects service, The `createEffect` function is used to create the effects. It takes two arguments.  Lets see how each of these arguments are defined.
+Inside the AppEffects service, The `createEffect` function is used to create the effects. It takes two arguments.  Lets see how each of these arguments are defined.
 
 **The first argument is a function which returns an observable.**
 
@@ -255,11 +270,11 @@ Inside the Effects service, The `createEffect` function is used to create the ef
 () => Observable<Action | unknown>
 ```
 
-The fist argument essentially contains below steps:
+Below are the steps, we will follow to create this function--
 
-- `Action` observable is subscribed
+- First of all, we will access the `Actions` instance observable.
 
-- `OfType` operator is used to filter the actions stream based on given actions.
+- ...then we will use pipeable  [ofType](https://ngrx.io/api/effects/ofType) operator function.  `ofType` operator function takes one or more actions as arguments and filters the Actions stream based on provided arguments.
   
   ```typescript
   () => this.actions$.pipe(
@@ -267,7 +282,7 @@ The fist argument essentially contains below steps:
   )
   ```
 
-- The stream of actions is flattened and maped to  new observables using a RxJs flattening operators such as `MergeMap, concatMap, exhaustMap`.  At this point, the computation or external API calls are performed depending on the task.
+- The stream of actions is flattened and mapped to  new observables using a RxJs flattening operators such as `MergeMap, concatMap, exhaustMap`.  At this point, the computation or external API calls are performed depending on the task.
   
   ```typescript
   () => this.actions$.pipe(
@@ -277,12 +292,14 @@ The fist argument essentially contains below steps:
        (action) => this.remoteService.users$
   )
   ```
+  
+  *We have provide only one action as argument to `ofType` operator function. But you could provide multiple actions. In that case, the effect will execute the tasks for any matched Action.*
 
 - Finally 
   
-  - if the task is successful, a new action with optional metadata is returned as an observable 
+  - If the task is successful, a new action with optional metadata is returned as an observable 
   
-  - If an error occurs, optionally an Observable of error is returned.
+  - If an error occurs, an Observable of error is returned.
   
   ```typescript
   () => this.actions$.pipe(
@@ -311,13 +328,13 @@ interface EffectConfig{
 
 - `Dispatch`:
   
-  - `dipatch:true` conveyes the action emitted by the effect is dispatched to the store.
+  - `dipatch:true` conveyes that the  action emitted by the effect is dispatched to the store.
   
   - `dipatch:false` means the effect does not need to return an action.
 
 - `useEffectErrorHandler` determines if the effect should be resubscribed incase an error occurs.
 
-Below the final version *loadUsers$* effect -
+Below is the final version *`loadUsers$`* effect -
 
 ```typescript
  loadUsers$ = createEffect(
@@ -339,11 +356,11 @@ Below the final version *loadUsers$* effect -
 
 Let's assume, our app also requires to show notifications upon operation success.  
 
-- We have a `showNofitication(message:string)` method which is responsible to show the notification.  The messages shown by the notification is contextual and hence should be passed to the method everytime it is called. 
+- We have a `showNofitication(message:string)` method which is responsible to show the notifications.  The messages shown by the notification is contextual and hence the message should be passed to the method as argument . 
 
-- we also have an action  `[profile] operation Success` which carries the `message` metadata.
+- We also have an action  `[Notification] operation Success` which carries the `message` metadata.
 
-- The effect will access the metadata of the selected action and pass it to the `showNotification Method`
+- The effect will access the metadata of the selected action and pass it on to the `showNotification Method`
 
 ```typescript
 //app.actions.ts
@@ -357,34 +374,34 @@ export const operationSuccess = createAction(
 ```typescript
 //app.effects.ts
 
-showNotificationEffect = createEffect(
-    () => 
-    this.action$.pipe(
-        ofType(AppActions.opSuccess),
-        mergeMap((action)=> showNotification(action.message))
-    ),
-    //EffectConfig
+  operatorSuccessNotify$ = createEffect(() => this.action$.pipe(
+    ofType(AppActions.operationSuccess),
+    mergeMap((action) => 
+        of(
+            this.notificationService.successNotification(action.message))
+        )
+  ),
     {
-        dispatch: false
+      dispatch: false
     }
+  );
 );
 ```
 
 Notice:  `dispatch` is set to `false` for this effect. That means, it does not return any new action.
 
-There could be scenarios where the lastest state is required in the effect. In that case, the state has to be accessed directly using selectors and Rxjs`withLatestFrom`operator. `withLatestFrom` operator should be used inside a flatening operator to prevent the selector from firing untill the correct action is dispatched.
+There could also be scenarios where the lastest state of the application is required in the NgRx Effects. In that case, the state has to be accessed directly using NgRx Selectors and RxJS`withLatestFrom`operator function. `withLatestFrom` operator function should be used inside a flatening operator to prevent the selector from firing untill the correct action is dispatched.
 
-Lets say, the effect requires number of posts, we can write
+Lets say, the effect requires latest number of posts, we will use `selectPosts` selector.
 
 ```typescript
-createEffect(
     () => 
         this.action$.pipe(
             ofType(AppActions.updateSize),
             concatMap((action) => 
                     of(action).pipe(
                     withLatestFrom(
-                            this.store.select(fromSelectors.selectUsers)
+                            this.store.select(fromSelectors.selectPosts)
                      )) 
              ),
 
@@ -393,11 +410,9 @@ createEffect(
 )
 ```
 
-## 
-
 ## Register the effects
 
-Depending on the requirement, you could either have one Effects service for all application or seperate Effect services for each feature module. As such, Effects can be registed in the app module or seperately in feature modules.
+Depending on the requirement, you can either create one Effects service for all application or seperate Effect services for each feature module. That means we can be register Effects in the application module or seperately in feature modules.
 
 ```typescript
 EffectsModule.forRoot([AppEffects]);
