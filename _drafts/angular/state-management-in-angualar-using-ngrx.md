@@ -1,40 +1,41 @@
 ---
 layout: post
 bannercolor: "light-green accent-3"
-title: "Reactive State management in the angular - NgRx Store, actions, selectors.RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API."
-date: 2020-09-16
-meta: "Reactive State management in the angular - NgRx Store, actions, selectors.RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API"
+title: "Reactive State management in the angular - NgRx Store, actions, selectors"
+date:   2020-09-15
+meta: "NgRx framework provides a reactive state management in angular applications using NgRx store, NgRx Actions, NgRx reducers and NgRx selectors"
+excerpt: "NgRx framework provides a reactive state management in angular applications using NgRx store, NgRx Actions, NgRx reducers and NgRx selectors"
 category: angular
 comments: true
 author: "sheikh irshad"
-twitter: imshykh
+twitter: imshykh    
 facebook: irshsheikh
 github: igagrock
 image: rxjs-state.jpg
 categories:
- - angular
- - javascript
- - typescript
- - all
+  - angular
+  - javascript
+  - typescript
+  - all
 ---
-
-# Reactive State management in the angular - NgRx Store, actions, selectors
 
 NgRx framework helps to build reactive angular applications.
 
 ## Basic Concepts
 
-- `RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJs observable API.
+ `RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJS observable API.
 
-- `state` is an immutable data structure that is a single source of truth for the whole application. 
+`state` is an immutable data structure that is a single source of truth for the whole application. 
 
-- `Actions` represent the unique events in the application which may be used to perform state transition or trigger side-effects.
+`Actions` represent the unique events in the application which may be used to perform state transition or trigger side-effects.
 
-- `Reducers `are pure functions that react to `Actions `to perform state transitions.
+`Reducers `are pure functions that react to `Actions `to perform state transitions.
 
-- `Selectors `are pure functions that select, derive, or compose a slice of the state.
+`Selectors `are pure functions that select, derive, or compose a slice of the state.
 
-- `Effects` allow  the isolation of side-effects.
+`Effects` allow  the isolation of side-effects. 
+
+&nbsp;
 
 ## Prerequisites -
 
@@ -64,6 +65,8 @@ ng add @ngrx/store@latest
 # 5) run angular in dev mode
 ng serve
 ```
+
+&nbsp;
 
 **To begin with**, let us have a look at an example file structure. A structure like this would be helpful to split up each feature of `NgRx `state management in your app. I usually replicate the same structure in each feature module.
 
@@ -581,7 +584,6 @@ import * as fromSelectors from './store/app.selectors';
 export class AppComponent{
   constructor(private store: Store) { }
 
-
   profile$ = this.store.select(fromSelectors.selectProfile);
 
   users$ = this.store.select(fromSelectors.selectUsers);
@@ -591,4 +593,4 @@ export class AppComponent{
   user$ = this.store.select(fromSelectors.selectUserById, { userId: 1 });
 ```
 
-The next important feature of Ngrx State mangement is to handle the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx]().
+The next important feature of Ngrx State mangement is to isolate the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx](/posts/javascript/angular/handle-side-effects-in-angular-ngrx).
