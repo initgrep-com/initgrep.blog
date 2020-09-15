@@ -255,6 +255,7 @@ export const addUsers = createAction(
 ```
 
 Notice the type of addusers action as `[profile] add users`. The `[profile]` represents the source of action. Also the props contains the array of users as the metadata.
+ **`addUsers`** action is dispatched to indicate that the users should added to state. It will also contain `user[]` as metadata.
 
 Similarly, we can create an action for adding posts to the feature state.
 
@@ -265,10 +266,7 @@ export const addPosts = createAction(
   '[profile] add posts',
   props<{ posts: Post[] }>()
 );
-```
-
-**`addUsers`** action is dispatched to indicate that the users should added to state. It will also contain `user[]` as metadata.
-
+``
 *Similarly the Actions related to posts are dispatched*
 
 > Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[profile] user created` or `[profile] user creation failed` .
