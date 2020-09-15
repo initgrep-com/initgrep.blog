@@ -2,7 +2,7 @@
 layout: post
 bannercolor: "light-green accent-3"
 title: "Reactive State management in the angular - NgRx Store, actions, selectors"
-date:   2020-09-15
+date: 2020-09-15
 meta: "NgRx framework provides a reactive state management in angular applications using NgRx store, NgRx Actions, NgRx reducers and NgRx selectors"
 excerpt: "NgRx framework provides a reactive state management in angular applications using NgRx store, NgRx Actions, NgRx reducers and NgRx selectors"
 category: angular
@@ -18,6 +18,8 @@ categories:
   - typescript
   - all
 ---
+
+
 
 NgRx framework helps to build reactive angular applications.
 
@@ -44,6 +46,26 @@ NgRx framework helps to build reactive angular applications.
 - You have a basic understanding of redux architecture.
 
 - you  have a fair knowledge of `RxJs` Observable API and various operators.
+
+&nbsp;
+
+#### Table of contents
+
+- **Installation**
+- **State**
+  - Design the State
+  - Initialize the State
+- **NgRx Actions**
+- **NgRx Reducer**
+  - createReducer function
+  - Create ActionReducerMap
+  - Register the State
+- **NgRx selectors**
+  - Selectors
+  - createSelector function
+  - String selectors.
+
+&nbsp;
 
 ## Installation
 
@@ -202,6 +224,12 @@ export interface AppState {
 }
 ```
 
+ &nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp;
+
 ## Actions:
 
 NgRx Actions represent events in the application. They may trigger a state transition or  trigger a side-effect in `NgRx Effect` services.
@@ -244,6 +272,12 @@ export const addPosts = createAction(
 *Similarly the Actions related to posts are dispatched*
 
 > Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[profile] user created` or `[profile] user creation failed` .
+
+&nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp;
 
 ## NgRx Reducer -
 
@@ -348,6 +382,8 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 };
 ```
 
+&nbsp;
+
 #### Register the  State
 
 Once the reducer is created, It should be registered in the Module . 
@@ -372,7 +408,11 @@ The state can be registered using one of the two options:
   StoreModule.forFeature({ profile: profileFeatureReducer })
   ```
 
-       
+     &nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp; 
 
 ## NgRx Selectors -
 
@@ -473,6 +513,12 @@ export const selectPosts = createSelector(
 //return posts from store.
 posts$ = this.store.select(fromSelectors.selectPosts);
 ```
+
+&nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp;
 
 #### Select multiple peices of state
 
@@ -594,3 +640,7 @@ export class AppComponent{
 ```
 
 The next important feature of Ngrx State mangement is to isolate the[ side effects](https://rb.gy/qw946i) of the application. You can check out the post - [Handling side effects in angular applications using Ngrx](/posts/javascript/angular/handle-side-effects-in-angular-ngrx).
+
+
+
+&nbsp;

@@ -2,11 +2,11 @@
 layout: post
 bannercolor: "light-green accent-3"
 title:  "Ngrx Effects - Isolate side-effects in angular applications"
-date:   2020-09-15
+date: 2020-09-15
 meta: "NgRx Effects use observable action streams to isolate side effects from components."
 excerpt: "NgRx Effects use observable action streams to isolate side effects from components."
 category: angular
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
@@ -21,7 +21,27 @@ categories:
 
 &nbsp;
 
-## Side-effects
+##### Table of contents
+
+- **What is a Side effect?**
+
+- **Why NgRx Effects?**
+  
+  - Service based design vs NgRx Effects based design
+
+- **NgRx Effects** 
+  
+  - Installation
+  
+  - Implementation
+  
+  - Register NgRx Effects in module
+    
+    
+
+&nbsp;
+
+## what is a Side-effect?
 
 A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29) refers simply to the modification of some kind of state - for instance:
 
@@ -33,9 +53,13 @@ A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29)
 
 ...[source](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect) 
 
+
+
 &nbsp;
 
-It is recommended to keep a component as pure as possible. A pure component has an immutable input and produces the events as output. These components are essentially dumb and most of the computations are done outside of it. A pure component has a single responsibility similar to *pure functions*.
+## Why NgRx Effects?
+
+ A pure component has an immutable input and produces the events as output. These components are essentially dumb and most of the computations are done outside of it. A pure component has a single responsibility similar to *pure functions*.
 
 Now, If the components are not doing any computations, most of the computations and side-effects would be moved inside the services. That is the first-hand use of angular services. It is easy to inject them into components and perform various computations.
 
@@ -49,23 +73,35 @@ Now here are a few things you should consider -
 
 - ...and if  you have another service, which performs some computation which is supposed to be run when the user interacts with UI such as a click of a button. Again, you would inject the service in component, and on `click` of the button, a method of the service is called.
 
-It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user clicks a button or when an API should be called. 
+It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user *clicks a button* or when an API should be called. 
 
-The very first disadvantage of this pattern you would come across is components are hard to test since they are dependent on many services. You would also notice that It is almost impossible to reuse the components.
+The very first **disadvantage** of this pattern you would come across is ***components are hard to test since they are dependent on many services***. You would also notice that It is almost ***impossible to reuse the components***.
 
-***So what is the alternative approach?***
+&nbsp;
 
-The alternative approach is to let components be pure and not responsible for managing the state or performing the unwanted computations. Instead make them reactive so that when an input data is available, it renders it to UI and when there are UI interactions, it generates the relevant Events.
+***So what is the alternative approach?***...
+
+The alternative approach is to let components be pure and not responsible for managing the state . Instead make them reactive so that when an input data is available, it renders it to UI and when there are UI interactions, it generates the relevant Events.
 
 That is it...
 
 The component does not have to know, how the Input data is made available or how the events are handled.
 
-**The services are nevertheless an important part of the application. They still contain all the methods to do various computations or communicate via APIs. But now the services are no longer being injected inside the component.**
+**The services are nevertheless an important part of the application. They would still contain all the methods to do various computations or communicate via APIs. But now they are no longer being injected inside the component.**
+
+
 
 I have already written a post about [ reactive state management using NgRx store, actions, and selectors.](/posts/javascript/angular/state-management-in-angualar-using-ngrx) You can go through it to have an understanding of NgRx state management.
 
-We discussed the service based approach above. Let's see a comparison between the service based design and Implementing NgRx effects. You might notice fewer elements in play during service based design but don't let it fool you. It is better to have create more elements than to have a lousy app.
+We discussed the service based approach above. Let's see a comparison between the service based design and NgRx effects. 
+
+You might notice fewer elements in play during service based design but don't let it fool you. It is better to have more elements in application than to have a lousy app.
+
+&nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp;
 
 ### Service based design
 
@@ -83,10 +119,10 @@ Suppose, our `AppComponent `requires a list of users.
   @Component({
       template: `
       <div class="user-container" 
-          *ngIf="localUsers">
-       <app-user *ngfor="let user of localUsers" 
+        *ngIf="localUsers">
+       <app-user *ngfor="let user of localUsers" 
                   [inputUser]="user">
-      </div>
+    </div>
       `
   })
   export class AppComponent{
@@ -106,7 +142,7 @@ Suppose, our `AppComponent `requires a list of users.
 
 ### NgRx Effects based design
 
-Here is how NgRx effects will change it:- 
+Here is how NgRx effects will change it -
 
 - The AppComponent would only require `NgRx Store` to select the `state` or dispatch `actions`.
   
@@ -192,11 +228,15 @@ Here is how NgRx effects will change it:-
 
 In contrast with the service-based approach isolating the side-effects using NgRx Effects, the component is not concerned about how the data is loaded. Besides allowing a component to be pure, It also makes testing components easier and increases the chances of reusability.
 
+&nbsp;
+
 ## NgRx Effects
 
 NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of *all* Actions dispatched. If the effect is interested in any action , it  performs a task(side-effects) and return another Action back to Action Stream. 
 
 > *NgRx Effects may not always dispatch a new action upon completion of a side-effect.*
+
+
 
 ## Installation
 
@@ -206,6 +246,8 @@ ng add @ngrx/effects@latest
 # < 6
 npm install @ngrx/effects --save
 ```
+
+Here is the complete [project setup](https://github.com/initgrep-post-demos/ngrx-demo).
 
 Below is the service which contains methods for fetching data via API's.
 
@@ -230,7 +272,13 @@ export class AppRemoteService {
 }
 ```
 
+&nbsp;
+
 ## Implementation
+
+![](/assets/images/ngrx-effects-flowchart.svg)
+
+*<u>Flow diagram of NgRx Effects</u>*
 
 - We would require an injectable service for create effects. Let's go ahead and create an `Effect` service, name it `AppEffects`   and make it injectable using `@Injectable` decorator.
 
@@ -255,12 +303,10 @@ export class AppRemoteService {
   @Injectable()
    export class AppEffects{
   
-      constructor( 
-          private action$: Actions,
-          private remoteService: AppRemoteService
-        ) { }
-        
-  
+     constructor( 
+         private action$: Actions,
+         private remoteService: AppRemoteService
+       ) { }  
   }
   ```
 
@@ -305,15 +351,15 @@ Below are the steps, we will follow to create this function--
   
   ```typescript
   () => this.actions$.pipe(
-       ofType(AppActions.loadUsers),
-       //flatten the actions
-       mergeMap((action) => this.remoteService.users$
-           .pipe(
-               //maps the users to addUser action
-               map(users => AppActions.addUsers({ users })),
-               // return Observable<any> to catch error
-               catchError(error => {
-                   return of(error);
+      ofType(AppActions.loadUsers),
+      //flatten the actions
+      mergeMap((action) => this.remoteService.users$
+          .pipe(
+              //maps the users to addUser action
+              map(users => AppActions.addUsers({ users })),
+              // return Observable<any> to catch error
+              catchError(error => {
+                  return of(error);
                })
            )
       );
@@ -352,7 +398,13 @@ Below is the final version *`loadUsers$`* effect -
   ));
 ```
 
-*Similarly we can create `loadPosts$` effect. which is mapped to `loadPosts action` and return `addPosts` action*`
+*Similarly we can create `loadPosts$` effect. which is mapped to `loadPosts action` and return `addPosts` action*
+
+&nbsp;
+
+{% include ads/article-ads.html %}
+
+&nbsp;
 
 ### Effects that require input state.
 
@@ -412,6 +464,8 @@ Lets say, the effect requires latest number of posts, we will use `selectPosts` 
 )
 ```
 
+&nbsp;
+
 ## Register the effects
 
 Depending on the requirement, you can either create one Effects service for all application or seperate Effect services for each feature module. That means we can be register Effects in the application module or seperately in feature modules.
@@ -421,3 +475,7 @@ EffectsModule.forRoot([AppEffects]);
 //OR
 EffectsModule.forFeature([ProfileFeatureEffects]);
 ```
+
+
+
+{% include ads/article-ads.html %}
