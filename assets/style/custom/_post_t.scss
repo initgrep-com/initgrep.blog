@@ -12,41 +12,43 @@
           color: $c-icon-color;
           letter-spacing: $letter-sapacing;
         }
-        
       }
       small {
         letter-spacing: $letter-sapacing;
         color: $mute-color;
       }
-
     }
-    
   }
- 
+
   .page-content {
     letter-spacing: $letter-sapacing;
     .page-content-title {
     }
-    h1,h2,h3,h4,h5,h6{
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       color: $c-icon-color;
     }
-    
+
     a {
       border-bottom: 2px dashed $c-icon-color;
       &:hover {
         color: $c-icon-color;
       }
     }
-   
+
     blockquote:before,
     blockquote:after {
       color: $c-text-color;
     }
-    
-    pre{
+
+    pre {
       color: $pre-color;
     }
-    
+
     pre.highlight {
       border: 4px solid $c-bg;
     }
@@ -54,6 +56,6 @@
 }
 .page-comments {
   .message {
-    border: 3px dotted $c-icon-color;
+    // border: 1px dashed $c-icon-color;
   }
 }

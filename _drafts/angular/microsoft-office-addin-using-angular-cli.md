@@ -39,6 +39,7 @@ Let us being --
   ```
       npm install -g yo generator-office
   ```
+
 - Generate the office adding angular project structure using the below command.
   
   ```
@@ -93,11 +94,13 @@ Our outlook addin project structure is done using yeomen generator. Below is the
   ```
     npm install -g @angular/cli
   ```
+
 - Generate an angular app 
   
   ```
     ng new demo-angular-addin
   ```
+
 - Run `ng serve` to make sure the app is working
 
 The structure of our angular app would look like below:
