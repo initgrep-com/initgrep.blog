@@ -25,17 +25,17 @@ NgRx framework helps to build reactive angular applications.
 
 ## Basic Concepts
 
- `RxJs store` provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJS observable API.
+ **NgRx store** provides reactive state management for the angular application. NgRx store is the redux implementation developed specifically for angular applications and provides RxJS observable API.
 
-`state` is an immutable data structure that is a single source of truth for the whole application. 
+**State** is an immutable data structure that is a single source of truth for the whole application. 
 
-`Actions` represent the unique events in the application which may be used to perform state transition or trigger side-effects.
+**NgRx Actions** represent the unique events in the application which may be used to perform state transition or trigger side-effects.
 
-`Reducers `are pure functions that react to `Actions `to perform state transitions.
+**NgRx Reducers** are pure functions that react to `Actions `to perform state transitions.
 
-`Selectors `are pure functions that select, derive, or compose a slice of the state.
+**NgRx Selectors** are pure functions that select, derive, or compose a slice of the state.
 
-`Effects` allow  the isolation of side-effects. 
+**NgRx Effects** allow  the isolation of side-effects. 
 
 &nbsp;
 
