@@ -1,8 +1,5 @@
 //Content component start
 
-.content-component {
-    left: 25%;
-  }
   
   @include media-breakpoint-up(xs) {
     .content-component {
@@ -17,7 +14,7 @@
   }
   @include media-breakpoint-up(lg) {
     .content-component {
-      left: 25%;
+      left: 18%;
     }
   }
   @include media-breakpoint-up(xl) {
