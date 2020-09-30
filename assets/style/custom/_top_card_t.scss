@@ -1,40 +1,39 @@
+.top-card {
+  background: transparent;
+  // box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
+  box-shadow: 0 1px 3px $border-color, 0 1px 2px $border-color;
+  border: 0px solid $border-color !important;
 
-    .top-card {
-      background: transparent;
-      // box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
-      border: 0px solid $border-color !important;
-      
-      .card-body {
-        .card-meta {
-          letter-spacing: $letter-sapacing;
-          color: $mute-color;
-          small.text-category {
-            a{
-              color: $c-icon-color;
-            }
-          }
-        }
-        h5.card-title {
-          
-          color: $c-color-black;
-          letter-spacing: $letter-sapacing;
-         
-        }
-        p.card-text {
-          color: $primary;
-          letter-spacing: $letter-sapacing;
-        }
-      }
-
-      
-
-      &:hover{
-        box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
-        h5.card-title{
-          a{
-            color:$c-icon-color;
-          }
+  img {
+    border-radius: 4px 4px 0 0;
+  }
+  .card-body {
+    background-color: var(--card-bg-color);
+    .card-meta {
+      letter-spacing: $letter-sapacing;
+      color: $mute-color;
+      small.text-category {
+        a {
+          color: $c-icon-color;
         }
       }
     }
-  
+    h5.card-title {
+      color: $c-color-black;
+      letter-spacing: $letter-sapacing;
+    }
+    p.card-text {
+      color: $primary;
+      letter-spacing: $letter-sapacing;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+    h5.card-title {
+      a {
+        color: $c-icon-color;
+      }
+    }
+  }
+}

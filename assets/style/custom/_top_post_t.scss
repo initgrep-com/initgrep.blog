@@ -16,21 +16,22 @@ ul.top-post-component {
         }
       }
     }
-
   }
   li.list-group-item {
-    border: 1px solid $border-color;
+    // border: 1px solid $border-color;
     // box-shadow: 0px 1px 3px $shadow-color, 0 1px 2px $shadow-color;
     background: transparent;
     a {
       div.media {
+        background-color: var(--card-bg-color);
+        box-shadow: 0 1px 3px $border-color, 0 1px 2px $border-color;
         .media-body {
           h5 {
             // color: $c-icon-color;
           }
         }
       }
-      &:hover{
+      &:hover {
         color: $c-icon-color !important;
       }
     }
@@ -38,7 +39,8 @@ ul.top-post-component {
       box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
     }
     &:last-child {
-      border-bottom-color: $border-color !important;
+      // border-bottom-color: $border-color !important;
+      border-bottom-color: transparent !important;
     }
   }
 }

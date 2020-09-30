@@ -1,13 +1,13 @@
-:root{
- --c-icon-color:#852aaa;
- --c-text-color: #852aaa;
- --border-color: #852aaa;
- --shadow-hover-color: rgba(0,0,0,0.22);
- --pre-color: #ee9818fc;
- --primary-color: #f1f1f1;
- --body-color:  #16141a;;
+:root {
+    --c-icon-color: #852aaa;
+    --c-text-color: #852aaa;
+    --border-color: #852aaa;
+    --shadow-hover-color: rgba(0, 0, 0, 0.22);
+    --pre-color: #ee9818fc;
+    --primary-color: #f1f1f1;
+    --body-color: #16141a;
+    --card-bg-color: #fc456a13;
 }
-
 
 $primary: var(--primary-color);
 $body-bg: var(--body-color);
@@ -21,11 +21,10 @@ $mute-color: #6c757d;
 $white-color: #f1f1f1;
 $pure-white: white;
 $bg-overlay: rgba(122, 118, 118, 0.4);
-$shadow-color:rgba(0, 0, 0, 0.2);
-$shadow-hover-color:var(--shadow-hover-color);//rgba(0,0,0,0.25);
+$shadow-color: rgba(0, 0, 0, 0.2);
+$shadow-hover-color: var(--shadow-hover-color); //rgba(0,0,0,0.25);
 $pre-color: var(--pre-color);
 
-$text-user-color:#6c757d;
-$border-color:var(--border-color);
-$content-card-border-color : $border-color;
-
+$text-user-color: #6c757d;
+$border-color: var(--border-color);
+$content-card-border-color: $border-color;
