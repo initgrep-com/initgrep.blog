@@ -25,19 +25,21 @@ ul.top-post-component {
       div.media {
         background-color: var(--card-bg-color);
         box-shadow: 0 1px 3px $border-color, 0 1px 2px $border-color;
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         .media-body {
           h5 {
             // color: $c-icon-color;
           }
+        }
+        &:hover {
+          box-shadow: 0 5px 10px $border-color, 0 5px 10px $border-color;
         }
       }
       &:hover {
         color: $c-icon-color !important;
       }
     }
-    &:hover {
-      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
-    }
+
     &:last-child {
       // border-bottom-color: $border-color !important;
       border-bottom-color: transparent !important;

@@ -13,12 +13,11 @@ ul.top-post-component {
 
       div.media-body {
         font-size: 1.4rem;
-        i {
-          margin-right: 0.5rem;
-          font-size: 2rem;
-        }
-        span {
-          background: transparent;
+        h4 {
+          span {
+            font-weight: 600;
+            margin: 0 0.5rem;
+          }
         }
       }
     }
@@ -29,9 +28,7 @@ ul.top-post-component {
   }
   li.list-group-item {
     padding: 0 0 0 0;
-
     margin-bottom: 1rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     background: transparent;
     a {
       text-decoration: none;

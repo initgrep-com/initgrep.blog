@@ -1,117 +1,106 @@
 //Content component start
 
-  
-  @include media-breakpoint-up(xs) {
-    .content-component {
-      left: 0px;
-    }
+@include media-breakpoint-up(xs) {
+  .content-component {
+    left: 0px;
   }
-  @include media-breakpoint-up(sm) {
-    .content-component {
-    }
+}
+@include media-breakpoint-up(sm) {
+  .content-component {
   }
-  @include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+  .content-component {
+    left: 16%;
   }
-  @include media-breakpoint-up(lg) {
-    .content-component {
-      left: 16%;
-    }
-  }
-  @include media-breakpoint-up(xl) {
-  }
-  
-  //content component ends
-  
-  //top card component start
-  
-  @include media-breakpoint-up(xs) {
-    .top-card {
-      // border-radius: 5px;
-      background: transparent;
-      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-      img {
-        height: 220px;
-        object-fit: cover;
-        // border-top-right-radius: 5px;
-        // border-top-left-radius: 5px;
-      }
-      .card-body {
-        .card-meta {
+}
+@include media-breakpoint-up(xl) {
+}
 
+//content component ends
 
+//top card component start
+
+@include media-breakpoint-up(xs) {
+  .top-card {
+    // border-radius: 5px;
+    background: transparent;
+
+    img {
+      height: 220px;
+      object-fit: cover;
+      // border-top-right-radius: 5px;
+      // border-top-left-radius: 5px;
+    }
+    .card-body {
+      .card-meta {
+        a {
+          text-decoration: none;
+        }
+
+        small.read-time {
+          float: right;
+        }
+        small.text-filler {
+          text-transform: lowercase;
+        }
+        small.text-category {
+          text-transform: capitalize;
           a {
-            text-decoration: none;
           }
-  
-          small.read-time {
-            float: right;
-          }
-          small.text-filler {
-            text-transform: lowercase;
-          }
-          small.text-category {
-            text-transform: capitalize;
-            a{
-            }
-          }
-        }
-        h3.card-title {
-          
-          font-weight: 700;
-          a{
-            text-decoration: none;
-          }
-        }
-        p.card-text {
-          font-size: 1.2rem;
         }
       }
-
+      h3.card-title {
+        font-weight: 700;
+        a {
+          text-decoration: none;
+        }
+      }
+      p.card-text {
+        font-size: 1.2rem;
+      }
     }
   }
-  @include media-breakpoint-up(sm) {
-  }
-  @include media-breakpoint-up(md) {
-  }
-  @include media-breakpoint-up(lg) {
-    .top-card {
-      transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
-      img {
-        height: 250px;
-        object-fit: cover;
-        
-      }
-      .card-body {
-        .card-meta {
-          a {
-            text-decoration: none;
-            
-          }
-  
-          small.read-time {
-            float: right;
-          }
-          small.text-filler {
-            text-transform: lowercase;
-          }
-          small.text-category {
-            text-transform: capitalize;
-          }
+}
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(md) {
+}
+@include media-breakpoint-up(lg) {
+  .top-card {
+    transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+    img {
+      height: 250px;
+      object-fit: cover;
+    }
+    .card-body {
+      .card-meta {
+        a {
+          text-decoration: none;
         }
-        h5.card-title {
-          a{
-            text-decoration: none;
-          }
-        }
-        p.card-text {
-          font-size: 1rem;
-        }
-      }
 
-    
+        small.read-time {
+          float: right;
+        }
+        small.text-filler {
+          text-transform: lowercase;
+        }
+        small.text-category {
+          text-transform: capitalize;
+        }
+      }
+      h5.card-title {
+        a {
+          text-decoration: none;
+        }
+      }
+      p.card-text {
+        font-size: 1rem;
+      }
     }
   }
-  @include media-breakpoint-up(xl) {
-  }
-  
-  
+}
+@include media-breakpoint-up(xl) {
+}

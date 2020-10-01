@@ -1,19 +1,17 @@
-.all-post-component{
-  span{
-    color:$c-icon-color;
+.all-post-component {
+  h2 {
+    color: $c-icon-color;
   }
 }
 
 .sub-content-component {
   background: transparent;
   div.app-card {
-    box-shadow: 0 1px 3px $shadow-color, 0 1px 3px $shadow-color;
-    border:1px solid $content-card-border-color;
-    
-
+    box-shadow: 0 1px 3px $border-color, 0 1px 3px $border-color;
+    // border: 1px solid $content-card-border-color;
+    background-color: var(--card-bg-color);
     .app-card-body {
       .app-card-meta {
-
         small {
           color: $c-icon-color;
           letter-spacing: $letter-sapacing;
@@ -30,7 +28,7 @@
     }
 
     &:hover {
-      box-shadow: 0 14px 28px $shadow-hover-color, 0 10px 10px $shadow-hover-color;
+      box-shadow: 0 4px 10px $border-color, 0 4px 10px $border-color;
 
       .app-card-body {
         h5 a {

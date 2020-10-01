@@ -1,6 +1,6 @@
 {% assign sortedR = site.postCollection | sort: 'date' | reverse %}
 {% for post in sortedR | reverse | limit:1 %}
-<div class="card top-card">
+<div class="card top-card d-flex justify-content-between">
     <img class="card-img-top img-fluid"
          src="{{site.baseurl}}/assets/images/{{post.image}}"
          alt="Card image cap">
