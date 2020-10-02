@@ -25,16 +25,14 @@
 
 @include media-breakpoint-up(xs) {
   .top-card {
-    // border-radius: 5px;
     background: transparent;
-
     img {
-      height: 220px;
+      height: 250px;
       object-fit: cover;
-      // border-top-right-radius: 5px;
-      // border-top-left-radius: 5px;
+      border-radius: 4px 4px 0 0;
     }
     .card-body {
+      border-radius: 0 0 4px 4px;
       .card-meta {
         a {
           text-decoration: none;
@@ -72,8 +70,9 @@
   .top-card {
     transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
     img {
-      height: 250px;
+      height: 350px;
       object-fit: cover;
+      object-position: center;
     }
     .card-body {
       .card-meta {

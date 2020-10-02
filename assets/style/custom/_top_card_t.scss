@@ -1,14 +1,10 @@
 .top-card {
   background: transparent;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 1px 2px $border-color, 0 1px 3px $border-color;
+  box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
   border: 0px solid $border-color !important;
 
-  img {
-    border-radius: 4px 4px 0 0;
-  }
   .card-body {
-    background-color: var(--card-bg-color);
     .card-meta {
       letter-spacing: $letter-sapacing;
       color: $mute-color;
@@ -29,6 +25,7 @@
   }
 
   &:hover {
+    background-color: var(--card-bg-color);
     box-shadow: 0 5px 10px $border-color, 0 5px 10px $border-color;
     h3.card-title {
       a {

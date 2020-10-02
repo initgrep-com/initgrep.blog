@@ -7,7 +7,7 @@ ul.top-post-component {
     border: none;
     box-shadow: none;
     background: transparent;
-
+    margin-bottom: 0px;
     div.media {
       padding: 0.5rem;
 
@@ -50,6 +50,7 @@ ul.top-post-component {
             font-size: 0.9rem;
             text-transform: lowercase;
           }
+
           p {
             font-size: 0.9rem;
             margin: 0 0 0 0;

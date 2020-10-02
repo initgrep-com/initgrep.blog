@@ -18,20 +18,20 @@ ul.top-post-component {
     }
   }
   li.list-group-item {
-    // border: 1px solid $border-color;
-    // box-shadow: 0px 1px 3px $shadow-color, 0 1px 2px $shadow-color;
     background: transparent;
     a {
       div.media {
-        background-color: var(--card-bg-color);
-        box-shadow: 0 1px 3px $border-color, 0 1px 2px $border-color;
+        box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         .media-body {
           h5 {
-            // color: $c-icon-color;
+          }
+          small {
+            color: $c-icon-color;
           }
         }
         &:hover {
+          background-color: var(--card-bg-color);
           box-shadow: 0 5px 10px $border-color, 0 5px 10px $border-color;
         }
       }
