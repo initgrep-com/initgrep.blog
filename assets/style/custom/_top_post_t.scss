@@ -21,18 +21,16 @@ ul.top-post-component {
     background: transparent;
     a {
       div.media {
+        background-color: var(--card-bg-color);
         box-shadow: 0 1px 2px $shadow-color, 0 1px 3px $shadow-color;
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         .media-body {
-          h5 {
-          }
           small {
             color: $c-icon-color;
           }
         }
         &:hover {
-          background-color: var(--card-bg-color);
-          box-shadow: 0 5px 10px $border-color, 0 5px 10px $border-color;
+          box-shadow: -2px 2px 5px var(--border-color);
         }
       }
       &:hover {
@@ -41,7 +39,6 @@ ul.top-post-component {
     }
 
     &:last-child {
-      // border-bottom-color: $border-color !important;
       border-bottom-color: transparent !important;
     }
   }
