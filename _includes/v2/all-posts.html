@@ -15,7 +15,7 @@
             <div class="app-card">
                 <div class="app-card-poster">
                     <img src="{{site.baseurl}}/assets/images/{{post.image}}"
-                         alt="">
+                         alt="{{post.title}}">
                 </div>
 
                 <div class="app-card-body">
@@ -32,7 +32,8 @@
                     </div>
 
                     <h5 class="app-card-heading">
-                        <a href="{{site.baseurl}}{{post.url}}">{{post.title}} </a>
+                        <a class="stretched-link"
+                           href="{{site.baseurl}}{{post.url}}">{{post.title}} </a>
                     </h5>
 
                 </div>
