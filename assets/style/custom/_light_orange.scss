@@ -1,13 +1,14 @@
 :root {
-  --c-icon-color:  #dc3545    ;
-  --c-text-color:  #dc3545   ;
-  --border-color: transparent;
-  --shadow-hover-color: rgba(0, 0, 0, 0.2);
-  --pre-color:  #333;
+  --c-icon-color: #dc3545;
+  --c-text-color: #dc3545;
+  --border-color: #dc3545;
+  --shadow-hover-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(222, 222, 222, 0.5);
+  --pre-color: #333;
   --content-card-border: transparent;
   --primary-color: #333;
-  --body-color:  #f1f1f1;
-  
+  --body-color: #ffffff;
+  --card-bg-color: #ed49541f;
 }
 
 $primary: var(--primary-color);
@@ -22,12 +23,10 @@ $mute-color: #6c757d;
 $white-color: #f1f1f1;
 $pure-white: white;
 $bg-overlay: rgba(122, 118, 118, 0.4);
-$shadow-color: rgba(0, 0, 0, 0.1);
+$shadow-color: var(--shadow-color);
 $shadow-hover-color: var(--shadow-hover-color); //rgba(0,0,0,0.25);
 $pre-color: var(--pre-color);
 
 $text-user-color: #6c757d;
 $border-color: var(--border-color);
 $content-card-border-color: var(--content-card-border);
-
-
