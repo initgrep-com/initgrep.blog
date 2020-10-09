@@ -1,23 +1,21 @@
-<div class="col-12  col-md-11 col-lg-9 my-md-5   sub-content-component">
+<div class=" sub-content-component">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-4 col-lg-4  all-post-component">
-            <span>
+        <div class="col-12 col-sm-12   all-post-component">
+            <h2>
                 <i class="fab fa-accusoft"></i>
                 All Posts
-            </span>
+            </h2>
         </div>
     </div>
 
     <div class="row">
-
         {% assign sortedR = site.postCollection | sort: 'date'  %}
         {% for post in sortedR | reverse %}
-
-
-        <div class="col-12 col-sm-6 col-md-4 col-lg-4  my-2 my-md-3">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3  my-2 my-md-3">
             <div class="app-card">
                 <div class="app-card-poster">
-                    <img src="{{site.baseurl}}/assets/images/{{post.image}}" alt="">
+                    <img src="{{site.baseurl}}/assets/images/{{post.image}}"
+                         alt="{{post.title}}">
                 </div>
 
                 <div class="app-card-body">
@@ -34,7 +32,8 @@
                     </div>
 
                     <h5 class="app-card-heading">
-                        <a href="{{site.baseurl}}{{post.url}}">{{post.title}} </a>
+                        <a class="stretched-link"
+                           href="{{site.baseurl}}{{post.url}}">{{post.title}} </a>
                     </h5>
 
                 </div>

@@ -5,22 +5,25 @@
 
     <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
 
-        {%  include v2/sidenav.html %}
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9  content-component">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-2 h-100  menu-component ">
+            {%  include v2/sidenav.html %}
+        </div>
 
+        <div class="col-12 col-sm-12 col-md-12 col-lg-10 content-component">
             <div class="row ">
-                <div class="col-12 col-lg-8 col-xl-6 ">
+                <div class="col-12 col-lg-7 col-xl-7 pl-lg-5 ">
                     <div class="row page-component">
                         <div class="col-11 page-header">
-                                <small class="read-time">
-                                        <i class="fas fa-stopwatch"></i>
-                                    {% include util/minRead.liquid content= page.content  %}
-                                    read</small>
-                                <img src=" {% include util/insertDp-v2.liquid name = page.author %}" alt="profile image">
-                                <div class="page-header-meta">
-                                    <a href="{{site.baseurl}}/about/{{page.author}}"><small>{{page.author}}</small></a>
-                                    <small>{{page.date | date: '%B %d, %Y'}}</small>
-                                </div>
+                            <small class="read-time">
+                                <i class="fas fa-stopwatch"></i>
+                                {% include util/minRead.liquid content= page.content  %}
+                                read</small>
+                            <img src=" {% include util/insertDp-v2.liquid name = page.author %}"
+                                 alt="profile image">
+                            <div class="page-header-meta">
+                                <a href="{{site.baseurl}}/about/{{page.author}}"><small>{{page.author}}</small></a>
+                                <small>{{page.date | date: '%B %d, %Y'}}</small>
+                            </div>
 
                         </div>
                         <!-- <div class="col-11 page-poster">
@@ -33,7 +36,7 @@
                             {{content}}
                         </div>
                         <div class="col-12 page-comments">
-                                {% include util/disqus.html %}
+                            {% include util/disqus.html %}
                         </div>
                     </div>
                 </div>

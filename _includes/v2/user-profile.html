@@ -1,11 +1,12 @@
 <div class="row">
     <div class="col-12 profile-component">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-12 col-md-3 col-lg-2 col-xl-2 u-header  ">
-                <img class="user-dp center-align" src="{{site.baseurl}}/assets/images/{{ page.image }}">
+                <img class="user-dp center-align"
+                     src="{{site.baseurl}}/assets/images/{{ page.image }}">
                 <h5>{{page.name}}</h5>
             </div>
-            <div class="col-12 col-md-8 col-lg-8 col-xl-6 u-body ">
+            <div class="col-12 col-md-8 col-lg-8 col-xl-5 u-body ">
                 <div class="row ">
                     <div class="col-12 auth-msg-wrapper">
                         <p class="author-msg"> {{ page.aboutMe }} </p>
@@ -14,7 +15,8 @@
 
                         <ul class="list-group list-group-horizontal">
                             <li class="list-group-item">
-                                <a href="//www.twitter.com/@{{page.twitter}}" target="blank">
+                                <a href="//www.twitter.com/@{{page.twitter}}"
+                                   target="blank">
 
                                     <span>
                                         <i class="fab fa-twitter-square"></i>
@@ -23,7 +25,8 @@
                                 </a>
                             </li>
                             <li class="list-group-item">
-                                <a href="//www.github.com/{{page.github}}" target="blank">
+                                <a href="//www.github.com/{{page.github}}"
+                                   target="blank">
                                     <span>
                                         <i class="fab fa-github-square"></i>
                                         @{{page.github}}
@@ -40,10 +43,10 @@
         </div>
         <div class="row">
             <div class="post-list-wrapper">
-                <div class="col-12 post-list-header">
+                <div class="col-12 pl-lg-5 post-list-header">
                     <h5> <i class="fas fa-clone"></i> Posts</h5>
                 </div>
-                <div class="col-12 col-md-11 col-lg-10 col-xl-8 post-list-body">
+                <div class="col-12 col-md-11 col-lg-10 col-xl-8 pl-lg-5 post-list-body">
 
                     <ul class="list-unstyled">
                         {% assign sortedCollection = site.postCollection | sort: 'date' | reverse %}
@@ -51,8 +54,10 @@
 
                         {% if post.author == page.name%}
 
-                        <li class="media item">
-                            <img src="{{site.baseurl}}/assets/images/{{post.image}}" class="mr-3" alt="poster">
+                        <li class="media item my-4">
+                            <img src="{{site.baseurl}}/assets/images/{{post.image}}"
+                                 class="mr-3"
+                                 alt="poster">
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1"><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
                                 </h5>

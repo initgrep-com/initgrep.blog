@@ -1,29 +1,26 @@
+{% assign sortedR = site.postCollection | sort: 'date' | reverse %}
+{% for post in sortedR | reverse | limit:1 %}
+<div class="card top-card d-flex justify-content-between">
+    <img class="card-img-top img-fluid"
+         src="{{site.baseurl}}/assets/images/{{post.image}}"
+         alt="Card image cap">
+    <div class="card-body">
+        <h3 class="card-title">
+            <a class="stretched-link"
+               href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+        </h3>
+        <p class="card-text"> {{post.meta}} </p>
 
+        <p class="card-meta">
+            <a href="{{site.baseurl}}/about/{{post.author}}">
+                <small class="text-user">{{post.author}}</small>
+            </a>
+            <small class="text-filler">in</small>
+            <small class="text-category">
+                <a href="{{site.baseurl}}{{site.data.categories[post.category].link}}">{{post.category}}</a> </small>
+            <small class=" read-time">{% include util/minRead.liquid content= post.content  %} read</small>
 
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6  col-xl-5 ">
-
-    {% assign sortedR = site.postCollection | sort: 'date' | reverse %}
-    {% for post in sortedR | reverse | limit:1 %}
-    <div class="card top-card">
-        <img class="card-img-top img-fluid" src="{{site.baseurl}}/assets/images/{{post.image}}" alt="Card image cap">
-        <div class="card-body">
-           
-            <h3 class="card-title">
-                <a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-            </h3>  
-            <p class="card-text"> {{post.meta}} </p>
-
-            <p class="card-meta">
-                <a href="{{site.baseurl}}/about/{{post.author}}">
-                    <small class="text-user">{{post.author}}</small>  
-                </a>
-                <small class="text-filler">in</small>
-                <small class="text-category">
-                    <a href="{{site.baseurl}}{{site.data.categories[post.category].link}}">{{post.category}}</a> </small>
-                <small class=" read-time">{% include util/minRead.liquid content= post.content  %} read</small>
-
-            </p>
-        </div>
+        </p>
     </div>
-    {% endfor %}
 </div>
+{% endfor %}

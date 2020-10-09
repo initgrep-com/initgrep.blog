@@ -23,9 +23,9 @@
     span {
       font-size: 1.1rem;
       font-weight: bold;
-      top: .2rem;
+      top: 0.2rem;
       position: relative;
-      letter-spacing: .06rem;
+      letter-spacing: 0.06rem;
       // text-transform: capitalize;
     }
   }
@@ -80,7 +80,6 @@
         }
       }
     }
-   
 
     span/**google search selector-dynamic**/ {
       padding: 0 0 0 0 !important;
@@ -155,13 +154,13 @@
       padding-top: 1.3rem;
     }
 
-    ul.list-group.setting-component{
-      li.list-group-item{
+    ul.list-group.setting-component {
+      li.list-group-item {
         background: transparent;
-        div.nightmode-wrapper{
-          div.custom.switch{
-            label.custom-control-label{
-              &:after{
+        div.nightmode-wrapper {
+          div.custom.switch {
+            label.custom-control-label {
+              &:after {
               }
             }
           }
@@ -193,14 +192,13 @@
       span {
         font-size: 1.5rem;
         font-weight: bold;
-        top: .2rem;
+        top: 0.2rem;
         // text-transform: capitalize;
       }
     }
   }
 }
 @include media-breakpoint-up(md) {
-
   .brand-component {
     a.brand {
       text-decoration: none;
@@ -214,9 +212,9 @@
       span {
         font-size: 1.5rem;
         font-weight: bold;
-        top: .2rem;
+        top: 0.2rem;
         position: relative;
-        letter-spacing: .08rem;
+        letter-spacing: 0.08rem;
         // text-transform: capitalize;
       }
     }
@@ -234,13 +232,13 @@
 @include media-breakpoint-up(lg) {
   .brand-component {
     position: fixed;
-    margin-left: 7%;
+    margin-left: 2%;
   }
   .search-col {
     left: 25%;
   }
-  .parent-setting-wrapper{
-    margin-left: 45%;
+  .parent-setting-wrapper {
+    margin-left: 58%;
   }
 
   .search-wrapper {
@@ -250,7 +248,7 @@
       width: 40%;
       height: 100%;
       left: 0%;
-      
+
       top: 0%;
     }
   }
