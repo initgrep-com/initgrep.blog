@@ -266,7 +266,8 @@ export const addPosts = createAction(
   '[profile] add posts',
   props<{ posts: Post[] }>()
 );
-``
+```
+
 *Similarly the Actions related to posts are dispatched*
 
 > Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[profile] user created` or `[profile] user creation failed` .
