@@ -3,10 +3,11 @@
   --scroll: 0%;
   position: fixed;
   width: 100%;
-  height: 2px;
+  height: 3px;
   top: 0px;
   left: 0px;
   z-index: 100;
+  border-radius: 10px;
 }
 
 .brand-component {
@@ -48,22 +49,21 @@
   }
 
   .basic-overlay {
-    // display: flex;
     position: fixed;
     height: 100%;
     width: 100%;
-    left: 0%;
+    left: -100%;
     top: 0%;
     z-index: 1;
-    display: none;
+    display: block;
   }
 
   .search-overlay {
-    display: none;
+    display: block;
     position: fixed;
     width: 100%;
     height: 100%;
-    left: 0%;
+    left: -100%;
     top: 0%;
     z-index: 3;
     overflow-y: auto;
@@ -114,26 +114,27 @@
   }
 
   .basic-overlay {
-    display: none;
+    display: block;
     position: fixed;
     height: 100%;
     width: 100%;
-    left: 0%;
+    left: -100%;
     background: rgba(0, 0, 0, 0.3); //$bg-overlay;
     top: 0%;
     z-index: 1;
   }
 
   .setting-overlay {
-    display: none;
+    display: block;
     position: fixed;
     width: 100%;
     height: 40%;
     left: 0%;
-    top: 60%;
+    top: 160%; //60%on
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    animation: slidein 2s linear;
+    // animation: slidein 2s linear;
+    transition: all 1s ease-in;
     z-index: 3;
 
     div.close-setting-wrapper {
@@ -224,7 +225,7 @@
       width: 60%;
       height: 30%;
       left: 15%;
-      top: 35%;
+      top: 135%; //35on
       border-radius: 10px;
     }
   }
@@ -247,8 +248,7 @@
       position: fixed;
       width: 40%;
       height: 100%;
-      left: 0%;
-
+      left: -40%;
       top: 0%;
     }
   }
@@ -259,7 +259,7 @@
       height: 30%;
       min-height: 300px;
       left: 35%;
-      top: 35%;
+      top: 135%; //35on
       border-radius: 10px;
     }
   }

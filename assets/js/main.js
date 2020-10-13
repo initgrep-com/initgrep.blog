@@ -2,28 +2,20 @@ class InitGrep {
     hasMenuOpacityEnabled = false;
     hoveredIn = false;
 
+    LIGHT_LIGHT = "light_light_theme";
     LIGHT_ORANGE = "light_orange_theme";
     LIGHT_INDIGO = "light_indigo_theme";
     DARK_ORANGE = "dark_orange_theme";
     DARK_INDIGO = "dark_indigo_theme";
 
     updateScrollChangeEvents() {
-
         document.addEventListener(
             "scroll",
             () => {
-                console.log("onscroll called");
-                const scrollTop =
-                    document.documentElement["scrollTop"] || document.body["scrollTop"];
-                const scrollBottom =
-                    (document.documentElement["scrollHeight"] ||
-                        document.body["scrollHeight"]) - document.documentElement.clientHeight;
-                const scrollPercent = scrollTop / scrollBottom * 100;
+                const scrollTop = document.documentElement["scrollTop"] || document.body["scrollTop"];
+                const scrollBottom = (document.documentElement["scrollHeight"] || document.body["scrollHeight"])
+                    - document.documentElement.clientHeight;
                 const scrollPercentString = scrollTop / scrollBottom * 100 + "%";
-
-                //    console.log("scrolltop ",scrollTop);
-                //    console.log("scrollBottom ",scrollBottom, scrollPercent);
-
                 this.updateProgressScrollBar(scrollPercentString);
                 this.changeMenuOpacityOnScroll(scrollTop);
             },
@@ -32,79 +24,70 @@ class InitGrep {
     }
 
     updateProgressScrollBar(scrollPercent) {
-        document
-            .getElementById("progress")
-            .style.setProperty("--scroll", scrollPercent);
+        document.getElementById("progress").style.setProperty("--scroll", scrollPercent);
     }
 
     changeMenuOpacityOnScroll(scrollPercent) {
         if (scrollPercent >= 500 && !this.hasMenuOpacityEnabled) {
-            console.log("add the opacity");
             this.hasMenuOpacityEnabled = true;
-            $('.menu-component').addClass('scroll-opactity');
+            document.querySelector('.menu-component').classList.add('scroll-opactity');
         }
         if (scrollPercent < 500 && this.hasMenuOpacityEnabled) {
             this.hasMenuOpacityEnabled = false;
-            console.log("remove the opacity");
-            $('.menu-component').removeClass('scroll-opactity');
+            document.querySelector('.menu-component').classList.remove('scroll-opactity');
         }
     }
 
     changeMenuOpactiyOnHover() {
-        $('.menu-component').hover(
-            () => {
-                if (this.hasMenuOpacityEnabled) {
-                    $('.menu-component').removeClass('scroll-opactity');
-                    this.hasMenuOpacityEnabled = false;
-                    this.hoveredIn = true;
-                }
-            },
-            () => {
+        document.querySelector('.menu-component')
+            .addEventListener('mouseover',
+                () => {
+                    if (this.hasMenuOpacityEnabled) {
+                        document.querySelector('.menu-component').classList.remove('scroll-opactity');
+                        this.hasMenuOpacityEnabled = false;
+                        this.hoveredIn = true;
+                    }
+                });
+
+        document.querySelector('.menu-component')
+            .addEventListener('mouseout', () => {
                 if (!this.hasMenuOpacityEnabled && this.hoveredIn) {
-                    $('.menu-component').addClass('scroll-opactity');
+                    document.querySelector('.menu-component').classList.add('scroll-opactity');
                     this.hasMenuOpacityEnabled = true;
                     this.hoveredIn = false;
                 }
-            }
-        );
+            });
     }
 
-    hideSearchWrapper() {
-        // $('.search-overlay').hide();
-        $('.search-overlay').hide();
-    }
-
-    hideSettingWrapper() {
-        $('.setting-overlay').hide();
-    }
-
-    hideBasicOverlay() {
-        $('.basic-overlay').hide();
-    }
     openSearchWrapper() {
-        $('.search-open-wrapper').click(function () {
-            $('.search-overlay').show(300);
-            $('.basic-overlay').show(300);
+        document.querySelector('.search-open-wrapper').addEventListener('click', () => {
+            document.querySelector('.basic-overlay').style.left = "0%";
+            document.querySelector('.search-overlay').style.left = "0%";
         });
+
     }
     closeSearchWrapper() {
-        $('.close-search-button').click(function () {
-            $('.search-overlay').hide(300);
-            $('.basic-overlay').hide();
-        })
+        document.querySelector('.close-search-button').addEventListener('click', () => {
+            document.querySelector('.basic-overlay').style.left = "-100%";
+            document.querySelector('.search-overlay').style.left = "-100%";
+        });
     }
 
     openSettingWrapper() {
-        $('.setting-open-wrapper').click(function () {
-            $('.setting-overlay').show();
-            $('.basic-overlay').show();
+        // check mediaqueries for different screen size and keep the top as required.
+        document.querySelector('.setting-open-wrapper').addEventListener('click', () => {
+            document.querySelector('.basic-overlay').style.left = "0%";
+            document.querySelector('.setting-overlay').style.top = "60%";
         });
+
+
     }
     closeSettingWrapper() {
-        $('.close-setting-button').click(function () {
-            $('.setting-overlay').hide();
-            $('.basic-overlay').hide();
-        })
+
+        document.querySelector('.close-setting-button').addEventListener('click', () => {
+            document.querySelector('.basic-overlay').style.left = "-100%";
+            document.querySelector('.setting-overlay').style.top = "160%";
+        });
     }
 
     changeTheme(cssFile, cssLinkIndex) {
@@ -118,54 +101,65 @@ class InitGrep {
     }
 
     switchTheme() {
-        $('button#light-orange').click(() => {
-            this.changeTheme(this.LIGHT_ORANGE, 0);
-            localStorage.setItem("theme", this.LIGHT_ORANGE);
-        });
-        $('button#light-indigo').click(() => {
-            this.changeTheme(this.LIGHT_INDIGO, 0);
-            localStorage.setItem("theme", this.LIGHT_INDIGO);
-        });
-        $('button#dark-orange').click(() => {
-            this.changeTheme(this.DARK_ORANGE, 0);
-            localStorage.setItem("theme", this.DARK_ORANGE);
-        });
-        $('button#dark-indigo').click(() => {
-            this.changeTheme(this.DARK_INDIGO, 0);
-            localStorage.setItem("theme", this.DARK_INDIGO);
-        });
+
+        document.querySelector('button#light-light')
+            .addEventListener('click', () => {
+                this.changeTheme(this.LIGHT_LIGHT, 0);
+                localStorage.setItem("theme", this.LIGHT_LIGHT);
+            });
+
+        document.querySelector('button#light-orange')
+            .addEventListener('click', () => {
+                this.changeTheme(this.LIGHT_ORANGE, 0);
+                localStorage.setItem("theme", this.LIGHT_ORANGE);
+            });
+
+        document.querySelector('button#light-indigo')
+            .addEventListener('click', () => {
+                this.changeTheme(this.LIGHT_INDIGO, 0);
+                localStorage.setItem("theme", this.LIGHT_INDIGO);
+            });
+
+        document.querySelector('button#dark-orange')
+            .addEventListener('click', () => {
+                this.changeTheme(this.DARK_ORANGE, 0);
+                localStorage.setItem("theme", this.DARK_ORANGE);
+            });
+
+        document.querySelector('button#dark-indigo')
+            .addEventListener('click', () => {
+                this.changeTheme(this.DARK_INDIGO, 0);
+                localStorage.setItem("theme", this.DARK_INDIGO);
+            });
     }
 
     loadThemeOnLoad() {
         const currentTheme = localStorage.getItem("theme");
         if (currentTheme === this.LIGHT_INDIGO ||
             currentTheme === this.LIGHT_ORANGE ||
-            currentTheme === this.DARK_INDIGO) {
-            // console.log("dooes it call here");
+            currentTheme === this.DARK_INDIGO ||
+            currentTheme === this.LIGHT_LIGHT
+        ) {
+
             this.changeTheme(currentTheme, 0);
         }
     }
 
 }
 
-
 //run scripts below
-//run scripts below
-$(function () {
+(function () {
     const initgrep = new InitGrep();
-
-    initgrep.hideBasicOverlay();
-    initgrep.hideSearchWrapper();
-    initgrep.hideSettingWrapper();
-
     initgrep.loadThemeOnLoad();
     initgrep.updateScrollChangeEvents();
 
-    initgrep.closeSearchWrapper();
     initgrep.openSearchWrapper();
+    initgrep.closeSearchWrapper();
+
     initgrep.openSettingWrapper();
     initgrep.closeSettingWrapper();
+
     initgrep.changeMenuOpactiyOnHover();
     initgrep.switchTheme();
 
-});
+})();
