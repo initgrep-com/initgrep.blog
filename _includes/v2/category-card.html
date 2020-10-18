@@ -15,32 +15,33 @@
 {% if category == postCategory%}
 
 <!-- category-card start-->
+<div class="col-12 col-sm-6 col-md-12 col-lg-12 my-2 ">
 
-<div class="col-11 col-md-5 col-lg-12 my-2 mx-md-4 mx-lg-1 app-category-card">
-    <div class="app-card-header">
-        <small class="read-time">{% include util/minRead.liquid content= post.content  %} read</small>
-        <img src="{% include util/insertDp-v2.liquid name = post.author %}" alt="image">
-        <div class="app-card-meta">
-            <a href="{{site.baseurl}}/about/{{post.author}}"><small>{{post.author}}</small></a>
-            <small>{{post.date | date: '%B %d, %Y'}}</small>
+    <div class="app-category-card">
+        <div class="app-card-header">
+            <small class="read-time">{% include util/minRead.liquid content= post.content  %} read</small>
+            <img src="{% include util/insertDp-v2.liquid name = post.author %}"
+                 alt="image">
+            <div class="app-card-meta">
+                <a href="{{site.baseurl}}/about/{{post.author}}"><small>{{post.author}}</small></a>
+                <small>{{post.date | date: '%B %d, %Y'}}</small>
+            </div>
+
         </div>
-
-    </div>
-    <div class="app-card-body">
-        <i class="fas fa-link"></i>
-        <h5>
-            <a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
-        </h5>
-        <p>{{post.excerpt}}</p>
-    </div>
-    <div class="app-card-footer">
-        <div class="control">
-            <a href="{{site.baseurl}}{{post.url}}">
-                <span>read more</span>
-
-            </a>
+        <div class="app-card-body">
+            <i class="fas fa-link"></i>
+            <h5>
+                <a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a>
+            </h5>
+            <p>{{post.excerpt}}</p>
         </div>
-
+        <div class="app-card-footer">
+            <div class="control">
+                <a href="{{site.baseurl}}{{post.url}}">
+                    <span>read more</span>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 <!--category card end-->

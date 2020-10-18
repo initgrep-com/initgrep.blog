@@ -1,0 +1,59 @@
+:root {
+    --pref-top: 20%;
+}
+
+@keyframes slideInLeft {
+    from {
+        left: -100%;
+    }
+    to {
+        left: 0%;
+    }
+}
+
+@keyframes revSlideInLeft {
+    from {
+        left: 0%;
+    }
+    to {
+        left: -100%;
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        top: 160%;
+    }
+    to {
+        top: var(--pref-top);
+    }
+}
+
+@keyframes revSlideInTop {
+    from {
+        top: var(--pref-top);
+    }
+    to {
+        top: 160%;
+    }
+}
+
+.slideInLeft {
+    animation-name: slideInLeft;
+    animation-duration: 0.5s;
+}
+
+.revSlideInLeft {
+    animation-name: revSlideInLeft;
+    animation-duration: 0.5s;
+}
+
+.slideInTop {
+    animation-name: slideInTop;
+    animation-duration: 0.5s;
+}
+
+.revSlideInTop {
+    animation-name: revSlideInTop;
+    animation-duration: 0.5s;
+}

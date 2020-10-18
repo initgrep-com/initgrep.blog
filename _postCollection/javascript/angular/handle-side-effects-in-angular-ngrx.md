@@ -61,7 +61,7 @@ A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29)
 
  A pure component has an immutable input and produces the events as output. These components are essentially dumb and most of the computations are done outside of it. A pure component has a single responsibility similar to *pure functions*.
 
-Now, If the components are not doing any computations, most of the computations and side-effects would be moved inside the services. That is the first-hand use of angular services. It is easy to inject them into components and perform various computations.
+Now, If the components are not doing any computations, most of the computations and side-effects would be moved to the services. In fact, that is the first-hand use of angular services. It is easy to inject them into components and perform various computations.
 
 Now here are a few things you should consider -
 
@@ -71,7 +71,7 @@ Now here are a few things you should consider -
 
 - Let's assume, you have a service taking care of communicating via APIs to some remote server. You inject the service in a component and call the method of the service inside the component.
 
-- ...and if  you have another service, which performs some computation which is supposed to be run when the user interacts with UI such as a click of a button. Again, you would inject the service in component, and on `click` of the button, a method of the service is called.
+- ...and if  you have another service that performs some computation which is scheduled to be run when the user interacts with UI such as a click of a button. Again, you would inject the service in component, and on `click` of the button, a method of the service is called.
 
 It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user *clicks a button* or when an API should be called. 
 

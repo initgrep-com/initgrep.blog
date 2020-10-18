@@ -13,10 +13,13 @@
 }
 @include media-breakpoint-up(lg) {
   .content-component {
-    left: 16%;
+    left: 25%;
   }
 }
 @include media-breakpoint-up(xl) {
+  .content-component {
+    left: 16%;
+  }
 }
 
 //content component ends

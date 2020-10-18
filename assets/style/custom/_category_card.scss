@@ -1,8 +1,7 @@
 .app-category-card {
   border-radius: 10px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  // border: 1px solid $border-color;
- margin-left:4%;
+  padding: 1rem;
   .app-card-header {
     margin-top: 1.5rem;
     img {
@@ -17,10 +16,7 @@
       a {
         display: block;
         text-decoration: none;
-        small {
-        }
-      }
-      small {
+        margin-left: 2rem;
       }
     }
 
@@ -46,6 +42,8 @@
       font-weight: 700;
       a {
         text-decoration: none;
+        display: block;
+        margin-left: 2rem;
       }
     }
 
@@ -80,8 +78,6 @@
       }
     }
   }
-
- 
 }
 
 @include media-breakpoint-up(sm) {
@@ -106,7 +102,6 @@
         //   border-bottom-color:transparent;
       }
       .app-card-meta {
-        
         a {
           display: block;
           small {
@@ -122,7 +117,7 @@
     }
 
     .app-card-body {
-        // border:1px solid red;
+      // border:1px solid red;
       margin-top: 2rem;
       margin-right: 2rem;
 
@@ -170,8 +165,6 @@
         }
       }
     }
-
-   
   }
 }
 @include media-breakpoint-up(xl) {

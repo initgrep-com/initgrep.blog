@@ -7,7 +7,7 @@
 body {
   background-color: $body-bg !important;
   color: $primary !important;
-  transition: background-color 200ms linear;
+  transition: background-color 0.5s ease-in;
 
   a {
     color: $primary;
@@ -121,8 +121,12 @@ body {
                   border: 5px solid #333;
                   background: #f1f1f1;
                 }
-                button#light-orange {
-                  border: 5px solid #dc3545;
+                button#light-yellow {
+                  border: 5px solid #ee9818fc;
+                  background: #f1f1f1;
+                }
+                button#light-green {
+                  border: 5px solid #28a745;
                   background: #f1f1f1;
                 }
                 button#light-indigo {
@@ -136,6 +140,12 @@ body {
                 }
                 button#dark-indigo {
                   border: 5px solid #852aaa;
+                  background: #16141a;
+                  color: #f1f1f1;
+                }
+
+                button#dark-green {
+                  border: 5px solid #28a745;
                   background: #16141a;
                   color: #f1f1f1;
                 }

@@ -1,0 +1,32 @@
+:root {
+  --c-icon-color: #ee9818fc;
+  --c-text-color: #ee9818fc;
+  --border-color: #ee9818fc;
+  --shadow-hover-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(222, 222, 222, 0.5);
+  --pre-color: #333;
+  --content-card-border: transparent;
+  --primary-color: #333;
+  --body-color: #ffffff;
+  --card-bg-color: #ebe84633;
+}
+
+$primary: var(--primary-color);
+$body-bg: var(--body-color);
+$c-bg: #fc456a13;
+$c-text-color: var(--c-text-color);
+$c-icon-color: var(--c-icon-color);
+$c-bg-black: #212529;
+$c-color-black: #433e3f;
+$letter-sapacing: 0.025rem;
+$mute-color: #6c757d;
+$white-color: #f1f1f1;
+$pure-white: white;
+$bg-overlay: rgba(122, 118, 118, 0.4);
+$shadow-color: var(--shadow-color);
+$shadow-hover-color: var(--shadow-hover-color); //rgba(0,0,0,0.25);
+$pre-color: var(--pre-color);
+
+$text-user-color: #6c757d;
+$border-color: var(--border-color);
+$content-card-border-color: var(--content-card-border);
