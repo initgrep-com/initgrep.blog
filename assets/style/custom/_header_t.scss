@@ -7,7 +7,7 @@
 body {
   background-color: $body-bg !important;
   color: $primary !important;
-  transition: background-color 0.5s ease-in;
+  transition: background-color 1s ease-in;
 
   a {
     color: $primary;
@@ -102,62 +102,60 @@ body {
       border: 1px solid transparent; //in nightmode- keep a color
     }
 
-    ul.list-group.setting-component {
-      li.list-group-item {
-        background: transparent;
-        div.pref-heading {
-          h1 {
-            color: $c-icon-color;
-          }
-          p {
-            color: $primary;
-          }
+    div.setting-component {
+      background: transparent;
+      div.pref-heading {
+        h1 {
+          color: $c-icon-color;
         }
-        div.nightmode-wrapper {
-          div.theme-wrapper {
-            ul.list-inline {
-              li.list-inline-item {
-                button#light-light {
-                  border: 5px solid #333;
-                  background: #f1f1f1;
-                }
-                button#light-yellow {
-                  border: 5px solid #ee9818fc;
-                  background: #f1f1f1;
-                }
-                button#light-green {
-                  border: 5px solid #28a745;
-                  background: #f1f1f1;
-                }
-                button#light-indigo {
-                  border: 5px solid #4a235a;
-                  background: #f1f1f1;
-                }
-                button#dark-orange {
-                  border: 5px solid #ee9818fc;
-                  background: #16141a;
-                  color: #f1f1f1;
-                }
-                button#dark-indigo {
-                  border: 5px solid #852aaa;
-                  background: #16141a;
-                  color: #f1f1f1;
-                }
+        p {
+          color: $primary;
+        }
+      }
+      div.nightmode-wrapper {
+        div.theme-wrapper {
+          ul.list-inline {
+            li.list-inline-item {
+              button#light-light {
+                border: 5px solid #333;
+                background: #f1f1f1;
+              }
+              button#light-yellow {
+                border: 5px solid #ee9818fc;
+                background: #f1f1f1;
+              }
+              button#light-green {
+                border: 5px solid #28a745;
+                background: #f1f1f1;
+              }
+              button#light-indigo {
+                border: 5px solid #4a235a;
+                background: #f1f1f1;
+              }
+              button#dark-orange {
+                border: 5px solid #ee9818fc;
+                background: #16141a;
+                color: #f1f1f1;
+              }
+              button#dark-indigo {
+                border: 5px solid #852aaa;
+                background: #16141a;
+                color: #f1f1f1;
+              }
 
-                button#dark-green {
-                  border: 5px solid #28a745;
-                  background: #16141a;
-                  color: #f1f1f1;
-                }
+              button#dark-green {
+                border: 5px solid #28a745;
+                background: #16141a;
+                color: #f1f1f1;
               }
             }
           }
+        }
 
-          div.custom.switch {
-            label.custom-control-label {
-              &:after {
-                background: $body-bg;
-              }
+        div.custom.switch {
+          label.custom-control-label {
+            &:after {
+              background: $body-bg;
             }
           }
         }

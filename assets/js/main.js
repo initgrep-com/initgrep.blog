@@ -96,17 +96,17 @@ class InitGrep {
     openSettingWrapper() {
         document.querySelector('.setting-open-wrapper').addEventListener('click', () => {
             if (!this.isSettingOpen) {
-                let finalTop = '20%';
-                if (this.getMediaForMobile().matches) {
-                    finalTop = '50%';
-                    document.documentElement.style.setProperty('--pref-top', "50%");
-                } else {
-                    document.documentElement.style.setProperty('--pref-top', "20%");
-                }
+                let finalTop = '0%';
+                // if (this.getMediaForMobile().matches) {
+                //     finalTop = '50%';
+                //     document.documentElement.style.setProperty('--pref-top', "50%");
+                // } else {
+                //     document.documentElement.style.setProperty('--pref-top', "20%");
+                // }
 
                 document.querySelector('.basic-overlay').style.left = "0%";
                 //here it depends on media size 
-                document.querySelector('.setting-overlay').style.top = finalTop;
+                document.querySelector('.setting-overlay').style.bottom = finalTop;
                 document.querySelector('.setting-overlay').classList.remove('revSlideInTop');
                 document.querySelector('.setting-overlay').classList.add('slideInTop');
                 this.isSettingOpen = true;
@@ -119,12 +119,11 @@ class InitGrep {
     closeSettingWrapper() {
         if (!!this.isSettingOpen) {
             document.querySelector('.basic-overlay').style.left = "-100%";
-            document.querySelector('.setting-overlay').style.top = "160%";
+            document.querySelector('.setting-overlay').style.bottom = "-60%";
             document.querySelector('.setting-overlay').classList.remove('slideInTop');
             document.querySelector('.setting-overlay').classList.add('revSlideInTop');
             this.isSettingOpen = false
         }
-
     }
 
 
@@ -142,7 +141,7 @@ class InitGrep {
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", finalPath);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-        setTimeout(() => { this.closeSettingWrapper(); }, 500);
+        setTimeout(() => { this.closeSettingWrapper(); }, 1200);
     }
 
 
