@@ -1,17 +1,16 @@
 name: Super-Linter
 # Run this on every commit
 on: Push
-
-jobs: 
+jobs:
     # set a job key - The Key is displayed as the job name when a job name is not provided
     #name the job
-    name: lint code base
+    name: lint-code-base
     #set the type of machine to run on
     runs-on: ubuntu-latest
 
-    steps:
+   steps:
         # Checks out a copy of your repository on the ubuntu-latest machine
-        - name: checkout code
+        - name: checkout-code
           uses: actions/checkout@v2
         
         # Runs the Super-Linter action
