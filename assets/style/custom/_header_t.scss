@@ -151,14 +151,6 @@ body {
             }
           }
         }
-
-        div.custom.switch {
-          label.custom-control-label {
-            &:after {
-              background: $body-bg;
-            }
-          }
-        }
       }
     }
   }
