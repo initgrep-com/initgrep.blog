@@ -165,23 +165,3 @@ body {
     }
   }
 }
-
-div.cookie-consent {
-  border-top: 2px solid var(--c-icon-color);
-  background-color: var(--body-color);
-  div.message {
-    h4 {
-      color: var(--primary-color);
-    }
-    p {
-      color: var(--primary-color);
-    }
-  }
-
-  div.controls {
-    button.btn-cs {
-      border: 2px solid var(--c-icon-color);
-      color: var(--c-icon-color);
-    }
-  }
-}

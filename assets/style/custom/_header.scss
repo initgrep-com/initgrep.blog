@@ -177,25 +177,6 @@
   }
 }
 
-div.cookie-consent {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 2;
-  div.message {
-    h4 {
-      font-weight: 600;
-    }
-  }
-  div.controls {
-    button {
-      font-weight: 600;
-      font-size: 0.8rem;
-      letter-spacing: 0.025rem;
-    }
-  }
-}
-
 @include media-breakpoint-up(sm) {
   .brand-component {
     a.brand {
