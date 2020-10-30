@@ -171,7 +171,11 @@ class InitGrep {
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", finalPath);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-        setTimeout(() => { this.closeSettingWrapper(); }, 1200);
+
+        setTimeout(() => {
+            this.setThemeColorForBrowser();
+            this.closeSettingWrapper();
+        }, 1200);
     }
 
 
@@ -217,9 +221,6 @@ class InitGrep {
                 this.changeTheme(this.DARK_GREEN, 0);
                 localStorage.setItem("theme", this.DARK_GREEN);
             });
-
-
-
     }
 
     loadThemeOnLoad() {
@@ -251,7 +252,6 @@ class InitGrep {
     const initgrep = new InitGrep();
 
     initgrep.loadThemeOnLoad();
-    initgrep.setThemeColorForBrowser();
 
     initgrep.enableVersioning();
     initgrep.updateScrollChangeEvents();
