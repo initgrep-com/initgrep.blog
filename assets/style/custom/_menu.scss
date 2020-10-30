@@ -25,7 +25,7 @@
 @include media-breakpoint-up(xs) {
   .menu-component {
     position: relative;
-    overflow-x: scroll;
+    overflow-x: auto;
     font-size: 0.8rem;
     margin-bottom: 2rem;
     padding: 0.2rem;
