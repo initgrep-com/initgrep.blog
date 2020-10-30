@@ -105,7 +105,7 @@ class InitGrep {
     }
 
     setThemeColorForBrowser() {
-        const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--c-icon-color');
+        const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--c-icon-color') || "#333333";
         document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor);
         document.querySelector('meta[name="msapplication-navbutton-color"]').setAttribute('content', themeColor);
         document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', themeColor);
