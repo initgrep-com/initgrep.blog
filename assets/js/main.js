@@ -163,7 +163,7 @@ class InitGrep {
 
     /** theme change code */
 
-    changeTheme(cssFile, cssLinkIndex) {
+    changeTheme(cssFile, cssLinkIndex, callback) {
         const oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
         const finalPath = `/assets/style/${cssFile}.css`;
         const newlink = document.createElement("link");
@@ -171,7 +171,6 @@ class InitGrep {
         newlink.setAttribute("type", "text/css");
         newlink.setAttribute("href", finalPath);
         document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-
         setTimeout(() => {
             this.setThemeColorForBrowser();
             this.closeSettingWrapper();
@@ -230,6 +229,7 @@ class InitGrep {
             currentTheme === this.LIGHT_LIGHT ||
             currentTheme === this.LIGHT_GREEN ||
             currentTheme === this.DARK_INDIGO ||
+            currentTheme === this.DARK_ORANGE ||
             currentTheme === this.DARK_GREEN
         ) {
             this.changeTheme(currentTheme, 0);
@@ -249,24 +249,25 @@ class InitGrep {
 
 //run scripts below
 (function () {
-    const initgrep = new InitGrep();
+    const i = new InitGrep();
 
-    initgrep.loadThemeOnLoad();
+    i.loadThemeOnLoad();
 
-    initgrep.enableVersioning();
-    initgrep.updateScrollChangeEvents();
+    i.enableVersioning();
 
-    initgrep.openSearchWrapper();
-    initgrep.closeSearchWrapperOnCloseBtn();
-    initgrep.closeSearchWrapperOnMaskClick();
+    i.updateScrollChangeEvents();
 
-    initgrep.openSettingWrapper();
-    initgrep.closeSettingWrapperOnCloseBtn();
-    initgrep.closeSettingWrapperOnMaskClick();
+    i.openSearchWrapper();
+    i.closeSearchWrapperOnCloseBtn();
+    i.closeSearchWrapperOnMaskClick();
 
-    initgrep.closeModalOnEscape();
+    i.openSettingWrapper();
+    i.closeSettingWrapperOnCloseBtn();
+    i.closeSettingWrapperOnMaskClick();
 
-    initgrep.changeMenuOpactiyOnHover();
-    initgrep.switchTheme();
+    i.closeModalOnEscape();
+
+    i.changeMenuOpactiyOnHover();
+    i.switchTheme();
 
 })();
