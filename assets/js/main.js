@@ -104,13 +104,12 @@ class InitGrep {
         });
     }
 
-    // getMediaForMobile() {
-    //     console.log("matchmedia = ", window.matchMedia('(max-width: 768px)'));
-    //     if (!!window.matchMedia) {
-    //         return window.matchMedia('(max-width: 768px)');
-    //     }
-    //     return undefined;
-    // }
+    setThemeColorForBrowser() {
+        const themeColor = getComputedStyle(document.documentElement).getPropertyValue('--c-icon-color');
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor);
+        document.querySelector('meta[name="msapplication-navbutton-color"]').setAttribute('content', themeColor);
+        document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute('content', themeColor);
+    }
 
     openSettingWrapper() {
         document.querySelector('.setting-open-wrapper').addEventListener('click', () => {
@@ -250,7 +249,10 @@ class InitGrep {
 //run scripts below
 (function () {
     const initgrep = new InitGrep();
+
     initgrep.loadThemeOnLoad();
+    initgrep.setThemeColorForBrowser();
+
     initgrep.enableVersioning();
     initgrep.updateScrollChangeEvents();
 
