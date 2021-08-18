@@ -43,6 +43,11 @@ jpa:
   title: JPA
   icon: fas fa-cube
   link: /posts/java/jpa
+spring:
+  type: spring
+  title: Spring
+  icon: fas fa-seedling
+  link: /posts/java/spring
 groovy:
   type: groovy
   title: Groovy
