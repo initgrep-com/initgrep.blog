@@ -129,6 +129,12 @@
       border-radius: 5px;
       padding: 1rem;
     }
+
+    .image-caption {
+      text-align: center;
+      font-size: 0.8rem;
+      color: light-grey;
+    }
   }
 }
 .page-comments {
@@ -162,8 +168,10 @@
       h2 {
         font-size: 2rem;
       }
-      p {
-        font-size: 1.2rem;
+      p,
+      ul
+      {
+        font-size: 1.3rem;
       }
     }
   }
