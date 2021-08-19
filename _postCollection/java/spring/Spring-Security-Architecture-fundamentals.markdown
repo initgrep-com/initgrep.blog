@@ -6,7 +6,7 @@ date:   2021-08-17
 meta: "Spring Security provides a ready to use framework for authentication as well as authorization. It provides AuthenticationProviders for Username and password and basic authentication, LDAP authentication, JWT authentication and provides apis for building custom AuthenticationProviders"
 excerpt: "Spring Security provides a ready to use framework for authentication as well as authorization. It provides AuthenticationProviders for Username and password and basic authentication, LDAP authentication, JWT authentication and provides apis for building custom AuthenticationProviders"
 category: spring
-comments: false
+comments: true
 author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
