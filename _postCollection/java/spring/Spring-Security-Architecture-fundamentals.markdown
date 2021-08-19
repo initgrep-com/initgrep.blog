@@ -19,13 +19,14 @@ categories:
 
 ---
 
-The purpose of this article is to provide a high level understanding of spring security architecture for Servlet applications. It may not help you to immediately implement spring security in your application but it would definitely help you in the subsequent steps when you dive deeper.
-
 Authentication and authorization are fundamental to the security of a web applications. While authentication *determines* if the user can be identified by the system, Authorization determines if the user has the access to the specific resource. 
 
 Authentication as well as authorization design paradigm is continuously evolving. The main reason behind it is the continuous evolution in different methods of exploits used against the applications.
 
 Spring security tries to solve this problem by packaging all the possible solutions together. 
+
+> *The purpose of this article is to provide a high level understanding of spring security architecture for Servlet applications. It may not help you to immediately implement spring security in your application but it would definitely help you in the subsequent steps when you dive deeper.*
+
 
 &nbsp;&nbsp;
 
@@ -105,9 +106,9 @@ This is a strategy interface which provides the API to perform authentication. I
 
 It basically checks the authentication and decides
 
-- if the principle is valid
-- if the principle is invalid
-- if the authentication is null
+- If the principle is valid
+- If the principle is invalid
+- If the authentication is null
 
 Incase, Security Filters are not used such as when using user-defined filters, `Authentication`  can be set on `SecurityContextHolder` manually.
 

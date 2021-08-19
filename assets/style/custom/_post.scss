@@ -82,18 +82,17 @@
       padding-right: 2rem;
       font-style: italic;
     }
-    blockquote:before,
-    blockquote:after {
-      font-family: FontAwesome;
-    }
+    
     blockquote:before {
-      content: "\f10d";
-      margin-left: -1rem;
+      content: "❝";
+      margin-left: -1.5rem;
+      font-size: 1.5rem;
     }
     blockquote:after {
-      content: "\f10e";
+      content: "❞";
       left: 100%;
       top: -2rem;
+      font-size: 1.5rem;
       position: relative;
     }
     /**quotes for blockquote //end**/
