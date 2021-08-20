@@ -164,6 +164,6 @@ The `securityContext` object contains `Authentication` Object. The `Authenticat
 
 if you have reached this far and want to explore more on spring security. Here are a few posts to get you going.
 
-	- username and password authentication using form login
-	- inmemory
-	- jpa based
+- [username and password authentication using form-based login](/posts/java/spring/Spring-Security-implement-user-pass-auth)
+- [In-Memory Authentication using DaoAuthenticationProvider](/posts/java/spring/Spring-Security-in-memory-auth)
+- [JPA implemenation of UserDetailsService For DaoAuthenticationProvider](/posts/java/spring/Spring-Security-jpa-authprovider)

@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: igagrock
-image: ssf.jpeg
+image: user-pass.jpeg
 categories:
     - spring
     - java

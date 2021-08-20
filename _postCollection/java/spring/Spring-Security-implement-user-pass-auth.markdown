@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: igagrock
-image: ssf.jpeg
+image: user-pass.jpeg
 categories:
     - spring
     - java
@@ -252,5 +252,8 @@ you can either configure routes or use authentication handlers. Handlers are pow
 
 &nbsp;&nbsp;
 ## Configure Storage mechanism
-- in-memory authentication 
-- JPA based authentication
+
+you can use either or both of the below methods to implement a storage mechanism 
+
+- [In-Memory Authentication using DaoAuthenticationProvider](/posts/java/spring/Spring-Security-in-memory-auth)
+- [JPA implemenation of UserDetailsService For DaoAuthenticationProvider](/posts/java/spring/Spring-Security-jpa-authprovider)
