@@ -33,14 +33,14 @@ With Spring Security, The username and password authentication is usually config
 
 We will use **form-based** authentication to read the *username* and *password* from the client. 
 
-To store the information we will configure In-memory authentication. we will also configure a JPA based AuthenticationProvider to read and store users from a persistent storage such as MySQL.
+To store the information we will configure In-memory authentication. we will also configure a JPA based AuthenticationProvider to read and store users from persistent storage such as MySQL.
 
 Please note - we will use a spring boot project. You can access the maven dependencies [here](https://github.com/initgrep-post-demos/nauth/blob/auth-providers/pom.xml).
 
 &nbsp;&nbsp;
 ## Form based login
 
-Form-based login is enabled by default in spring boot security. When the application first boots up, It provides a default login page. The default *username* is `user` and the *password* is randomly generated string printed in console.
+Form-based login is enabled by default in spring boot security. When the application first boots up, It provides a default login page. The default *username* is `user` and the *password* is a randomly generated string printed in the console.
 
 ```text
 Using generated security password: f18e74c5-8d87-4ec9-8900-4f03869deb26
@@ -210,10 +210,10 @@ public class TemplateController {
 ```
 &nbsp;
 #### Create Homepage template
-Finally we will create HTML page for home route. Go ahead and create a page in `/resources/templates` and name it `home.html`.
+Finally, we will create HTML page for the `home` route. Go ahead and create a page in `/resources/templates` and name it `home.html`.
 
 
-Now try to login again. This time it will redirect you to home page.
+Now try to log in again. This time it will redirect you to home page.
 
 Similarly we can configure routes if the login fails by providing the route path to `failureForwardUrl()` method.
 
@@ -222,10 +222,10 @@ Similarly we can configure routes if the login fails by providing the route path
 
 We can also configure listeners for successful and failed authentication.
 
-you can either configure routes or use authentication handlers. Handlers are powerful and can be used to perform any operations on login success or login fail.
+you can either configure routes or use authentication handlers. Handlers are powerful and can be used to perform any operations on login success or login failure.
 
 - `successHandler(AuthenticationSuccessHandler successHandler)`is used to configure handler for successful login.
-- `failureHandler(AuthenticationFailureHandler authenticationFailureHandler)` is used to configure listener for failed login.
+- `failureHandler(AuthenticationFailureHandler authenticationFailureHandler)` is used to configure the listener for a failed login.
 
  
 
@@ -256,4 +256,4 @@ you can either configure routes or use authentication handlers. Handlers are pow
 you can use either or both of the below methods to implement a storage mechanism 
 
 - [In-Memory Authentication using DaoAuthenticationProvider](/posts/java/spring/Spring-Security-in-memory-auth)
-- [JPA implemenation of UserDetailsService For DaoAuthenticationProvider](/posts/java/spring/Spring-Security-jpa-authprovider)
+- [JPA implementation of UserDetailsService For DaoAuthenticationProvider](/posts/java/spring/Spring-Security-jpa-authprovider)
