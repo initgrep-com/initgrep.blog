@@ -28,8 +28,6 @@
     "image": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}",
     "datePublished": "{{page.date}}",
     "dateCreated": "{{page.date}}",
-    "inLanguage": "en-US",
-    "isFamilyFriendly": "true",
     "description": "{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}",
     "publisher": {"@type": "Organization",
         "url": "{{ site.url | append: site.baseurl }}{{ page.url }},
