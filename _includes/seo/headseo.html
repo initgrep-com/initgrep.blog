@@ -21,25 +21,27 @@
 
 
 <script type="application/ld+json">
-{"@context": "http://schema.org",
-"@type": "BlogPosting",
-"headline": "{%if page.title %}{{ page.title }} - {{ site.title }}  {% else %}{{ site.title }}{% endif %}",
-"image": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}",
-"datePublished": "{{page.date}}",
-"dateCreated": "{{page.date}}",
-"description": "{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}",
-"publisher": {"@type": "Organization",
-"url": "{{ site.url | append: site.baseurl }}{{ page.url }},
-"inLanguage": "en-US",
-"isFamilyFriendly": "true",
-"logo": {"@type": "ImageObject",
-    "url": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}"
-},
-"author": {
-    "@type": "Person",
-    "name": "{{page.author}}",
-    "url": "{{ site.url | append: site.baseurl }}"
-}
-
+{
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{%if page.title %}{{ page.title }} - {{ site.title }}  {% else %}{{ site.title }}{% endif %}",
+    "image": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}",
+    "datePublished": "{{page.date}}",
+    "dateCreated": "{{page.date}}",
+    "inLanguage": "en-US",
+    "isFamilyFriendly": "true",
+    "description": "{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}",
+    "publisher": {"@type": "Organization",
+        "url": "{{ site.url | append: site.baseurl }}{{ page.url }},
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "{{page.author}}",
+            "url": "{{ site.url | append: site.baseurl }}"
+        }
+    }
 }
 </script>
