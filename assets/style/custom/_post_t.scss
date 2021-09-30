@@ -34,9 +34,12 @@
     }
 
     a {
-      border-bottom: 2px dashed $c-icon-color;
+      color: $c-icon-color;
+      border-bottom: 1px solid $c-icon-color;
+      transition: all 0.2s linear;
       &:hover {
         color: $c-icon-color;
+        transition: .2s ease;
       }
     }
 

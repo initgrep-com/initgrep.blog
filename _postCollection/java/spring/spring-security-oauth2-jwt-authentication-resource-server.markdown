@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: igagrock
-image: fbase.jpeg
+image: oauth2-poster.jpeg
 categories:
     - spring
     - java
@@ -30,10 +30,10 @@ The following diagram illustrates the working of an Oauth2 authentication reques
 
 There are four parties involved —
 
-- **Client:** Third party Application that wants access to the protected resource from a resource server.
-- **Authentication Server:** Server which helps to authenticate a Resource Owner.
-- **Resource Owner:** User that owns the protected resource.
-- **Resource Server** : Server which serves the protected resources owned by Resource Owner.
+- **Client** is a third party Application that wants access to the protected resource from a resource server.
+- **Authentication Server** is the server which helps to authenticate a Resource Owner.
+- **Resource Owner** is the user that owns the protected resource.
+- **Resource Server** is the server which serves the protected resources owned by Resource Owner.
 
 &nbsp;&nbsp;
 
@@ -44,9 +44,9 @@ There are four parties involved —
 3. The client sends this Authorization code to the Authentication Server, which in return provides an Authentication token — typically a JWT token.
 4. Once the client has the authentication token, It use it to **access** the **protected resources** from a **resource server.** The token expires after a set timeout.
 
-In this post, we will focus on the 4th step i.e. *How a Resource Server validates a JWT token provided by any third party client*. 
+**In this post, we will focus on the 4th step** i.e. *How a Resource Server validates a JWT token provided by any third party client*. 
 
-Let's first understand, what is JWT and Spring security API specs for JWT Authentication.
+First let us understand, what is JWT and what API's are provided by spring security to implement Jwt Authentication.
 
 &nbsp;
 ## What is JWT?
@@ -60,20 +60,24 @@ The below diagram provides a thorough overview of Spring security API Specs for 
 
 ![Spring-security-Oauth2.svg](/assets/images/spring-security-Oauth2-api-specs.svg)
 
-- When a client submits a request along with bearer token. `BearerTokenAuthenticationFilter` creates a `BearerTokenAuthenticationToken` of the type `Authentication`.
+- When a client submits a request along with bearer token. It is passed through the security filter chain. The `BearerTokenAuthenticationFilter` creates a `BearerTokenAuthenticationToken` of the type `Authentication`.
+
 - Next, The `AuthenticationManagerResolver` resolves the `AuthenticationManager` which in turn selects the specific `AuthenticationProvider`.
+
 - The `BearerTokenAuthenticationToken` is passed to `AuthenticationProvider` by `ProviderManager`( the default Implementation of `AuthenticationManager`)
+
 - For JWT authentication, `JwtAuthenticationProvider` is selected. It *decodes*, *verifies* and *validates* the **`Jwt`** using `JwtDecoder`.
-- If the authentication succeeds, the Authentication is set on the `SecurityContextHolder`
+
+- If the authentication succeeds, the Authentication is set on the `SecurityContextHolder`.
+
 - If the Authentication fails, `SecurityContextHolder` is cleared.
 
 Finally, Let move ahead with implementing the JWT Authentication.
 
+
 &nbsp;
-
 ## JWT Authentication in Spring Security
-
-. In order to implement it, we would require the following components —
+In order to implement it, we would require the following components —
 
 - **Authentication server** - we will use [Keycloak](https://www.keycloak.org/getting-started). It supports Oauth2.0.
 - **Resource Server** - We will create one using  a spring-boot application.
@@ -100,8 +104,8 @@ While you are at it, *here are few things, you would require once the Keycloak s
 
 Once you have the `Keycloak` server ready — Let's go ahead and create a resource server. 
 
+&nbsp;
 ## Resource Server
-
 The resource server will be the simplest one and will contain only one secure rest API. 
 
 ### Dependencies:
@@ -162,9 +166,9 @@ Spring:
           issuer-url: http://localhost:8080/auth/realms/{realm}
 ```
 
-**When the Resource server is started up**, it will automatically configure itself to validate JWT encoded Bearer Token. It achieves this querying the Authorization Server *metadata endpoint* for `jwks_url` property. This provides access to supported algorithm and its valid public keys.
+**When the Resource server is starts up**, it will automatically configure itself to validate JWT encoded Bearer Token. It achieves this querying the Authorization Server *metadata endpoint* for `jwks_url` property. This provides access to supported algorithm and its valid public keys.
 
- The Only drawback to this setup is that it fails if the Authentication server is not already up. To void startup failure, we would need to add the `jwk-set-uri` 
+ The Only drawback to this setup is that it would fail if the Authentication server is not already up. To void startup failure, we would need to add the `jwk-set-uri` 
 
 ```yaml
 Spring:
@@ -339,7 +343,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 By default, Spring Security uses JWT claims such as `scope` or `scp` to fetch the scopes present in the JWT and map it to `GrantedAuthorities` . While mapping, It will also prepend the scope with `SCOPE_`.
 Here, we will see —
 
-- how to change the default Prefix.
+- How to change the default Prefix.
 - How to use a different claim name to fetch the authorities.
 
 In order to change the default implementation, we will have to provide a customized instance of `JwtGrantedAuthoritiesConverter`. It is responsible for converting the JWT scopes to `GrantedAuthorities`. 
@@ -449,3 +453,6 @@ public JwtDecoder jwtDecoder() {
     return NimbusJwtDecoder.withPublicKey(this.key).build();
 }
 ```
+
+
+Source code for the above examples is present [here](https://github.com/initgrep-post-demos/nauth/blob/Oauth2-client-resource-server-jwt-auth/src/main/java/com/initgrep/apps/nauth/config/SecurityConfig.java)
