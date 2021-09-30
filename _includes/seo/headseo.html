@@ -30,7 +30,7 @@
     "dateCreated": "{{page.date}}",
     "description": "{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}",
     "publisher": {"@type": "Organization",
-        "url": "{{ site.url | append: site.baseurl }}{{ page.url }},
+        "url": "{{ site.url | append: site.baseurl }}{{ page.url }}",
         "logo": {
             "@type": "ImageObject",
             "url": "{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}"
