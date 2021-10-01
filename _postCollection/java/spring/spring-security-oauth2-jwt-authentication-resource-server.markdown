@@ -31,9 +31,9 @@ The following diagram illustrates the working of an Oauth2 authentication reques
 There are four parties involved —
 
 - **Client** is a third party Application that wants access to the protected resource from a resource server.
-- **Authentication Server** is the server which helps to authenticate a Resource Owner.
+- **Authentication Server** is the server that helps to authenticate a Resource Owner.
 - **Resource Owner** is the user that owns the protected resource.
-- **Resource Server** is the server which serves the protected resources owned by Resource Owner.
+- **Resource Server** is the server that serves the protected resources owned by Resource Owner.
 
 &nbsp;&nbsp;
 
@@ -76,7 +76,7 @@ Finally, Let move ahead with implementing the JWT Authentication.
 
 
 &nbsp;
-## JWT Authentication in Spring Security
+## JWT Authentication with Spring Security
 In order to implement it, we would require the following components —
 
 - **Authentication server** - we will use [Keycloak](https://www.keycloak.org/getting-started). It supports Oauth2.0.
@@ -100,7 +100,7 @@ While you are at it, *here are few things, you would require once the Keycloak s
     - [https://auth-server.com/.well-known/openid-configuration/issuer](https://idp.example.com/.well-known/openid-configuration/issuer)
     - [https://auth-server.com/.well-known/oauth-authorization-server/issuer](https://idp.example.com/.well-known/oauth-authorization-server/issuer)
 
- *Make sure to replace [authserver.com](http://authserver.com) with valid domain. Also make sure to provide the value value for `realm`*
+ *Make sure to replace [authserver.com](http://authserver.com) with a valid domain. Also, make sure to provide the value for `realm`*
 
 Once you have the `Keycloak` server ready — Let's go ahead and create a resource server. 
 
@@ -155,7 +155,7 @@ Since we have Spring security in the class path, every route will be private.
 &nbsp;
 ### Setup JWT issuer URL
 
-This is minimal setup required to implement the JWT authentication. The `issuer-url` provided is used by Resource Server to discover public keys of authorization server and validate the token. It is also the same URL present in **`iss`** claim.
+This is minimal setup required to implement the JWT authentication. The `issuer-url` provided is used by Resource Server to discover public keys of the authorization server and validate the token. It is also the same URL present in **`iss`** claim.
 
 ```yaml
 Spring:
@@ -166,22 +166,22 @@ Spring:
           issuer-url: http://localhost:8080/auth/realms/{realm}
 ```
 
-**When the Resource server is starts up**, it will automatically configure itself to validate JWT encoded Bearer Token. It achieves this querying the Authorization Server *metadata endpoint* for `jwks_url` property. This provides access to supported algorithm and its valid public keys.
+**When the Resource server is starts up**, it will automatically configure itself to validate JWT encoded Bearer Token. It achieves this by querying the Authorization Server *metadata endpoint* for `jwks_url` property. This provides access to to the supported algorithm and its valid public keys.
 
  The Only drawback to this setup is that it would fail if the Authentication server is not already up. To void startup failure, we would need to add the `jwk-set-uri` 
 
 ```yaml
 Spring:
-	security:
-		oauth2:
-			resourceserver:
-				jwt:
-					issuer-url: http://localhost:8080/auth/realms/dev
-					jwk-set-uri: http://localhost:8080/auth/realms/{realm}/protocol/openid-connect/certs
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-url: http://localhost:8080/auth/realms/dev
+                    jwk-set-uri: http://localhost:8080/auth/realms/{realm}/protocol/openid-connect/certs
 
 ```
 
-Now, the Resource Server will not ping the authorization server at startup. However, `issuer-uri` is still kept to validate the JWT `iss` claim on incoming token.
+Now, the Resource Server will not ping the authorization server at startup. However, `issuer-uri` is still kept to validate the JWT `iss` claim on the incoming token.
 
 *Spring Security  provides extension points to override or customize the default behavior of the implementation. We will look into customizing some of the default features*. 
 
@@ -190,14 +190,14 @@ Now, the Resource Server will not ping the authorization server at startup. Howe
 &nbsp;
 ## Time to Test the Implementation 💎
 
-If you recall, the resource server contains one endpoint with path `/api/v1/users`. If we call it without providing an authentication token, it will return `401 - Unauthorized` status. That is due absence of authorization token.
+If you recall, the resource server contains one endpoint with a path `/api/v1/users`. If we call it without providing an authentication token, it will return `401 - Unauthorized` status. That is due to the absence of an authorization token.
 
-Let's see how we can can use *authorization code grant* to fetch a token from the `Keycloak` server and use it to access the `API` provided by the resource server.
+Let's see how we can use an *authorization code grant* to fetch a token from the `Keycloak` server and use it to access the `API` provided by the resource server.
 
 &nbsp;
 ### **Step - 1: Request OAuth Authorization Code**
 At this point, we would need a client to request the Authorization code. 
-However to make it easier to test, we can run the following URL in the browser. It should redirect you to the login page and you will have to provide the credentials of the user. 
+However, to make it easier to test, we can run the following URL in the browser. It should redirect you to the login page and you will have to provide the credentials of the user. 
 
 ```bash
 http://authserver.com/auth/realms/{realm}/protocol/openid-connect/auth
@@ -231,7 +231,7 @@ curl -L -X POST "http://localhost:8080/auth/realms/dev/protocol/openid-connect/t
 - `client-id`, `client-secret` can be fetched from the client credentials in `Keycloak` server.
 - `grant_type = authorization_code` describes the grant type used.
 - `code` fetched in the Step-1.
-- `redirect-url` should be same as configured for client in `Keycloak` server.
+- `redirect-url` should be the same as configured for the client in `Keycloak` server.
 
 The response returned would look similar to the below example:
 
@@ -251,7 +251,7 @@ The response returned would look similar to the below example:
 
 ### Step - 3: Run the API with
 
-We will use the `access_token` value from previous response as the bearer token to run the private API — (`api/v1/users`) provided by resource server.
+We will use the `access_token` value from the previous response as the bearer token to run the private API — (`api/v1/users`) provided by the resource server.
 
 ```bash
 curl -L -X GET "http://localhost:8090/api/v1/users" \
@@ -348,7 +348,7 @@ Here, we will see —
 
 In order to change the default implementation, we will have to provide a customized instance of `JwtGrantedAuthoritiesConverter`. It is responsible for converting the JWT scopes to `GrantedAuthorities`. 
 
- `JwtAuthenticationConverter` which is responsible to convert JWT to a valid [Authentication](http://Authentication.IT) . Below example shows how to change the Authorities claim name and authority prefix. 
+ `JwtAuthenticationConverter` which is responsible to convert JWT to a valid [Authentication](http://Authentication.IT) . The below example shows how to change the Authorities claim name and authority prefix. 
 
 ```java
 		@Bean
@@ -367,7 +367,7 @@ In order to change the default implementation, we will have to provide a customi
     }
 ```
 
-Assuming the JWT token has  claim such as `{.... ,"c_scope: 'profile dashboard' "}` .The granted authorities will be mapped as `ROLE_profile, ROLE_dashboard`
+Assuming the JWT token has claims such as `{.... ,"c_scope: 'profile dashboard' "}` .The granted authorities will be mapped as `ROLE_profile, ROLE_dashboard`
 
 &nbsp;
 ### Configure Timeouts
@@ -434,7 +434,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 &nbsp;
 ### Provide a custom location for public key
 
-If the Oauth2 server doesn't provide  a `jwks-uri` and you want to setup a location for public key. It can be set either through properties or configure `JwtDecoder` bean
+If the Oauth2 server doesn't provide  a `jwks-uri` and you want to setup a location for the public key. It can be set either through properties or configure `JwtDecoder` bean
 
 ```java
 // VIA spring boot
