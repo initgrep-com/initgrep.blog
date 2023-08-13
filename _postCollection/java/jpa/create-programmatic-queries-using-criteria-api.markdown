@@ -519,11 +519,5 @@ Criteria API supports the aggregate functions such as `count`, `avg`, `max`, and
 
 We have already seen in our initial example, how to use aggregate functions such as `count`.
 
-&nbsp;
-
-If you have come this far, you might also want to read other related articles about criteria api --- 
-
-- [how to select values in criteria Queries](/posts/java/jpa/select-values-in-criteria-queries). This post explains various methods provided in Criteria API to select single or multiple values. It also explains  tuple criteria queries.
-- [write join queries in using JPA Criteria Queries](/posts/java/jpa/write-joins-using-jpa-criteria-queries). This post explains the different types of joins and how to implement in Criteria Queries.
 
 

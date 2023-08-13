@@ -237,8 +237,3 @@ resultList.forEach(row ->
 resultList.forEach(row ->
                  log.info("sdk {} -> {}", row.get(idPath), row.get(namePath) ));
 ```
-
-Here are other related articles about criteria api --- 
-
-- [Write programmatic criteria queries](/posts/java/jpa/select-values-in-criteria-queries). It explains the JPA Criteria Api.
-- [write join queries in using JPA Criteria Queries](/posts/java/jpa/write-joins-using-jpa-criteria-queries). This post explains the different types of joins and how to implement in Criteria Queries.

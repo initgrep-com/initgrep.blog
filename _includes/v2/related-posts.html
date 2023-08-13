@@ -1,0 +1,53 @@
+<ul class="list-group list-group-flush top-post-component">
+
+    {% if page.category %}
+
+    {% for collection in site.collections %}
+    {% assign colsname = collection.label %}
+    {% if colsname != 'authors'%}
+    {% assign items = site.[colsname] %}
+    {% for post in items %}
+    {% if post.category == page.category and post.title != page.title %}
+
+    <li class="list-group-item top-heading ">
+        <div class="media">
+            <div class="media-body">
+                <h4>
+                    <i class="fas fa-star"></i>
+                    <span>Other Posts about {{page.category | upcase}}</span>
+                </h4>
+            </div>
+        </div>
+    </li>
+    {% break %}
+    {%endif%}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+
+
+    {% for collection in site.collections %}
+    {% assign colsname = collection.label %}
+    {% if colsname != 'authors'%}
+    {% assign items = site.[colsname] %}
+    {% for post in items %}
+    {% if post.category == page.category and post.title != page.title %}
+    <li class="list-group-item">
+        <a href="{{site.baseurl}}{{post.url}}"
+           alt="">
+            <div class="media">
+                <img class="align-self-center"
+                     src="{{site.baseurl}}/assets/images/{{post.image}}"
+                     alt="Generic placeholder image">
+                <div class="media-body">
+                    <h5 class="mt-0">{{post.category | upcase}}</h5>
+                    <p>{{post.title }} </p>
+                </div>
+            </div>
+        </a>
+    </li>
+    {%endif%}
+    {% endfor %}
+    {% endif %}
+    {% endfor %}
+    {%endif%}

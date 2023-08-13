@@ -35,6 +35,9 @@
                             </div>
                             {{content}}
                         </div>
+                        <div class="col-12 related-posts">
+                            {% include v2/related-posts.html %}
+                        </div>
                         <div class="col-12 page-comments">
                             {% include util/disqus.html %}
                         </div>
@@ -43,11 +46,7 @@
                 <div class="col-12 col-lg-4 col-xl-4">
                     {% include v2/top-posts.html %}
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
 </div>
