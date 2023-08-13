@@ -1,11 +1,28 @@
 .page-component {
-  //   border: 1px solid red;
+  .related-posts {
+    p {
+      a {
+        // font-style: italic;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.2s ease-out;
+        word-break: break-word;
+
+        &:hover {
+          font-weight: 600;
+          border-bottom-width: 0px;
+        }
+      }
+    }
+  }
 
   .page-header {
     margin-bottom: 2rem;
+
     small.read-time {
       float: right;
     }
+
     img {
       width: 60px;
       height: 60px;
@@ -14,15 +31,16 @@
       margin-right: 0.4rem;
       padding: 2px;
     }
+
     .page-header-meta {
       a {
         display: block;
         text-decoration: none;
-        small {
-        }
+
+        small {}
       }
-      small {
-      }
+
+      small {}
 
       &:hover {
         a {
@@ -34,21 +52,25 @@
       }
     }
   }
+
   .page-poster {
     img {
       width: 100%;
       height: 300px;
     }
   }
+
   .page-content {
     text-align: left;
     padding-left: 1rem;
     padding-right: 1rem;
+
     .page-content-title {
       text-align: left;
       letter-spacing: 0.1rem;
       margin-bottom: 1rem;
     }
+
     h1,
     h2,
     h3,
@@ -58,38 +80,45 @@
       font-weight: 700;
       overflow-wrap: break-word;
     }
+
     h1 {
       font-size: 1.9rem;
     }
+
     h2 {
       font-size: 1.4rem;
     }
+
     h5 {
       font-size: 1.1rem;
     }
+
     a {
       // font-style: italic;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s ease-out;
       word-break: break-word;
+
       &:hover {
         font-weight: 600;
         border-bottom-width: 0px;
       }
     }
+
     /**quotes for blockquote**/
     blockquote {
       padding-left: 2rem;
       padding-right: 2rem;
       font-style: italic;
     }
-    
+
     blockquote:before {
       content: "❝";
       margin-left: -1.5rem;
       font-size: 1.5rem;
     }
+
     blockquote:after {
       content: "❞";
       left: 100%;
@@ -97,6 +126,7 @@
       font-size: 1.5rem;
       position: relative;
     }
+
     /**quotes for blockquote //end**/
 
     p {
@@ -107,6 +137,7 @@
         font-size: 100%;
       }
     }
+
     ul,
     ol {
       padding-left: 1rem;
@@ -115,6 +146,7 @@
         p {
           margin-bottom: 0rem;
         }
+
         code {
           font-weight: 600;
           font-size: 100%;
@@ -138,6 +170,7 @@
     }
   }
 }
+
 .page-comments {
   .message {
     border-radius: 5px;
@@ -148,11 +181,12 @@
   }
 }
 
-@include media-breakpoint-up(sm) {
-}
+@include media-breakpoint-up(sm) {}
+
 @include media-breakpoint-up(md) {
   .page-component {
     .page-content {
+
       ul,
       ol {
         padding-left: 2rem;
@@ -160,23 +194,25 @@
     }
   }
 }
+
 @include media-breakpoint-up(lg) {
   .page-component {
     .page-content {
       h1 {
         font-size: 2.5rem;
       }
+
       h2 {
         font-size: 2rem;
       }
+
       p,
       ul,
-      ol
-      {
-        font-size: 1.3rem;
+      ol {
+        // font-size: 1.3rem;
       }
     }
   }
 }
-@include media-breakpoint-up(xl) {
-}
+
+@include media-breakpoint-up(xl) {}

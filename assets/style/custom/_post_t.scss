@@ -1,4 +1,17 @@
 .page-component {
+  .related-posts{
+    a {
+        color: $c-icon-color;
+        border-bottom: 1px solid $c-icon-color;
+        transition: all 0.2s linear;
+    
+        &:hover {
+          cursor: pointer;
+          color: $c-icon-color;
+          transition: .25s ease-out;
+        }
+      }
+  }
   .page-header {
     small.read-time {
       color: $c-icon-color;
