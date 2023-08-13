@@ -1,16 +1,17 @@
 .page-component {
   .related-posts {
+    margin-top: 10px;
     p {
       a {
-        // font-style: italic;
         cursor: pointer;
-        text-decoration: none;
-        transition: all 0.2s ease-out;
         word-break: break-word;
+        transition: all 0.2s linear;
 
         &:hover {
-          font-weight: 600;
+          text-decoration: none;
+          font-weight: bold;
           border-bottom-width: 0px;
+
         }
       }
     }

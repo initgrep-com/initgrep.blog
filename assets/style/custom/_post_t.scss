@@ -1,24 +1,27 @@
 .page-component {
-  .related-posts{
-    a {
+ 
+.related-posts {
+    p {
+      a {
         color: $c-icon-color;
         border-bottom: 1px solid $c-icon-color;
-        transition: all 0.2s linear;
-    
+
         &:hover {
-          cursor: pointer;
           color: $c-icon-color;
-          transition: .25s ease-out;
+
         }
       }
+    }
   }
   .page-header {
     small.read-time {
       color: $c-icon-color;
     }
+
     img {
       border: 0.2rem solid $c-icon-color;
     }
+
     .page-header-meta {
       a {
         small {
@@ -26,6 +29,7 @@
           letter-spacing: $letter-sapacing;
         }
       }
+
       small {
         letter-spacing: $letter-sapacing;
         color: $mute-color;
@@ -35,8 +39,9 @@
 
   .page-content {
     letter-spacing: $letter-sapacing;
-    .page-content-title {
-    }
+
+    .page-content-title {}
+
     h1,
     h2,
     h3,
@@ -50,6 +55,7 @@
       color: $c-icon-color;
       border-bottom: 1px solid $c-icon-color;
       transition: all 0.2s linear;
+
       &:hover {
         color: $c-icon-color;
         transition: .2s ease;
@@ -71,6 +77,7 @@
     }
   }
 }
+
 .page-comments {
   .message {
     // border: 1px dashed $c-icon-color;
