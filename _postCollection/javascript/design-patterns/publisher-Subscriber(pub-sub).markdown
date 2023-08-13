@@ -10,7 +10,7 @@ comments: true
 author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
-github: igagrock
+github: irshsheik
 image: pub-sub.jpg
 categories:
   - Design-pattern

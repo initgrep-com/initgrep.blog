@@ -11,7 +11,7 @@ comments: true
 author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
-github: igagrock
+github: irshsheik
 image: ng-office-addin.jpg
 categories:
   - angular
