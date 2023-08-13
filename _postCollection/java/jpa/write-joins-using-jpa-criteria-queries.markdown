@@ -102,3 +102,6 @@ FROM author a
 FULL JOIN book b ON a.id = b.author_id;
 
 ```
+
+- [Write programmatic criteria queries](/posts/java/jpa/select-values-in-criteria-queries). It explains the JPA Criteria Api.
+- [how to select values in criteria Queries](/posts/java/jpa/select-values-in-criteria-queries). This post explains various methods provided in Criteria API to select single or multiple values. It also explains  tuple criteria queries.
