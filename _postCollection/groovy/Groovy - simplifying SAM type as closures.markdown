@@ -2,7 +2,7 @@
 layout: seriesPost
 bannercolor: "purple darken-4"
 title:  "Groovy : simplifying SAM type as closures"
-date:   2016-10-31
+date:   2050-10-31
 meta: "A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method"
 excerpt: "A SAM type is a type which defines a single abstract method. It includes functional interfaces and Abstract classes with single abstract method"
 category: groovy

@@ -2,7 +2,7 @@
 layout: seriesPost
 bannercolor: "blue-grey"
 title:  "Use Groovy Closure to create a tree data structure"
-date:   2016-10-31
+date:   2050-10-31
 meta: "Closure is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable."
 excerpt: "Closure is an open, anonymous, block of code that can take arguments, return a value and be assigned to a variable."
 category: groovy
