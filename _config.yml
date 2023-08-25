@@ -45,8 +45,8 @@ plugins:
 name: initgrep
 title: www.initgrep.com
 description: Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot
-logo: biglogo.jpg
-image: biglogo.jpg 
+logo: /assets/images/biglogo.jpg
+image: /assets/images/biglogo.jpg
 
 twitter:
   username: initgrep
