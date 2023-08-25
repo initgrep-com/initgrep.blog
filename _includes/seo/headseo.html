@@ -1,6 +1,6 @@
-<title>{%if page.title %}{{ page.title }} - {{ site.title }}  {% else %}{{ site.title }}{% endif %}</title>
+
 <meta itemprop="description" name="description" content="{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}" />
 <meta property="article:publisher" content="http://www.facebook.com/{{site.facebook.username}}" />
 <meta property="article:author" content="https://www.facebook.com/{{page.facebook}}" />
 <meta name="twitter:description" content="{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}">
-<meta name="twitter:image" content="{{ site.url | append: site.baseurl }}{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}">
+ {% seo %}
