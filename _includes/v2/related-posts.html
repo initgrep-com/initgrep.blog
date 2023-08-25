@@ -25,8 +25,7 @@
 {% for post in items %}
 {% if post.category == page.category and post.title != page.title %}
 <p>
-    <a href="{{site.baseurl}}{{post.url}}"
-       alt="{{post.title}}">
+    <a href="{{site.baseurl}}{{post.url}}">
         {{post.title | capitalize }}
     </a>
     - How <span>{{post.meta | downcase}}</span>
