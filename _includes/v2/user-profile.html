@@ -3,7 +3,7 @@
         <div class="row mb-4">
             <div class="col-12 col-md-3 col-lg-2 col-xl-2 u-header  ">
                 <img class="user-dp center-align"
-                     src="{{site.baseurl}}/assets/images/{{ page.image }}">
+                     src="{{site.baseurl}}{{ page.image }}">
                 <h5>{{page.name}}</h5>
             </div>
             <div class="col-12 col-md-8 col-lg-8 col-xl-5 u-body ">
@@ -55,7 +55,7 @@
                         {% if post.author == page.name%}
 
                         <li class="media item my-4">
-                            <img src="{{site.baseurl}}/assets/images/{{post.image}}"
+                            <img src="{{site.baseurl}}{{post.image}}"
                                  class="mr-3"
                                  alt="poster">
                             <div class="media-body">

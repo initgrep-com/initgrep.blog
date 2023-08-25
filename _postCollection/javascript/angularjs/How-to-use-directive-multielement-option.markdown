@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh  
 facebook: irshsheikh
 github: irshsheik
-image: mulele.jpg
+image: /assets/images/mulele.jpg
 categories:
   - angularjs
   - javascript

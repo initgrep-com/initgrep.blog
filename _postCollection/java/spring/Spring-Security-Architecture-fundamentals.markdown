@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: ssf.jpeg
+image: /assets/images/ssf.jpeg
 categories:
     - spring
     - java

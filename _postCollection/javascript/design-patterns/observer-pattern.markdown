@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: irshsheik
-image: observer.jpg
+image: /assets/images/observer.jpg
 categories:
   - Design-pattern
   - javascript

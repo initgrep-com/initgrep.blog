@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: irshsheik
-image: directive1.jpg
+image: /assets/images/directive1.jpg
 categories:
   - angularjs
   - javascript

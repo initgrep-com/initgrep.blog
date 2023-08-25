@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: mod.jpg
+image: /assets/images/mod.jpg
 categories:
   - Design-pattern
   - javascript

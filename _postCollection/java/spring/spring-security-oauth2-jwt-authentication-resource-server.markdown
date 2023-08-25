@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: oauth2-poster.jpeg
+image: /assets/images/oauth2-poster.jpeg
 categories:
     - spring
     - java

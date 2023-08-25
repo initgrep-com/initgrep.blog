@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: rxjs-effects.jpg
+image: /assets/images/rxjs-effects.jpg
 categories:
   - angular
   - javascript

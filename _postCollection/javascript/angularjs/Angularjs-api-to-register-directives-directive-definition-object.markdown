@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: regapi.jpg
+image: /assets/images/regapi.jpg
 categories:
   - angularjs
   - javascript

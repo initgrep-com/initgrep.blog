@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: cq1.jpg
+image: /assets/images/cq1.jpg
 categories:
     - jpa
     - java

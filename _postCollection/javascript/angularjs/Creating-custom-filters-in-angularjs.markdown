@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: irshsheik
-image: ngfilter2.jpg
+image: /assets/images/ngfilter2.jpg
 categories:
   - angularjs
   - javascript

@@ -2,7 +2,7 @@
 {% for post in sortedR | reverse | limit:1 %}
 <div class="card top-card d-flex justify-content-between">
     <img class="card-img-top img-fluid"
-         src="{{site.baseurl}}/assets/images/{{post.image}}"
+         src="{{site.baseurl}}{{post.image}}"
          alt="Card image cap">
     <div class="card-body">
         <h3 class="card-title">

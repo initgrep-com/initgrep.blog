@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: cmplink.jpg
+image: /assets/images/cmplink.jpg
 categories:
   - angularjs
   - javascript

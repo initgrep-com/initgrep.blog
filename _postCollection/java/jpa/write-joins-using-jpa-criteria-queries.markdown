@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: joins.jpg
+image: /assets/images/joins.jpg
 categories:
     - jpa
     - java

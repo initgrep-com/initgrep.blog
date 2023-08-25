@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: bean-scope.jpeg
+image: /assets/images/bean-scope.jpeg
 categories:
     - spring
     - java

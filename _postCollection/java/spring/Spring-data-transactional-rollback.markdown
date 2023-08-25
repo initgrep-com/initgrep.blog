@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: rollback.jpeg
+image: /assets/images/rollback.jpeg
 categories:
     - spring
     - java

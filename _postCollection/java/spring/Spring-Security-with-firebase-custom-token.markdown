@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: fbase.jpeg
+image: /assets/images/fbase.jpeg
 categories:
     - spring
     - java

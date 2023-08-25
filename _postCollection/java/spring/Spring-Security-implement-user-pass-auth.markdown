@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: user-pass.jpeg
+image: /assets/images/user-pass.jpeg
 categories:
     - spring
     - java
