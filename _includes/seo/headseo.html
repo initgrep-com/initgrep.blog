@@ -1,14 +1,8 @@
 <title>{%if page.title %}{{ page.title }} - {{ site.title }}  {% else %}{{ site.title }}{% endif %}</title>
 <meta itemprop="description" name="description" content="{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}" />
-<meta property="og:locale" content="en_US">
-<meta property="og:type" content="article">
-<meta property="og:title" content="{%if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
-<meta property="og:url" content="{{ site.url | append: site.baseurl }}{{ page.url }}">
-<meta property="og:image" content="{{ site.url | append: site.baseurl }}/assets/images/{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}" />
-<meta property="og:site_name" content="{{site.title}}">
+
 <meta property="article:publisher" content="http://www.facebook.com/{{site.facebook.username}}" />
 <meta property="article:author" content="https://www.facebook.com/{{page.facebook}}" />
-<meta property="article:published_time" content="{{ page.date }}" />
 <meta property="og:description" content="{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}">
 <link rel="canonical" href="{{ site.url | append: site.baseurl }}{{ page.url }}" />
 
