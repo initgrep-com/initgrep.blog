@@ -14,7 +14,6 @@ github: irshsheik
 image: /assets/images/pub-sub.jpg
 categories:
   - Design-pattern
-  - javascript
   - all
 ---
 

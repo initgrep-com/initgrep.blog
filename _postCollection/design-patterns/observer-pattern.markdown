@@ -14,7 +14,6 @@ github: irshsheik
 image: /assets/images/observer.jpg
 categories:
   - Design-pattern
-  - javascript
   - all
 ---
 

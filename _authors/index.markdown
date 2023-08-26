@@ -1,6 +1,6 @@
 ---
 layout: about
-logo: biglogo.jpg
+logo: /assets/images/biglogo.jpg
 motive: Spread the knowledge
 blogCatagories: technology,coding,health,fitness,social issues, politics
 contact: DM on twitter

@@ -14,7 +14,6 @@ github: irshsheik
 image: /assets/images/mod.jpg
 categories:
   - Design-pattern
-  - javascript
   - all
 ---
 
