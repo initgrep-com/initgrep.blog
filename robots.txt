@@ -6,4 +6,4 @@ layout: null
 # www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
 
 User-agent: *
-Sitemap: {{ site.url }}/sitemap.xml
+Sitemap: {{ site.url }}/sitemap
