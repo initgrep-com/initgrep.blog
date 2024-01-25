@@ -1,3 +1,26 @@
+---
+layout: post
+bannercolor: "light-green accent-3"
+title:  "Understanding and Using React Context API"
+date: 2024-01-25
+meta: "React Context API is a mechanism for global state management in React applications. It provides a way to share data between components without explicitly passing it through every level of the component hierarchy."
+excerpt: "React Context API is a mechanism for global state management in React applications. It provides a way to share data between components without explicitly passing it through every level of the component hierarchy."
+category: react
+comments: true
+author: "sheikh irshad"
+twitter: imshykh    
+facebook: irshsheikh
+github: irshsheik
+image: /assets/images/rxjs-effects.jpg
+categories:
+  - react
+  - javascript
+  - typescript
+  - all
+---
+
+&nbsp;
+
 # Understanding and Using React Context API
 
 React Context API is a powerful feature introduced in React 16.3 that allows data to be shared across a component hierarchy without explicitly passing it through props. It solves the problem of "prop drilling," which occurs when a component needs to pass data to a child component that is several levels deep.
