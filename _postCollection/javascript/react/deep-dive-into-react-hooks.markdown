@@ -1,3 +1,26 @@
+---
+layout: post
+bannercolor: "light-green accent-3"
+title:  "Deep Dive into React Hooks"
+date: 2020-09-15
+meta: "Hooks provide an alternative way to write these components, allowing you to reuse stateful logic across multiple components without the need for class inheritance.."
+excerpt: "Hooks provide an alternative way to write these components, allowing you to reuse stateful logic across multiple components without the need for class inheritance.."
+category: react
+comments: true
+author: "sheikh irshad"
+twitter: imshykh    
+facebook: irshsheikh
+github: irshsheik
+image: /assets/images/rxjs-effects.jpg
+categories:
+  - react
+  - javascript
+  - typescript
+  - all
+---
+
+&nbsp;
+
 ## Deep Dive into React Hooks
 
 In recent years, React has become one of the most popular JavaScript libraries for building user interfaces. With the release of React 16.8, a new feature called **Hooks** was introduced. Hooks provide a way to use state and other React features in functional components, eliminating the need for class components and making code more concise and reusable. In this blog post, we will take a deep dive into React Hooks, exploring their concepts, advantages, and various scenarios with code examples.
