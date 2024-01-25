@@ -2,7 +2,7 @@
 layout: post
 bannercolor: "light-green accent-3"
 title:  "Deep Dive into React Hooks"
-date: 2020-09-15
+date: 2024-01-25
 meta: "Hooks provide an alternative way to write these components, allowing you to reuse stateful logic across multiple components without the need for class inheritance.."
 excerpt: "Hooks provide an alternative way to write these components, allowing you to reuse stateful logic across multiple components without the need for class inheritance.."
 category: react
