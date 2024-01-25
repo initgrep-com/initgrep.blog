@@ -17,7 +17,8 @@ categories:
     - javascript,typescript, all
 ---
  &nbsp;
-# Understanding and Using React Context API
+
+
 
 React Context API is a powerful feature that allows you to manage global state in your applications. It provides a way to pass data through the component tree without having to pass props manually at every level. In this blog post, we will explore what the Context API is, the problems it solves, and how to use it effectively.
 
