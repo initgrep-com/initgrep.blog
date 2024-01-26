@@ -28,6 +28,11 @@ javascript:
   title: JavaScript
   icon: fab fa-js-square
   link: /posts/javascript
+react:
+  type: react
+  title: react
+  icon: fab fa-react
+  link: /posts/javascript/react
 angular:
   type: angular
   title: Angular
