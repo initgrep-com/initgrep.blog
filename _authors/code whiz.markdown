@@ -1,7 +1,7 @@
 ---
 layout: author
 name: code whiz
-image: /assets/images/robo.jpg
+image: /assets/images/robo.svg
 github: 
 twitter: 
 facebook: 

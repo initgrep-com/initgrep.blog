@@ -14,16 +14,19 @@
                     <div class="col-12 social">
 
                         <ul class="list-group list-group-horizontal">
+                            {%if page.twitter != null%}
                             <li class="list-group-item">
                                 <a href="//www.twitter.com/@{{page.twitter}}"
                                    target="blank">
-
+                            
                                     <span>
                                         <i class="fab fa-twitter-square"></i>
                                         @{{page.twitter}}
                                     </span>
                                 </a>
                             </li>
+                            {%endif%}
+                            {%if page.github != null%}
                             <li class="list-group-item">
                                 <a href="//www.github.com/{{page.github}}"
                                    target="blank">
@@ -31,9 +34,9 @@
                                         <i class="fab fa-github-square"></i>
                                         @{{page.github}}
                                     </span>
-
                                 </a>
                             </li>
+                            {%endif%}
 
                         </ul>
 
