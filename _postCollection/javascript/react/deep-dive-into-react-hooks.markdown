@@ -8,9 +8,9 @@ excerpt: In this blog post, we take a deep dive into React Hooks, exploring the 
 category: react
 comments: true
 author: code whiz
-twitter: imshykh
-facebook: irshsheikh
-github: irshsheik
+twitter: 
+facebook: 
+github: 
 image: /assets/images/react.jpg
 categories:
     - react
