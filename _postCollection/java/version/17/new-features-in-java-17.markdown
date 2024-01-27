@@ -7,17 +7,16 @@ meta: Discover the exciting new features in Java 17! This blog post explores the
 excerpt: Discover the exciting new features in Java 17! This blog post explores the latest enhancements in Java 17, including pattern matching, sealed classes, and more. Dive into various scenarios with code examples to understand how these new features can improve your Java programming experience.
 category: java
 comments: true
-author: sheikh irshad
+author: code whiz
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/rxjs-effects.jpg
+image: /assets/images/java.jpg
 categories:
     - java
     - all
 ---
  &nbsp;
-# New Features in Java 17
 
 Java 17, the latest version of the popular programming language, brings a host of exciting new features and enhancements. In this blog post, we will explore some of the key additions in Java 17 and provide code examples to demonstrate their usage.
 
@@ -77,7 +76,3 @@ System.out.println(dayName);
 ```
 
 In the above code snippet, the switch expression is used to assign the corresponding day name based on the value of the `day` variable. The new syntax with arrow (`->`) makes switch expressions more concise and readable.
-
-## Conclusion
-
-Java 17 brings several exciting new features and enhancements that can greatly improve your Java programming experience. Pattern matching, sealed classes, and switch expression enhancements are just a few of the additions that make Java 17 a significant release. Explore these features further and leverage their power in your projects!

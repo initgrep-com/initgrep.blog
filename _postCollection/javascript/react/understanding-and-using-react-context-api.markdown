@@ -7,11 +7,11 @@ meta: Learn how to use the React Context API to manage global state in your appl
 excerpt: Learn how to use the React Context API to manage global state in your applications. Understand what the Context API is, the problems it solves, and how to implement it with code examples.
 category: react
 comments: true
-author: sheikh irshad
+author: code whiz
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/rxjs-effects.jpg
+image: /assets/images/react.jpg
 categories:
     - react
     - javascript
@@ -19,7 +19,6 @@ categories:
     - all
 ---
  &nbsp;
-## Understanding and Using React Context API
 
 The React Context API is a powerful feature that allows you to manage global state in your applications. It provides a way to pass data through the component tree without having to pass props manually at every level. In this blog post, we will explore what the Context API is, the problems it solves, and how to use it.
 
@@ -139,5 +138,3 @@ export default UserProfile;
 ```
 
 By using the React Context API, you can easily manage global state in your applications and solve common problems like prop drilling and global state management. It provides a clean and efficient way to share data between components without the need for excessive prop passing.
-
-Start using the Context API in your React projects today and experience the benefits it offers!
