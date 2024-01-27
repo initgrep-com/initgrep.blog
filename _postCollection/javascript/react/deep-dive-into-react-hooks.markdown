@@ -7,19 +7,18 @@ meta: In this blog post, we take a deep dive into React Hooks, exploring the con
 excerpt: In this blog post, we take a deep dive into React Hooks, exploring the concept and structure of the Hooks API. We examine all the inbuilt hooks in React and learn how to write custom hooks. Follow along as we provide various scenarios with code examples.
 category: react
 comments: true
-author: sheikh irshad
+author: code whiz
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/rxjs-effects.jpg
+image: /assets/images/react.jpg
 categories:
     - react
     - javascript
     - typescript
     - all
 ---
- &nbsp;
-# Deep Dive into React Hooks
+&nbsp;
 
 In this blog post, we will take a deep dive into **React Hooks**, a powerful feature introduced in React 16.8. Hooks allow developers to use state and other React features without writing a class. They provide a way to reuse stateful logic, making it easier to write and maintain React components.
 
@@ -128,6 +127,3 @@ const Form = () => {
 };
 ```
 
-## Conclusion
-
-In this blog post, we explored the concept and structure of the Hooks API in React. We saw how to use the inbuilt hooks provided by React and learned how to write custom hooks. React Hooks are a powerful addition to React, making it easier than ever to create and manage stateful logic in functional components.
