@@ -70,7 +70,7 @@
     {% assign colsname  = collection.label  %}
     {% if colsname != 'authors'%}
     {% assign items = site.[colsname] | sort: 'date' | reverse %}
-    {% for post in items limit: 4  offset:0 %}
+    {% for post in items limit: 5  offset:1 %}
     <li class="list-group-item">
         <a href="{{site.baseurl}}{{post.url}}"
            >
