@@ -11,7 +11,7 @@ author: code whiz
 twitter: 
 facebook: 
 github: 
-image: /assets/images/cr_dp.jpg
+image: /assets/images/rollback.jpeg
 categories:
     - spring
     - java
