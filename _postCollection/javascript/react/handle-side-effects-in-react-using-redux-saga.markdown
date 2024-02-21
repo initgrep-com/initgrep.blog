@@ -22,7 +22,7 @@ categories:
 
 Redux-Saga is a middleware library for Redux that makes side effects easier to manage and more efficient to execute. By using Redux-Saga, you can handle asynchronous operations, such as data fetching and impure interactions with the browser and external APIs, in a more organized and maintainable way.
 
-Generator functions play a key role in implementing sagas, producing objects that are yielded to the redux-saga middleware. These yielded objects function as instructions, guiding the middleware's interpretation. In the event that a Promise is yielded to the middleware, the Saga is paused until the Promise is resolved.
+Sagas are constructed using Generator functions, producing objects that are yielded to the redux-saga middleware. These yielded objects act as instructions for the middleware to interpret. Whenever a Promise is yielded to the middleware, the Saga is temporarily halted until the Promise is fulfilled.
 
 More about generator functions [here...](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) 
 
@@ -68,7 +68,7 @@ Let's setup root saga  so that all the saga are present in one file. It makes it
 
 ```javascript
 import { all } from 'redux-saga/effects';
-import yourSaga from './yourSaga'; // import your saga
+import main from './FetchDataSaga'; // import your saga
 
 export default function* rootSaga() {
   yield all([
@@ -82,11 +82,6 @@ export default function* rootSaga() {
 Assuming you already have a reducer and root reducer. You will need to create saga middleware, add it to middlwares and run the rootSaga
 
 ```javascript
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import rootReducer from './reducers'; // import your root reducer
-import rootSaga from './sagas'; // import your root saga
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
@@ -104,7 +99,6 @@ sagaMiddleware.run(rootSaga)
 ## Redux Saga Effects.
 Below are the various effects provided by redux saga with the usage. We will discuss them in more detail in coming sections.
 
- usage of Redux-Saga effects:
 
 - **call**: This effect is used to call functions, promise-returning functions, or other sagas. It helps manage the flow of synchronous and asynchronous operations by waiting for the function or saga to complete before proceeding further.
 
@@ -116,7 +110,7 @@ Below are the various effects provided by redux saga with the usage. We will dis
 
 - **all** and **race**: These effects deal with handling multiple sagas concurrently. `all` is used to run multiple sagas concurrently and wait for all of them to complete, while `race` is used to run multiple sagas concurrently but only wait for the first one to complete.
 
-- **fork** and **spawn**: These effects are used to manage the concurrency of sagas. `fork` creates a non-blocking fork, allowing the parent saga to continue executing without waiting for the forked saga to finish. The parent saga continues its execution regardless of the outcome of the forked task. `spawn` is similar to `fork` in that it creates a new task, but it has a subtle difference. If the parent saga is cancelled (e.g., due to the parent saga being cancelled or the component unmounting), spawn will not automatically cancel the spawned task. The spawned task continues to execute independently.
+- **fork** and **spawn**: These effects are used to manage the concurrency of sagas. `fork` and `spawn` creates a non-blocking fork, allowing the parent saga to continue executing without waiting for the forked saga to finish. The parent saga continues its execution regardless of the outcome of the forked task. `spawn` is similar to `fork` in that it creates a new task. However, `fork` is used to create attached forks while as `spawn` is used to create detached forks. Attached forks remain attached to their parent. that means, the parent saga will terminate only after all the attached forks are themselves terminated.
 
 - **delay**: The `delay` effect is used to introduce a delay in the execution of the saga. It's particularly useful for scenarios where you need to wait for a specific amount of time before proceeding with the next steps.
 
