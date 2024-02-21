@@ -3,8 +3,8 @@ layout: post
 bannercolor: light-green accent-3
 title: Handle side effects in react using redux-saga
 date: 2024-02-11
-meta: Learn how to handle side effects in React using Redux-Saga with this comprehensive guide. Explore basic usage, advanced concepts like parallel, sequential, concurrent and race tasks, task cancellation, and real-world code examples.
-excerpt: Learn how to handle side effects in React using Redux-Saga with this comprehensive guide. Explore basic usage, advanced concepts like parallel, sequential, concurrent and race tasks, task cancellation, and real-world code examples.
+meta: handle side effects in React using Redux-Saga. Explore basic usage, advanced concepts like parallel, sequential, concurrent and race tasks, task cancellation, and real-world scenarios.
+excerpt: handle side effects in React using Redux-Saga. Explore basic usage, advanced concepts like parallel, sequential, concurrent and race tasks, task cancellation, and real-world scenarios.
 category: react
 comments: true
 author: code whiz
