@@ -7,11 +7,11 @@ meta: handle side effects in React using Redux-Saga. Explore basic usage, advanc
 excerpt: handle side effects in React using Redux-Saga. Explore basic usage, advanced concepts like parallel, sequential, concurrent and race tasks, task cancellation, and real-world scenarios.
 category: react
 comments: true
-author: code whiz
+author: sheikh irshad
 twitter: 
 facebook: 
 github: 
-image: /assets/images/cr_dp.jpg
+image: /assets/images/side-effects.png
 categories:
     - react
     - javascript
@@ -78,7 +78,7 @@ export default function* rootSaga() {
 
 ```
 
-### configure the middleware in redux-store
+### Configure the middleware in redux-store
 Assuming you already have a reducer and root reducer. You will need to create saga middleware, add it to middlwares and run the rootSaga
 
 ```javascript
@@ -96,105 +96,106 @@ sagaMiddleware.run(rootSaga)
 
 
 ```
+ &nbsp;
 ## Redux Saga Effects.
-Below are the various effects provided by redux saga with the usage. We will discuss them in more detail in coming sections.
-
+Below are the various effects provided by redux saga with the usage. we will also discuss the real world scenarios in the next section.
 
 - **call**: This effect is used to call functions, promise-returning functions, or other sagas. It helps manage the flow of synchronous and asynchronous operations by waiting for the function or saga to complete before proceeding further.
+  ```javascript
+  import { call } from 'redux-saga/effects';
 
-- **put**: Thi effect dispatches actions to the Redux store. It allows sagas to trigger changes in the application state by dispatching actions, leading to the execution of corresponding reducers.
+  function* fetchData() {
+    const result = yield call(api.fetchData);
+    // Further logic after fetching data
+  }
+
+  ```
+
+- **put**: This effect dispatches actions to the Redux store. It allows sagas to trigger changes in the application state by dispatching actions, leading to the execution of corresponding reducers.
+
+  ```javascript
+  import { put } from 'redux-saga/effects';
+
+  function* exampleSaga() {
+    yield put({ type: 'ACTION_TYPE', payload:{x:y} });
+    // Redux store will dispatch 'ACTION_TYPE'
+  }
+
+  ```
 
 - **take**: This effect listens for a specific action to be dispatched to the Redux store. When the specified action is detected, the saga resumes execution. It's useful for handling asynchronous operations based on certain actions.
 
+  ```javascript
+    import { take } from 'redux-saga/effects';
+
+  function* watchAction() {
+    yield take('WATCHED_ACTION');
+    // Saga resumes when 'WATCHED_ACTION' is dispatched
+  }
+  ```
+
 - **takeEvery** and **takeLatest**: These are helper functions that simplify the process of handling multiple occurrences of a specific action. `takeEvery` allows the saga to run each time the specified action is dispatched, while `takeLatest` ensures that only the latest occurrence is processed, canceling any previous instances.
+
+  ```javascript
+    import { takeEvery, takeLatest } from 'redux-saga/effects';
+
+    function* handleEvery() {
+      yield takeEvery('WATCHED_ACTION', workerSaga);
+    }
+
+    function* handleLatest() {
+      yield takeLatest('WATCHED_ACTION', workerSaga);
+    }
+  ```
 
 - **all** and **race**: These effects deal with handling multiple sagas concurrently. `all` is used to run multiple sagas concurrently and wait for all of them to complete, while `race` is used to run multiple sagas concurrently but only wait for the first one to complete.
 
-- **fork** and **spawn**: These effects are used to manage the concurrency of sagas. `fork` and `spawn` creates a non-blocking fork, allowing the parent saga to continue executing without waiting for the forked saga to finish. The parent saga continues its execution regardless of the outcome of the forked task. `spawn` is similar to `fork` in that it creates a new task. However, `fork` is used to create attached forks where as `spawn` is used to create detached forks. Attached forks remain attached to their parent. that means, the parent saga will terminate only after all the attached forks are themselves terminated.
+  ```javascript
+    import { all, race } from 'redux-saga/effects';
+
+  function* rootSaga() {
+    yield all([saga1(), saga2()]);
+    // or using race
+    yield race({ task1: call(saga1), task2: call(saga2) });
+  }
+
+  ```
+
+- **fork** and **spawn**: These effects are used to manage the concurrency of sagas. `fork` and `spawn` both create a non-blocking fork, allowing the parent saga to continue executing without waiting for the forked saga to finish. The parent saga continues its execution regardless of the outcome of the forked task. `spawn` is similar to `fork` in that it creates a new task. However, `fork` is used to create attached forks where as `spawn` is used to create detached forks. Attached forks remain attached to their parent. that means, the parent saga will terminate only after all the attached forks are themselves terminated.
+
+  ```javascript
+  import { fork, spawn } from 'redux-saga/effects';
+
+  function* parentSaga() {
+    yield fork(childSaga);
+    // or using spawn
+    yield spawn(detachedSaga);
+  }
+  ```
 
 - **delay**: The `delay` effect is used to introduce a delay in the execution of the saga. It's particularly useful for scenarios where you need to wait for a specific amount of time before proceeding with the next steps.
 
+  ```javascript
+  import { delay } from 'redux-saga/effects';
+
+  function* delayedSaga() {
+    yield delay(1000); // Waits for 1 second
+    // Continue with the next steps
+  }
+
+  ```
+
 - **select**: This effect is used to access the current state of the Redux store. It allows sagas to retrieve specific pieces of information from the store, making it useful for scenarios where the saga's behavior depends on the current state.
 
+  ```javascript
+  import { select } from 'redux-saga/effects';
 
-Let's explore the usage of some of these effects in detail.
-
-### Parallel Tasks
-
-One of the key benefits of Redux-Saga is its ability to handle parallel tasks with ease. Suppose you need to fetch multiple sets of data concurrently. With Redux-Saga, you can achieve this by using the `all` effect
-
-```javascript
-import { all, call } from 'redux-saga/effects';
-
-function* fetchAllDataSaga() {
-  const [data1, data2] = yield all([
-    call(Api.fetchData1),
-    call(Api.fetchData2),
-  ]);
-  // Handle the fetched data...
-}
-```
-
-### Sequential Tasks
-
-In some cases, you may need to perform a series of tasks sequentially, waiting for each to complete before starting the next one. Redux-Saga offers the `put` effect for achieving sequential behavior
-
-```javascript
-import { call, put } from 'redux-saga/effects';
-
-function* sequenceTasksSaga() {
-  yield call(task1);
-  yield put({ type: 'TASK_1_COMPLETED' });
-  yield call(task2);
-  yield put({ type: 'TASK_2_COMPLETED' });
-  // Continue with the next tasks...
-}
-```
-
-### Concurrent Tasks
-
-Redux-Saga also supports executing multiple tasks concurrently by using the `race` effect. This can be useful for scenarios where you want to take the result of the first resolved task
-
-```javascript
-import { call, race } from 'redux-saga/effects';
-
-function* concurrentTasksSaga() {
-  const { result1, result2 } = yield race({
-    result1: call(task1),
-    result2: call(task2),
-  });
-  // Handle the first completed task...
-}
-```
-
-### Task Cancellation
-
-Redux-Saga provides a convenient way to cancel tasks when they're no longer needed. This can be achieved using the `cancel` effect
-
-In the example below, we are trying to do two things.
-
-   1. Fetch data using the 'Api.fetchData' function
-   2. Introduce a timeout of 5000 milliseconds using the 'delay' function
-
-the race method will run both the tasks in parallel. if the api succeeds before the timeout, then we return the data. However, if the timeout happens, we cancels the task for api call.
-
-
-```javascript
-import { call, race, cancel } from 'redux-saga/effects';
-
-function* fetchDataWithTimeoutSaga() {
-  const { data, timeout } = yield race({
-    data: call(Api.fetchData),
-    timeout: call(delay, 5000),
-  });
-  if (timeout) {
-    yield cancel(data);
-    // Handle the task cancellation...
-  } else {
-    // Handle the fetched data...
+  function* getInfo() {
+    const data = yield select(state => state.someData);
+    // Use the selected data in the saga
   }
-}
-```
+  ```
+ &nbsp;
 
 ## Real-World Scenarios
 
@@ -287,7 +288,7 @@ function* chatSaga() {
 ### Handling Timeouts 
 Effect: `race`
 
- If your app makes API calls, you might want to handle scenarios where the API takes too long to respond. You can use `race` to timeout the API call if it takes too long
+ If your app makes API calls, you might want to handle scenarios where the API takes too long to respond. You can use `race` to timeout the API call if it takes too long.
 
  ```javascript
  import { race, call, put, delay } from 'redux-saga/effects';
