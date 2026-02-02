@@ -1,0 +1,38 @@
+<!-- Category List - App Store style list items -->
+<div class="px-4 py-6">
+    <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold">Browse by Category</h2>
+        <a href="#" class="text-primary text-sm font-medium">See All</a>
+    </div>
+
+    <div class="space-y-2">
+        {% for cat in site.data.categories %}
+        {% assign category = cat[1] %}
+        {% unless category.type == 'all' or category.type == 'home' %}
+
+        {% assign postCount = 0 %}
+        {% for post in site.postCollection %}
+            {% for postCat in post.categories %}
+                {% if postCat == category.type %}
+                    {% assign postCount = postCount | plus: 1 %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+
+        <a href="{{ site.baseurl }}{{ category.link }}"
+           class="flex items-center gap-4 p-3 rounded-xl bg-base-200 hover:bg-base-300 transition-colors group">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <i class="{{ category.icon }} text-xl"></i>
+            </div>
+            <div class="flex-1">
+                <h3 class="font-semibold text-base-content group-hover:text-primary transition-colors">
+                    {{ category.title }}
+                </h3>
+                <p class="text-sm text-base-content/60">{{ postCount }} articles</p>
+            </div>
+            <i class="fas fa-chevron-right text-base-content/40 group-hover:text-primary transition-colors"></i>
+        </a>
+        {% endunless %}
+        {% endfor %}
+    </div>
+</div>

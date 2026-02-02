@@ -1,0 +1,25 @@
+<!-- Footer -->
+<footer class="footer footer-center p-6 bg-base-200 text-base-content mt-8">
+    <div>
+        <p class="font-bold text-lg">
+            <i class="fas fa-terminal"></i> initgrep
+        </p>
+        <p class="text-sm opacity-70">Learn software development with practical tutorials</p>
+    </div>
+    <div class="flex gap-4">
+        <a href="https://twitter.com/{{ site.twitter.username }}" target="_blank" class="btn btn-ghost btn-circle">
+            <i class="fab fa-twitter text-lg"></i>
+        </a>
+        <a href="https://facebook.com/{{ site.facebook.username }}" target="_blank" class="btn btn-ghost btn-circle">
+            <i class="fab fa-facebook text-lg"></i>
+        </a>
+        <a href="https://github.com/AshishKirpan" target="_blank" class="btn btn-ghost btn-circle">
+            <i class="fab fa-github text-lg"></i>
+        </a>
+    </div>
+    <div>
+        <p class="text-xs opacity-50">&copy; {{ 'now' | date: '%Y' }} initgrep. All rights reserved.</p>
+    </div>
+</footer>
+
+{% include scripts/baseScript.html %}

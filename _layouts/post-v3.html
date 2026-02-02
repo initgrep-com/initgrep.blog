@@ -28,6 +28,8 @@ layout: html_minifier
                 </a>
                 <div class="text-sm text-base-content/60">
                     {{ page.date | date: '%B %d, %Y' }}
+                    <span class="mx-1">&bull;</span>
+                    {% include util/minRead.liquid content=page.content %} read
                 </div>
             </div>
         </div>
@@ -59,31 +61,26 @@ layout: html_minifier
         {% if page.categories %}
         <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-base-200">
             {% for category in page.categories %}
-            {% if category != 'all' %}
             <a href="{{ site.baseurl }}{{ site.data.categories[category].link }}"
                class="badge badge-outline badge-lg gap-1 hover:badge-primary transition-colors">
                 <i class="{{ site.data.categories[category].icon }}"></i>
                 {{ category }}
             </a>
-            {% endif %}
             {% endfor %}
         </div>
         {% endif %}
     </article>
 
-    <!-- Related Posts (inline, no includes) -->
+    <!-- Related Posts -->
     {% if page.category %}
     <div class="px-4 py-6">
         <h2 class="text-xl font-bold mb-4">More in {{ page.category | capitalize }}</h2>
-        <div class="space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {% assign relatedCount = 0 %}
-            {% for relatedPost in site.postCollection %}
-                {% if relatedPost.category == page.category and relatedPost.title != page.title and relatedCount < 5 %}
-                <a href="{{ site.baseurl }}{{ relatedPost.url }}" class="block p-3 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                    <h3 class="font-medium hover:text-primary">{{ relatedPost.title }}</h3>
-                    <p class="text-sm text-base-content/60 mt-1">{{ relatedPost.meta | truncate: 100 }}</p>
-                </a>
-                {% assign relatedCount = relatedCount | plus: 1 %}
+            {% for post in site.postCollection %}
+                {% if post.category == page.category and post.title != page.title and relatedCount < 4 %}
+                    {% include v3/post-card.html post=post %}
+                    {% assign relatedCount = relatedCount | plus: 1 %}
                 {% endif %}
             {% endfor %}
         </div>
@@ -91,14 +88,12 @@ layout: html_minifier
     {% endif %}
 
     <!-- Comments -->
-    {% if page.comments %}
     <div class="px-4 py-6">
         <h2 class="text-xl font-bold mb-4">Comments</h2>
         <div class="bg-base-200 rounded-xl p-4">
             {% include util/disqus.html %}
         </div>
     </div>
-    {% endif %}
 </main>
 
 {% include v3/search-modal.html %}

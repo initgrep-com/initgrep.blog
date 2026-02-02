@@ -1,0 +1,31 @@
+<!-- Hero Card - Featured/Latest Post -->
+{% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
+{% assign featuredPost = sortedPosts | first %}
+
+<div class="px-4 py-2">
+    <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-1">Latest Post</p>
+    <h2 class="text-2xl font-bold mb-4">{{ featuredPost.title | truncate: 50 }}</h2>
+
+    <div class="card bg-base-100 shadow-xl image-full aspect-video">
+        <figure>
+            <img src="{{ site.baseurl }}{{ featuredPost.image }}"
+                 alt="{{ featuredPost.title }}"
+                 class="w-full h-full object-cover" />
+        </figure>
+        <div class="card-body justify-end">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="badge badge-primary badge-sm">
+                    <i class="{{ site.data.categories[featuredPost.category].icon }} mr-1"></i>
+                    {{ featuredPost.category }}
+                </span>
+            </div>
+            <h3 class="card-title text-white text-lg">{{ featuredPost.title }}</h3>
+            <p class="text-sm text-white/80 line-clamp-2">{{ featuredPost.meta }}</p>
+            <div class="card-actions justify-start mt-2">
+                <a href="{{ site.baseurl }}{{ featuredPost.url }}" class="btn btn-primary btn-sm">
+                    Read Article
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- Category Pills - Horizontal Scrollable -->
+<div class="overflow-x-auto py-4 scrollbar-none">
+    <div class="flex gap-2 px-4 min-w-max">
+        {% for cat in site.data.categories %}
+        {% assign category = cat[1] %}
+        {% unless category.type == 'all' or category.type == 'home' %}
+        <a href="{{ site.baseurl }}{{ category.link }}"
+           class="badge badge-lg gap-2 py-3 px-4 hover:badge-primary transition-colors cursor-pointer whitespace-nowrap {% if page.type == category.type %}badge-primary{% else %}badge-ghost{% endif %}">
+            <i class="{{ category.icon }}"></i>
+            {{ category.title }}
+        </a>
+        {% endunless %}
+        {% endfor %}
+    </div>
+</div>

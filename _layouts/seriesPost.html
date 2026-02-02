@@ -2,65 +2,115 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include v3/head.html %}
+{% include v3/header.html %}
 
-<div class="container-fluid">
-
-    <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
-
-        <div class="col-12 col-sm-12 col-md-12 col-lg-2 h-100  menu-component ">
-            {%  include v2/sidenav.html %}
+<main class="max-w-4xl mx-auto pb-8">
+    <!-- Article Header -->
+    <article class="px-4 py-6">
+        <!-- Breadcrumb -->
+        <div class="text-sm breadcrumbs mb-4">
+            <ul>
+                <li><a href="/" class="text-primary">Home</a></li>
+                <li><a href="{{ site.baseurl }}{{ site.data.categories[page.category].link }}" class="text-primary">{{ page.category }}</a></li>
+                <li class="text-base-content/60">Series</li>
+            </ul>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-10 content-component">
-            <div class="row ">
-                <div class="col-12 col-lg-7 col-xl-7 pl-lg-5 ">
-                    <div class="row page-component">
-                        <div class="col-11 page-header">
-                            <small class="read-time">
-                                <i class="fas fa-stopwatch"></i>
-                                {% include util/minRead.liquid content= page.content  %}
-                                read</small>
-                            <img src=" {% include util/insertDp-v2.liquid name = page.author %}"
-                                 alt="profile image">
-                            <div class="page-header-meta">
-                                <a href="{{site.baseurl}}/about/{{page.author}}"><small>{{page.author}}</small></a>
-                                <small>{{page.date | date: '%B %d, %Y'}}</small>
-                            </div>
+        <!-- Series Badge -->
+        {% if page.series %}
+        <div class="badge badge-secondary badge-lg mb-4">
+            <i class="fas fa-book-open mr-2"></i>
+            Series: {{ page.series }}
+        </div>
+        {% endif %}
 
-                        </div>
-                        <!-- <div class="col-11 page-poster">
-                            <img src="{{site.baseurl}}/assets/images/{{page.image}}" alt="{{page.title}}">
-                        </div> -->
-                        <div class="col-12 page-content">
-                            <div class="page-content-title">
-                                <h1>{{page.title}}</h1>
-                            </div>
-                            {{content}}
-                        </div>
-                        <div class="col-12 related-posts">
-                            {% include v2/related-posts.html %}
-                        </div>
-                        <div class="col-12 page-comments">
-                            {% include util/disqus.html %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4 col-xl-4">
-                    {% include v2/top-posts.html %}
+        <!-- Meta Info -->
+        <div class="flex items-center gap-4 mb-6">
+            <img src="{% include util/insertDp-v2.liquid name=page.author %}"
+                 alt="{{ page.author }}"
+                 class="w-12 h-12 rounded-full object-cover" />
+            <div>
+                <a href="{{ site.baseurl }}/about/{{ page.author }}" class="font-medium hover:text-primary transition-colors">
+                    {{ page.author }}
+                </a>
+                <div class="text-sm text-base-content/60">
+                    {{ page.date | date: '%B %d, %Y' }}
                 </div>
             </div>
         </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
+
+        <!-- Featured Image -->
+        {% if page.image %}
+        <figure class="mb-8 rounded-xl overflow-hidden">
+            <img src="{{ site.baseurl }}{{ page.image }}"
+                 alt="{{ page.title }}"
+                 class="w-full aspect-video object-cover" />
+        </figure>
+        {% endif %}
+
+        <!-- Article Content -->
+        <div class="prose prose-lg max-w-none
+                    prose-headings:text-base-content
+                    prose-p:text-base-content/90
+                    prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                    prose-strong:text-base-content
+                    prose-code:text-primary prose-code:bg-base-200 prose-code:px-1 prose-code:rounded
+                    prose-pre:bg-base-200 prose-pre:text-base-content">
+            {{ content }}
+        </div>
+
+        <!-- Tags -->
+        {% if page.categories %}
+        <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-base-200">
+            {% for category in page.categories %}
+            {% if category != 'all' %}
+            <a href="{{ site.baseurl }}{{ site.data.categories[category].link }}"
+               class="badge badge-outline badge-lg gap-1 hover:badge-primary transition-colors">
+                <i class="{{ site.data.categories[category].icon }}"></i>
+                {{ category }}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </article>
+
+    <!-- Related Posts (inline, no includes) -->
+    {% if page.category %}
+    <div class="px-4 py-6">
+        <h2 class="text-xl font-bold mb-4">More in {{ page.category | capitalize }}</h2>
+        <div class="space-y-3">
+            {% assign relatedCount = 0 %}
+            {% for relatedPost in site.postCollection %}
+                {% if relatedPost.category == page.category and relatedPost.title != page.title and relatedCount < 5 %}
+                <a href="{{ site.baseurl }}{{ relatedPost.url }}" class="block p-3 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
+                    <h3 class="font-medium hover:text-primary">{{ relatedPost.title }}</h3>
+                    <p class="text-sm text-base-content/60 mt-1">{{ relatedPost.meta | truncate: 100 }}</p>
+                </a>
+                {% assign relatedCount = relatedCount | plus: 1 %}
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-</div>
+    {% endif %}
 
-</div>
+    <!-- Comments -->
+    {% if page.comments %}
+    <div class="px-4 py-6">
+        <h2 class="text-xl font-bold mb-4">Comments</h2>
+        <div class="bg-base-200 rounded-xl p-4">
+            {% include util/disqus.html %}
+        </div>
+    </div>
+    {% endif %}
+</main>
 
-
-
-{% include v2/footer.html %}
-
+{% include v3/search-modal.html %}
+{% include v3/footer.html %}
 </body>
 
 </html>

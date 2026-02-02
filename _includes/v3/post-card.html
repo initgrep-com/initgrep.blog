@@ -1,0 +1,25 @@
+<!-- Post Card Component -->
+<!-- Usage: {% include v3/post-card.html post=post %} -->
+
+<div class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow duration-300">
+    <figure class="aspect-video">
+        <img src="{{ site.baseurl }}{{ include.post.image }}"
+             alt="{{ include.post.title }}"
+             class="w-full h-full object-cover" />
+    </figure>
+    <div class="card-body p-4">
+        <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
+            <span class="badge badge-ghost badge-sm">
+                <i class="{{ site.data.categories[include.post.category].icon }} mr-1"></i>
+                {{ include.post.category }}
+            </span>
+            <span>{{ include.post.date | date: '%b %d, %Y' }}</span>
+        </div>
+        <h3 class="card-title text-base line-clamp-2">
+            <a href="{{ site.baseurl }}{{ include.post.url }}" class="hover:text-primary transition-colors">
+                {{ include.post.title }}
+            </a>
+        </h3>
+        <p class="text-sm text-base-content/70 line-clamp-2">{{ include.post.meta }}</p>
+    </div>
+</div>

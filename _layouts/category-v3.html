@@ -1,0 +1,83 @@
+---
+layout: html_minifier
+---
+
+{% include v3/head.html %}
+{% include v3/header.html %}
+
+<main class="max-w-4xl mx-auto pb-8">
+    <!-- Category Pills -->
+    {% include v3/category-pills.html %}
+
+    <!-- Category Header -->
+    <div class="px-4 py-6">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                <i class="{{ site.data.categories[page.type].icon }} text-3xl"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold">{{ site.data.categories[page.type].title }}</h1>
+                <p class="text-base-content/60">Browse all articles in this category</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Posts Grid (inline, no includes) -->
+    <div class="px-4">
+        {% assign postCategory = page.type %}
+        {% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
+        {% assign hasPost = false %}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for post in sortedPosts %}
+                {% for category in post.categories %}
+                    {% if category == postCategory %}
+                        {% assign hasPost = true %}
+                        <!-- Inline Post Card -->
+                        <div class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <figure class="aspect-video">
+                                <img src="{{ site.baseurl }}{{ post.image }}"
+                                     alt="{{ post.title }}"
+                                     class="w-full h-full object-cover" />
+                            </figure>
+                            <div class="card-body p-4">
+                                <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
+                                    <span class="badge badge-ghost badge-sm">
+                                        <i class="{{ site.data.categories[post.category].icon }} mr-1"></i>
+                                        {{ post.category }}
+                                    </span>
+                                    <span>{{ post.date | date: '%b %d, %Y' }}</span>
+                                </div>
+                                <h3 class="card-title text-base line-clamp-2">
+                                    <a href="{{ site.baseurl }}{{ post.url }}" class="hover:text-primary transition-colors">
+                                        {{ post.title }}
+                                    </a>
+                                </h3>
+                                <p class="text-sm text-base-content/70 line-clamp-2">{{ post.meta }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        {% unless hasPost %}
+        <div class="text-center py-12">
+            <div class="text-6xl mb-4">
+                <i class="fas fa-folder-open text-base-content/20"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-base-content/60">No posts yet</h3>
+            <p class="text-base-content/40">Check back later for new content</p>
+        </div>
+        {% endunless %}
+    </div>
+
+    <!-- Other Categories -->
+    {% include v3/category-list.html %}
+</main>
+
+{% include v3/search-modal.html %}
+{% include v3/footer.html %}
+</body>
+
+</html>

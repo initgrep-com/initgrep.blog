@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+
+    <!-- DaisyUI + Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+          integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+          crossorigin="anonymous">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{{site.baseurl}}/assets/images/favicon.svg" />
+
+    <!-- Theme colors -->
+    <meta name="theme-color" content="#333333">
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#333333">
+
+    <meta name="cf-2fa-verify" content="f2d40cf6e5a17c3">
+
+    <!-- SEO -->
+    {% include seo/headseo.html %}
+
+    <!-- Analytics & Ads -->
+    {% include analytics/google-analytics.html %}
+    {% include analytics/adblock-recover.html %}
+    {% include ads/google-ads.html %}
+
+    <!-- Google Custom Search -->
+    <script async src="https://cse.google.com/cse.js?cx=000297669988019007071:0ouka41f0ma"></script>
+
+    <!-- Syntax Highlighting -->
+    <link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/style/code-syntax/syntax.css" media="screen,projection" />
+
+    <!-- Theme initialization (prevent flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+
+<body class="bg-base-100 text-base-content min-h-screen">

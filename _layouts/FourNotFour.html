@@ -2,17 +2,25 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include v3/head.html %}
+{% include v3/header.html %}
 
-<div class="container-fluid">
-        <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
-                
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9 content-component  ">
-                 {% include v2/404.html%}
-                
-                </div>
-        </div>
-</div>
+<main class="max-w-4xl mx-auto pb-8">
+    <div class="px-4 py-16 text-center">
+        <div class="text-9xl font-bold text-primary/20 mb-4">404</div>
+        <h1 class="text-3xl font-bold mb-4">Page Not Found</h1>
+        <p class="text-base-content/60 mb-8">
+            The page you're looking for doesn't exist or has been moved.
+        </p>
+        <a href="/" class="btn btn-primary">
+            <i class="fas fa-home mr-2"></i>
+            Back to Home
+        </a>
+    </div>
+</main>
 
-{% include v2/footer.html %}
+{% include v3/search-modal.html %}
+{% include v3/footer.html %}
+</body>
+
+</html>
