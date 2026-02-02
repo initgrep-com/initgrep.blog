@@ -42,6 +42,76 @@
     <!-- Syntax Highlighting -->
     <link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/style/code-syntax/syntax.css" media="screen,projection" />
 
+    <!-- Custom Styles -->
+    <style>
+        /* Hide scrollbars but allow scrolling */
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Smooth transitions for all interactive elements */
+        * {
+            scroll-behavior: smooth;
+        }
+
+        /* Card image overlay gradient */
+        .image-full::before {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+        }
+
+        /* Line clamp utilities */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Navigation pill hover effect */
+        .pill-nav {
+            position: relative;
+            overflow: hidden;
+        }
+        .pill-nav::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: currentColor;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .pill-nav:hover::after {
+            opacity: 0.05;
+        }
+
+        /* Card shine effect on hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .card:hover::before {
+            left: 100%;
+        }
+    </style>
+
     <!-- Theme initialization (prevent flash) -->
     <script>
         (function() {

@@ -5,10 +5,7 @@ layout: html_minifier
 {% include v3/head.html %}
 {% include v3/header.html %}
 
-<main class="max-w-4xl mx-auto pb-8">
-    <!-- Category Pills -->
-    {% include v3/category-pills.html %}
-
+<main class="max-w-5xl mx-auto pb-8">
     <!-- Category Header -->
     <div class="px-4 py-6">
         <div class="flex items-center gap-4 mb-6">
@@ -22,7 +19,7 @@ layout: html_minifier
         </div>
     </div>
 
-    <!-- Posts Grid (inline, no includes) -->
+    <!-- Posts Grid -->
     <div class="px-4">
         {% assign postCategory = page.type %}
         {% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
@@ -33,27 +30,56 @@ layout: html_minifier
                 {% for category in post.categories %}
                     {% if category == postCategory %}
                         {% assign hasPost = true %}
-                        <!-- Inline Post Card -->
-                        <div class="card bg-base-100 shadow-md hover:shadow-xl transition-shadow duration-300">
-                            <figure class="aspect-video">
-                                <img src="{{ site.baseurl }}{{ post.image }}"
-                                     alt="{{ post.title }}"
-                                     class="w-full h-full object-cover" />
-                            </figure>
-                            <div class="card-body p-4">
-                                <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
-                                    <span class="badge badge-ghost badge-sm">
-                                        <i class="{{ site.data.categories[post.category].icon }} mr-1"></i>
-                                        {{ post.category }}
-                                    </span>
-                                    <span>{{ post.date | date: '%b %d, %Y' }}</span>
+
+                        <!-- Mobile: Compact Title Card -->
+                        <div class="sm:hidden">
+                            <a href="{{ site.baseurl }}{{ post.url }}"
+                               class="block p-4 rounded-xl bg-base-200 hover:bg-base-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <i class="{{ site.data.categories[post.category].icon }} text-primary"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h3 class="font-semibold text-base-content group-hover:text-primary transition-colors line-clamp-2">
+                                            {{ post.title }}
+                                        </h3>
+                                        <p class="text-xs text-base-content/50 mt-1">
+                                            {{ post.date | date: '%b %d, %Y' }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <h3 class="card-title text-base line-clamp-2">
-                                    <a href="{{ site.baseurl }}{{ post.url }}" class="hover:text-primary transition-colors">
+                            </a>
+                        </div>
+
+                        <!-- Tablet/Desktop: Image Card with animations -->
+                        <div class="hidden sm:block">
+                            <div class="card bg-base-100 shadow-md overflow-hidden group cursor-pointer
+                                        transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
+                                 onclick="window.location='{{ site.baseurl }}{{ post.url }}'">
+                                <figure class="aspect-video overflow-hidden">
+                                    <img src="{{ site.baseurl }}{{ post.image }}"
+                                         alt="{{ post.title }}"
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                </figure>
+                                <div class="card-body p-4">
+                                    <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
+                                        <span class="badge badge-ghost badge-sm transition-colors group-hover:badge-primary">
+                                            <i class="{{ site.data.categories[post.category].icon }} mr-1"></i>
+                                            {{ post.category }}
+                                        </span>
+                                        <span>{{ post.date | date: '%b %d, %Y' }}</span>
+                                    </div>
+                                    <h3 class="card-title text-base line-clamp-2 group-hover:text-primary transition-colors">
                                         {{ post.title }}
-                                    </a>
-                                </h3>
-                                <p class="text-sm text-base-content/70 line-clamp-2">{{ post.meta }}</p>
+                                    </h3>
+                                    <p class="text-sm text-base-content/70 line-clamp-2 mt-1">{{ post.meta }}</p>
+
+                                    <!-- Read more indicator -->
+                                    <div class="flex items-center gap-1 text-primary text-sm font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <span>Read article</span>
+                                        <i class="fas fa-arrow-right text-xs transform group-hover:translate-x-1 transition-transform"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     {% endif %}
@@ -71,9 +97,6 @@ layout: html_minifier
         </div>
         {% endunless %}
     </div>
-
-    <!-- Other Categories -->
-    {% include v3/category-list.html %}
 </main>
 
 {% include v3/search-modal.html %}
