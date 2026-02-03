@@ -73,35 +73,53 @@
 
 ## Step 7: Cleanup Old Assets
 
-### Old Layouts (delete after v3 confirmed)
-- [ ] `_layouts/home.html`
-- [ ] `_layouts/home-v2.html`
-- [ ] `_layouts/category.html`
-- [ ] `_layouts/category-v2.html`
+### Old Layouts (deleted)
+- [x] `_layouts/home.html` (was already deleted)
+- [x] `_layouts/home-v2.html` (was already deleted)
+- [x] `_layouts/category.html` (was already deleted)
+- [x] `_layouts/category-v2.html` (was already deleted)
+- [x] `_layouts/siteIndentity.html` (deleted, inlined into google verification file)
+- [x] `_layouts/post-v3.html` (deleted, unused duplicate of post.html)
 
-### Old Includes (delete after v3 confirmed)
-- [ ] `_includes/v2/` (entire directory)
-- [ ] `_includes/head.html`
-- [ ] `_includes/nav.html`
-- [ ] `_includes/home/` (if unused)
-- [ ] `_includes/subHome/` (if unused)
+### Old Includes (deleted)
+- [x] `_includes/v2/` (was already deleted)
+- [x] `_includes/head.html` (was already deleted)
+- [x] `_includes/nav.html` (was already deleted)
+- [x] `_includes/home/` (was already deleted)
+- [x] `_includes/subHome/` (was already deleted)
 
-### Old SCSS (delete after v3 confirmed)
-- [ ] `assets/style/bootstrap/` directory
-- [ ] `assets/style/custom/` directory
-- [ ] `assets/style/light_light_theme.scss`
-- [ ] `assets/style/light_yellow_theme.scss`
-- [ ] `assets/style/light_indigo_theme.scss`
-- [ ] `assets/style/light_green_theme.scss`
-- [ ] `assets/style/dark_orange_theme.scss`
-- [ ] `assets/style/dark_indigo_theme.scss`
-- [ ] `assets/style/dark_green_theme.scss`
-- [ ] `assets/style/common.scss`
-- [ ] `assets/style/_animate.scss`
+### Empty Legacy Directories (deleted)
+- [x] `_includes/category/` (empty directory removed)
+- [x] `_includes/f404/` (empty directory removed)
+- [x] `_includes/search/` (empty directory removed)
+- [x] `_includes/subscribe/` (empty directory removed)
+
+### Old SCSS (deleted)
+- [x] All old SCSS files were already deleted (only `code-syntax/` remains)
 
 ---
 
-## Step 8: Final Testing
+## Step 8: Flatten v3 Structure
+
+- [x] Move `_includes/v3/*` to `_includes/` root (head, header, footer, post-card, hero-card, category-list, category-pills, search-modal)
+- [x] Delete `_includes/v3/` directory
+- [x] Update all `{% include v3/... %}` references in all layouts
+- [x] Rename `_layouts/home-v3.html` → `_layouts/home.html`
+- [x] Rename `_layouts/category-v3.html` → `_layouts/category.html`
+- [x] Update `index.html` front matter: `layout: home`
+- [x] Update all 11 category pages: `layout: category`
+
+---
+
+## Step 9: JavaScript Cleanup
+
+- [x] Remove dead `initScrollProgress()` function (referenced non-existent `#progress` element)
+- [x] Remove scroll event listener for progress bar
+- [x] Verify clean build with no warnings
+
+---
+
+## Step 10: Final Testing
 
 - [x] Homepage loads correctly
 - [x] Theme switcher works (light/retro/forest)
@@ -113,6 +131,7 @@
 - [ ] Responsive: desktop view (needs manual testing)
 - [x] Search modal works
 - [x] Code syntax highlighting CSS created
+- [x] Jekyll build succeeds with zero warnings
 - [ ] No console errors (needs browser testing)
 - [ ] No broken images/links (needs manual review)
 - [ ] Deploy to GitHub Pages
@@ -120,17 +139,28 @@
 
 ---
 
+## Upcoming Tasks
+
+- [ ] Replace FontAwesome icons with Lucide icons
+- [ ] Home page improvements
+- [ ] Category page improvements
+- [ ] Main content/article page improvements
+
+---
+
 ## Notes
 
-Last updated: 2026-02-02
+Last updated: 2026-02-03
 
 ### Migration Summary
-- Created all v3 components with DaisyUI styling
+- Created all components with DaisyUI styling
 - Updated main.js for new data-theme switching system
-- Updated all page layouts to use v3 components
+- Updated all page layouts to use components directly (no v3 namespace)
 - Created syntax.scss for code highlighting
-- Build succeeds with Jekyll
+- Build succeeds with Jekyll (zero warnings)
 
-### Known Issues
-- Some old Bootstrap SCSS deprecation warnings (won't affect v3)
-- v2 components still exist (can be deleted after confirming v3 works in production)
+### Architecture (current)
+- Components in `_includes/` (flat, no subdirectory grouping)
+- Layouts: home, post, category, seriesPost, about, author, FourNotFour, privacy
+- JS: single `main.js` with theme management and search shortcut
+- CSS: DaisyUI + Tailwind via CDN, syntax highlighting via SCSS

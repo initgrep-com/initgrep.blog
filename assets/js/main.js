@@ -54,22 +54,6 @@ function updateThemeColor() {
 }
 
 /**
- * Scroll Progress Bar
- */
-function initScrollProgress() {
-    const progressBar = document.getElementById('progress');
-    if (!progressBar) return;
-
-    document.addEventListener('scroll', () => {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-        const clientHeight = document.documentElement.clientHeight;
-        const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
-        progressBar.style.setProperty('--scroll', `${scrollPercent}%`);
-    }, { passive: true });
-}
-
-/**
  * Search Modal (keyboard shortcut)
  */
 function initSearchShortcut() {
@@ -115,7 +99,6 @@ function checkVersion() {
 function init() {
     checkVersion();
     loadTheme();
-    initScrollProgress();
     initSearchShortcut();
 }
 
