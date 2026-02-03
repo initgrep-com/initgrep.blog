@@ -141,7 +141,7 @@
 
 ## Upcoming Tasks
 
-- [ ] Replace FontAwesome icons with Lucide icons
+- [x] Replace FontAwesome icons with Lucide icons
 - [ ] Home page improvements
 - [ ] Category page improvements
 - [ ] Main content/article page improvements

@@ -9,8 +9,8 @@
     </figure>
     <div class="card-body p-4">
         <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
-            <span class="badge badge-ghost badge-sm">
-                <i class="{{ site.data.categories[include.post.category].icon }} mr-1"></i>
+            <span class="badge badge-ghost badge-sm gap-1">
+                <i data-lucide="{{ site.data.categories[include.post.category].icon }}" class="w-3 h-3"></i>
                 {{ include.post.category }}
             </span>
             <span>{{ include.post.date | date: '%b %d, %Y' }}</span>

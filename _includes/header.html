@@ -1,10 +1,10 @@
 <!-- Header/Navbar - Two Row Layout -->
 <header class="sticky top-0 z-50 bg-base-100 border-b border-base-200">
     <!-- Row 1: Logo and Actions -->
-    <div class="flex items-center justify-between px-4 py-3">
+    <div class="flex items-center justify-between px-4 py-3 max-w-5xl mx-auto w-full">
         <!-- Logo + Domain Name (Left) -->
         <a href="/" class="text-xl font-bold flex items-center gap-2 text-base-content hover:text-primary transition-colors">
-            <i class="fas fa-terminal"></i>
+            <i data-lucide="terminal" class="w-5 h-5"></i>
             <span>initgrep</span>
         </a>
 
@@ -12,78 +12,97 @@
         <div class="flex items-center gap-2">
             <!-- Search Button -->
             <button onclick="searchModal.showModal()" class="btn btn-ghost btn-circle btn-sm" aria-label="Search">
-                <i class="fas fa-search text-lg"></i>
+                <i data-lucide="search" class="w-5 h-5"></i>
             </button>
 
             <!-- Theme Dropdown -->
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm" aria-label="Change theme">
-                    <i class="fas fa-palette text-lg"></i>
+                    <i data-lucide="palette" class="w-5 h-5"></i>
                 </div>
                 <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-50 w-40 p-2 shadow-lg mt-2">
                     <li><a onclick="setTheme('light')" class="flex items-center gap-2">
-                        <i class="fas fa-sun"></i> Light
+                        <i data-lucide="sun" class="w-4 h-4"></i> Light
                     </a></li>
                     <li><a onclick="setTheme('retro')" class="flex items-center gap-2">
-                        <i class="fas fa-clock"></i> Retro
+                        <i data-lucide="clock-3" class="w-4 h-4"></i> Retro
                     </a></li>
                     <li><a onclick="setTheme('forest')" class="flex items-center gap-2">
-                        <i class="fas fa-tree"></i> Forest
+                        <i data-lucide="tree-pine" class="w-4 h-4"></i> Forest
                     </a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Row 2: Category Navigation Pills (Centered) -->
-    <div class="flex items-center justify-center px-2 pb-2">
-        <!-- Left Scroll Button -->
+    <!-- Row 2: Category Navigation Pills -->
+    <div class="nav-pills-row px-2 pb-2 max-w-5xl mx-auto w-full">
+        <!-- Left Scroll Button (mobile only) -->
         <button id="scrollLeftBtn" onclick="scrollNavLeft()"
-                class="btn btn-ghost btn-circle btn-sm flex-shrink-0 hidden" aria-label="Scroll left">
-            <i class="fas fa-chevron-left"></i>
+                class="btn btn-ghost btn-circle btn-xs flex-shrink-0 hidden md:!hidden" aria-label="Scroll left">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
         </button>
 
-        <!-- Scrollable Pills Container -->
-        <div id="navPillsContainer" class="overflow-x-auto scrollbar-none mx-1 max-w-full">
-            <div id="navPillsInner" class="flex gap-2 py-1 justify-center">
+        <!-- Pills Container: scroll on mobile, wrap on md+ -->
+        <div id="navPillsContainer" class="nav-pills-scroll mx-1 w-full">
+            <div id="navPillsInner" class="nav-pills-wrap">
                 {% for cat in site.data.categories %}
                 {% assign category = cat[1] %}
                 {% unless category.type == 'all' or category.type == 'home' %}
-                <a href="{{ site.baseurl }}{{ category.link }}"
-                   class="nav-pill flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200
-                          {% if page.type == category.type %}bg-primary text-primary-content shadow-md{% else %}bg-base-200 text-base-content hover:bg-base-300 active:bg-primary/20 focus:bg-primary/20{% endif %}">
-                    <i class="{{ category.icon }}"></i>
+                {% if page.type == category.type %}
+                <a href="{{ site.baseurl }}{{ category.link }}" class="btn btn-primary btn-sm rounded-full gap-1.5">
+                    <i data-lucide="{{ category.icon }}" class="w-3.5 h-3.5 hidden sm:block"></i>
                     <span>{{ category.title }}</span>
                 </a>
+                {% else %}
+                <a href="{{ site.baseurl }}{{ category.link }}" class="btn btn-soft btn-sm rounded-full gap-1.5">
+                    <i data-lucide="{{ category.icon }}" class="w-3.5 h-3.5 hidden sm:block"></i>
+                    <span>{{ category.title }}</span>
+                </a>
+                {% endif %}
                 {% endunless %}
                 {% endfor %}
             </div>
         </div>
 
-        <!-- Right Scroll Button -->
+        <!-- Right Scroll Button (mobile only) -->
         <button id="scrollRightBtn" onclick="scrollNavRight()"
-                class="btn btn-ghost btn-circle btn-sm flex-shrink-0 hidden" aria-label="Scroll right">
-            <i class="fas fa-chevron-right"></i>
+                class="btn btn-ghost btn-circle btn-xs flex-shrink-0 hidden md:!hidden" aria-label="Scroll right">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
         </button>
     </div>
 </header>
 
 <style>
-/* Navigation pill focus/active states - background change instead of color */
-.nav-pill:focus {
-    outline: none;
-    background-color: oklch(var(--p) / 0.2);
+/* Mobile: horizontal scroll row */
+.nav-pills-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.nav-pill:active {
-    background-color: oklch(var(--p) / 0.3);
-    transform: scale(0.98);
+.nav-pills-scroll {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-.nav-pill:focus:not(:focus-visible) {
-    background-color: inherit;
+.nav-pills-scroll::-webkit-scrollbar {
+    display: none;
 }
-.nav-pill:focus-visible {
-    outline: 2px solid oklch(var(--p));
-    outline-offset: 2px;
+.nav-pills-wrap {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    flex-wrap: nowrap;
+}
+/* md+: wrap centered, no scroll */
+@media (min-width: 768px) {
+    .nav-pills-scroll {
+        overflow-x: visible;
+    }
+    .nav-pills-wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 </style>
 
@@ -93,12 +112,22 @@
     const leftBtn = document.getElementById('scrollLeftBtn');
     const rightBtn = document.getElementById('scrollRightBtn');
 
+    function isMobile() {
+        return window.innerWidth < 768;
+    }
+
     function updateScrollButtons() {
         if (!container || !leftBtn || !rightBtn) return;
 
-        const canScrollLeft = container.scrollLeft > 5;
-        const canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 5);
-        const needsScroll = container.scrollWidth > container.clientWidth + 10;
+        if (!isMobile()) {
+            leftBtn.classList.add('hidden');
+            rightBtn.classList.add('hidden');
+            return;
+        }
+
+        var canScrollLeft = container.scrollLeft > 5;
+        var canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 5);
+        var needsScroll = container.scrollWidth > container.clientWidth + 10;
 
         leftBtn.classList.toggle('hidden', !needsScroll || !canScrollLeft);
         rightBtn.classList.toggle('hidden', !needsScroll || !canScrollRight);

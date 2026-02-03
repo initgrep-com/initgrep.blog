@@ -1,57 +1,55 @@
 all:
   type: all
   title: Home
-  icon: far fa-newspaper
+  icon: newspaper
   link: /
 home:
   type: home
   title: Home
-  icon: far fa-newspaper
-  link: /  
+  icon: newspaper
+  link: /
 java:
   type: java
   title: Java
-  icon: fab fa-java
+  icon: coffee
   link: /posts/java
 jpa:
   type: jpa
   title: JPA
-  icon: fas fa-cube
+  icon: database
   link: /posts/java/jpa
 spring:
   type: spring
   title: Spring
-  icon: fas fa-seedling
+  icon: sprout
   link: /posts/java/spring
 javascript:
   type: javascript
   title: JavaScript
-  icon: fab fa-js-square
+  icon: braces
   link: /posts/javascript
 react:
   type: react
   title: react
-  icon: fab fa-react
+  icon: atom
   link: /posts/javascript/react
 angular:
   type: angular
   title: Angular
-  icon: fab fa-angular
+  icon: triangle
   link: /posts/javascript/angular
 angularjs:
   type: angularjs
   title: AngularJs
-  icon: fab fa-angular
+  icon: triangle
   link: /posts/javascript/angularjs
 typescript:
   type: typescript
   title: Typescript
-  icon: fab fa-js-square
+  icon: file-code-2
   link: /posts/typescript
 Design-pattern:
   type: Design-pattern
   title: Design Patterns
-  icon: fas fa-paint-roller
+  icon: puzzle
   link: /posts/javascript/design-patterns
-
-

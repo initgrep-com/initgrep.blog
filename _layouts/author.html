@@ -5,7 +5,7 @@ layout: html_minifier
 {% include head.html %}
 {% include header.html %}
 
-<main class="max-w-4xl mx-auto pb-8">
+<main class="max-w-4xl mx-auto pb-8 flex-grow w-full">
     <div class="px-4 py-8">
         <div class="flex flex-col items-center text-center">
             {% if page.image %}
@@ -23,17 +23,17 @@ layout: html_minifier
             <div class="flex gap-3 mt-4">
                 {% if page.github %}
                 <a href="https://github.com/{{ page.github }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i class="fab fa-github text-lg"></i>
+                    <i data-lucide="github" class="w-5 h-5"></i>
                 </a>
                 {% endif %}
                 {% if page.twitter %}
                 <a href="https://twitter.com/{{ page.twitter }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i class="fab fa-twitter text-lg"></i>
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
                 </a>
                 {% endif %}
                 {% if page.facebook %}
                 <a href="https://facebook.com/{{ page.facebook }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i class="fab fa-facebook text-lg"></i>
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
                 </a>
                 {% endif %}
             </div>

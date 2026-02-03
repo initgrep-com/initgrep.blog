@@ -100,6 +100,10 @@ function init() {
     checkVersion();
     loadTheme();
     initSearchShortcut();
+    // Initialize Lucide icons (replaces <i data-lucide="..."> with SVGs)
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
 }
 
 // Make setTheme available globally for the theme dropdown

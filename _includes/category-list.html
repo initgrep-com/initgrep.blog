@@ -22,7 +22,7 @@
         <a href="{{ site.baseurl }}{{ category.link }}"
            class="flex items-center gap-4 p-3 rounded-xl bg-base-200 hover:bg-base-300 transition-colors group">
             <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <i class="{{ category.icon }} text-xl"></i>
+                <i data-lucide="{{ category.icon }}" class="w-5 h-5"></i>
             </div>
             <div class="flex-1">
                 <h3 class="font-semibold text-base-content group-hover:text-primary transition-colors">
@@ -30,7 +30,7 @@
                 </h3>
                 <p class="text-sm text-base-content/60">{{ postCount }} articles</p>
             </div>
-            <i class="fas fa-chevron-right text-base-content/40 group-hover:text-primary transition-colors"></i>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-base-content/40 group-hover:text-primary transition-colors"></i>
         </a>
         {% endunless %}
         {% endfor %}
