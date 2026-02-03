@@ -1,0 +1,50 @@
+---
+layout: html_minifier
+---
+
+{% include v3/head.html %}
+{% include v3/header.html %}
+
+<main class="max-w-4xl mx-auto pb-8">
+    <div class="px-4 py-8">
+        <div class="flex flex-col items-center text-center">
+            {% if page.image %}
+            <img src="{{ site.baseurl }}{{ page.image }}"
+                 alt="{{ page.name }}"
+                 class="w-24 h-24 rounded-full object-cover mb-4" />
+            {% endif %}
+
+            <h1 class="text-3xl font-bold mb-2">{{ page.name }}</h1>
+
+            {% if page.aboutMe %}
+            <p class="text-base-content/70 max-w-xl">{{ page.aboutMe }}</p>
+            {% endif %}
+
+            <div class="flex gap-3 mt-4">
+                {% if page.github %}
+                <a href="https://github.com/{{ page.github }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
+                    <i class="fab fa-github text-lg"></i>
+                </a>
+                {% endif %}
+                {% if page.twitter %}
+                <a href="https://twitter.com/{{ page.twitter }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
+                    <i class="fab fa-twitter text-lg"></i>
+                </a>
+                {% endif %}
+                {% if page.facebook %}
+                <a href="https://facebook.com/{{ page.facebook }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
+                    <i class="fab fa-facebook text-lg"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        {{ content }}
+    </div>
+</main>
+
+{% include v3/search-modal.html %}
+{% include v3/footer.html %}
+</body>
+
+</html>

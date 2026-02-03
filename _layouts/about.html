@@ -1,0 +1,63 @@
+---
+layout: html_minifier
+---
+
+{% include v3/head.html %}
+{% include v3/header.html %}
+
+<main class="max-w-4xl mx-auto pb-8">
+    <div class="px-4 py-8">
+        <div class="flex flex-col items-center text-center mb-8">
+            {% if page.logo %}
+            <img src="{{ site.baseurl }}{{ page.logo }}"
+                 alt="{{ site.name }}"
+                 class="w-24 h-24 rounded-2xl object-cover mb-4" />
+            {% endif %}
+
+            <h1 class="text-3xl font-bold mb-2">{{ site.name }}</h1>
+
+            {% if page.motive %}
+            <p class="text-primary font-medium">{{ page.motive }}</p>
+            {% endif %}
+        </div>
+
+        {% if page.about %}
+        <div class="prose max-w-xl mx-auto mb-8 text-center">
+            <p>{{ page.about }}</p>
+        </div>
+        {% endif %}
+
+        {% if page.inspiration %}
+        <div class="bg-base-200 rounded-xl p-6 max-w-xl mx-auto mb-8">
+            <h2 class="font-bold mb-2">The Story</h2>
+            <p class="text-base-content/70">{{ page.inspiration }}</p>
+        </div>
+        {% endif %}
+
+        <div class="flex gap-3 justify-center">
+            {% if page.twitter %}
+            <a href="https://twitter.com/{{ page.twitter }}" target="_blank" class="btn btn-ghost btn-circle">
+                <i class="fab fa-twitter text-lg"></i>
+            </a>
+            {% endif %}
+            {% if page.facebook %}
+            <a href="https://facebook.com/{{ page.facebook }}" target="_blank" class="btn btn-ghost btn-circle">
+                <i class="fab fa-facebook text-lg"></i>
+            </a>
+            {% endif %}
+            {% if page.github %}
+            <a href="https://github.com/{{ page.github }}" target="_blank" class="btn btn-ghost btn-circle">
+                <i class="fab fa-github text-lg"></i>
+            </a>
+            {% endif %}
+        </div>
+
+        {{ content }}
+    </div>
+</main>
+
+{% include v3/search-modal.html %}
+{% include v3/footer.html %}
+</body>
+
+</html>
