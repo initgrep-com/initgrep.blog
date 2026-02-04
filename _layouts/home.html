@@ -11,72 +11,58 @@ layout: html_minifier
 
     <!-- Latest Posts Section -->
     <div class="px-4 py-6">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold">Latest Posts</h2>
-        </div>
+        <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-4">Latest Posts</p>
 
         {% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
 
         <!-- Responsive Post Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {% for post in sortedPosts offset:1 limit:9 %}
-                <!-- Mobile: Compact Title Card -->
+                <!-- Mobile: Compact Card -->
                 <div class="sm:hidden">
-                    <a href="{{ site.baseurl }}{{ post.url }}"
-                       class="block p-4 rounded-xl bg-base-200 hover:bg-base-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group">
-                        <div class="flex items-start gap-3">
-                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                <i data-lucide="{{ site.data.categories[post.category].icon }}" class="w-4 h-4 text-primary"></i>
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="card card-side bg-base-100 shadow-sm group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200">
+                        <div class="card-body p-3 gap-1">
+                            <div class="flex items-center gap-2 text-xs text-base-content/60">
+                                <span class="badge badge-ghost badge-xs gap-1">
+                                    <i data-lucide="{{ site.data.categories[post.category].icon }}" class="w-2.5 h-2.5"></i>
+                                    {{ post.category }}
+                                </span>
+                                <span>{% include relative-date.html date=post.date %}</span>
                             </div>
-                            <div class="flex-1 min-w-0">
-                                <h3 class="font-semibold text-base-content group-hover:text-primary transition-colors line-clamp-2">
-                                    {{ post.title }}
-                                </h3>
-                                <p class="text-xs text-base-content/50 mt-1">
-                                    {{ post.date | date: '%b %d, %Y' }} · {{ post.category }}
-                                </p>
-                            </div>
+                            <h3 class="card-title text-sm line-clamp-2 group-hover:text-primary transition-colors duration-200">{{ post.title }}</h3>
                         </div>
                     </a>
                 </div>
 
-                <!-- Tablet/Desktop: Image Card with animations -->
+                <!-- Tablet/Desktop: Image Card -->
                 <div class="hidden sm:block">
-                    <div class="card bg-base-100 shadow-md overflow-hidden group cursor-pointer
-                                transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02]"
-                         onclick="window.location='{{ site.baseurl }}{{ post.url }}'">
+                    <a href="{{ site.baseurl }}{{ post.url }}" class="card bg-base-100 shadow-sm overflow-hidden group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200 hover:scale-[1.02]">
                         <figure class="aspect-video overflow-hidden">
                             <img src="{{ site.baseurl }}{{ post.image }}"
                                  alt="{{ post.title }}"
-                                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                 class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
                         </figure>
                         <div class="card-body p-4">
-                            <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
-                                <span class="badge badge-ghost badge-sm transition-colors group-hover:badge-primary gap-1">
+                            <div class="flex items-center gap-2 text-xs text-base-content/60 mb-1">
+                                <span class="badge badge-ghost badge-sm gap-1">
                                     <i data-lucide="{{ site.data.categories[post.category].icon }}" class="w-3 h-3"></i>
                                     {{ post.category }}
                                 </span>
-                                <span>{{ post.date | date: '%b %d, %Y' }}</span>
+                                <span>{% include relative-date.html date=post.date %}</span>
                             </div>
-                            <h3 class="card-title text-base line-clamp-2 group-hover:text-primary transition-colors">
+                            <h3 class="card-title text-base line-clamp-2 group-hover:text-primary transition-colors duration-200">
                                 {{ post.title }}
                             </h3>
                             <p class="text-sm text-base-content/70 line-clamp-2 mt-1">{{ post.meta }}</p>
-
-                            <!-- Read more indicator -->
-                            <div class="flex items-center gap-1 text-primary text-sm font-medium mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <span>Read article</span>
-                                <i data-lucide="arrow-right" class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform"></i>
-                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>
 
         <!-- View All Posts Link -->
         <div class="text-center mt-8">
-            <a href="/posts" class="btn btn-outline btn-primary gap-2 hover:scale-105 transition-transform">
+            <a href="/posts" class="btn btn-outline btn-primary gap-2">
                 <span>View All Posts</span>
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </a>

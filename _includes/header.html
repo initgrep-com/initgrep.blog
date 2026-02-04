@@ -20,15 +20,15 @@
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm" aria-label="Change theme">
                     <i data-lucide="palette" class="w-5 h-5"></i>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu bg-base-200 rounded-box z-50 w-40 p-2 shadow-lg mt-2">
-                    <li><a onclick="setTheme('light')" class="flex items-center gap-2">
-                        <i data-lucide="sun" class="w-4 h-4"></i> Light
+                <ul tabindex="0" class="dropdown-content menu rounded-box z-50 w-44 p-2 gap-1 shadow-lg mt-2 bg-base-200">
+                    <li data-theme="light" class="rounded-lg"><a onclick="setTheme('light')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
+                        <i data-lucide="sun" class="w-4 h-4 text-primary"></i> Light
                     </a></li>
-                    <li><a onclick="setTheme('retro')" class="flex items-center gap-2">
-                        <i data-lucide="clock-3" class="w-4 h-4"></i> Retro
+                    <li data-theme="retro" class="rounded-lg"><a onclick="setTheme('retro')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
+                        <i data-lucide="clock-3" class="w-4 h-4 text-primary"></i> Retro
                     </a></li>
-                    <li><a onclick="setTheme('forest')" class="flex items-center gap-2">
-                        <i data-lucide="tree-pine" class="w-4 h-4"></i> Forest
+                    <li data-theme="forest" class="rounded-lg"><a onclick="setTheme('forest')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
+                        <i data-lucide="tree-pine" class="w-4 h-4 text-primary"></i> Forest
                     </a></li>
                 </ul>
             </div>

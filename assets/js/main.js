@@ -94,12 +94,43 @@ function checkVersion() {
 }
 
 /**
+ * Code block copy buttons
+ */
+var ICON_CLIPBOARD = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>';
+var ICON_CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+
+function initCodeCopyButtons() {
+    // Only target div.highlight, not pre.highlight (Rouge nests both)
+    document.querySelectorAll('div.highlight').forEach(function(block) {
+        if (block.querySelector('.code-copy-btn')) return;
+        var btn = document.createElement('button');
+        btn.className = 'code-copy-btn';
+        btn.innerHTML = ICON_CLIPBOARD;
+        btn.setAttribute('aria-label', 'Copy code');
+        btn.addEventListener('click', function() {
+            var code = block.querySelector('code');
+            if (!code) return;
+            navigator.clipboard.writeText(code.textContent).then(function() {
+                btn.innerHTML = ICON_CHECK + ' <span>Copied!</span>';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.innerHTML = ICON_CLIPBOARD;
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+        block.appendChild(btn);
+    });
+}
+
+/**
  * Initialize all functionality
  */
 function init() {
     checkVersion();
     loadTheme();
     initSearchShortcut();
+    initCodeCopyButtons();
     // Initialize Lucide icons (replaces <i data-lucide="..."> with SVGs)
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();

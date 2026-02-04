@@ -142,15 +142,26 @@
 ## Upcoming Tasks
 
 - [x] Replace FontAwesome icons with Lucide icons
-- [ ] Home page improvements
-- [ ] Category page improvements
-- [ ] Main content/article page improvements
+- [x] Home page improvements
+  - [x] Card hover: added `hover:bg-base-200` for dark theme visibility (home, category, post-card)
+  - [x] DaisyUI audit: all home page components use DaisyUI classes correctly
+  - [x] Theme dropdown: color swatches preview each theme's primary/secondary/accent colors
+- [x] Category page improvements
+  - [x] Dynamic post count subtitle ("14 articles") replacing generic text
+  - [x] "Latest Posts" label matches "Featured" label styling
+- [x] Main content/article page improvements
+  - [x] Font system: Inter (body) + JetBrains Mono (code) via Google Fonts
+  - [x] Article typography: custom `.article-content` CSS (prose plugin not supported on v4 CDN)
+  - [x] Content elements styled: headings, links, lists, blockquotes, tables, images, hr, inline code
+  - [x] Theme-aware syntax highlighting: light (GitHub-style) + dark (GitHub Dark for forest theme)
+  - [x] Code block copy button: appears on hover, "Copied!" feedback
+  - [x] Ads/Disqus: working as expected (guarded by `env: production` and `comments: true`)
 
 ---
 
 ## Notes
 
-Last updated: 2026-02-03
+Last updated: 2026-02-04
 
 ### Migration Summary
 - Created all components with DaisyUI styling
