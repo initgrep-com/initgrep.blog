@@ -1,6 +1,10 @@
 #syntax
 markdown: kramdown
 highlighter: rouge
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
 #dir and path 
 #baseurl: /mylog
 permalink: /:path

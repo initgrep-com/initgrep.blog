@@ -54,6 +54,13 @@
 
     <!-- Custom Styles -->
     <style>
+        /* Font: also set via --default-font-family for DaisyUI base styles */
+        :root {
+            --default-font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+            --default-mono-font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+        code, pre, .highlight { font-family: var(--default-mono-font-family); }
+
         /* Hide scrollbars but allow scrolling */
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-none::-webkit-scrollbar { display: none; }
@@ -69,19 +76,19 @@
         @media (min-width: 400px) { .xs\:inline { display: inline !important; } }
 
         /* ── Article content typography ── */
-        .article-content { font-size: 1.125rem; line-height: 1.8; color: oklch(var(--bc) / 0.9); }
+        .article-content { font-size: 1.125rem; line-height: 1.8; color: color-mix(in oklch, var(--color-base-content) 90%, transparent); }
         .article-content h1, .article-content h2, .article-content h3,
         .article-content h4, .article-content h5, .article-content h6 {
-            color: oklch(var(--bc)); font-weight: 700; line-height: 1.3; margin-top: 2em; margin-bottom: 0.75em;
+            color: var(--color-base-content); font-weight: 700; line-height: 1.3; margin-top: 2em; margin-bottom: 0.75em;
         }
         .article-content h1 { font-size: 2rem; }
-        .article-content h2 { font-size: 1.5rem; border-bottom: 1px solid oklch(var(--bc) / 0.1); padding-bottom: 0.5rem; }
+        .article-content h2 { font-size: 1.5rem; border-bottom: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent); padding-bottom: 0.5rem; }
         .article-content h3 { font-size: 1.25rem; }
         .article-content h4 { font-size: 1.125rem; }
         .article-content p { margin-bottom: 1.25em; }
-        .article-content a { color: oklch(var(--p)); text-decoration: none; font-weight: 500; }
+        .article-content a { color: var(--color-primary); text-decoration: none; font-weight: 500; }
         .article-content a:hover { text-decoration: underline; }
-        .article-content strong { color: oklch(var(--bc)); font-weight: 600; }
+        .article-content strong { color: var(--color-base-content); font-weight: 600; }
         .article-content em { font-style: italic; }
         .article-content ul, .article-content ol { margin-bottom: 1.25em; padding-left: 1.5em; }
         .article-content ul { list-style-type: disc; }
@@ -89,25 +96,25 @@
         .article-content li { margin-bottom: 0.5em; }
         .article-content li ul, .article-content li ol { margin-top: 0.5em; margin-bottom: 0; }
         .article-content blockquote {
-            border-left: 4px solid oklch(var(--p));
+            border-left: 4px solid var(--color-primary);
             padding: 0.75em 1.25em; margin: 1.5em 0;
-            background: oklch(var(--b2)); border-radius: 0 0.5rem 0.5rem 0;
-            color: oklch(var(--bc) / 0.85); font-style: italic;
+            background: var(--color-base-200); border-radius: 0 0.5rem 0.5rem 0;
+            color: color-mix(in oklch, var(--color-base-content) 85%, transparent); font-style: italic;
         }
         .article-content blockquote p:last-child { margin-bottom: 0; }
         .article-content img {
             max-width: 100%; height: auto; border-radius: 0.75rem;
-            margin: 1.5em 0; box-shadow: 0 1px 3px oklch(var(--bc) / 0.1);
+            margin: 1.5em 0; box-shadow: 0 1px 3px color-mix(in oklch, var(--color-base-content) 10%, transparent);
         }
         .article-content figure { margin: 1.5em 0; }
-        .article-content figcaption { text-align: center; font-size: 0.875rem; color: oklch(var(--bc) / 0.6); margin-top: 0.5em; }
+        .article-content figcaption { text-align: center; font-size: 0.875rem; color: color-mix(in oklch, var(--color-base-content) 60%, transparent); margin-top: 0.5em; }
         .article-content table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95rem; }
-        .article-content th { background: oklch(var(--b2)); font-weight: 600; text-align: left; }
-        .article-content th, .article-content td { padding: 0.75em 1em; border: 1px solid oklch(var(--bc) / 0.1); }
-        .article-content tr:nth-child(even) { background: oklch(var(--b2) / 0.5); }
-        .article-content hr { border: none; border-top: 1px solid oklch(var(--bc) / 0.1); margin: 2em 0; }
+        .article-content table th { background: var(--color-base-200); font-weight: 600; text-align: left; }
+        .article-content table th, .article-content table td { padding: 0.75em 1em; border: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent); }
+        .article-content table tr:nth-child(even) { background: color-mix(in oklch, var(--color-base-200) 50%, transparent); }
+        .article-content hr { border: none; border-top: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent); margin: 2em 0; }
         .article-content code:not(pre code) {
-            background: oklch(var(--b2)); color: oklch(var(--p));
+            background: var(--color-base-200); color: var(--color-primary);
             padding: 0.15em 0.4em; border-radius: 0.25rem; font-size: 0.85em; font-weight: 500;
         }
         .article-content pre { margin: 1.5em 0; }
@@ -116,16 +123,17 @@
         /* ── Code block copy button ── */
         .code-copy-btn {
             position: absolute; top: 0.5rem; right: 0.5rem; z-index: 1;
-            display: flex; align-items: center; gap: 0.25rem;
-            background: oklch(var(--b1) / 0.8); color: oklch(var(--bc) / 0.5);
-            border: 1px solid oklch(var(--bc) / 0.1); border-radius: 0.375rem;
-            padding: 0.3rem 0.5rem; font-size: 0.7rem; cursor: pointer;
+            display: flex; align-items: center; gap: 0.375rem;
+            background: color-mix(in oklch, var(--color-base-100) 80%, transparent);
+            color: color-mix(in oklch, var(--color-base-content) 50%, transparent);
+            border: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent);
+            border-radius: 0.5rem;
+            padding: 0.4rem 0.75rem; font-size: 0.8rem; cursor: pointer;
             transition: all 0.2s;
-            font-family: 'Inter', ui-sans-serif, sans-serif;
         }
-        .code-copy-btn:hover { background: oklch(var(--b1)); color: oklch(var(--bc) / 0.8); }
-        .code-copy-btn.copied { color: oklch(var(--su, 0.7 0.2 145)); }
-        .code-copy-btn svg { width: 14px; height: 14px; }
+        .code-copy-btn:hover { background: var(--color-base-100); color: color-mix(in oklch, var(--color-base-content) 80%, transparent); }
+        .code-copy-btn.copied { color: var(--color-success); }
+        .code-copy-btn svg { width: 16px; height: 16px; }
     </style>
 
     <!-- Theme initialization (prevent flash) -->

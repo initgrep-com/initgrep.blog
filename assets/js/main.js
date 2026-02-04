@@ -7,6 +7,13 @@ const THEMES = ['light', 'retro', 'forest'];
 const DEFAULT_THEME = 'light';
 const VERSION = '3.0.0';
 
+// Map themes to Lucide icon names
+var THEME_ICONS = {
+    'light': 'sun',
+    'retro': 'sun-dim',
+    'forest': 'moon'
+};
+
 /**
  * Theme Management
  */
@@ -17,6 +24,7 @@ function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     updateThemeColor();
+    updateThemeIcon();
 }
 
 function loadTheme() {
@@ -27,6 +35,24 @@ function loadTheme() {
         document.documentElement.setAttribute('data-theme', DEFAULT_THEME);
     }
     updateThemeColor();
+    updateThemeIcon();
+}
+
+function updateThemeIcon() {
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    var theme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
+    var iconName = THEME_ICONS[theme] || 'sun';
+    var iconEl = btn.querySelector('svg, i');
+    if (iconEl) {
+        var newIcon = document.createElement('i');
+        newIcon.setAttribute('data-lucide', iconName);
+        newIcon.className = 'w-5 h-5';
+        iconEl.replaceWith(newIcon);
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons({ nodes: [newIcon] });
+        }
+    }
 }
 
 function updateThemeColor() {
@@ -94,10 +120,28 @@ function checkVersion() {
 }
 
 /**
+ * Code block line numbers (CSS counter approach)
+ */
+function initLineNumbers() {
+    document.querySelectorAll('div.highlight pre code').forEach(function(codeEl) {
+        if (codeEl.querySelector('.code-line')) return; // already processed
+
+        var html = codeEl.innerHTML;
+        // Remove trailing newline if present (Rouge adds one)
+        if (html.endsWith('\n')) html = html.slice(0, -1);
+
+        var lines = html.split('\n');
+        codeEl.innerHTML = lines.map(function(line) {
+            return '<span class="code-line">' + (line || ' ') + '</span>';
+        }).join('');
+    });
+}
+
+/**
  * Code block copy buttons
  */
-var ICON_CLIPBOARD = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>';
-var ICON_CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+var ICON_CLIPBOARD = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>';
+var ICON_CHECK = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 
 function initCodeCopyButtons() {
     // Only target div.highlight, not pre.highlight (Rouge nests both)
@@ -108,9 +152,9 @@ function initCodeCopyButtons() {
         btn.innerHTML = ICON_CLIPBOARD;
         btn.setAttribute('aria-label', 'Copy code');
         btn.addEventListener('click', function() {
-            var code = block.querySelector('code');
-            if (!code) return;
-            navigator.clipboard.writeText(code.textContent).then(function() {
+            var codeEl = block.querySelector('code');
+            if (!codeEl) return;
+            navigator.clipboard.writeText(codeEl.textContent).then(function() {
                 btn.innerHTML = ICON_CHECK + ' <span>Copied!</span>';
                 btn.classList.add('copied');
                 setTimeout(function() {
@@ -130,6 +174,7 @@ function init() {
     checkVersion();
     loadTheme();
     initSearchShortcut();
+    initLineNumbers();
     initCodeCopyButtons();
     // Initialize Lucide icons (replaces <i data-lucide="..."> with SVGs)
     if (typeof lucide !== 'undefined') {

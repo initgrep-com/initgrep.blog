@@ -17,18 +17,27 @@
 
             <!-- Theme Dropdown -->
             <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm" aria-label="Change theme">
-                    <i data-lucide="palette" class="w-5 h-5"></i>
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle btn-sm" id="themeBtn" aria-label="Change theme">
+                    <i data-lucide="sun" class="w-5 h-5"></i>
                 </div>
-                <ul tabindex="0" class="dropdown-content menu rounded-box z-50 w-44 p-2 gap-1 shadow-lg mt-2 bg-base-200">
-                    <li data-theme="light" class="rounded-lg"><a onclick="setTheme('light')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
-                        <i data-lucide="sun" class="w-4 h-4 text-primary"></i> Light
+                <ul tabindex="0" class="dropdown-content menu rounded-box z-50 w-40 p-2 gap-1 shadow-lg mt-2 bg-base-200">
+                    <li><a onclick="setTheme('light')" class="flex items-center gap-3 rounded-lg">
+                        <span data-theme="light" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
+                            <i data-lucide="sun" class="w-4 h-4 text-base-content"></i>
+                        </span>
+                        <span>Light</span>
                     </a></li>
-                    <li data-theme="retro" class="rounded-lg"><a onclick="setTheme('retro')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
-                        <i data-lucide="clock-3" class="w-4 h-4 text-primary"></i> Retro
+                    <li><a onclick="setTheme('retro')" class="flex items-center gap-3 rounded-lg">
+                        <span data-theme="retro" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
+                            <i data-lucide="sun-dim" class="w-4 h-4 text-base-content"></i>
+                        </span>
+                        <span>Dim</span>
                     </a></li>
-                    <li data-theme="forest" class="rounded-lg"><a onclick="setTheme('forest')" class="flex items-center gap-2 bg-base-100 text-base-content hover:bg-base-200">
-                        <i data-lucide="tree-pine" class="w-4 h-4 text-primary"></i> Forest
+                    <li><a onclick="setTheme('forest')" class="flex items-center gap-3 rounded-lg">
+                        <span data-theme="forest" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
+                            <i data-lucide="moon" class="w-4 h-4 text-base-content"></i>
+                        </span>
+                        <span>Dark</span>
                     </a></li>
                 </ul>
             </div>
