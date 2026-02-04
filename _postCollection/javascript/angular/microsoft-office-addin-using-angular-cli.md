@@ -38,10 +38,10 @@ _Please note, It still does not support the `office-addin-debugger` plugin provi
 > I assume you have `node` and `npm` already installed
 
 
-&nbsp;
+
 
 **Let us begin --**
-&nbsp;
+
 ## Generate Office add-in angular app using yeoman generator
 
   Office [official docs](https://docs.microsoft.com/en-us/outlook/add-ins/quick-start?tabs=visual-studio-code) have provided detailed steps. I will only provide concise steps.
@@ -206,11 +206,11 @@ Let's update `tsconfig.app.json` and add the new target under `compilerOptions`.
   "target": "es5"
 ```
 
-&nbsp;
+
 {% include ads/article-ads.html %}
 
 
-&nbsp;
+
 
 ## Add the missing dependencies and dev-dependencies using npm
 

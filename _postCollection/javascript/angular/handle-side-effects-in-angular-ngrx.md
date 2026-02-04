@@ -19,7 +19,7 @@ categories:
   - all
 ---
 
-&nbsp;
+
 
 ##### Table of contents
 
@@ -39,7 +39,7 @@ categories:
     
     
 
-&nbsp;
+
 
 ## what is a Side-effect?
 
@@ -55,7 +55,7 @@ A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29)
 
 
 
-&nbsp;
+
 
 ## Why NgRx Effects?
 
@@ -77,7 +77,7 @@ It works great... But if you notice, the component is tighly coupled with the se
 
 The very first **disadvantage** of this pattern you would come across is ***components are hard to test since they are dependent on many services***. You would also notice that It is almost ***impossible to reuse the components***.
 
-&nbsp;
+
 
 ***So what is the alternative approach?***...
 
@@ -97,11 +97,11 @@ We discussed the service based approach above. Let's see a comparison between th
 
 You might notice fewer elements in play during service based design but don't let it fool you. It is better to have more elements in application than to have a lousy app.
 
-&nbsp;
+
 
 {% include ads/article-ads.html %}
 
-&nbsp;
+
 
 ### Service based design
 
@@ -228,7 +228,7 @@ Here is how NgRx effects will change it -
 
 In contrast with the service-based approach isolating the side-effects using NgRx Effects, the component is not concerned about how the data is loaded. Besides allowing a component to be pure, It also makes testing components easier and increases the chances of reusability.
 
-&nbsp;
+
 
 ## NgRx Effects
 
@@ -272,7 +272,7 @@ export class AppRemoteService {
 }
 ```
 
-&nbsp;
+
 
 ## Implementation
 
@@ -400,11 +400,11 @@ Below is the final version *`loadUsers$`* effect -
 
 *Similarly we can create `loadPosts$` effect. which is mapped to `loadPosts action` and return `addPosts` action*
 
-&nbsp;
+
 
 {% include ads/article-ads.html %}
 
-&nbsp;
+
 
 ### Effects that require input state.
 
@@ -464,7 +464,7 @@ Lets say, the effect requires latest number of posts, we will use `selectPosts` 
 )
 ```
 
-&nbsp;
+
 
 ## Register the effects
 
