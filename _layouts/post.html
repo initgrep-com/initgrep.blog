@@ -13,7 +13,6 @@ layout: html_minifier
             <ul>
                 <li><a href="/" class="text-primary">Home</a></li>
                 <li><a href="{{ site.baseurl }}{{ site.data.categories[page.category].link }}" class="text-primary">{{ page.category }}</a></li>
-                <li class="text-base-content/60">Article</li>
             </ul>
         </div>
 
@@ -34,15 +33,6 @@ layout: html_minifier
 
         <!-- Title -->
         <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
-
-        <!-- Featured Image -->
-        {% if page.image %}
-        <figure class="mb-8 rounded-xl overflow-hidden">
-            <img src="{{ site.baseurl }}{{ page.image }}"
-                 alt="{{ page.title }}"
-                 class="w-full aspect-video object-cover" />
-        </figure>
-        {% endif %}
 
         <!-- Article Content -->
         <div class="article-content">
