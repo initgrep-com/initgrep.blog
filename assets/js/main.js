@@ -80,27 +80,131 @@ function updateThemeColor() {
 }
 
 /**
- * Search Modal (keyboard shortcut)
+ * Search
  */
-function initSearchShortcut() {
-    document.addEventListener('keydown', (event) => {
-        // Cmd/Ctrl + K to open search
-        if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
-            event.preventDefault();
-            const modal = document.getElementById('searchModal');
-            if (modal) {
-                modal.showModal();
-            }
+var searchIndex = null;
+var searchActiveIndex = -1;
+
+function openSearch() {
+    var overlay = document.getElementById('searchOverlay');
+    if (!overlay) return;
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    var input = document.getElementById('searchInput');
+    if (input) { input.value = ''; input.focus(); }
+    document.getElementById('searchResults').innerHTML = '';
+    searchActiveIndex = -1;
+    loadSearchIndex();
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+function closeSearch() {
+    var overlay = document.getElementById('searchOverlay');
+    if (!overlay) return;
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+function loadSearchIndex() {
+    if (searchIndex) return;
+    fetch('/search.json')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { searchIndex = data; })
+        .catch(function() { searchIndex = []; });
+}
+
+function performSearch(query) {
+    if (!searchIndex || !query.trim()) {
+        document.getElementById('searchResults').innerHTML = '';
+        searchActiveIndex = -1;
+        return;
+    }
+    var terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    var results = searchIndex.filter(function(post) {
+        var haystack = (post.title + ' ' + post.meta + ' ' + post.category + ' ' + (post.categories || []).join(' ')).toLowerCase();
+        return terms.every(function(t) { return haystack.indexOf(t) !== -1; });
+    });
+    renderResults(results, query);
+}
+
+function renderResults(results, query) {
+    var container = document.getElementById('searchResults');
+    if (!results.length) {
+        container.innerHTML = '<div class="px-4 py-8 text-center text-base-content/50 text-sm">No results found</div>';
+        searchActiveIndex = -1;
+        return;
+    }
+    container.innerHTML = results.slice(0, 10).map(function(post, i) {
+        return '<a href="' + post.url + '" class="search-result flex items-start gap-3 px-4 py-3 hover:bg-base-200 transition-colors cursor-pointer border-b border-base-200 last:border-0" data-index="' + i + '">'
+            + '<i data-lucide="file-text" class="w-4 h-4 mt-0.5 text-base-content/40 flex-shrink-0"></i>'
+            + '<div class="min-w-0">'
+            + '<div class="text-xs text-base-content/50 mb-0.5">' + escapeHtml(post.category || '') + '</div>'
+            + '<div class="font-medium text-sm text-base-content line-clamp-1">' + highlightMatch(post.title, query) + '</div>'
+            + '<div class="text-xs text-base-content/60 line-clamp-1 mt-0.5">' + escapeHtml(post.meta || '') + '</div>'
+            + '</div>'
+            + '</a>';
+    }).join('');
+    searchActiveIndex = -1;
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+}
+
+function highlightMatch(text, query) {
+    var safe = escapeHtml(text);
+    var terms = query.toLowerCase().split(/\s+/).filter(Boolean);
+    terms.forEach(function(term) {
+        var regex = new RegExp('(' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        safe = safe.replace(regex, '<mark class="bg-primary/20 text-base-content rounded px-0.5">$1</mark>');
+    });
+    return safe;
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function navigateResults(direction) {
+    var items = document.querySelectorAll('.search-result');
+    if (!items.length) return;
+    items.forEach(function(el) { el.classList.remove('bg-base-200'); });
+    searchActiveIndex += direction;
+    if (searchActiveIndex < 0) searchActiveIndex = items.length - 1;
+    if (searchActiveIndex >= items.length) searchActiveIndex = 0;
+    items[searchActiveIndex].classList.add('bg-base-200');
+    items[searchActiveIndex].scrollIntoView({ block: 'nearest' });
+}
+
+function selectResult() {
+    var items = document.querySelectorAll('.search-result');
+    if (searchActiveIndex >= 0 && searchActiveIndex < items.length) {
+        window.location.href = items[searchActiveIndex].getAttribute('href');
+    }
+}
+
+function initSearch() {
+    document.addEventListener('keydown', function(e) {
+        var overlay = document.getElementById('searchOverlay');
+        var isOpen = overlay && !overlay.classList.contains('hidden');
+
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            isOpen ? closeSearch() : openSearch();
+            return;
         }
 
-        // Escape to close modals (handled by DaisyUI, but adding for safety)
-        if (event.key === 'Escape') {
-            const modal = document.getElementById('searchModal');
-            if (modal && modal.open) {
-                modal.close();
-            }
-        }
+        if (!isOpen) return;
+
+        if (e.key === 'Escape') { closeSearch(); return; }
+        if (e.key === 'ArrowDown') { e.preventDefault(); navigateResults(1); return; }
+        if (e.key === 'ArrowUp') { e.preventDefault(); navigateResults(-1); return; }
+        if (e.key === 'Enter') { e.preventDefault(); selectResult(); return; }
     });
+
+    var input = document.getElementById('searchInput');
+    if (input) {
+        input.addEventListener('input', function() { performSearch(this.value); });
+    }
 }
 
 /**
@@ -173,7 +277,7 @@ function initCodeCopyButtons() {
 function init() {
     checkVersion();
     loadTheme();
-    initSearchShortcut();
+    initSearch();
     initLineNumbers();
     initCodeCopyButtons();
     // Initialize Lucide icons (replaces <i data-lucide="..."> with SVGs)
@@ -182,8 +286,10 @@ function init() {
     }
 }
 
-// Make setTheme available globally for the theme dropdown
+// Make functions available globally for onclick handlers
 window.setTheme = setTheme;
+window.openSearch = openSearch;
+window.closeSearch = closeSearch;
 
 // Run on DOM ready
 if (document.readyState === 'loading') {

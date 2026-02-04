@@ -11,9 +11,11 @@
         <!-- Search + Theme (Right) -->
         <div class="flex items-center gap-2">
             <!-- Search Button -->
-            <button onclick="searchModal.showModal()" class="btn btn-ghost btn-circle btn-sm" aria-label="Search">
-                <i data-lucide="search" class="w-5 h-5"></i>
-            </button>
+            <div class="tooltip tooltip-bottom" data-tip="⌘K">
+                <button onclick="openSearch()" class="btn btn-ghost btn-circle btn-sm" aria-label="Search">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </button>
+            </div>
 
             <!-- Theme Dropdown -->
             <div class="dropdown dropdown-end">
