@@ -54,16 +54,16 @@ firebase.auth().signInWithCustomToken(token)
   });
 ```
 
-&nbsp;&nbsp;
+
 
 ## Steps to Implement Firebase custom tokens
 
-&nbsp;
+
 ### Initialize a new Spring boot security application
 
 I have already created a post that explains [how to create an in-memory username and password authentication](/posts/java/spring/Spring-Security-in-memory-auth). That is all we need.
 
-&nbsp;
+
 ### Add Firebase Admin SDK to the project
 
 You can use one of the below depending on the build system.
@@ -86,7 +86,7 @@ dependencies {
 </dependency>
 ```
 
-&nbsp;
+
 ### Create a service account with firebase
 
 You would require a service account to proceed further. I would suggest checking out this [document](https://firebase.google.com/docs/admin/setup) to set up a service account.
@@ -98,7 +98,7 @@ You have two options to authorize via service accounts —
 - Add an environment variable `GOOGLE_APPLICATION_CREDENTIALS` and point to the JSON file. This is recommended approach and we will be using the same one.
 - Explicitly specify the path to the JSON file.
 
-&nbsp;
+
 ### Initialize the Firebase Admin SDK
 
 We will create a Spring configuration bean and initialize the firebase Admin SDK in `@PostConstruct`.
@@ -125,7 +125,7 @@ public class FirebaseConfig {
 }
 ```
 
-&nbsp;
+
 ### Create the custom token
 
 We will create a rest API that will return a token minted via the `FirebaseAuth` Object.
@@ -166,7 +166,7 @@ public class TokenController {
 }
 ```
 
-&nbsp;
+
 ### Finally — Configure Spring Security
 
 The API created to fetch the token should be secured so that only logged in user should be able to fetch a new token.
@@ -205,7 +205,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-&nbsp;
+
 ## Usage:
 
 Assuming the authentication server is at  [localhost:8080](http://localhost:8080). we can use the below request to fetch the token.

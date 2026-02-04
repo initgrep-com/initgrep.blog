@@ -16,7 +16,7 @@ categories:
     - java
     - all
 ---
- &nbsp;
+ 
 
 Java 17, the latest version of the popular programming language, brings a host of exciting new features and enhancements. In this blog post, we will explore some of the key additions in Java 17 and provide code examples to demonstrate their usage.
 

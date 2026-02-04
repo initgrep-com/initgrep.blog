@@ -237,9 +237,9 @@ Printer.printDocument("path://to/the/document");
 ```
 
 
-&nbsp;
+
 {% include ads/article-ads.html %}
-&nbsp;
+
 
 #### Generics
 Generics is a facility of generic programming to produce reusable software components.

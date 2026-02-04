@@ -17,7 +17,7 @@ categories:
     - javascript
     - all
 ---
- &nbsp;
+ 
 
 React portals provide a way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. This allows for scenarios where the DOM structure of a parent component may not accommodate the desired rendering behavior for certain child components. One common use case for portals is creating dialogs, such as modal dialogs, in React applications.
 

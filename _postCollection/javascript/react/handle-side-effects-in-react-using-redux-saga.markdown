@@ -18,7 +18,7 @@ categories:
     - typescript
     - all
 ---
- &nbsp;
+ 
 
 Redux-Saga is a middleware library for Redux that makes side effects easier to manage and more efficient to execute. By using Redux-Saga, you can handle asynchronous operations, such as data fetching and impure interactions with the browser and external APIs, in a more organized and maintainable way.
 
@@ -96,7 +96,7 @@ sagaMiddleware.run(rootSaga)
 
 
 ```
- &nbsp;
+ 
 ## Redux Saga Effects.
 Below are the various effects provided by redux saga with the usage. we will also discuss the real world scenarios in the next section.
 
@@ -195,7 +195,7 @@ Below are the various effects provided by redux saga with the usage. we will als
     // Use the selected data in the saga
   }
   ```
- &nbsp;
+ 
 
 ## Real-World Scenarios
 

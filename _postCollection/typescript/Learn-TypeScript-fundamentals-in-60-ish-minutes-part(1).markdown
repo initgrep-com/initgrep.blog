@@ -51,7 +51,7 @@ A few examples below will help you understand the declaration of the variables o
     //Array can also be written as
     let prodcutSizesInInches:Array<number> = [12,24,34]
 ```
-&nbsp;
+
 
 ##### Tuple
  Tuple is an array where the types are already known. The types do not need to be same.
@@ -63,7 +63,7 @@ A few examples below will help you understand the declaration of the variables o
 
     preDefinedTypeTuple = [1,"asd","1",[1,1,1,1]] //error
  ```
- &nbsp;
+ 
 ##### Enum
   Enum is a way of giving names to sets of numeric values. By default, Numeric values start with **0**(Zero). However, it can be preset to any specific value and following values would be an increment of **1**(One). It is also possible to provide manual values to all fields.
 > Name of an enum value can also be looked up by its value
@@ -85,7 +85,7 @@ A few examples below will help you understand the declaration of the variables o
     //find name using the numeric value
     let cityName:string = Cities[10]; //Beijing
 ```
-&nbsp;
+
 ##### Any 
  When the type is unknown or partially known, `Any` can be used.
 It is a way of opting-out of type checking.
@@ -96,13 +96,13 @@ It is a way of opting-out of type checking.
     foo = false // may be a boolean
     foo.callMe(); // may be a object with callMe() method
 ```
-&nbsp;
+
 ##### Void 
 Void is absence of having a type. It is mostly used as a return type for the functions which does not return anything. If a variable has type Void, It can only be assigned `Null` or `undefined`.
 
 **Null** and **undefined** are subtypes of all other types and can be assigned in place of any type. 
 
-&nbsp;
+
 ##### Never
  When the type of the value never occurs, It can be represented by `Never` such as a function which throws an exception and will never return a value.
 
@@ -111,11 +111,11 @@ Void is absence of having a type. It is mostly used as a return type for the fun
       throw new error("error message");
   }
 ```
-&nbsp;
+
 ##### Object
 Object is a type that represents the non-primitive type, i.e. any thing that is not `number, string, boolean, symbol, null, or undefined`.
 
-&nbsp;
+
 ##### Type Assertion 
 It is basically typecasting. It is useful when a developer is sure that this particular variable is of a specific type and compiler is not able to infer the type.
 
@@ -164,7 +164,7 @@ Below is an example of function type declaration and usage.
 ```
 In TypeScript, Every function parameter is required. Although the values could be given as `null` or `undefined`. But it is mandatory to have equal number of arguments given to a function as the number of parameters function expects.
 
-&nbsp;
+
 ##### Optional Parameter
  They are declared by adding a question mark(`?`) to the name of the parameter. Optional parameters must follow the required parameters.
 
@@ -178,7 +178,7 @@ In TypeScript, Every function parameter is required. Although the values could b
 
 ```
 
-&nbsp;
+
 ##### Default Parameters
  Default parameters are assigned a value during function declaration. Default parameters following after all the required parameters are considered optional and can be omitted during the function call. As a result, In the function type, default parameters are mentioned similar as optional parameters. During the function call, if the argument corresponding to the default parameter has an `undefined` value or the argument is not provided, the default value will be considered. Default parameters can be provided in any order. In case, required parameters follow default parameters, function call should explicitly have `undefined` for default parameters.   
 ```js
@@ -192,7 +192,7 @@ In TypeScript, Every function parameter is required. Although the values could b
 ```
 > Trailing default parameters and optional parameter can be omitted from the function type.
 
-&nbsp;
+
 ##### Rest Parameters 
 It is similar to `arguments` in JavaScript and `varargs` in Java.They are represented by preceding ellipsis such as `...restparam`. Rest parameters are treated as the boundless number of parameters. Any number of arguments can be passed to it. You can even pass none. The compiler builds up an array of `arguments` and can be accessed inside the function with the name following ellipsis.
 ```js
@@ -201,7 +201,7 @@ It is similar to `arguments` in JavaScript and `varargs` in Java.They are repres
         return students.join('-');
     }
 ```
-&nbsp;
+
 ##### Function Overloading 
  Unlike Java or C#, where function overloading consists of multiple declarations of the same function with a different number or type of parameters. In TypeScript, the `overload list` is provided. The overload list is the possible number of function variations to be allowed in an overloaded function. The final function declaration contains parameter types and return types of which the overloaded list would make a subset. [Here](https://blog.mariusschulz.com/2016/08/18/function-overloads-in-typescript) is a detailed post.
 
@@ -237,7 +237,7 @@ A simplified way of describing an object would be as following:
     let user:UserType = {name:'irshad',height:198,agee:30};
 ```
 
- &nbsp;
+ 
 ##### Interfaces can represent an object with properties
  
 ```js
@@ -258,7 +258,7 @@ A simplified way of describing an object would be as following:
 ````
  The required parameters should exist and types should match. The compiler does not check for the order of parameters. we will discuss the `optional` and `readOnly` parameters later in the tutorial.
  
-&nbsp;
+
 ##### Interfaces can represent function types
 
 ```js
@@ -284,7 +284,7 @@ A simplified way of describing an object would be as following:
 ```
 For the function types,The compiler considers the order in function parameters. It matches types of one parameter at a time. If the types are not specified in function declaration, the contextual typing of TypeScript can infer the types of arguments during the function call.
 
-&nbsp;
+
 ##### Interfaces can represent Indexable types
 
 Indexable types have *index signatures* which take a form of `a[10]`or `a['ten']` and return a value.  A rule of thumb is indexer type and return type of an indexable type will never change i.e if indexer is of type **X** and its return type is **Y**. It will always remain so. 
@@ -351,7 +351,7 @@ An Object oriented example :)
 
 ```
 
-&nbsp;
+
 ##### Classes implement Interfaces 
 
 Interfaces can be implemented by classes just like in `Java` or `C#`
@@ -379,7 +379,7 @@ Interfaces can be implemented by classes just like in `Java` or `C#`
 
     let bc1 = new BachelorStudents();
 ```
-&nbsp;
+
 ##### Interfaces extend to Interfaces
 
 Interfaces can extend other interfaces and inherit their properties or methods. The class implementing the last interface has to implement methods present in the interfaces to which the current interfaces `extends` to.
@@ -408,7 +408,7 @@ Interfaces can extend other interfaces and inherit their properties or methods. 
     let bc1 = new BachelorStudents();
 ```
 {% include ads/article-ads.html %}
-&nbsp;
+
 #### Hybrid Types
 Since JavaScript is dynamic and flexible. It is possible for an interface to represent more than one kind of type at the same time. 
 
@@ -437,7 +437,7 @@ An example below describes how an object can behave as a function as well as an 
     app.distance = 102
 
 ```
-&nbsp;
+
 #### Optional and readonly types
 
 The properties present in an Interface which may not be required can be declared as optional. An optional property can be declared by appending `?` after the name

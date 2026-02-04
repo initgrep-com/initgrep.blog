@@ -18,7 +18,7 @@ categories:
     - typescript
     - all
 ---
- &nbsp;
+ 
 
 As a developer, you've likely encountered situations where you need to access the reference of a child component. Managing component references is a crucial aspect of building robust and efficient React applications. Let's explore how to access child component refs using the `forwardRef` feature in React. This step-by-step tutorial aims to provide clarity and beginner-friendliness while addressing common challenges faced by developers.
 

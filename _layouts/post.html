@@ -69,7 +69,7 @@ layout: html_minifier
     {% if page.category %}
     <div class="px-4 py-6">
         <h2 class="text-xl font-bold mb-4">More in {{ page.category | capitalize }}</h2>
-        <div class="space-y-3">
+        <div class="space-y-3 flex gap-1">
             {% assign relatedCount = 0 %}
             {% for relatedPost in site.postCollection %}
                 {% if relatedPost.category == page.category and relatedPost.title != page.title and relatedCount < 5 %}

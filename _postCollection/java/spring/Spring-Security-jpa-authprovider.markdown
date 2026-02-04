@@ -31,7 +31,7 @@ This tutorial will focus on -
 - How to create `UserDetails` Entity using JPA annotations.
 - How to create custom `UserDetailsManager` implementation which fetches data using JPA repository.
 
-&nbsp;&nbsp;
+
 ## Configure the dataSource
 
 Add the below configuration in the  [`application.properties`](http://application.properties) file. I have provided a demo config for configuring a MySQL database. you are free to use a database of your choice. Make sure you give the correct url, username and password.
@@ -42,7 +42,7 @@ spring.datasource.username=user
 spring.datasource.password=pass
 ```
 
-&nbsp;&nbsp;
+
 ## Create an Entity of `UserDetail` type
 
 Let's implement `UserDetails` interface and implement all the methods. 
@@ -103,7 +103,7 @@ public class AuthUserDetails implements UserDetails {
 }
 ```
 
-&nbsp;&nbsp;
+
 Since `UserDetails` can have a set of authorities. we will also need another entity for `GrantedAuthorities` to maintain a **one-to-many** relationship.
 
 ```java
@@ -126,7 +126,7 @@ public class AuthGrantedAuthority implements GrantedAuthority {
 }
 ```
 
-&nbsp;&nbsp;
+
 ## Create the Repositories for the above entities.
 
 We will also have to create a repository for both `UserDetails` and `GrantedAuthorities` Entities which implements `JpaRepository` interface.
@@ -148,7 +148,7 @@ public interface AuthGrantedAuthorityRepository extends JpaRepository<AuthGrante
 }
 ```
 
-&nbsp;&nbsp;
+
 ## Create an implementation of `UserDetailsManager`
 
 `UserDetailsManager` interface extends to `UserDetailsService` class.  So we are ideally creating an implementation of `UserDetailsService` with some extra methods.
@@ -227,7 +227,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-&nbsp;&nbsp;
+
 ## Create a bean of `DaoAuthenticationProvider`
 
 ```java
@@ -252,7 +252,7 @@ Finally, override the  `configure(AuthenticationManagerBuilder auth)` of  the `W
   }
 ```
 
-&nbsp;&nbsp;
+
 ## Configure multiple `AuthenticationProvider`s
 
 If you have come across a scenario where you would require to search different data stores for user details for  authentication. You can create the custom implementations of `UserDetailsManager` as we did in this post.

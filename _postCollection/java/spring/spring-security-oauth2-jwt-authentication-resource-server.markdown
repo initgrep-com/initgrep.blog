@@ -35,7 +35,7 @@ There are four parties involved —
 - **Resource Owner** is the user that owns the protected resource.
 - **Resource Server** is the server that serves the protected resources owned by Resource Owner.
 
-&nbsp;&nbsp;
+
 
 ![Oauth2 -Auth code grant diagram.drawio.svg](/assets/images/oauth2-auth-code-grant.svg)
 
@@ -48,12 +48,12 @@ There are four parties involved —
 
 First let us understand, what is JWT and what API's are provided by spring security to implement Jwt Authentication.
 
-&nbsp;
+
 ## What is JWT?
 
 👉🏼 Checkout the complete introduction at [jwt.io](https://jwt.io/introduction) 😜
 
-&nbsp;
+
 ## Spring Security API for JWT Authentication 
 
 The below diagram provides a thorough overview of Spring security API Specs for JWT Authentication.
@@ -75,7 +75,7 @@ The below diagram provides a thorough overview of Spring security API Specs for 
 Finally, Let move ahead with implementing the JWT Authentication.
 
 
-&nbsp;
+
 ## JWT Authentication with Spring Security
 In order to implement it, we would require the following components —
 
@@ -84,7 +84,7 @@ In order to implement it, we would require the following components —
 - **Client** - We can use [Postman API client](https://www.postman.com/)  as the client.
 - **User** - we will setup one user in Keycloak server.
 
-&nbsp;
+
 
 ## Authentication server via Keycloak
 
@@ -104,7 +104,7 @@ While you are at it, *here are few things, you would require once the Keycloak s
 
 Once you have the `Keycloak` server ready — Let's go ahead and create a resource server. 
 
-&nbsp;
+
 ## Resource Server
 The resource server will be the simplest one and will contain only one secure rest API. 
 
@@ -129,7 +129,7 @@ The resource server will be the simplest one and will contain only one secure re
 </dependency>
 ```
 
-&nbsp;
+
 
 ### API Endpoint
 
@@ -152,7 +152,7 @@ public class UserController {
 
 Since we have Spring security in the class path, every route will be private.
 
-&nbsp;
+
 ### Setup JWT issuer URL
 
 This is minimal setup required to implement the JWT authentication. The `issuer-url` provided is used by Resource Server to discover public keys of the authorization server and validate the token. It is also the same URL present in **`iss`** claim.
@@ -187,14 +187,14 @@ Now, the Resource Server will not ping the authorization server at startup. Howe
 
 ...But before that, Let's test the default implementation.
 
-&nbsp;
+
 ## Time to Test the Implementation 💎
 
 If you recall, the resource server contains one endpoint with a path `/api/v1/users`. If we call it without providing an authentication token, it will return `401 - Unauthorized` status. That is due to the absence of an authorization token.
 
 Let's see how we can use an *authorization code grant* to fetch a token from the `Keycloak` server and use it to access the `API` provided by the resource server.
 
-&nbsp;
+
 ### **Step - 1: Request OAuth Authorization Code**
 At this point, we would need a client to request the Authorization code. 
 However, to make it easier to test, we can run the following URL in the browser. It should redirect you to the login page and you will have to provide the credentials of the user. 
@@ -214,7 +214,7 @@ http://{redirect-url}/?state=appstate
 
 We would require `code` to fetch the actual token.
 
-&nbsp;
+
 ### Step - 2: Fetch the Authentication Token
 
 ```bash
@@ -247,7 +247,7 @@ The response returned would look similar to the below example:
     "scope": "email profile"
 }
 ```
-&nbsp;
+
 
 ### Step - 3: Run the API with
 
@@ -273,11 +273,11 @@ Response:
     }
 ]
 ```
-&nbsp;
+
 
 ## Customize the default Implementation
 
-&nbsp;
+
 ### Provide custom JWT Converter
 
 A JWT Converter is responsible for converting a JWT Bearer token into a valid `JwtAuthenticationToken` which is of the type Authentication. In order to provide a customer converter, we will need to override `WebSecurityConfigurerAdapter` and supply an instance of the custom converter.
@@ -296,7 +296,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     }
 }
 ```
-&nbsp;
+
 ### Change the default JWT Decoder
 
 A [JwtDecoder](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/jwt/JwtDecoder.html) decodes a JWT token into an instance of `Jwt` instance. `Jwt` instance is the java representation of JSON Web Token.   Please refer to [Jwt  docs](https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/oauth2/jwt/Jwt.html) for the proper understanding. 
@@ -337,7 +337,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                     .jwt().decoder(NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build());
     }
 ```
-&nbsp;
+
 ### Configure Authorization
 
 By default, Spring Security uses JWT claims such as `scope` or `scp` to fetch the scopes present in the JWT and map it to `GrantedAuthorities` . While mapping, It will also prepend the scope with `SCOPE_`.
@@ -369,7 +369,7 @@ In order to change the default implementation, we will have to provide a customi
 
 Assuming the JWT token has claims such as `{.... ,"c_scope: 'profile dashboard' "}` .The granted authorities will be mapped as `ROLE_profile, ROLE_dashboard`
 
-&nbsp;
+
 ### Configure Timeouts
 
 Sometimes the default timeout of **30** seconds for connections and sockets won't suffice. 
@@ -388,7 +388,7 @@ Sometimes the default timeout of **30** seconds for connections and sockets won'
        return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).restOperations(restOperations).build();
     }
 ```
-&nbsp;
+
 ### Configuring Timestamp validations.
 
 JWT is valid between a certain time period. `nbf` and `exp` claims contain start and end of the valid time period respectively.
@@ -409,7 +409,7 @@ new JwtTimestampValidator(Duration.ofSeconds(60)));
         return nimbusJwtDecoder;
     }
 ```
-&nbsp;
+
 ### Set Jwks-uri through DSL
 
 We can set  `jwks-uri`  via DSL. This can be useful to provide different authentication servers for different environments without having to change the configurations.
@@ -431,7 +431,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 }
 ```
-&nbsp;
+
 ### Provide a custom location for public key
 
 If the Oauth2 server doesn't provide  a `jwks-uri` and you want to setup a location for the public key. It can be set either through properties or configure `JwtDecoder` bean
