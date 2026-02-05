@@ -195,7 +195,7 @@ _layouts/
   <!-- Analytics -->
   {% include analytics/google-analytics.html %}
   {% include analytics/adblock-recover.html %}
-  {% include ads/google-ads.html %}
+  
 
   <!-- Google CSE -->
   <script async src="https://cse.google.com/cse.js?cx=000297669988019007071:0ouka41f0ma"></script>
