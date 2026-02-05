@@ -63,24 +63,8 @@ layout: html_minifier
         {% endif %}
     </article>
 
-    <!-- Related Posts (inline, no includes) -->
-    {% if page.category %}
-    <div class="px-4 py-6">
-        <h2 class="text-xl font-bold mb-4">More in {{ page.category | capitalize }}</h2>
-        <div class="space-y-3">
-            {% assign relatedCount = 0 %}
-            {% for relatedPost in site.postCollection %}
-                {% if relatedPost.category == page.category and relatedPost.title != page.title and relatedCount < 5 %}
-                <a href="{{ site.baseurl }}{{ relatedPost.url }}" class="block p-3 rounded-lg bg-base-200 hover:bg-base-300 transition-colors">
-                    <h3 class="font-medium hover:text-primary">{{ relatedPost.title }}</h3>
-                    <p class="text-sm text-base-content/60 mt-1">{{ relatedPost.meta | truncate: 100 }}</p>
-                </a>
-                {% assign relatedCount = relatedCount | plus: 1 %}
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
+    <!-- Related Posts -->
+    {% include related-posts.html category=page.category exclude_title=page.title %}
 
     <!-- Comments -->
     {% if page.comments %}

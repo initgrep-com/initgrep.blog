@@ -1,0 +1,28 @@
+{%- comment -%}
+Related Posts Section Component
+Usage: {% include related-posts.html category=page.category exclude_title=page.title limit=5 %}
+
+Parameters:
+  - category (required): Category to filter by
+  - exclude_title (required): Title of current post to exclude
+  - limit (optional, default: 5): Maximum number of posts to show
+{%- endcomment -%}
+
+{%- assign max_posts = include.limit | default: 5 -%}
+{%- assign related_category = include.category -%}
+{%- assign current_title = include.exclude_title -%}
+
+{% if related_category %}
+<div class="px-4 py-6">
+    <h2 class="text-xl font-bold mb-4">More in {{ related_category | capitalize }}</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {%- assign relatedCount = 0 -%}
+        {%- for relatedPost in site.postCollection -%}
+            {%- if relatedPost.category == related_category and relatedPost.title != current_title and relatedCount < max_posts -%}
+                {% include post-card.html post=relatedPost show_description=false %}
+                {%- assign relatedCount = relatedCount | plus: 1 -%}
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,251 @@
+{%- comment -%}
+SVG Hero Option 2: Spotlight Drama
+Cinematic feel with icon emerging from darkness, radial spotlight, subtle star field
+Usage: {% include svg-hero-spotlight.html category="java" title="Post Title" %}
+{%- endcomment -%}
+
+{%- assign cat = include.category | default: 'default' -%}
+{%- assign title = include.title | default: 'default' -%}
+
+{%- comment -%} Generate pseudo-random jitter based on title {%- endcomment -%}
+{%- assign title_hash = title | slugify | size | default: 5 -%}
+
+{%- comment -%} Define frame type per category {%- endcomment -%}
+{%- case cat -%}
+  {%- when 'java' -%}
+    {%- assign frame_type = "hexagon" -%}
+  {%- when 'jpa' -%}
+    {%- assign frame_type = "cylinder" -%}
+  {%- when 'spring' -%}
+    {%- assign frame_type = "organic" -%}
+  {%- when 'javascript' -%}
+    {%- assign frame_type = "square" -%}
+  {%- when 'react' -%}
+    {%- assign frame_type = "orbital" -%}
+  {%- when 'angular' or 'angularjs' -%}
+    {%- assign frame_type = "shield" -%}
+  {%- when 'typescript' -%}
+    {%- assign frame_type = "document" -%}
+  {%- when 'Design-pattern' -%}
+    {%- assign frame_type = "gear" -%}
+  {%- else -%}
+    {%- assign frame_type = "circle" -%}
+{%- endcase -%}
+
+{%- comment -%} Unique ID for this SVG instance {%- endcomment -%}
+{%- assign svg_id = "hero-spotlight-" | append: cat | slugify | append: "-" | append: title_hash -%}
+
+<svg viewBox="0 0 840 360" class="w-full h-full svg-hero-spotlight" xmlns="http://www.w3.org/2000/svg" aria-label="Hero SVG - Spotlight Drama" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .svg-hero-spotlight .center-icon {
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+    }
+    .group:hover .svg-hero-spotlight .center-icon {
+      transform: translate(420px, 180px) scale(3.8);
+      filter: url(#intense-glow-{{ svg_id }});
+    }
+    .svg-hero-spotlight .frame-outer {
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .svg-hero-spotlight .frame-outer {
+      opacity: 1 !important;
+    }
+    .svg-hero-spotlight .glow-pulse {
+      animation: glow-pulse-{{ svg_id }} 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse-{{ svg_id }} {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    .svg-hero-spotlight .spotlight {
+      transition: opacity 0.4s ease;
+    }
+    .group:hover .svg-hero-spotlight .spotlight {
+      opacity: 0.9;
+    }
+    .svg-hero-spotlight .star {
+      animation: twinkle-{{ svg_id }} 3s ease-in-out infinite;
+    }
+    .svg-hero-spotlight .star:nth-child(odd) {
+      animation-delay: -1.5s;
+    }
+    .svg-hero-spotlight .star:nth-child(3n) {
+      animation-delay: -0.75s;
+    }
+    @keyframes twinkle-{{ svg_id }} {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+  </style>
+
+  <defs>
+    <!-- Dark gradient background -->
+    <linearGradient id="dark-bg-{{ svg_id }}" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="var(--color-base-300)" />
+      <stop offset="50%" stop-color="color-mix(in oklch, var(--color-base-300) 90%, black)" />
+      <stop offset="100%" stop-color="color-mix(in oklch, var(--color-base-300) 70%, black)" />
+    </linearGradient>
+
+    <!-- Radial spotlight gradient -->
+    <radialGradient id="spotlight-{{ svg_id }}" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="color-mix(in oklch, var(--color-primary) 35%, transparent)" />
+      <stop offset="40%" stop-color="color-mix(in oklch, var(--color-primary) 15%, transparent)" />
+      <stop offset="70%" stop-color="color-mix(in oklch, var(--color-primary) 5%, transparent)" />
+      <stop offset="100%" stop-color="transparent" />
+    </radialGradient>
+
+    <!-- Intense glow filter for hover -->
+    <filter id="intense-glow-{{ svg_id }}" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feFlood flood-color="var(--color-primary)" flood-opacity="0.3" result="glowColor"/>
+      <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow"/>
+      <feMerge>
+        <feMergeNode in="softGlow"/>
+        <feMergeNode in="softGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Soft shadow filter -->
+    <filter id="shadow-{{ svg_id }}" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" flood-opacity="0.3"/>
+    </filter>
+
+    <!-- Gradient for frame fill -->
+    <radialGradient id="frame-gradient-{{ svg_id }}" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+      <stop offset="100%" stop-color="color-mix(in oklch, var(--color-base-content) 3%, transparent)" />
+    </radialGradient>
+
+    <!-- Category-specific frame shapes (centered at 420,180) -->
+    {%- if frame_type == "hexagon" -%}
+    <polygon id="frame-shape-{{ svg_id }}" points="420,112 477,147 477,213 420,248 363,213 363,147" />
+    {%- elsif frame_type == "shield" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M420 105 L480 127.5 L480 195 C480 225 450 245 420 251 C390 245 360 225 360 195 L360 127.5 Z" />
+    {%- elsif frame_type == "square" -%}
+    <rect id="frame-shape-{{ svg_id }}" x="357" y="117" width="126" height="126" rx="18" />
+    {%- elsif frame_type == "document" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M367.5 112.5 L450 112.5 L480 142.5 L480 247.5 C480 253.5 474 259.5 468 259.5 L372 259.5 C366 259.5 360 253.5 360 247.5 L360 120 C360 114 366 112.5 367.5 112.5 Z" />
+    {%- elsif frame_type == "cylinder" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M360 135 C360 120 384 109.5 420 109.5 C456 109.5 480 120 480 135 L480 216 C480 231 456 241.5 420 241.5 C384 241.5 360 231 360 216 Z" />
+    {%- elsif frame_type == "organic" -%}
+    <ellipse id="frame-shape-{{ svg_id }}" cx="420" cy="180" rx="69" ry="63" />
+    {%- elsif frame_type == "gear" -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="66" />
+    {%- elsif frame_type == "orbital" -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="63" />
+    {%- else -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="66" />
+    {%- endif -%}
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="840" height="360" fill="url(#dark-bg-{{ svg_id }})" />
+
+  <!-- Star field - scattered dots -->
+  <g class="stars">
+    {%- assign star_positions = "50,30|120,80|200,25|280,95|350,40|500,35|580,90|650,20|720,75|780,45|100,150|180,130|750,140|800,120|30,280|90,320|160,290|250,340|340,300|510,310|590,350|680,290|760,330|810,280|45,180|795,200" | split: "|" -%}
+    {%- for pos in star_positions -%}
+      {%- assign coords = pos | split: "," -%}
+      {%- assign size = forloop.index | modulo: 3 | plus: 1 | times: 0.5 -%}
+      <circle class="star" cx="{{ coords[0] }}" cy="{{ coords[1] }}" r="{{ size }}" fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)" />
+    {%- endfor -%}
+  </g>
+
+  <!-- Radial spotlight behind center -->
+  <ellipse class="spotlight glow-pulse" cx="420" cy="180" rx="280" ry="160" fill="url(#spotlight-{{ svg_id }})" opacity="0.6" />
+
+  <!-- Frame system with dramatic glow -->
+  <g filter="url(#shadow-{{ svg_id }})">
+    <!-- Outer glow ring -->
+    <g class="glow-pulse" transform-origin="420px 180px">
+      <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-primary) 25%, transparent)" stroke-width="3" fill="none" transform="translate(420, 180) scale(1.4) translate(-420, -180)" />
+      <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="2" fill="none" transform="translate(420, 180) scale(1.25) translate(-420, -180)" />
+    </g>
+
+    <!-- Outer frame ring (appears on hover) -->
+    <use class="frame-outer" href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-primary) 40%, transparent)" stroke-width="2" fill="none" transform="translate(420, 180) scale(1.15) translate(-420, -180)" style="opacity: 0.5" />
+
+    <!-- Main frame with gradient fill -->
+    <use href="#frame-shape-{{ svg_id }}" fill="url(#frame-gradient-{{ svg_id }})" />
+
+    <!-- Inner frame border with glow -->
+    <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-base-content) 25%, transparent)" stroke-width="2.5" fill="none" />
+
+    <!-- Inner highlight -->
+    <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-base-100) 20%, transparent)" stroke-width="1" fill="none" transform="translate(420, 180) scale(0.95) translate(-420, -180)" />
+  </g>
+
+  <!-- Centered category icon (scaled 3x for hero, brighter for drama) -->
+  {%- if cat == 'java' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M10 2v2"/>
+        <path d="M14 2v2"/>
+        <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+        <path d="M6 2v2"/>
+      </g>
+    </g>
+  {%- elsif cat == 'jpa' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+        <path d="M3 12A9 3 0 0 0 21 12"/>
+      </g>
+    </g>
+  {%- elsif cat == 'spring' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/>
+        <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/>
+        <path d="M5 21h14"/>
+      </g>
+    </g>
+  {%- elsif cat == 'javascript' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/>
+        <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+      </g>
+    </g>
+  {%- elsif cat == 'react' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <circle cx="12" cy="12" r="2" fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"/>
+        <path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/>
+        <path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>
+      </g>
+    </g>
+  {%- elsif cat == 'angular' or cat == 'angularjs' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+      </g>
+    </g>
+  {%- elsif cat == 'typescript' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35"/>
+        <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+        <path d="m5 16-3 3 3 3"/>
+        <path d="m9 22 3-3-3-3"/>
+      </g>
+    </g>
+  {%- elsif cat == 'Design-pattern' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/>
+      </g>
+    </g>
+  {%- else -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 75%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M15 18h-5"/>
+        <path d="M18 14h-8"/>
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/>
+        <rect width="8" height="4" x="10" y="6" rx="1"/>
+      </g>
+    </g>
+  {%- endif -%}
+</svg>

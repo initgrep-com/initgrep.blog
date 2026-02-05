@@ -1,0 +1,360 @@
+{%- comment -%}
+SVG Hero - Flat background with decorative design elements
+Usage: {% include svg-hero.html category="java" title="Post Title" %}
+{%- endcomment -%}
+
+{%- assign cat = include.category | default: 'default' -%}
+{%- assign title = include.title | default: 'default' -%}
+
+{%- comment -%} Generate pseudo-random jitter based on title {%- endcomment -%}
+{%- assign title_hash = title | slugify | size | default: 5 -%}
+
+{%- comment -%} Define secondary icons per category {%- endcomment -%}
+{%- case cat -%}
+  {%- when 'java' -%}
+    {%- assign secondary_icons = "terminal,box,settings,layers,code,zap,cpu,package,server,braces,cog,database" | split: "," -%}
+    {%- assign frame_type = "hexagon" -%}
+  {%- when 'jpa' -%}
+    {%- assign secondary_icons = "database,server,layers,box,git-branch,package,table,hard-drive,folder,key,lock,link" | split: "," -%}
+    {%- assign frame_type = "cylinder" -%}
+  {%- when 'spring' -%}
+    {%- assign secondary_icons = "leaf,sprout,box,zap,settings,layers,flower,sun,cloud,wind,droplet,tree" | split: "," -%}
+    {%- assign frame_type = "organic" -%}
+  {%- when 'javascript' -%}
+    {%- assign secondary_icons = "braces,terminal,code,zap,file-code,box,function,brackets,parentheses,hash,at-sign,variable" | split: "," -%}
+    {%- assign frame_type = "square" -%}
+  {%- when 'react' -%}
+    {%- assign secondary_icons = "atom,component,zap,blocks,package,code,circle-dot,rotate-3d,orbit,sparkles,layers,box" | split: "," -%}
+    {%- assign frame_type = "orbital" -%}
+  {%- when 'angular' or 'angularjs' -%}
+    {%- assign secondary_icons = "triangle,component,shield,layers,zap,code,hexagon,pentagon,square,diamond,octagon,circle" | split: "," -%}
+    {%- assign frame_type = "shield" -%}
+  {%- when 'typescript' -%}
+    {%- assign secondary_icons = "file-type,code,braces,terminal,box,zap,file-code,file-check,file-cog,badge-check,shield-check,verified" | split: "," -%}
+    {%- assign frame_type = "document" -%}
+  {%- when 'Design-pattern' -%}
+    {%- assign secondary_icons = "puzzle,blocks,workflow,network,layers,cog,git-merge,git-branch,share-2,hub,workflow,circuit" | split: "," -%}
+    {%- assign frame_type = "gear" -%}
+  {%- else -%}
+    {%- assign secondary_icons = "code,terminal,box,layers,zap,settings,cpu,server,database,cloud,package,folder" | split: "," -%}
+    {%- assign frame_type = "circle" -%}
+{%- endcase -%}
+
+{%- comment -%} Grid-based positions for secondary icons {%- endcomment -%}
+{%- assign grid_positions = "80,55|180,45|660,55|760,45|50,180|140,200|700,180|790,200|260,65|580,65|260,295|580,295" | split: "|" -%}
+
+{%- comment -%} Unique ID for this SVG instance {%- endcomment -%}
+{%- assign svg_id = "hero-" | append: cat | slugify | append: "-" | append: title_hash -%}
+
+<svg viewBox="0 0 840 360" class="w-full h-full svg-hero" xmlns="http://www.w3.org/2000/svg" aria-label="Hero SVG" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .svg-hero .secondary-icon {
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .svg-hero .secondary-icon:nth-child(odd) {
+      transform: translate(var(--jx, 0), var(--jy, 0)) scale(0.8) rotate(8deg) translateY(-3px);
+    }
+    .group:hover .svg-hero .secondary-icon:nth-child(even) {
+      transform: translate(var(--jx, 0), var(--jy, 0)) scale(0.8) rotate(-8deg) translateY(-3px);
+    }
+    .svg-hero .center-icon {
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .svg-hero .center-icon {
+      transform: translate(420px, 180px) scale(3.5);
+    }
+    .svg-hero .frame-pulse {
+      animation: pulse-{{ svg_id }} 3s ease-in-out infinite;
+    }
+    @keyframes pulse-{{ svg_id }} {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.25; transform: scale(1.02); }
+    }
+    /* Breathing circles around center icon */
+    .svg-hero .breathe-circle {
+      transform-origin: 420px 180px;
+    }
+    .svg-hero .breathe-1 {
+      animation: breathe1-{{ svg_id }} 4s ease-in-out infinite;
+    }
+    .svg-hero .breathe-2 {
+      animation: breathe2-{{ svg_id }} 4s ease-in-out infinite;
+      animation-delay: -1s;
+    }
+    .svg-hero .breathe-3 {
+      animation: breathe3-{{ svg_id }} 4s ease-in-out infinite;
+      animation-delay: -2s;
+    }
+    .svg-hero .breathe-4 {
+      animation: breathe4-{{ svg_id }} 4s ease-in-out infinite;
+      animation-delay: -3s;
+    }
+    @keyframes breathe1-{{ svg_id }} {
+      0%, 100% { transform: scale(1); opacity: 0.2; }
+      50% { transform: scale(1.08); opacity: 0.35; }
+    }
+    @keyframes breathe2-{{ svg_id }} {
+      0%, 100% { transform: scale(1); opacity: 0.15; }
+      50% { transform: scale(1.06); opacity: 0.28; }
+    }
+    @keyframes breathe3-{{ svg_id }} {
+      0%, 100% { transform: scale(1); opacity: 0.12; }
+      50% { transform: scale(1.05); opacity: 0.22; }
+    }
+    @keyframes breathe4-{{ svg_id }} {
+      0%, 100% { transform: scale(1); opacity: 0.08; }
+      50% { transform: scale(1.04); opacity: 0.16; }
+    }
+    /* Faster breathing on hover */
+    .group:hover .svg-hero .breathe-1 {
+      animation-duration: 1.5s;
+    }
+    .group:hover .svg-hero .breathe-2 {
+      animation-duration: 1.5s;
+      animation-delay: -0.4s;
+    }
+    .group:hover .svg-hero .breathe-3 {
+      animation-duration: 1.5s;
+      animation-delay: -0.8s;
+    }
+    .group:hover .svg-hero .breathe-4 {
+      animation-duration: 1.5s;
+      animation-delay: -1.2s;
+    }
+    .svg-hero .dot-pattern {
+      transition: opacity 0.3s ease;
+    }
+    .group:hover .svg-hero .dot-pattern {
+      opacity: 0.8;
+    }
+    .svg-hero .corner-accent {
+      transition: opacity 0.3s ease;
+    }
+    .group:hover .svg-hero .corner-accent {
+      opacity: 0.5;
+    }
+    .svg-hero .star {
+      animation: twinkle-{{ svg_id }} 3s ease-in-out infinite;
+    }
+    .svg-hero .star:nth-child(odd) {
+      animation-delay: -1.5s;
+    }
+    .svg-hero .star:nth-child(3n) {
+      animation-delay: -0.75s;
+    }
+    @keyframes twinkle-{{ svg_id }} {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+
+  <defs>
+    <!-- Dot pattern (same as card) -->
+    <pattern id="dots-{{ svg_id }}" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="color-mix(in oklch, var(--color-base-content) 8%, transparent)" />
+    </pattern>
+
+    <!-- Category-specific frame shapes (centered at 420,180) -->
+    {%- if frame_type == "hexagon" -%}
+    <polygon id="frame-shape-{{ svg_id }}" points="420,112 477,147 477,213 420,248 363,213 363,147" />
+    {%- elsif frame_type == "shield" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M420 105 L480 127.5 L480 195 C480 225 450 245 420 251 C390 245 360 225 360 195 L360 127.5 Z" />
+    {%- elsif frame_type == "square" -%}
+    <rect id="frame-shape-{{ svg_id }}" x="357" y="117" width="126" height="126" rx="18" />
+    {%- elsif frame_type == "document" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M367.5 112.5 L450 112.5 L480 142.5 L480 247.5 C480 253.5 474 259.5 468 259.5 L372 259.5 C366 259.5 360 253.5 360 247.5 L360 120 C360 114 366 112.5 367.5 112.5 Z" />
+    {%- elsif frame_type == "cylinder" -%}
+    <path id="frame-shape-{{ svg_id }}" d="M360 135 C360 120 384 109.5 420 109.5 C456 109.5 480 120 480 135 L480 216 C480 231 456 241.5 420 241.5 C384 241.5 360 231 360 216 Z" />
+    {%- elsif frame_type == "organic" -%}
+    <ellipse id="frame-shape-{{ svg_id }}" cx="420" cy="180" rx="69" ry="63" />
+    {%- elsif frame_type == "gear" -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="66" />
+    {%- elsif frame_type == "orbital" -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="63" />
+    {%- else -%}
+    <circle id="frame-shape-{{ svg_id }}" cx="420" cy="180" r="66" />
+    {%- endif -%}
+  </defs>
+
+  <!-- Flat background (same as card SVG) -->
+  <rect width="840" height="360" fill="var(--color-base-200)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-primary) 18%, transparent)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-base-content) 3%, transparent)" />
+
+  <!-- Dot pattern overlay (same as card) -->
+  <rect class="dot-pattern" width="840" height="360" fill="url(#dots-{{ svg_id }})" />
+
+  <!-- Star field - subtle dots using primary color -->
+  <g class="stars" opacity="0.4">
+    {%- assign star_positions = "50,30|120,80|200,25|280,95|350,40|500,35|580,90|650,20|720,75|780,45|100,150|180,130|750,140|800,120|30,280|90,320|160,290|250,340|340,300|510,310|590,350|680,290|760,330|810,280|45,180|795,200" | split: "|" -%}
+    {%- for pos in star_positions -%}
+      {%- assign coords = pos | split: "," -%}
+      {%- assign size = forloop.index | modulo: 3 | plus: 1 | times: 0.4 -%}
+      <circle class="star" cx="{{ coords[0] }}" cy="{{ coords[1] }}" r="{{ size }}" fill="color-mix(in oklch, var(--color-primary) 40%, transparent)" />
+    {%- endfor -%}
+  </g>
+
+  <!-- Corner decorative elements -->
+  <g class="corner-accent" opacity="0.3">
+    <!-- Top-left corner -->
+    <path d="M0 60 L60 0" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M0 90 L90 0" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
+    <circle cx="30" cy="30" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
+
+    <!-- Top-right corner -->
+    <path d="M780 0 L840 60" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M750 0 L840 90" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
+    <circle cx="810" cy="30" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
+
+    <!-- Bottom-left corner -->
+    <path d="M0 300 L60 360" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M0 270 L90 360" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
+    <circle cx="30" cy="330" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
+
+    <!-- Bottom-right corner -->
+    <path d="M780 360 L840 300" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M750 360 L840 270" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
+    <circle cx="810" cy="330" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
+  </g>
+
+  <!-- Decorative hexagons scattered -->
+  <g opacity="0.15">
+    <polygon points="120,90 135,98 135,114 120,122 105,114 105,98" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
+    <polygon points="720,90 735,98 735,114 720,122 705,114 705,98" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
+    <polygon points="120,270 135,278 135,294 120,302 105,294 105,278" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
+    <polygon points="720,270 735,278 735,294 720,302 705,294 705,278" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
+  </g>
+
+
+  <!-- Frame system - NO shadows, flat design -->
+  <g>
+    <!-- Outermost pulse ring -->
+    {%- if frame_type == "orbital" -%}
+    <!-- Breathing circles for orbital/react -->
+    <circle class="breathe-circle breathe-4" cx="420" cy="180" r="130" stroke="color-mix(in oklch, var(--color-primary) 12%, transparent)" stroke-width="1" fill="none" />
+    <circle class="breathe-circle breathe-3" cx="420" cy="180" r="110" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="1" fill="none" />
+    <circle class="breathe-circle breathe-2" cx="420" cy="180" r="92" stroke="color-mix(in oklch, var(--color-primary) 18%, transparent)" stroke-width="1" fill="none" />
+    <circle class="breathe-circle breathe-1" cx="420" cy="180" r="78" stroke="color-mix(in oklch, var(--color-primary) 22%, transparent)" stroke-width="1.5" fill="none" />
+    {%- elsif frame_type == "hexagon" -%}
+    <g class="frame-pulse" transform-origin="420px 180px">
+      <polygon points="420,95 492,135 492,225 420,265 348,225 348,135" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="1" fill="none" />
+      <polygon points="420,102 485,139 485,221 420,258 355,221 355,139" stroke="color-mix(in oklch, var(--color-primary) 10%, transparent)" stroke-width="1" fill="none" />
+    </g>
+    {%- elsif frame_type == "shield" -%}
+    <g class="frame-pulse" transform-origin="420px 180px">
+      <path d="M420 90 L495 117 L495 204 C495 243 457.5 267 420 274.5 C382.5 267 345 243 345 204 L345 117 Z" stroke="color-mix(in oklch, var(--color-primary) 12%, transparent)" stroke-width="1" fill="none" />
+      <path d="M420 97.5 L487.5 122 L487.5 199.5 C487.5 234 453.5 255 420 261.75 C386.5 255 352.5 234 352.5 199.5 L352.5 122 Z" stroke="color-mix(in oklch, var(--color-primary) 8%, transparent)" stroke-width="1" fill="none" />
+    </g>
+    {%- elsif frame_type == "square" -%}
+    <g class="frame-pulse" transform-origin="420px 180px">
+      <rect x="342" y="102" width="156" height="156" rx="24" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="1" fill="none" />
+      <rect x="349.5" y="109.5" width="141" height="141" rx="21" stroke="color-mix(in oklch, var(--color-primary) 10%, transparent)" stroke-width="1" fill="none" />
+    </g>
+    {%- elsif frame_type == "gear" -%}
+    <g class="frame-pulse" transform-origin="420px 180px">
+      <circle cx="420" cy="180" r="81" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="1" fill="none" stroke-dasharray="12 6" />
+      <circle cx="420" cy="180" r="87" stroke="color-mix(in oklch, var(--color-primary) 10%, transparent)" stroke-width="1" fill="none" />
+    </g>
+    {%- else -%}
+    <g class="frame-pulse" transform-origin="420px 180px">
+      <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-primary) 12%, transparent)" stroke-width="1" fill="none" transform="translate(420, 180) scale(1.3) translate(-420, -180)" />
+      <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-primary) 8%, transparent)" stroke-width="1" fill="none" transform="translate(420, 180) scale(1.2) translate(-420, -180)" />
+    </g>
+    {%- endif -%}
+
+    <!-- Main frame - flat fill, no gradient -->
+    <use href="#frame-shape-{{ svg_id }}" fill="color-mix(in oklch, var(--color-base-content) 4%, transparent)" />
+
+    <!-- Inner frame border -->
+    <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-base-content) 12%, transparent)" stroke-width="1.5" fill="none" />
+  </g>
+
+  <!-- Centered category icon (same colors as card - base-content 65%) -->
+  {%- if cat == 'java' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M10 2v2"/>
+        <path d="M14 2v2"/>
+        <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+        <path d="M6 2v2"/>
+      </g>
+    </g>
+  {%- elsif cat == 'jpa' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+        <path d="M3 12A9 3 0 0 0 21 12"/>
+      </g>
+    </g>
+  {%- elsif cat == 'spring' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/>
+        <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/>
+        <path d="M5 21h14"/>
+      </g>
+    </g>
+  {%- elsif cat == 'javascript' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/>
+        <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+      </g>
+    </g>
+  {%- elsif cat == 'react' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <circle cx="12" cy="12" r="2" fill="color-mix(in oklch, var(--color-base-content) 40%, transparent)"/>
+        <path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"/>
+        <path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"/>
+      </g>
+    </g>
+  {%- elsif cat == 'angular' or cat == 'angularjs' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+      </g>
+    </g>
+  {%- elsif cat == 'typescript' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35"/>
+        <path d="M14 2v5a1 1 0 0 0 1 1h5"/>
+        <path d="m5 16-3 3 3 3"/>
+        <path d="m9 22 3-3-3-3"/>
+      </g>
+    </g>
+  {%- elsif cat == 'Design-pattern' -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/>
+      </g>
+    </g>
+  {%- else -%}
+    <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        <path d="M15 18h-5"/>
+        <path d="M18 14h-8"/>
+        <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2"/>
+        <rect width="8" height="4" x="10" y="6" rx="1"/>
+      </g>
+    </g>
+  {%- endif -%}
+
+  <!-- Secondary icons (same color as card - base-content 22%) -->
+  {%- for pos in grid_positions -%}
+    {%- assign coords = pos | split: "," -%}
+    {%- assign jitter_x = forloop.index | times: title_hash | modulo: 25 | minus: 12 -%}
+    {%- assign jitter_y = forloop.index | times: title_hash | plus: 7 | modulo: 21 | minus: 10 -%}
+    {%- assign x = coords[0] | plus: jitter_x -%}
+    {%- assign y = coords[1] | plus: jitter_y -%}
+    {%- assign icon_index = forloop.index0 | modulo: secondary_icons.size -%}
+    {%- assign current_icon = secondary_icons[icon_index] -%}
+    <g class="secondary-icon" style="--jx: {{ x }}px; --jy: {{ y }}px;" transform="translate({{ x }},{{ y }}) scale(0.8)" stroke="color-mix(in oklch, var(--color-base-content) 22%, transparent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="translate(-12,-12)">
+        {%- include icons/lucide-paths.html icon=current_icon -%}
+      </g>
+    </g>
+  {%- endfor -%}
+</svg>

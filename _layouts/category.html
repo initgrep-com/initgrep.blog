@@ -31,46 +31,7 @@ layout: html_minifier
                 {% for category in post.categories %}
                     {% if category == postCategory %}
                         {% assign hasPost = true %}
-
-                        <!-- Mobile: Compact Card -->
-                        <div class="sm:hidden">
-                            <a href="{{ site.baseurl }}{{ post.url }}" class="card card-side bg-base-100 shadow-sm group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200">
-                                <div class="card-body p-3 gap-1">
-                                    <div class="flex items-center gap-2 text-xs text-base-content/60">
-                                        <span class="badge badge-ghost badge-xs gap-1">
-                                            <i data-lucide="{{ site.data.categories[post.category].icon }}" class="w-2.5 h-2.5"></i>
-                                            {{ post.category }}
-                                        </span>
-                                        <span>{% include relative-date.html date=post.date %}</span>
-                                    </div>
-                                    <h3 class="card-title text-sm line-clamp-2 group-hover:text-primary transition-colors duration-200">{{ post.title }}</h3>
-                                </div>
-                            </a>
-                        </div>
-
-                        <!-- Tablet/Desktop: Image Card -->
-                        <div class="hidden sm:block">
-                            <a href="{{ site.baseurl }}{{ post.url }}" class="card bg-base-100 shadow-sm overflow-hidden group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200 hover:scale-[1.02]">
-                                <figure class="aspect-video overflow-hidden">
-                                      <div class="w-full h-full transition-transform duration-500 ease-out group-hover:scale-105">
-                                        {% include svg-mosaic.html category=post.category title=post.title %}
-                                      </div>
-                                </figure>
-                                <div class="card-body p-4">
-                                    <div class="flex items-center gap-2 text-xs text-base-content/60 mb-1">
-                                        <span class="badge badge-ghost badge-sm gap-1">
-                                            <i data-lucide="{{ site.data.categories[post.category].icon }}" class="w-3 h-3"></i>
-                                            {{ post.category }}
-                                        </span>
-                                        <span>{% include relative-date.html date=post.date %}</span>
-                                    </div>
-                                    <h3 class="card-title text-base line-clamp-2 group-hover:text-primary transition-colors duration-200">
-                                        {{ post.title }}
-                                    </h3>
-                                    <p class="text-sm text-base-content/70 line-clamp-2 mt-1">{{ post.meta }}</p>
-                                </div>
-                            </a>
-                        </div>
+                        {% include post-card.html post=post %}
                     {% endif %}
                 {% endfor %}
             {% endfor %}
