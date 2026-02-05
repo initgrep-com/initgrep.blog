@@ -38,9 +38,7 @@ layout: html_minifier
                 <div class="hidden sm:block">
                     <a href="{{ site.baseurl }}{{ post.url }}" class="card bg-base-100 shadow-sm overflow-hidden group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200 hover:scale-[1.02]">
                         <figure class="aspect-video overflow-hidden">
-                            <img src="{{ site.baseurl }}{{ post.image }}"
-                                 alt="{{ post.title }}"
-                                 class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+                            {% include svg-mosaic.html category=post.category title=post.title %}
                         </figure>
                         <div class="card-body p-4">
                             <div class="flex items-center gap-2 text-xs text-base-content/60 mb-1">

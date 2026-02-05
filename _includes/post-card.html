@@ -3,9 +3,7 @@
 
 <div class="card bg-base-100 shadow-sm group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200 hover:scale-[1.02]">
     <figure class="aspect-video overflow-hidden">
-        <img src="{{ site.baseurl }}{{ include.post.image }}"
-             alt="{{ include.post.title }}"
-             class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
+        {% include svg-mosaic.html category=include.post.category title=include.post.title %}
     </figure>
     <div class="card-body p-4">
         <div class="flex items-center gap-2 text-xs text-base-content/60 mb-2">
