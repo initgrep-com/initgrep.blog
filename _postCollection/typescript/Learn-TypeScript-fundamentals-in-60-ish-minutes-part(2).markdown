@@ -123,7 +123,6 @@ The below example is self-explanatory.
 ```
 
 
-{% include ads/article-ads.html %}
         
 ##### ReadOnly modifier and Parameter properties
 
@@ -238,7 +237,6 @@ Printer.printDocument("path://to/the/document");
 
 
 
-{% include ads/article-ads.html %}
 
 
 #### Generics
@@ -317,7 +315,6 @@ we could use a user-defined type as below
 
 
 
-{% include ads/article-ads.html %}
 
 ##### Generic Function Types
 Generic function types are created as a typical function type except the explicit type name is replaced with a generic type.

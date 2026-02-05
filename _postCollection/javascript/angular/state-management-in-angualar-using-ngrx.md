@@ -225,7 +225,6 @@ export interface AppState {
 ```
 
 
-{% include ads/article-ads.html %}
 
 
 ## Actions:
@@ -272,7 +271,6 @@ export const addPosts = createAction(
 
 
 
-{% include ads/article-ads.html %}
 
 
 
@@ -407,7 +405,6 @@ The state can be registered using one of the two options:
 
      
 
-{% include ads/article-ads.html %}
 
 
 
@@ -513,7 +510,6 @@ posts$ = this.store.select(fromSelectors.selectPosts);
 
 
 
-{% include ads/article-ads.html %}
 
 
 

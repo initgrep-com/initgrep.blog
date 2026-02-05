@@ -57,7 +57,6 @@ JPA Criteria API provides the following options for the selection of values.
 
 We will discuss the implementation of each method. The domain model will remain same as in the previous post.
 
-{% include ads/article-ads.html %}
 
 ### CriteriaQuery.select
  This method takes one [Selection](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/Selection.html) item as a parameter. The parameter specifies the result returned by the Criteria Query. The `select` method can be used to select a **single entity** or a **single value**.
@@ -151,7 +150,6 @@ Below is the output query for the reference.
 
 
 
-{% include ads/article-ads.html %}
 
 Until now we implemented the criteria query to select an Entity or a single value. However, It is not ideal to fetch a complete entity if only a few values are required. Criteria API provides many ways to accomplish that. 
 
@@ -204,7 +202,6 @@ As explained earlier, each argument would take a specific position in the array,
 
 
 
-{% include ads/article-ads.html %}
 
 ### Tuple Criteria Queries
 

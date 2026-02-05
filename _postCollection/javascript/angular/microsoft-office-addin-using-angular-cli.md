@@ -207,7 +207,6 @@ Let's update `tsconfig.app.json` and add the new target under `compilerOptions`.
 ```
 
 
-{% include ads/article-ads.html %}
 
 
 

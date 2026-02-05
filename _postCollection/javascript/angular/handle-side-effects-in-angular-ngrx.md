@@ -99,7 +99,6 @@ You might notice fewer elements in play during service based design but don't le
 
 
 
-{% include ads/article-ads.html %}
 
 
 
@@ -402,7 +401,6 @@ Below is the final version *`loadUsers$`* effect -
 
 
 
-{% include ads/article-ads.html %}
 
 
 
@@ -478,4 +476,3 @@ EffectsModule.forFeature([ProfileFeatureEffects]);
 
 
 
-{% include ads/article-ads.html %}

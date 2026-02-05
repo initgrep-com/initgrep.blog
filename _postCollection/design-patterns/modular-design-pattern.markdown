@@ -70,7 +70,6 @@ we can use both the types of `add` methods in the same application without any c
 
 So far so good. let's go further ahead and discuss some benefits of implementing the modular pattern in JavaScript.
 
-{% include ads/article-ads.html %}
 
  **Encapsulation**:
  
@@ -116,7 +115,6 @@ var financeCalc = new calc();
      financeCalc.roundingLimit; //undefined
      financeCalc.getRoundingLimit(); // 2
 ```
-{% include ads/article-ads.html %}
 
 **Introduction to IIFEs**
 
@@ -159,7 +157,6 @@ when we wrap the function in a set of braces, it returns the expression value wh
     //code here
 })();
 ```
-{% include ads/article-ads.html %}
 **Advantages of using IIFEs to implement a modular pattern**
 
 If you noticed above, when we created our `calc` module. To use it in our `finance` application, we had to manually create the objects. we named it as `financeCalc`. The name looks fine but it is not defined by the module and is not a standard. It is possible to give any random name and eventually fall into a name collision. So how can we restrict it and give a standard name?. Well, IIFEs have come to our rescue. If you remember, IIFE is invoked at the time of creation. As a result, we can bet, we will always have one instance in our application with a standard object returned by the module itself. 

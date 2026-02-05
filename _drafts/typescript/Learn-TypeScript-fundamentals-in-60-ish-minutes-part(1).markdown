@@ -125,7 +125,6 @@ It is basically typecasting. It is useful when a developer is sure that this par
     // cast to a string
     let len:number = (<string>name).length;
 ```
-{% include ads/article-ads.html %}
 #### Functions: 
 Functions can be declared as named functions or anonymous functions similar to JavaScript. However, TypeScript allows to have the type checking for function parameters and return type. 
 Below is the syntax of the function.
@@ -220,7 +219,6 @@ It is similar to `arguments` in JavaScript and `varargs` in Java.They are repres
     add(1,2);  //pass 
     add([1,2,3],[1,2,3]); //fail
 ```
-{% include ads/article-ads.html %}
 #### Interfaces:
 The interface represents the shape of the values. It is a way of defining contracts in the code to avoid any type mismatch. Interfaces can be used to specify types of a group of values, function types, index types(arrays) and class types
 
@@ -403,7 +401,6 @@ Interfaces can extend other interfaces and inherit their properties or methods. 
 
     let bc1 = new BachelorStudents();
 ```
-{% include ads/article-ads.html %}
 
 #### Hybrid Types
 Since JavaScript is dynamic and flexible. It is possible for an interface to represent more than one kind of type at the same time. 
@@ -469,4 +466,3 @@ Readonly properties can only be modified when the object is created. A readonly 
     person1.name = "usian"
 ```
 
-{% include ads/article-ads.html %}

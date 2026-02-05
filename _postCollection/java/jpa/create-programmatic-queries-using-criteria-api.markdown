@@ -40,7 +40,6 @@ We have three Objects( ref. to diagram above ) `Student` , `Course` and `Passpor
 * `Student` has a `One-To-Many` relationship with `Address` which means that a Student can have one or more addresses and an address is always assigned to one student.
 * `Student` has a `Many-To-Many` relationship with `Course` which means that Each Student can enroll in many courses and one course can have many Students enrolled.
 
-{% include ads/article-ads.html %}
 
 
 We will begin with a simple Criteria Query and slowly try to build upon it. 
@@ -173,7 +172,6 @@ In the Above diagram, observe the classes in a blue background. The relationship
 `Root` Interface is also an expression. It means, we can query a complete entity by passing `Root` as a parameter to the `select` method.
 In case we want to fetch a selected attribute, we can fetch the attribute path using `root.get(attributeName)`. This method returns a `Path`  object which inherits `expression`.    
 
-{% include ads/article-ads.html %}
 
 
 ### Criteria Joins
@@ -314,7 +312,6 @@ _The above query output is only a single query as below:_
             on student0_.id=addresses1_.student_id
 ```
 
-{% include ads/article-ads.html %}
 
 
 ### Group By and Having clause
@@ -453,7 +450,6 @@ The output query produced by the above criteria query is below:
         count(address0_.id) asc
 ```
 
-{% include ads/article-ads.html %}
 
 ### Subquery
 
