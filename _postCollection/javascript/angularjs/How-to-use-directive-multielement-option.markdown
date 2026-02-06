@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "How to implement multielement directives"
 date:   2018-07-09

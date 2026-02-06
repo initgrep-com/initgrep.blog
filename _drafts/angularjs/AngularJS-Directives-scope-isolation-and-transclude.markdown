@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "red darken-4"
 title:  "AngularJs Directive - scope isolation and transclude"
 date:   2018-06-26

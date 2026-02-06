@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "purple darken-4"
 title:  "Groovy : simplifying SAM type as closures"
 date:   2050-10-31

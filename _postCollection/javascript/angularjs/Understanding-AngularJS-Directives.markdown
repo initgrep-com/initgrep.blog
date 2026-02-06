@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "deep-orange darken-1"
 title:  "Understanding AngularJS Directives"
 date:   2018-07-03

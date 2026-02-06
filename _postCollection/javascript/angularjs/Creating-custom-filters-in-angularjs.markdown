@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "pink darken-4"
 title:  "Creating Custom Filters in AngularJS"
 date:   2018-06-26

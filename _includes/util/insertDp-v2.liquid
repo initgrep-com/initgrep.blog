@@ -1,9 +1,0 @@
-{% assign name = {{include.name | upcase}}  %}
-
-{% for author in site.authors  %}
-{% assign auth_name = {{author.name | upcase}}  %}
-{% if auth_name == name %}
-{% if author.image contains "://" %}{{ author.image }}{% else %}{{ site.baseurl }}{{ author.image }}{% endif %}
-{% endif %}
-
-{% endfor %}

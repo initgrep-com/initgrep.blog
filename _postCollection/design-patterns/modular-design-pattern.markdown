@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Modular design pattern in JavaScript"
 date:   2018-03-18

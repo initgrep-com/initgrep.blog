@@ -3,7 +3,7 @@
 {% for author in site.authors  %}
 {% assign auth_name = {{author.name | upcase}}  %}
 {% if auth_name == name %}
-  <img class="{{include.class}} " src="{{site.baseurl}}/assets/images/{{author.image}}">
+{% if author.image contains "://" %}{{ author.image }}{% else %}{{ site.baseurl }}{{ author.image }}{% endif %}
 {% endif %}
 
 {% endfor %}

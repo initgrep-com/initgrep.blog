@@ -16,9 +16,17 @@ layout: html_minifier
             </ul>
         </div>
 
+        <!-- Series Badge -->
+        {% if page.series %}
+        <div class="badge badge-secondary badge-lg mb-4">
+            <i data-lucide="book-open" class="w-4 h-4 mr-2"></i>
+            Series: {{ page.series }}
+        </div>
+        {% endif %}
+
         <!-- Meta Info -->
         <div class="flex items-center gap-4 mb-6">
-            <img src="{% include util/insertDp-v2.liquid name=page.author %}"
+            <img src="{% include util/insertDp.liquid name=page.author %}"
                  alt="{{ page.author }}"
                  class="w-12 h-12 rounded-full object-cover" />
             <div>

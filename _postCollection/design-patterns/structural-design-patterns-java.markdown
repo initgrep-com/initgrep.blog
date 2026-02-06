@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Structural Design Patterns in Java With Examples "
 date:   2023-09-13 19:00:00 +0200

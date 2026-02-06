@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "blue-grey"
 title:  "Use Groovy Closure to create a tree data structure"
 date:   2050-10-31

@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "green darken-4"
 title:  "Observer pattern in Javascript"
 date:   2017-12-30

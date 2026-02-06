@@ -1,0 +1,68 @@
+<!-- Cookie Consent Banner -->
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 z-50 p-4 bg-base-200 border-t border-base-300 shadow-lg hidden">
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-base-content/80">
+            We use cookies for analytics and to remember your preferences.
+            <a href="/privacy" class="link link-primary">Learn more</a>
+        </p>
+        <div class="flex gap-2 shrink-0">
+            <button onclick="setCookieConsent(false)" class="btn btn-sm btn-ghost">
+                Reject
+            </button>
+            <button onclick="setCookieConsent(true)" class="btn btn-sm btn-primary">
+                Accept
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    const CONSENT_KEY = 'cookie-consent';
+    const consent = localStorage.getItem(CONSENT_KEY);
+
+    // Show banner if no choice made yet
+    if (consent === null) {
+        document.getElementById('cookie-consent').classList.remove('hidden');
+    }
+
+    // Load analytics if previously accepted
+    if (consent === 'accepted') {
+        loadAnalytics();
+    }
+})();
+
+function setCookieConsent(accepted) {
+    localStorage.setItem('cookie-consent', accepted ? 'accepted' : 'rejected');
+    document.getElementById('cookie-consent').classList.add('hidden');
+
+    if (accepted) {
+        loadAnalytics();
+    }
+}
+
+function loadAnalytics() {
+    {% if site.env == 'production' %}
+    // Only load if not already loaded
+    if (window.gaLoaded) return;
+    window.gaLoaded = true;
+
+    // Load Google Analytics
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-111709440-1';
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-111709440-1');
+    {% endif %}
+}
+
+// Allow users to reset consent (callable from privacy page)
+function resetCookieConsent() {
+    localStorage.removeItem('cookie-consent');
+    location.reload();
+}
+</script>

@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "blue darken-4"
 title:  "Publisher-Subscriber(pub-Sub) pattern in Javascript"
 date:   2017-12-31

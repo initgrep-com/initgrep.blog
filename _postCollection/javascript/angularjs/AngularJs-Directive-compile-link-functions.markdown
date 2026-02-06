@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "red darken-4"
 title:  "AngularJs Directive - compile and link function"
 date:   2018-07-08

@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "red darken-2"
 title:  "API for registering directive- Directive Definition Object"
 date:   2018-07-06
