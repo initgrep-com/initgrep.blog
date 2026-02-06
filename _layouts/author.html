@@ -20,27 +20,24 @@ layout: html_minifier
 
             <h1 class="text-3xl font-bold mb-2">{{ page.name }}</h1>
 
-            {% if page.aboutMe %}
-            <p class="text-base-content/70 max-w-xl">{{ page.aboutMe }}</p>
+            {% if page.bio %}
+            <p class="text-base-content/70 max-w-xl">{{ page.bio }}</p>
             {% endif %}
 
-            <div class="flex gap-3 mt-4">
+            <div class="flex flex-row flex-wrap items-center gap-2 mt-6">
                 {% if page.github %}
-                <a href="https://github.com/{{ page.github }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i data-lucide="github" class="w-5 h-5"></i>
+                <a href="https://github.com/{{ page.github }}" target="_blank" class="badge badge-ghost gap-1.5 py-3 hover:badge-primary transition-colors">
+                    <i data-lucide="github" class="w-3.5 h-3.5"></i>
+                    @{{ page.github }}
                 </a>
                 {% endif %}
-                {% if page.twitter %}
-                <a href="https://twitter.com/{{ page.twitter }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                {% if page.resume %}
+                <a href="{{ page.resume }}" target="_blank" class="badge badge-primary badge-outline gap-1.5 py-3 hover:badge-primary transition-colors">
+                    Hire Me
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                    
                 </a>
                 {% endif %}
-                {% if page.facebook %}
-                <a href="https://facebook.com/{{ page.facebook }}" target="_blank" class="btn btn-ghost btn-circle btn-sm">
-                    <i data-lucide="facebook" class="w-5 h-5"></i>
-                </a>
-                {% endif %}
-            </div>
         </div>
 
         {{ content }}
