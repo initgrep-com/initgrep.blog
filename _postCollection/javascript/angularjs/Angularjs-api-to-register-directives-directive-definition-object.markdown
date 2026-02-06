@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "red darken-2"
 title:  "API for registering directive- Directive Definition Object"
 date:   2018-07-06
@@ -21,7 +21,6 @@ categories:
 
 Directives are created using `angular.directive` API. It is a similar syntax used to create controllers or services. This API takes a `directive name` followed by a factory function which returns a `Directive Definition Object`. Directive Definition Object, as the name suggests, contains various options which are used by the `compile service`  for adding custom behaviors to DOM elements. 
 Below are some of the options :
-{% include ads/article-ads.html %}
 
   *  **multiElement**: If set to `true`, the compiler will collect DOM nodes between nodes with the attributes directive-name-start and directive-name-end, and group them together as the directive elements. By default, it is set to `false`. 
 * **priority**: It is used to sort the directives before they are compiled.
@@ -37,7 +36,6 @@ Below are some of the options :
 * **compile**: function to compile the directive
 * **Link**: function to link the scope with the compiled element.
 
-{% include ads/article-ads.html %}
 
 Below is an example directive with directive definition object. 
 ```js
@@ -75,5 +73,4 @@ directive('directiveDefApi', function factory(injectables) {
   return directiveDefinitionObject;
 });
 ```
-{% include ads/article-ads.html %}
 Each of the options has the desired effect on the functionality of a directive. It is outside the scope of this post to explain each of the options in detail.  It would require quite a real estate and time to elaborate each of them.  Hopefully, I will publish the detailed posts about them soon. 

@@ -37,7 +37,7 @@ To store the information we will configure In-memory authentication. we will als
 
 Please note - we will use a spring boot project. You can access the maven dependencies [here](https://github.com/initgrep-post-demos/nauth/blob/auth-providers/pom.xml).
 
-&nbsp;&nbsp;
+
 ## Form based login
 
 Form-based login is enabled by default in spring boot security. When the application first boots up, It provides a default login page. The default *username* is `user` and the *password* is randomly generated string printed in console.
@@ -45,7 +45,7 @@ Form-based login is enabled by default in spring boot security. When the applica
 ```text
 Using generated security password: f18e74c5-8d87-4ec9-8900-4f03869deb26
 ```
-&nbsp;
+
 ### Customize Form based Login
 
 To Change the defaults, Spring security has provided two extension points —
@@ -55,7 +55,7 @@ To Change the defaults, Spring security has provided two extension points —
 
 In this post, we will use the first option. You are free to try the second option as well.
 
-&nbsp;
+
 ### Configure login and logout pages
 
 let's create a new class and extend it with `WebSecurityConfigurerAdapter`. After that, override `configure(HttpSecurity http)` as below. 
@@ -90,7 +90,7 @@ In the above example:
 - `logout()` provides logout support
 - `logoutUrl("/logout")` configures custom logout page
 
-&nbsp;&nbsp;
+
 ### Create templates for Login and Logout Routes
 Next — we need to create two html pages in ***resource/templates*** directory for login and logout.
 
@@ -134,7 +134,7 @@ Next — we need to create two html pages in ***resource/templates*** directory 
 ```
 
 
-&nbsp;
+
 > we are using thymeleaf template engine.
 
 Next - we need to create a controller which maps `GET /login` and `GET /logout` paths with respective templates.
@@ -162,12 +162,12 @@ Once you fill user and auto generated password - Login should be successful. It 
 
 Next — hit [http://localhost:8080/logout](http://localhost:8080/logout). It should show the new logout page now. Click on the logout button. Application performs logout and redirects you to login page.
 
-&nbsp;
+
 ### Configure routes for successful or failed login
 
 Let's configure a default route where the user will be redirected after login. The route configured does not have to be only HTML page. It can also be a rest API route.
 
-&nbsp;
+
 
 **Configure success callback with `defaultSuccessUrl` method**
 
@@ -208,7 +208,7 @@ public class TemplateController {
   }
 }
 ```
-&nbsp;
+
 #### Create Homepage template
 Finally we will create HTML page for home route. Go ahead and create a page in `/resources/templates` and name it `home.html`.
 
@@ -217,7 +217,7 @@ Now try to login again. This time it will redirect you to home page.
 
 Similarly we can configure routes if the login fails by providing the route path to `failureForwardUrl()` method.
 
-&nbsp;&nbsp;
+
 ### Configure Authentication handlers
 
 We can also configure listeners for successful and failed authentication.
@@ -250,7 +250,7 @@ you can either configure routes or use authentication handlers. Handlers are pow
   }
 ```
 
-&nbsp;&nbsp;
+
 ## Configure Storage mechanism
 - in-memory authentication 
 - JPA based authentication

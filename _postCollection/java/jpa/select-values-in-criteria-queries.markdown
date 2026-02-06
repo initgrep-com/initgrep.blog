@@ -44,7 +44,7 @@ To get started, let's analyze the `selection` of a basic  SQL `SELECT` query.
 
 The purpose of showing the above example is to have a rough idea of how the selection works in the `SQL` queries. Criteria Queries in JPA include various methods to select **single entity**, **single value**, **multiple values from same entity or different entities** and **aggregate functions**.
 
-&nbsp;
+
 
 JPA Criteria API provides the following options for the selection of values.
 
@@ -53,11 +53,10 @@ JPA Criteria API provides the following options for the selection of values.
 3. creating a **CriteriaQuery** which returns a **tuple**.
 
 
-&nbsp;
+
 
 We will discuss the implementation of each method. The domain model will remain same as in the previous post.
 
-{% include ads/article-ads.html %}
 
 ### CriteriaQuery.select
  This method takes one [Selection](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/Selection.html) item as a parameter. The parameter specifies the result returned by the Criteria Query. The `select` method can be used to select a **single entity** or a **single value**.
@@ -86,7 +85,7 @@ The above example fetches a student Entity.
 * The `Root` instance returned from the `CriteriaQuery.from` method references the type of the entity provided in the parameter. In this case, it is the `Student` entity.
 * The `select` method takes the root as the parameter
 
-&nbsp;
+
 
 In order to return a __single value__ from the criteria query for each row, we have to provide a `Path` instance which refers to the attribute to be selected.
 
@@ -98,8 +97,8 @@ In order to return a __single value__ from the criteria query for each row, we h
 The `Select` method accepts the parameter of type `Selection`. The `Path` interface is a child interface of Selection which makes Path instance an ideal candidate for the parameter. 
 > *In the previous post related to [writing criteria queries in JPA](/posts/java/jpa/create-programmatic-queries-using-criteria-api), I have explained the inheritance tree of various interfaces.*
 
-&nbsp;
-&nbsp;
+
+
 
 **Aggregate Operation ---**
 If an aggregate method is used in selection, the return type of the criteria query result would be the same as the return type of the aggregate method. For example, if we use `count`, the query type should be `Long`.
@@ -111,8 +110,8 @@ If an aggregate method is used in selection, the return type of the criteria que
     Long resultList = em.createQuery(cq).getSingleResult();
 ```
 
-&nbsp;
-&nbsp;
+
+
 
 **Fetching Relationships ---**
 In case of the relationships such as `OneToMany`, `OneToOne` or `ManyToMany`, the output query results in an implicit `join` operation.
@@ -148,10 +147,9 @@ Below is the output query for the reference.
 
 ```
 
-&nbsp;
-&nbsp;
 
-{% include ads/article-ads.html %}
+
+
 
 Until now we implemented the criteria query to select an Entity or a single value. However, It is not ideal to fetch a complete entity if only a few values are required. Criteria API provides many ways to accomplish that. 
 
@@ -201,10 +199,9 @@ As explained earlier, each argument would take a specific position in the array,
     resultList.forEach(s -> log.info(" result row = {} - {}", s[0],s[1] ));
 ```
 
-&nbsp;
-&nbsp;
 
-{% include ads/article-ads.html %}
+
+
 
 ### Tuple Criteria Queries
 

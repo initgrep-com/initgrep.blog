@@ -1,0 +1,29 @@
+<!-- Hero Card - Featured/Latest Post -->
+{% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
+{% assign featuredPost = sortedPosts | first %}
+
+<div class="px-4 py-4">
+    <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-2">Featured</p>
+
+    <a href="{{ site.baseurl }}{{ featuredPost.url }}" class="block group">
+        <div class="card bg-base-100 shadow-sm image-full aspect-[16/9] sm:aspect-[21/9] overflow-hidden transition-shadow duration-200 ease-in-out hover:shadow-md">
+            <figure class="overflow-hidden">
+                {% include svg-hero.html category=featuredPost.category title=featuredPost.title %}
+            </figure>
+            <!-- Text overlay at top with subtle gradient -->
+            <div class="card-body justify-start p-6 bg-gradient-to-b from-black/50 via-black/20 to-transparent">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="badge badge-primary badge-sm gap-1 transition-transform duration-300 ease-out group-hover:scale-105">
+                        <i data-lucide="{{ site.data.categories[featuredPost.category].icon }}" class="w-3 h-3"></i>
+                        {{ featuredPost.category }}
+                    </span>
+                    <span class="text-xs text-white/80 transition-colors duration-300 group-hover:text-white">{% include relative-date.html date=featuredPost.date %}</span>
+                </div>
+                <h2 class="card-title text-white text-xl sm:text-2xl lg:text-3xl transition-transform duration-300 ease-out group-hover:translate-x-1">
+                    {{ featuredPost.title }}
+                </h2>
+                <p class="text-sm text-white/90 line-clamp-2 max-w-2xl transition-all duration-300 ease-out group-hover:text-white group-hover:translate-x-0.5">{{ featuredPost.meta }}</p>
+            </div>
+        </div>
+    </a>
+</div>

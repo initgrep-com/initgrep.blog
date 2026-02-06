@@ -28,7 +28,7 @@ Spring security tries to solve this problem by packaging all the possible soluti
 > *The purpose of this article is to provide a high level understanding of spring security architecture for Servlet applications. It may not help you to immediately implement spring security in your application but it would definitely help you in the subsequent steps when you dive deeper.*
 
 
-&nbsp;&nbsp;
+
 
 ## Filter pattern in spring security
 
@@ -38,7 +38,7 @@ Spring security for the web applications use the filter pattern to implement dif
 *Spring Security Filter architecture*
 {:.image-caption}
 
-&nbsp;
+
 ### DelegatingFilterProxy Filter
 
 Similar to the Servlet filters, the Spring security filters are implement`Filter` interface but they are also Spring beans which means they are managed by Spring `ApplicationContext`.
@@ -49,7 +49,7 @@ Spring provides `DelegatingFilterProxy` filter which sits in the filter chain. I
 
 When a request is delegated to `DelegatingFilterProxy`. It looks up bean filters from the application context and then invokes the relevant bean filter. `DelegatingFilterProxy` filter also allows for delayed bean Filter lookup.
 
-&nbsp;
+
 ### FilterChainProxy Filter
 
 Spring security provides a special bean filter named as `FilterChainProxy`. This filter is a single entry point which enables spring security for a web application.
@@ -58,7 +58,7 @@ It allows delegating request through a set of filters bundled as `SecurityFilter
 
 `FilterChainProxy` is also used to perform some security specific task such as clearing `SecurityContext`. `FilterChainProxy` is more flexible than traditional Servlet Filters. It can determine which `securityFilterchain` to invoke by leveraging the `RequestMatcher` interface.
 
-&nbsp;
+
 ### SecurityFilterChain
 
 It is a list of security filters which are also Spring managed beans. These are registered with FilterChainProxy. The advantage of being registered with `SecurityFilterChain` are following:
@@ -66,7 +66,7 @@ It is a list of security filters which are also Spring managed beans. These are 
 `FilterChainProxy` leverages `RequestMatcher` interface to determine invocation based upon anything in `ServletRequest` including the URL.
 Incase of multiple `SecurityFilterChains`, `FilterChainProxy` can determine which `SecurityFilterChain` should be used. It also clears `SecurityContext` to avoid any memory leaks.
 
-&nbsp;
+
 ### Customizing the default SecurityFilterChain
 
 Spring security creates an instance of `WebSecurity` via `WebSecurityConfiguration`. `WebSecurity` is responsible for creating an instance of `FilterChainProxy` filter. 
@@ -78,14 +78,14 @@ We can create customizations to the built-in functionality by —
 *This configuration is imported when using `@EnableWebSecurity` annotation.*
 
 
-&nbsp;
+
 ### AuthenticationEntryPoint
 
 - When a client sends a request without authentication credentials, an implementation of `AuthenticationEntryPoint` will be used to send the response to the client to ask for credentials.
 
 The `AuthenticationEntryPoint` implementation might perform a **redirect to a log in page**, respond with an **WWW-Authenticat**e header, etc.
 
-&nbsp;
+
 ### AbstractAuthenticationProcessingFilter
 
 This is the base filter used for authenticating the requests.
@@ -95,10 +95,10 @@ When the user request comes in
     - After that `AbstractAuthenticationProcessingFilter` is directly called.
 
 ---
-&nbsp;&nbsp;&nbsp;
+
 
 # Authentication Architecture API
-&nbsp;&nbsp;
+
 
 ### AuthenticationManager
 
@@ -112,7 +112,7 @@ It basically checks the authentication and decides
 
 Incase, Security Filters are not used such as when using user-defined filters, `Authentication`  can be set on `SecurityContextHolder` manually.
 
-&nbsp;
+
 ### ProviderManager
 
 It is common implementation of `AuthenticationManager`. It delegates to a list of `AuthenticationProvider`s. Each `AuthenticationProvider` has the opportunity to authenticate as well as to show that it can not. 
@@ -121,12 +121,12 @@ It also allows an optional parent `AuthenticationManager`. If no `Authentication
 
 If no `authenticationProviders` can authenticate, authentication fails.
 
-&nbsp;
+
 ### AuthenticationProvider
 
 Its implementations performs a specific type of authentication. For example, `DaoAuthenticationProvider` supports username/password based authentication while `JwtAuthenticationProvider` supports authenticating a JWT token.
 
-&nbsp;
+
 ### SecurityContextHolder
 
 This object contains the authentication information about a request.
@@ -138,7 +138,7 @@ It contains `SecurityContext` which by default is a `threadLocal` object. thus e
 {:.image-caption}
 
 
-&nbsp;&nbsp;
+
 ### Security Context
 
 The `securityContext` object contains `Authentication` Object. The `Authentication` object serves two main purposes within Spring Security —

@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Explore different use-cases for builder pattern in Java"
 date:   2023-08-26 18:00:00 +0200

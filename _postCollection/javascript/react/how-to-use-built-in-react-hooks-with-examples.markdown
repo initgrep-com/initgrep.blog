@@ -7,7 +7,7 @@ meta: Learn how to use built-in React hooks like useState, useReducer, useContex
 excerpt: Learn how to use built-in React hooks like useState, useReducer, useContext, useRef, useEffect, useMemo, and useCallback with examples. Understand their usage in various scenarios, and master the art of leveraging React hooks for efficient state management and side effects handling in your applications.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 
@@ -18,7 +18,7 @@ categories:
     - typescript
     - all
 ---
- &nbsp;
+ 
 
 In React, hooks are functions that let you use state and other React features without writing a class. They are introduced in React 16.8 to enable developers to use state and other React features in functional components.
 

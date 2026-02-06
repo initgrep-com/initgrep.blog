@@ -7,7 +7,7 @@ meta: In this blog post, we take a deep dive into React Hooks, exploring the con
 excerpt: In this blog post, we take a deep dive into React Hooks, exploring the concept and structure of the Hooks API. We examine all the inbuilt hooks in React and learn how to write custom hooks. Follow along as we provide various scenarios with code examples.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 
@@ -18,7 +18,7 @@ categories:
     - typescript
     - all
 ---
-&nbsp;
+
 
 In this blog post, we will take a deep dive into **React Hooks**, a powerful feature introduced in React 16.8. Hooks allow developers to use state and other React features without writing a class. They provide a way to reuse stateful logic, making it easier to write and maintain React components.
 

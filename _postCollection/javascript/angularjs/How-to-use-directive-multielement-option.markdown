@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "How to implement multielement directives"
 date:   2018-07-09
@@ -24,7 +24,6 @@ In order to apply AngularJs directives on various elements without having to add
 
 > A basic [understanding of how to create directives](/posts/javascript/angularjs/Understanding-AngularJS-Directives) is required to understand this tutorial.
 
-{% include ads/article-ads.html %}
 let's create a directive which adds an exclamation "`!`" at the end of every `paragraph`. Let's assume, we have multiple paragraphs and we are too lazy to add the directive on each of them. Here is how to do it once for all the elements.
 
 ```js
@@ -39,7 +38,6 @@ let's create a directive which adds an exclamation "`!`" at the end of every `pa
 })
 ```
 Inside the directive `demoMultiElement's` [link](/posts/javascript/angularjs/AngularJs-Directive-compile-link-functions) function, element is appended with exclaimation mark `!`. Since this element is collection of nodes on which the directive will be applied, Exclaimation mark should be appended to all the nodes.
-{% include ads/article-ads.html %}
 
 ```html
 <!-- index.html-->

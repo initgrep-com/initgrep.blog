@@ -28,7 +28,7 @@ I initially found Criteria API quite intimidating. To be frank, I had to invest 
 Criteria Queries are type-safe and portable. They are written using Java programming language APIs. They use the abstract schema of the persistent entities to find, modify and delete persistent entities by invoking JPA Entity Operations.
 
 
-&nbsp;
+
 
 We will be using the following domain model for building the criteria queries in this tutorial.
 
@@ -40,8 +40,7 @@ We have three Objects( ref. to diagram above ) `Student` , `Course` and `Passpor
 * `Student` has a `One-To-Many` relationship with `Address` which means that a Student can have one or more addresses and an address is always assigned to one student.
 * `Student` has a `Many-To-Many` relationship with `Course` which means that Each Student can enroll in many courses and one course can have many Students enrolled.
 
-{% include ads/article-ads.html %}
-&nbsp;
+
 
 We will begin with a simple Criteria Query and slowly try to build upon it. 
 
@@ -157,10 +156,10 @@ The `select` method specifies the result to be returned by the Query. If all the
 ```
 
 
-&nbsp;
+
 ###  Inheritance Relationships
 
-&nbsp;
+
 
 
 ![Interface relationships in Criteria API](/assets/images/apidaigram.png)
@@ -173,12 +172,11 @@ In the Above diagram, observe the classes in a blue background. The relationship
 `Root` Interface is also an expression. It means, we can query a complete entity by passing `Root` as a parameter to the `select` method.
 In case we want to fetch a selected attribute, we can fetch the attribute path using `root.get(attributeName)`. This method returns a `Path`  object which inherits `expression`.    
 
-{% include ads/article-ads.html %}
-&nbsp;
+
 
 ### Criteria Joins
 
-&nbsp;
+
 #### Implicit Join 
 
 ```java
@@ -218,7 +216,7 @@ Output Query for the above example looks like as below:
 
 Note: Since the Address is the Owner of the relationship between Student and Address. By default, the fetch type for a `OneToMany` relationship is lazy fetch. As a result, there would be extra queries fired to initialize the Student entities related to each Address. However, If we add a where clause and specify a `restriction or predicate`, it would only result in a Single Query.
 
-&nbsp;
+
 #### Explicit Join
 
 Ideally, when we define relationships in JPA, the Join will be based on the related ID column. However, if we want to define the restriction based on some other column, `Join.on(Predicate...)` can be used. `Join` also provides a way to traverse the attributes of the joined entity such as `join.get(attributeName)`.
@@ -274,7 +272,7 @@ After all the Id's are fetched, One query is used to fetch Student and Address d
 ```
 Note: If a restriction is provided in `where` method of the `CritieriaQuery`. It would result in a single query.
 
-&nbsp;
+
 
 ####  Fetch Join
 
@@ -314,8 +312,7 @@ _The above query output is only a single query as below:_
             on student0_.id=addresses1_.student_id
 ```
 
-{% include ads/article-ads.html %}
-&nbsp;
+
 
 ### Group By and Having clause
 
@@ -337,7 +334,7 @@ _The above query output is only a single query as below:_
     CriteriaQuery<T> groupBy(List<Expression<?>> grouping);
 ```
 
-&nbsp;
+
 
 **Having ---** method is also part of the `CriteriaQuery` Interface. It either takes a simple or compound boolean `Expression` or one or more `Predicates` as parameters. The expression or predicates provided specify the restrictions over the groups of the query.
 Below is the signature of the `having` methods.
@@ -356,7 +353,7 @@ Below is the signature of the `having` methods.
     CriteriaQuery<T> having(Predicate... restrictions);
 ```
 
-&nbsp;
+
 
 To build a Criteria Query which uses the `group by` and `having` methods--
 Let's assume, we need to fetch all the `Students` with the number of `Addresses` greater than or equal to three(3). 
@@ -398,7 +395,7 @@ Hibernate:
 ```
 
 
-&nbsp;
+
 ### Order By
 
 The `order by` keyword is used to sort the fetched data either in ascending order or descending order of the value of a column. It can also include aggregate functions.
@@ -408,7 +405,7 @@ The `Order` interface provides the below methods
 * `isAscending()` checks whether ascending order is in place.
 * `getExpression()` fetches the expression that is used for ordering.
 
-&nbsp;
+
 
 The `CriteriaBuilder` interface provides the following methods to enforce order in a criteria query.
 * `asc(Expression<?> x)`: this method returns an `Order` instance which enforces an ascending order by the value of the expression provided as the parameter.
@@ -453,8 +450,7 @@ The output query produced by the above criteria query is below:
         count(address0_.id) asc
 ```
 
-{% include ads/article-ads.html %}
-&nbsp;
+
 ### Subquery
 
 A `subquery` is a nested query which is embedded in the `WHERE` clause of the main query. The results of the subquery are consumed by the main query.
@@ -512,7 +508,7 @@ Below is the output of the final query produced--
 ```
 
 
-&nbsp;
+
 ### Aggregate Functions
 
 Criteria API supports the aggregate functions such as `count`, `avg`, `max`, and `min` etc. All the aggregate functions are part of the  [CriteriaBuilder](https://docs.oracle.com/javaee/6/api/javax/persistence/criteria/CriteriaBuilder.html) Interface. 

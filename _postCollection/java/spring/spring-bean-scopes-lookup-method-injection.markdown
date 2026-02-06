@@ -50,7 +50,7 @@ For XML configuration, we have to add a `scope` attribute to the bean definition
 <bean id="appCommand" class="com.initgrep.demos.Command" scope="prototype"/>
 ```
 
-&nbsp;&nbsp;&nbsp;
+
 
 Now that we have a little background of how Spring Bean Scopes work. Let's analyze the below code snippets 😎:
 
@@ -129,7 +129,7 @@ Now the obvious question here  is — ***what if I want to inject a prototype be
 *Well, Spring framework provides multiple options to help with that. We will go through each one of them in detail below.*
 
 
-&nbsp;
+
 ## Use `ApplicationContext` to get a new bean
 
 With this option in place, we can use `ApplicationContext.getBean()` method to fetch a new instance of the bean.
@@ -179,7 +179,7 @@ public class CommandProcessorTest {
 }
 ```
 
-&nbsp;
+
 ## Lookup Method Injection
 
 As Explained in the Spring docs [here](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#beans-factory-lookup-method-injection):
@@ -193,12 +193,12 @@ There are a few conditions, we need to follow, before implementing this design:
 
 The Lookup method can be declared using both annotations as well as XML configuration.
 
-&nbsp;
+
 ### Lookup method injection with annotations
 
 We can use either an abstract class or a concrete class to implement Lookup method injection.
 
-&nbsp;
+
 **Concrete Class Implementation**
 
 Here `@Lookup` annotation defines `getCommand` method to be lookup method.
@@ -242,7 +242,7 @@ public abstract class CommandProcessor {
 }
 ```
 
-&nbsp;
+
 ### Lookup Method Injection with XML configuration
 
 In XML configuration, `<lookup-method>` element is used to define the lookup method. Similar to the annotations, the Look method can be either a **concrete or an abstract** method. Either way, the Spring Container will subclass it.
@@ -258,7 +258,7 @@ In XML configuration, `<lookup-method>` element is used to define the lookup met
 </bean>
 ```
 
-&nbsp;
+
 ## ObjectFactory<MyTargetBean> to get the instances
 
 `ObjectFactory` interface defines a generic factory that returns a new instance for some target object on each invocation. The target bean should be of `prototype` scope.  
@@ -282,7 +282,7 @@ public class CommandProcessor {
 }
 ```
 
-&nbsp;
+
 ## **XML configuration to generate a scoped proxy**
 
 ### AOP **Scoped Proxies**

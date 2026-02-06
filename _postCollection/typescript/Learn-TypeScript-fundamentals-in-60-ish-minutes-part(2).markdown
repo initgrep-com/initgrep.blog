@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "blue darken-5"
 title:  "Learn TypeScript fundamentals in 60-ish minutes - part(2) "
 date:   2018-11-02
@@ -123,7 +123,6 @@ The below example is self-explanatory.
 ```
 
 
-{% include ads/article-ads.html %}
         
 ##### ReadOnly modifier and Parameter properties
 
@@ -237,9 +236,8 @@ Printer.printDocument("path://to/the/document");
 ```
 
 
-&nbsp;
-{% include ads/article-ads.html %}
-&nbsp;
+
+
 
 #### Generics
 Generics is a facility of generic programming to produce reusable software components.
@@ -317,7 +315,6 @@ we could use a user-defined type as below
 
 
 
-{% include ads/article-ads.html %}
 
 ##### Generic Function Types
 Generic function types are created as a typical function type except the explicit type name is replaced with a generic type.

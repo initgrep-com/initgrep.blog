@@ -2,18 +2,71 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include head.html %}
+{% include header.html %}
 
-<div class="container-fluid">
-        <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-2 h-100  menu-component ">
-                        {%  include v2/sidenav.html %}
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9 content-component  ">
-                        {% include v2/site-profile.html %}
-                </div>
+<main class="max-w-4xl mx-auto pb-8 flex-grow w-full">
+    <div class="px-4 py-8">
+        <!-- Hero Section -->
+        <div class="flex flex-col items-center text-center mb-12">
+            <div class="w-20 h-20 rounded-full bg-primary flex items-center justify-center mb-6">
+                <i data-lucide="terminal" class="w-10 h-10 text-primary-content"></i>
+            </div>
+
+            <h1 class="text-4xl font-bold mb-3">{{ site.name }}</h1>
+
+            {% if page.motive %}
+            <p class="text-xl text-base-content/70 max-w-lg mb-6">{{ page.motive }}</p>
+            {% endif %}
+
+            <a href="{{ site.baseurl }}/privacy" class="btn btn-ghost btn-sm gap-2 text-base-content/60 hover:text-primary">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+                We respect your privacy. Here's how.
+            </a>
         </div>
-</div>
 
-{% include v2/footer.html %}
+        <!-- Authors Section -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span class="w-10 h-10 rounded-full bg-info/10 flex items-center justify-center">
+                    <i data-lucide="users" class="w-5 h-5 text-info"></i>
+                </span>
+                Meet the Authors
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {% for author in site.authors %}
+                {% if author.name and author.layout == 'author' %}
+                <a href="{{ site.baseurl }}/about/{{ author.name }}" class="card bg-base-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="card-body flex-row items-center gap-4">
+                        {% if author.image %}
+                        <img src="{% if author.image contains '://' %}{{ author.image }}{% else %}{{ site.baseurl }}{{ author.image }}{% endif %}"
+                             alt="{{ author.name }}"
+                             class="w-14 h-14 rounded-full object-cover shrink-0" />
+                        {% else %}
+                        <div class="w-14 h-14 rounded-full bg-base-300 flex items-center justify-center shrink-0">
+                            <i data-lucide="user" class="w-6 h-6 text-base-content/50"></i>
+                        </div>
+                        {% endif %}
+                        <div class="min-w-0">
+                            <h3 class="font-semibold truncate">{{ author.name }}</h3>
+                            {% if author.bio %}
+                            <p class="text-sm text-base-content/70 line-clamp-2">{{ author.bio }}</p>
+                            {% endif %}
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-base-content/30 ml-auto shrink-0"></i>
+                    </div>
+                </a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        {{ content }}
+    </div>
+</main>
+
+{% include search-modal.html %}
+{% include footer.html %}
+</body>
+
+</html>

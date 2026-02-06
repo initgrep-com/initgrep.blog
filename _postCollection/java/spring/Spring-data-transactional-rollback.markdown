@@ -67,12 +67,12 @@ This code will work just fine. The products will be saved and after that, the no
 Now, if we want to save the data *irrespective of the notification
 operation success or failure*. We would need to modify the default transaction rollback behavior. `@Transactional` annotation provides two options `dontRollbackOn` and `rollbackOn` for the same. 
 
-&nbsp;
+
 ### dontRollbackOn
 
 It takes a list of exceptions for which the transaction should not rollback.
 
-&nbsp;
+
 **Example : @Transactional on Class**
 
 ```java
@@ -85,7 +85,7 @@ public class ExampleService{
 
 Here — `@Transactional` annotation is specified on class. As a result, Rollback will not happen for `UserNotFoundException` and the same behavior will apply to any subclasses.
 
-&nbsp;
+
 **Example: @Transactional on method**
 
 ```java
@@ -108,7 +108,7 @@ class ExampleService{
 
 Here `@Transactional` annotation is specified only on method. Rollback will not happen for `UserNotFoundException` and `DndException` if thrown within the enclosed method. Also, `DataNotValidException` will cause the transaction to rollback.
 
-&nbsp;
+
 **Example: @Transactional on both Class and Method**
 
 ```java
@@ -132,7 +132,7 @@ class ExampleService{
 
 Notice, the `@Transactional` annotation is specified at both class and method. However, the `dontRollBackOn`  option is only specified on the method. Since the `@Transactional` at method level takes precedence. This means `UserNotFoundException` will not cause any rollback in this method.
 
-&nbsp;
+
 ### rollbackOn
 
 It takes a list of exceptions for which the transaction should  rollback.
@@ -149,7 +149,7 @@ public class ExampleService{
 
 Here — the transaction will rollback on `Exception` or any sub-class of it. 
 
-&nbsp;
+
 **dontRollbackOn** takes precedence over **rollbackOn**
 
 ```java

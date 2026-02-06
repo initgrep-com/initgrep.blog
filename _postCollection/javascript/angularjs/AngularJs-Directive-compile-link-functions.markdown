@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "red darken-4"
 title:  "AngularJs Directive - compile and link function"
 date:   2018-07-08
@@ -45,7 +45,6 @@ var element = linkFn(scope);
 // Step 4: Append to DOM (optional)
 parent.appendChild(element);
 ```
-{% include ads/article-ads.html %}
 
 ***The above code is the exact copy of [AngularJS compile docs](https://docs.angularjs.org/guide/compiler#how-directives-are-compiled)***
 
@@ -56,7 +55,6 @@ If there is a one-time activity common to all instances of the directive. It sho
 I hope it was clear enough...
 Let's go through the compile and link API's.
 
-{% include ads/article-ads.html %}
 ##### Compile function:
 ```js
 function compile(element, attributes, transclude) { ... }
@@ -103,7 +101,6 @@ angular.directive("dumyCompile",function(){
 ```
 > while creating a directive using directive registering API, You can either return a `Directive Definition Object` that defines the directive properties, or just the `postLink function`. Rest of the options will have default values. You can check [API for registering directives](/posts/javascript/angularjs/Angularjs-api-to-register-directives-directive-definition-object) to learn how to create and register a directive.
 > 
-{% include ads/article-ads.html %}
 
 ##### Link function
 ```js
@@ -145,7 +142,6 @@ The link function has two types. `Pre-link` and `Post-link`. The post-link funct
 | Executed before the child elements are linked    |  Executed after the child elements are linked.   |
 | Not safe to do DOM transformation since the compiler linking function will fail to locate the correct elements for linking.    |   Safe to do DOM transformation in the post-linking function on elements that are not waiting for their async templates to be resolved.  |
 
-{% include ads/article-ads.html %}
 **Check out the complete code example below**
 ```js
 //app.js

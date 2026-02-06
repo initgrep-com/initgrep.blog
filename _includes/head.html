@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
+
+    <!-- DaisyUI + Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{{site.baseurl}}/assets/images/favicon.svg" />
+
+    <!-- Theme colors -->
+    <meta name="theme-color" content="#333333">
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#333333">
+
+    <meta name="cf-2fa-verify" content="f2d40cf6e5a17c3">
+
+    <!-- SEO -->
+    {% include seo/headseo.html %}
+
+    <!-- Syntax Highlighting -->
+    <link type="text/css" rel="stylesheet" href="{{site.baseurl}}/assets/style/code-syntax/syntax.css" media="screen,projection" />
+
+    <!-- Custom Styles -->
+    <style>
+        /* Google Fonts: Spectral for articles, JetBrains Mono for code */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+        /* Hide scrollbars but allow scrolling */
+        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+        .scrollbar-none::-webkit-scrollbar { display: none; }
+
+        /* Smooth scroll behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Line clamp utilities */
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Extra small breakpoint for logo text */
+        @media (min-width: 400px) { .xs\:inline { display: inline !important; } }
+
+        /* ── Article Typography ── */
+        .article-content {
+            font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--color-base-content);
+        }
+        @media (min-width: 768px) { .article-content { font-size: 1.35rem; } }
+
+        /* Headings */
+        .article-content h1,
+        .article-content h2,
+        .article-content h3,
+        .article-content h4,
+        .article-content h5,
+        .article-content h6 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-base-content);
+        }
+        .article-content h1 { font-size: 2rem; font-weight: 700; }
+        .article-content h2 { font-size: 1.625rem; border-bottom: 1px solid var(--color-base-200); padding-bottom: 0.5rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content h4 { font-size: 1.25rem; }
+
+        /* Paragraphs */
+        .article-content p { margin-bottom: 1rem; }
+
+        /* Links - all links styled uniformly */
+        .article-content a {
+            color: var(--color-primary);
+            text-decoration: underline;
+            text-decoration-color: var(--color-primary);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: text-decoration-thickness 0.2s ease, text-underline-offset 0.2s ease;
+        }
+        .article-content a:hover {
+            text-decoration-thickness: 2px;
+            text-underline-offset: 2px;
+        }
+        .article-content a:active {
+            opacity: 0.8;
+        }
+
+        /* Bold & Italic */
+        .article-content strong { font-weight: 600; color: var(--color-base-content); }
+        .article-content em { font-style: italic; }
+
+        /* Lists */
+        .article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .article-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .article-content li > ul,
+        .article-content li > ol { margin-top: 0.5rem; margin-bottom: 0; }
+
+        /* Blockquotes */
+        .article-content blockquote {
+            border-left: 4px solid var(--color-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            opacity: 0.85;
+        }
+        .article-content blockquote p:last-child { margin-bottom: 0; }
+
+        /* Images */
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem auto;
+            display: block;
+        }
+        .article-content figure { margin: 1.5rem 0; }
+        .article-content figcaption {
+            text-align: center;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            opacity: 0.7;
+        }
+
+        /* Tables */
+        .article-content table { width: 100%; margin: 1.5rem 0; font-size: 0.875rem; border-collapse: collapse; }
+        .article-content th {
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem;
+            background: var(--color-base-200);
+        }
+        .article-content td {
+            padding: 0.75rem;
+            border-top: 1px solid var(--color-base-200);
+        }
+
+        /* Horizontal rule */
+        .article-content hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid var(--color-base-200);
+        }
+
+        /* Inline code - matches code block style */
+        .article-content code:not(pre code) {
+            padding: 0.15em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.85em;
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            background: var(--color-base-300);
+            color: #d73a49; /* keyword red - light theme */
+        }
+        [data-theme="forest"] .article-content code:not(pre code) {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ff7b72; /* keyword red - dark theme */
+        }
+
+        /* Code blocks */
+        .article-content pre {
+            margin: 1.5rem 0;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+        }
+        .article-content .highlight,
+        .article-content pre {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+    </style>
+
+    <!-- Theme initialization (prevent flash) -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
+</head>
+
+<body class="bg-base-100 text-base-content min-h-screen flex flex-col">

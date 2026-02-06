@@ -2,17 +2,36 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include head.html %}
+{% include header.html %}
 
-<div class="container-fluid">
-        <div class="row pt-xs-5 pt-sm-2 pt-lg-5">
-                
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9  col-xl-9 content-component  ">
-                 {% include v2/404.html%}
-                
-                </div>
+<main class="max-w-4xl mx-auto pb-2 flex-grow w-full flex  justify-center">
+    <div class="px-4 py-16 text-center">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-base-200 mb-6">
+            <i data-lucide="map-pin-off" class="text-warning"></i>
         </div>
-</div>
 
-{% include v2/footer.html %}
+        <h1 class="text-6xl font-bold mb-2">404</h1>
+        <p class="text-xl text-base-content/70 mb-2">Page not found</p>
+        <p class="text-base-content/50 mb-8 max-w-sm mx-auto">
+            The page you're looking for doesn't exist or has been moved.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/" class="btn  gap-2">
+                <i data-lucide="home" class="w-4 h-4"></i>
+                Back to Home
+            </a>
+            <button onclick="history.back()" class="btn btn-ghost gap-2">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Go Back
+            </button>
+        </div>
+    </div>
+</main>
+
+{% include search-modal.html %}
+{% include footer.html %}
+</body>
+
+</html>

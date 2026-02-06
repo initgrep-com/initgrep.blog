@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Explore Different Ways to Implement Thread-Safe Singleton Pattern in Java"
 date:   2023-08-26 17:00:00 +0200

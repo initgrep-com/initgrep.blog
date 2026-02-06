@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "purple darken-4"
 title:  "Groovy : simplifying SAM type as closures"
 date:   2050-10-31
@@ -27,7 +27,6 @@ An Interface which permits only single Abstract method excluding the default met
             boolean test(T obj)
         }
 ```
-{% include ads/article-ads.html %}
 
 **Abstract classes with single abstract method:**
 ```groovy
@@ -54,7 +53,6 @@ The above use case might seem alien at first. But once we go through a few examp
     //or 
     collect(['Java','Groovy'], { it.contains 'G }) // version 2.2.0 -(2)
 ```
-{% include ads/article-ads.html %}
 
 In the `(2)nd` case , the 2nd parameter is closure and it is coerced to an AST. so we can use the closure syntax for the method calls i.e. put the closure outside of the parenthesis which improves the readability of code and simplifies the syntax
 

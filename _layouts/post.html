@@ -2,64 +2,83 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include head.html %}
+{% include header.html %}
 
-<div class="container-fluid">
-
-    <div class="row pt-xs-5 pt-sm-2 pt-lg-4">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-2 h-100  menu-component ">
-            {%  include v2/sidenav.html %}
+<main class="max-w-4xl mx-auto pb-8 flex-grow w-full">
+    <!-- Article Header -->
+    <article class="px-4 py-6">
+        <!-- Breadcrumb -->
+        <div class="text-sm breadcrumbs mb-4">
+            <ul>
+                <li><a href="/" class="text-primary">Home</a></li>
+                <li><a href="{{ site.baseurl }}{{ site.data.categories[page.category].link }}" class="text-primary">{{ page.category }}</a></li>
+            </ul>
         </div>
 
-        <div class="col-12 col-sm-12 col-md-12 col-lg-10 content-component">
-            <div class="row ">
-                <div class="col-12 col-lg-7 col-xl-7 pl-lg-5 ">
-                    <div class="row page-component">
-                        <div class="col-11 page-header ">
-                            <small class="read-time">
-                                <i class="fas fa-stopwatch pr-1"></i>
-                                {% include util/minRead.liquid content= page.content  %}
-                                read</small>
+        <!-- Series Badge -->
+        {% if page.series %}
+        <div class="badge badge-secondary badge-lg mb-4">
+            <i data-lucide="book-open" class="w-4 h-4 mr-2"></i>
+            Series: {{ page.series }}
+        </div>
+        {% endif %}
 
-                            <img src=" {% include util/insertDp-v2.liquid name = page.author %}"
-                                 alt="profile image">
-                            <div class="page-header-meta">
-                                <a href="{{site.baseurl}}/about/{{page.author}}"><small>{{page.author}}</small></a>
-                                <small>{{page.date | date: '%B %d, %Y'}}</small>
-                            </div>
-
-                        </div>
-                        <!-- <div class="col-11 page-poster">
-                            <img src="{{site.baseurl}}/assets/images/{{page.image}}" alt="{{page.title}}">
-                        </div> -->
-                        <div class="col-12 page-content">
-                            <div class="page-content-title">
-                                <h1>{{page.title}}</h1>
-                            </div>
-                            {{content}}
-                        </div>
-                        <div class="col-12 related-posts">
-                            {% include v2/related-posts.html %}
-                        </div>
-                        <div class="col-12 page-comments">
-                            {% include util/disqus.html %}
-                        </div>
-                    </div>
+        <!-- Meta Info -->
+        <div class="flex items-center gap-4 mb-6">
+            <img src="{% include util/insertDp.liquid name=page.author %}"
+                 alt="{{ page.author }}"
+                 class="w-12 h-12 rounded-full object-cover" />
+            <div>
+                <a href="{{ site.baseurl }}/about/{{ page.author }}" class="font-medium hover:text-primary transition-colors">
+                    {{ page.author }}
+                </a>
+                <div class="text-sm text-base-content/60">
+                    {{ page.date | date: '%B %d, %Y' }}
                 </div>
-                <div class="col-12 col-lg-5 col-xl-4">
-                    {% include v2/top-posts.html  %}
-                </div>
-
             </div>
         </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{{ page.title }}</h1>
+
+        <!-- Article Content -->
+        <div class="article-content">
+            {{ content }}
+        </div>
+
+        <!-- Tags -->
+        {% if page.categories %}
+        <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-base-200">
+            {% for category in page.categories %}
+            {% if category != 'all' %}
+            <a href="{{ site.baseurl }}{{ site.data.categories[category].link }}"
+               class="badge badge-ghost badge-sm gap-1 hover:bg-base-200 hover:scale-105 transition-all">
+                <i data-lucide="{{ site.data.categories[category].icon }}" class="w-3 h-3"></i>
+                {{ category }}
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+    </article>
+
+    <!-- Related Posts -->
+    {% include related-posts.html category=page.category exclude_title=page.title %}
+
+    <!-- Comments -->
+    {% if page.comments %}
+    <div class="px-4 py-6">
+        <h2 class="text-xl font-bold mb-4">Comments</h2>
+        <div class="bg-base-200 rounded-xl p-4">
+            {% include util/disqus.html %}
+        </div>
     </div>
-</div>
+    {% endif %}
+</main>
 
-</div>
-
-
-{% include v2/footer.html %}
+{% include search-modal.html %}
+{% include footer.html %}
 </body>
 
 </html>

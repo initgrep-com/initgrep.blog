@@ -7,7 +7,7 @@ meta: Learn about React Portals and how to use them to create dialogs in React. 
 excerpt: Learn about React Portals and how to use them to create dialogs in React. This blog post explains the concept of React Portals, its API, and provides a detailed code example using React functional components to create modal dialogs. Explore the usage of React Portals to enhance your React applications.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 
@@ -17,7 +17,7 @@ categories:
     - javascript
     - all
 ---
- &nbsp;
+ 
 
 React portals provide a way to render children into a DOM node that exists outside the DOM hierarchy of the parent component. This allows for scenarios where the DOM structure of a parent component may not accommodate the desired rendering behavior for certain child components. One common use case for portals is creating dialogs, such as modal dialogs, in React applications.
 

@@ -1,0 +1,139 @@
+---
+---
+
+/* ── Code block container ── */
+.highlight {
+  background-color: var(--color-base-200);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  position: relative;
+}
+
+.highlight pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* Inline code */
+code:not(pre code) {
+  background-color: var(--color-base-200);
+  padding: 0.15em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+}
+
+/* ── Line numbers via CSS counters ── */
+.highlight pre code {
+  counter-reset: line;
+  display: block;
+}
+
+.highlight pre code .code-line {
+  display: block;
+  counter-increment: line;
+  padding-left: 3.5em;
+  position: relative;
+}
+
+.highlight pre code .code-line::before {
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  width: 2.5em;
+  text-align: right;
+  color: color-mix(in oklch, var(--color-base-content) 30%, transparent);
+  font-weight: 500;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Scrollbar styling for code blocks */
+.highlight::-webkit-scrollbar { height: 6px; }
+.highlight::-webkit-scrollbar-track { background: transparent; }
+.highlight::-webkit-scrollbar-thumb {
+  background: color-mix(in oklch, var(--color-base-content) 20%, transparent);
+  border-radius: 3px;
+}
+
+/* ── Light theme syntax (default — GitHub-style) ── */
+.highlight .c, .highlight .cm, .highlight .cp,
+.highlight .c1, .highlight .cs { color: #6a737d; font-style: italic; }
+.highlight .err { color: #cb2431; }
+.highlight .k, .highlight .kc, .highlight .kd, .highlight .kn,
+.highlight .kp, .highlight .kr, .highlight .kt { color: #d73a49; font-weight: 600; }
+.highlight .o, .highlight .ow { color: #d73a49; }
+.highlight .n, .highlight .g, .highlight .l, .highlight .x,
+.highlight .nx, .highlight .nn, .highlight .no, .highlight .py,
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi { color: var(--color-base-content); }
+.highlight .p { color: var(--color-base-content); }
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .s2,
+.highlight .se, .highlight .sh, .highlight .si, .highlight .sx,
+.highlight .sr, .highlight .s1, .highlight .ss { color: #032f62; }
+.highlight .sd { color: #6a737d; font-style: italic; }
+.highlight .na { color: #6f42c1; }
+.highlight .nb { color: #005cc5; }
+.highlight .nc { color: #6f42c1; font-weight: 600; }
+.highlight .nd { color: #6f42c1; font-weight: 600; }
+.highlight .ne { color: #d73a49; font-weight: 600; }
+.highlight .nf { color: #6f42c1; }
+.highlight .ni { color: #735c0f; }
+.highlight .nl { color: #005cc5; }
+.highlight .nt { color: #22863a; }
+.highlight .m, .highlight .mf, .highlight .mh,
+.highlight .mi, .highlight .mo, .highlight .il { color: #005cc5; font-weight: 500; }
+.highlight .gd { color: #cb2431; background: #ffeef0; }
+.highlight .gi { color: #22863a; background: #f0fff4; }
+.highlight .ge { font-style: italic; }
+.highlight .gs { font-weight: bold; }
+.highlight .gh { color: #005cc5; font-weight: bold; }
+.highlight .gu { color: #6f42c1; font-weight: bold; }
+.highlight .go { color: #6a737d; }
+.highlight .gp { color: #6a737d; font-weight: bold; }
+.highlight .gr, .highlight .gt { color: #cb2431; }
+.highlight .w { color: transparent; }
+.highlight .bp { color: #005cc5; }
+
+/* ── Dark theme syntax (forest — GitHub Dark) ── */
+[data-theme="forest"] .highlight .c, [data-theme="forest"] .highlight .cm,
+[data-theme="forest"] .highlight .cp, [data-theme="forest"] .highlight .c1,
+[data-theme="forest"] .highlight .cs { color: #8b949e; font-style: italic; }
+[data-theme="forest"] .highlight .err { color: #f85149; }
+[data-theme="forest"] .highlight .k, [data-theme="forest"] .highlight .kc,
+[data-theme="forest"] .highlight .kd, [data-theme="forest"] .highlight .kn,
+[data-theme="forest"] .highlight .kp, [data-theme="forest"] .highlight .kr,
+[data-theme="forest"] .highlight .kt { color: #ff7b72; font-weight: 600; }
+[data-theme="forest"] .highlight .o,
+[data-theme="forest"] .highlight .ow { color: #ff7b72; }
+[data-theme="forest"] .highlight .s, [data-theme="forest"] .highlight .sb,
+[data-theme="forest"] .highlight .sc, [data-theme="forest"] .highlight .s2,
+[data-theme="forest"] .highlight .se, [data-theme="forest"] .highlight .sh,
+[data-theme="forest"] .highlight .si, [data-theme="forest"] .highlight .sx,
+[data-theme="forest"] .highlight .sr, [data-theme="forest"] .highlight .s1,
+[data-theme="forest"] .highlight .ss { color: #a5d6ff; }
+[data-theme="forest"] .highlight .sd { color: #8b949e; font-style: italic; }
+[data-theme="forest"] .highlight .na { color: #d2a8ff; }
+[data-theme="forest"] .highlight .nb { color: #79c0ff; }
+[data-theme="forest"] .highlight .nc { color: #d2a8ff; font-weight: 600; }
+[data-theme="forest"] .highlight .nd { color: #d2a8ff; font-weight: 600; }
+[data-theme="forest"] .highlight .ne { color: #ff7b72; font-weight: 600; }
+[data-theme="forest"] .highlight .nf { color: #d2a8ff; }
+[data-theme="forest"] .highlight .ni { color: #ffa657; }
+[data-theme="forest"] .highlight .nl { color: #79c0ff; }
+[data-theme="forest"] .highlight .nt { color: #7ee787; }
+[data-theme="forest"] .highlight .m, [data-theme="forest"] .highlight .mf,
+[data-theme="forest"] .highlight .mh, [data-theme="forest"] .highlight .mi,
+[data-theme="forest"] .highlight .mo, [data-theme="forest"] .highlight .il { color: #79c0ff; font-weight: 500; }
+[data-theme="forest"] .highlight .gd { color: #ffa198; background: rgba(248,81,73,0.15); }
+[data-theme="forest"] .highlight .gi { color: #7ee787; background: rgba(63,185,80,0.15); }
+[data-theme="forest"] .highlight .gh { color: #79c0ff; font-weight: bold; }
+[data-theme="forest"] .highlight .gu { color: #d2a8ff; font-weight: bold; }
+[data-theme="forest"] .highlight .go { color: #8b949e; }
+[data-theme="forest"] .highlight .gp { color: #8b949e; font-weight: bold; }
+[data-theme="forest"] .highlight .gr,
+[data-theme="forest"] .highlight .gt { color: #f85149; }
+[data-theme="forest"] .highlight .bp { color: #79c0ff; }

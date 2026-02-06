@@ -2,41 +2,25 @@
 layout: html_minifier
 ---
 
-{% include v2/head.html %}
-{% include v2/header.html %}
+{% include head.html %}
+{% include header.html %}
 
-<div class="container-fluid">
+<main class="max-w-4xl mx-auto pb-8 flex-grow w-full">
+    <article class="px-4 py-6">
+        <h1 class="text-3xl md:text-4xl font-bold mb-6">Privacy Policy</h1>
 
-        <div class="row pt-xs-5 pt-sm-2 pt-lg-4">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-2 h-100  menu-component ">
-                        {% include v2/sidenav.html %}
-                </div>
-
-                <div class="col-12 col-sm-12 col-md-12 col-lg-10 content-component">
-                        <div class="row ">
-                                <div class="col-12 col-lg-7 col-xl-7 pl-lg-5 ">
-                                        <div class="row page-component">
-
-                                                <div class="col-12 page-content">
-                                                        <div class="page-content-title">
-                                                                <h1>PRIVACY POLICY</h1>
-                                                        </div>
-                                                {% include privacy/policy.html %}
-                                                </div>
-                                                
-                                        </div>
-                                </div>
-                              
-
-                        </div>
-                </div>
+        <div class="prose prose-lg max-w-none
+                    prose-headings:text-base-content
+                    prose-p:text-base-content/90
+                    prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                    prose-strong:text-base-content">
+            {% include privacy/policy.html %}
         </div>
-</div>
+    </article>
+</main>
 
-</div>
-
-
-{% include v2/footer.html %}
+{% include search-modal.html %}
+{% include footer.html %}
 </body>
 
 </html>

@@ -7,7 +7,7 @@ meta:  Understand what Spring WebClient is, how to set it up in a Spring Boot ap
 excerpt: Understand what Spring WebClient is, how to set it up in a Spring Boot application, perform GET and POST requests, handle error handling, retry and backoff on specific exceptions.
 category: spring
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 
@@ -18,7 +18,7 @@ categories:
     - spring
     - all
 ---
- &nbsp;
+ 
 
 
 Spring WebClient is a non-blocking, reactive HTTP client built on top of Project Reactor, which is the foundation for building reactive applications in Spring. In this post, we will see how to set up Spring WebClient, do a GET and POST request, handle errors. We will also see how to do retry and backoff using spring WebClient.
@@ -33,7 +33,7 @@ HTTP/1.1 Protocol: It works over the HTTP/1.1 protocol.
 
 - **Synchronous and Asynchronous**: It supports both synchronous and asynchronous operations.
 - **Default Implementation**: The default implementation is the `DefaultWebClient` class.
- &nbsp; &nbsp;
+  
 ## Setting Up Spring WebClient in a Spring Boot Application
 
 **Dependencies**
@@ -62,7 +62,7 @@ public WebClient.Builder myWebClientBuilder() {
         .build();
 
 ```
- &nbsp; &nbsp;
+  
 
 ## Performing GET and POST Requests
 
@@ -102,12 +102,12 @@ Here is the breakdown -
 - The order object is serialized and sent as the request body.
 - We retrieve the response body (which contains the created order) and convert it to a `Mono<Order>`.
 
- &nbsp; &nbsp;
+  
 ## Error Handling
 
 Error handling is crucial when interacting with external services. Spring WebClient provides mechanisms to handle errors gracefully. You can use the `onErrorResume` and `onErrorMap` operators to handle specific errors and transform them into meaningful responses.
  
-  &nbsp;
+  
 ### Provide alternative result using onErrorResume
 
 ```java
@@ -125,7 +125,7 @@ Mono<Order> getOrderDetails(String orderId) {
 In the above example, we used `onErrorResume`. It is a method provided by Project Reactor (which Spring WebClient uses) to handle errors in reactive streams. It allows you to return a fallback value (either a Mono or a Flux) when an error occurs during stream processing. The fallback value is used to continue the stream execution, effectively replacing the erroneous element.  You can use `onErrorResume` when you want to gracefully handle errors by providing an alternative result.
 
   
- &nbsp;
+ 
 ### Provide meaningful Exception using onErrorMap
 
 If you do not want to return an alternative result. Rather, you would want to translate the error into a meaningful Domain related exception. you can use `onErrorMap`. It allows you to transform one error into another by applying a mapping function. Unlike `onErrorResume`, it doesn’t provide a fallback value; instead, it replaces the original error with a new one.
@@ -147,7 +147,7 @@ Mono<Order> getOrderDetails(String orderId) {
 
 ```
  
-  &nbsp;
+  
 ### Transform the status code into meaningful exception using onStatus
 We can also use `onStatus` operator to transform a status code to a meaninful exception. In the below example we transform **4XX** codes into OrderNotFoundException. 
 
@@ -165,7 +165,7 @@ Mono<Order> getOrderDetails(String orderId) {
 ```
 
 
-   &nbsp; &nbsp;
+    
 ## Retrying and Backoff on Specific Exceptions
 
 Often, network or service failures can occur. Spring WebClient provides operators such as `retry` and `backoff` to handle these scenarios gracefully. You can specify the conditions under which a retry should occur and define backoff strategies to wait before retrying.

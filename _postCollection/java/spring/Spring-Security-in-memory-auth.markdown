@@ -23,7 +23,7 @@ Spring Security provides `DaoAuthenticationProvider` which requires a `UserDetai
 
 Please note — we will use a spring boot project. You can access the maven dependencies [here](https://github.com/initgrep-post-demos/nauth/blob/auth-providers/pom.xml).
 
-&nbsp;
+
 ## Create a Spring Configuration class and extend to `WebSecurityConfigurerAdapter`
 
 Override the `configure(AuthenticationManagerBuilder auth)`
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-&nbsp;
+
 ## Add a password encoder bean
 
 we are `BCryptPasswordEncoder` here.
@@ -53,7 +53,7 @@ we are `BCryptPasswordEncoder` here.
   }
 ```
 
-&nbsp;
+
 ## Create an instance of `UserDetailsService`
 
 we will return an instance of `InMemoryUserDetailsManager` It is an implementation of `UserDetailsService` interface.
@@ -71,7 +71,7 @@ public UserDetailsService inMemoryUserDetailsService() {
     return new InMemoryUserDetailsManager(user1);
   }
 ```
-&nbsp;
+
 ## Create a bean of `DaoAuthenticationProvider`
 
 we will also set the instances 

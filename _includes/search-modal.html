@@ -1,0 +1,24 @@
+<!-- Search Overlay -->
+<div id="searchOverlay" class="fixed inset-0 z-[100] hidden">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-base-300/60 backdrop-blur-sm" onclick="closeSearch()"></div>
+
+    <!-- Search Container (top center) -->
+    <div class="relative max-w-xl w-full mx-auto mt-4 px-4 sm:mt-8">
+        <div class="bg-base-100 rounded-xl shadow-2xl border border-base-300 overflow-hidden">
+            <!-- Search Input Row -->
+            <div class="flex items-center gap-3 px-5 py-4 border-b border-base-200">
+                <i data-lucide="search" class="w-5 h-5 text-base-content/40 flex-shrink-0"></i>
+                <input id="searchInput" type="text" placeholder="Search articles..."
+                       class="flex-1 bg-transparent border-0 outline-none text-base-content placeholder:text-base-content/40 text-base ring-0 focus:ring-0 focus:outline-none"
+                       autocomplete="off" />
+                <kbd class="kbd kbd-sm text-base-content/50">ESC</kbd>
+            </div>
+
+            <!-- Results Container -->
+            <div id="searchResults" class="max-h-80 overflow-y-auto">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+</div>

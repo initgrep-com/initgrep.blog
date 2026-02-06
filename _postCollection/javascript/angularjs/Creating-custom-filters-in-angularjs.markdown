@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "pink darken-4"
 title:  "Creating Custom Filters in AngularJS"
 date:   2018-06-26
@@ -33,7 +33,6 @@ A sample usage of Filters in view templates is as below:
 
 We can use Filters in the Controllers, Services or Directives as well. I will explain it a little later...
 
-{% include ads/article-ads.html %}
 
 Let's begin with a simple filter example.
 
@@ -82,7 +81,6 @@ I have created an AngularJs module `customFilterApp` with a controller registere
 > 3. It should not change the external state. 
 >
 > 4. Filters should be valid AngularJs Expression identifiers such as `uppercase` or `orderBy`. Names with special characters, such as hyphens and dots, are not allowed. 
-{% include ads/article-ads.html %}
 
 Before we move ahead, let me briefly explain a few core concepts.
 
@@ -96,7 +94,6 @@ Before we move ahead, let me briefly explain a few core concepts.
 
 I hope that was clear enough.
 
-{% include ads/article-ads.html %}
 
 Let's get Back to Filters...
 
@@ -152,7 +149,6 @@ I have created a stateful filter above. It is dependent on a value service to fe
 
 It might not be easy to figure out the difference as much from the code. But once you put some log statements and keep changing the input, you would notice the execution cycles are much higher for the stateful filter. During the execution, I noticed for every input change, Stateless filter gets called only once but Stateful filter gets called twice.
 
-{% include ads/article-ads.html %}
 
 ##### Filters usage in Controllers
 

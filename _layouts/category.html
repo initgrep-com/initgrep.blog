@@ -3,10 +3,54 @@ layout: html_minifier
 ---
 
 {% include head.html %}
-{% include nav.html %}
-  <!-- catagories content -->
-<!--   {% include subHome/banner.html  currentCollection = sorted %} -->
-<div class="section code-wrapper">
-  {{ content }}
- </div> <!--section -->
+{% include header.html %}
+
+<main class="max-w-5xl mx-auto pb-8 flex-grow w-full">
+    <!-- Category Header -->
+    <div class="px-4 py-6">
+        <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                <i data-lucide="{{ site.data.categories[page.type].icon }}" class="w-8 h-8"></i>
+            </div>
+            <div>
+                <h1 class="text-3xl font-bold">{{ site.data.categories[page.type].title }}</h1>
+                {% assign postCategory = page.type %}{% assign count = 0 %}{% for post in site.postCollection %}{% for category in post.categories %}{% if category == postCategory %}{% assign count = count | plus: 1 %}{% endif %}{% endfor %}{% endfor %}
+                <p class="text-sm text-base-content/60">{{ count }} article{% if count != 1 %}s{% endif %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Posts Grid -->
+    <div class="px-4">
+        {% assign postCategory = page.type %}
+        {% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
+        {% assign hasPost = false %}
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for post in sortedPosts %}
+                {% for category in post.categories %}
+                    {% if category == postCategory %}
+                        {% assign hasPost = true %}
+                        {% include post-card.html post=post %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        {% unless hasPost %}
+        <div class="text-center py-12">
+            <div class="text-6xl mb-4">
+                <i data-lucide="folder-open" class="w-16 h-16 text-base-content/20"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-base-content/60">No posts yet</h3>
+            <p class="text-base-content/40">Check back later for new content</p>
+        </div>
+        {% endunless %}
+    </div>
+</main>
+
+{% include search-modal.html %}
 {% include footer.html %}
+</body>
+
+</html>

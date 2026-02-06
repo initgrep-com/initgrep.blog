@@ -2,20 +2,38 @@
 layout: html_minifier
 ---
 
-<!-- {% include head.html %} -->
-{% include nav.html %}
-{% include home/banner.html %}
+{% include head.html %}
+{% include header.html %}
 
-<!-- catagories content -->
-<div class="section grey lighten-5 ">
+<main class="max-w-5xl mx-auto pb-8 flex-grow w-full">
+    <!-- Hero Card (Featured Post) -->
+    {% include hero-card.html %}
 
-   {% include home/topPosts.html %}
+    <!-- Latest Posts Section -->
+    <div class="px-4 py-6">
+        <p class="text-xs uppercase tracking-wider text-primary font-semibold mb-4">Latest Posts</p>
 
-   {% include home/catagory.html %}
+        {% assign sortedPosts = site.postCollection | sort: 'date' | reverse %}
 
-   {% include  home/fixedIcon.html %}
+        <!-- Responsive Post Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {% for post in sortedPosts offset:1 limit:9 %}
+                {% include post-card.html post=post %}
+            {% endfor %}
+        </div>
 
-</div>
-<!--container -->
+        <!-- View All Posts Link -->
+        <div class="text-center mt-8">
+            <a href="/posts" class="btn btn-outline btn-primary gap-2">
+                <span>View All Posts</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </div>
+</main>
 
+{% include search-modal.html %}
 {% include footer.html %}
+</body>
+
+</html>

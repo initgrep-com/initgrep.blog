@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Creational Design Patterns in Java With Examples "
 date:   2023-08-26 19:00:00 +0200

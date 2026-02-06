@@ -37,7 +37,7 @@ NgRx framework helps to build reactive angular applications.
 
 **NgRx Effects** allow  the isolation of side-effects. 
 
-&nbsp;
+
 
 ## Prerequisites -
 
@@ -47,7 +47,7 @@ NgRx framework helps to build reactive angular applications.
 
 - you  have a fair knowledge of `RxJs` Observable API and various operators.
 
-&nbsp;
+
 
 #### Table of contents
 
@@ -65,7 +65,7 @@ NgRx framework helps to build reactive angular applications.
   - createSelector function
   - String selectors.
 
-&nbsp;
+
 
 ## Installation
 
@@ -88,7 +88,7 @@ ng add @ngrx/store@latest
 ng serve
 ```
 
-&nbsp;
+
 
 **To begin with**, let us have a look at an example file structure. A structure like this would be helpful to split up each feature of `NgRx `state management in your app. I usually replicate the same structure in each feature module.
 
@@ -224,11 +224,8 @@ export interface AppState {
 }
 ```
 
- &nbsp;
 
-{% include ads/article-ads.html %}
 
-&nbsp;
 
 ## Actions:
 
@@ -272,11 +269,10 @@ export const addPosts = createAction(
 
 > Actions represent the events and not the commands or operations .  A single command or operation may generate many types of Actions. For example: An operation which creates a new user would atleast generate Actions for *success* and *failure* such as `[profile] user created` or `[profile] user creation failed` .
 
-&nbsp;
 
-{% include ads/article-ads.html %}
 
-&nbsp;
+
+
 
 ## NgRx Reducer -
 
@@ -381,7 +377,7 @@ export const AppActionReducerMap: ActionReducerMap<AppState> = {
 };
 ```
 
-&nbsp;
+
 
 #### Register the  State
 
@@ -407,11 +403,10 @@ The state can be registered using one of the two options:
   StoreModule.forFeature({ profile: profileFeatureReducer })
   ```
 
-     &nbsp;
+     
 
-{% include ads/article-ads.html %}
 
-&nbsp; 
+
 
 ## NgRx Selectors -
 
@@ -513,11 +508,10 @@ export const selectPosts = createSelector(
 posts$ = this.store.select(fromSelectors.selectPosts);
 ```
 
-&nbsp;
 
-{% include ads/article-ads.html %}
 
-&nbsp;
+
+
 
 #### Select multiple peices of state
 
@@ -642,4 +636,4 @@ The next important feature of Ngrx State mangement is to isolate the[ side effec
 
 
 
-&nbsp;
+

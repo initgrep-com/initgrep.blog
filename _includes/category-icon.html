@@ -1,0 +1,11 @@
+{%- comment -%}
+Category Icon Component - Simplified Lucide icon with background
+Usage: {% include category-icon.html category="java" %}
+{%- endcomment -%}
+
+{%- assign cat = include.category | default: 'default' -%}
+{%- assign icon = site.data.categories[cat].icon | default: 'newspaper' -%}
+
+<div class="w-full h-full rounded-lg bg-base-300 flex items-center justify-center transition-all duration-150  group-hover:scale-105 group-active:scale-95">
+    <i data-lucide="{{ icon }}" class="w-6 h-6 text-base-content/60"></i>
+</div>

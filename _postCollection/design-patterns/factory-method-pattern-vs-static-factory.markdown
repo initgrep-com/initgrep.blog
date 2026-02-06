@@ -1,5 +1,5 @@
 ---
-layout: seriesPost
+layout: post
 bannercolor: "yellow darken-4"
 title:  "Factory Method Pattern vs Static Factory Method"
 date:   2023-08-26 16:00:00 +0200
