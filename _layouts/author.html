@@ -9,7 +9,11 @@ layout: html_minifier
     <div class="px-4 py-8">
         <div class="flex flex-col items-center text-center">
             {% if page.image %}
+            {% if page.image contains "://" %}
+            <img src="{{ page.image }}"
+            {% else %}
             <img src="{{ site.baseurl }}{{ page.image }}"
+            {% endif %}
                  alt="{{ page.name }}"
                  class="w-24 h-24 rounded-full object-cover mb-4" />
             {% endif %}

@@ -7,7 +7,7 @@ meta: Learn how to access child component refs in React using forwardRef. This s
 excerpt: Learn how to access child component refs in React using forwardRef. This step-by-step guide covers the basics of working with refs.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 

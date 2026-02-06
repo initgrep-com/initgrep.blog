@@ -7,7 +7,7 @@ meta: In this blog post, we take a deep dive into React Hooks, exploring the con
 excerpt: In this blog post, we take a deep dive into React Hooks, exploring the concept and structure of the Hooks API. We examine all the inbuilt hooks in React and learn how to write custom hooks. Follow along as we provide various scenarios with code examples.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 

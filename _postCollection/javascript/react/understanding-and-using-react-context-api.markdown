@@ -7,7 +7,7 @@ meta: Learn how to use the React Context API to manage global state in your appl
 excerpt: Learn how to use the React Context API to manage global state in your applications. Understand what the Context API is, the problems it solves, and how to implement it with code examples.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik

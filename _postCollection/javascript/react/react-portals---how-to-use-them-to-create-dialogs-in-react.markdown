@@ -7,7 +7,7 @@ meta: Learn about React Portals and how to use them to create dialogs in React. 
 excerpt: Learn about React Portals and how to use them to create dialogs in React. This blog post explains the concept of React Portals, its API, and provides a detailed code example using React functional components to create modal dialogs. Explore the usage of React Portals to enhance your React applications.
 category: react
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 

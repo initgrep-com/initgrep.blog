@@ -1,10 +1,10 @@
 ---
 layout: author
 name: sheikh irshad
-image: /assets/images/ppp.svg
+image: https://api.dicebear.com/9.x/adventurer/svg?seed=Easton&flip=true
 github: irshsheik
 twitter:
-facebook: 
-aboutMe: Hi, I'm a Senior Software Engineer with a decade of experience in full-stack development. I specialize in building scalable, cloud-native solutions using Java, Spring, Docker, and Kubernetes. My passion lies in optimizing systems and solving complex technical challenges. On this blog, I share insights on software engineering, from design patterns to cloud technologies.
-meta: Hi, I'm a Senior Software Engineer with a decade of experience in full-stack development. I specialize in building scalable, cloud-native solutions using Java, Spring, Docker, and Kubernetes. My passion lies in optimizing systems and solving complex technical challenges. On this blog, I share insights on software engineering, from design patterns to cloud technologies.
+facebook:
+aboutMe: I’m a senior software engineer with around ten years of experience, mostly working on backend and full-stack systems. I enjoy turning messy problems into simple, reliable solutions, especially in cloud-native setups with Java, Spring, Docker, and Kubernetes. This blog is where I write about things I’ve learned the hard way, design decisions, trade-offs, and the occasional tech rabbit hole.
+meta: I’m a senior software engineer with around ten years of experience, mostly working on backend and full-stack systems. I enjoy turning messy problems into simple, reliable solutions, especially in cloud-native setups with Java, Spring, Docker, and Kubernetes. This blog is where I write about things I’ve learned the hard way, design decisions, trade-offs, and the occasional tech rabbit hole.
 ---

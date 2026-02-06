@@ -7,7 +7,7 @@ meta:  Understand what Spring WebClient is, how to set it up in a Spring Boot ap
 excerpt: Understand what Spring WebClient is, how to set it up in a Spring Boot application, perform GET and POST requests, handle error handling, retry and backoff on specific exceptions.
 category: spring
 comments: true
-author: code whiz
+author: Otto
 twitter: 
 facebook: 
 github: 

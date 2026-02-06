@@ -7,7 +7,7 @@ meta: Discover the exciting new features in Java 17! This blog post explores the
 excerpt: Discover the exciting new features in Java 17! This blog post explores the latest enhancements in Java 17, including pattern matching, sealed classes, and more. Dive into various scenarios with code examples to understand how these new features can improve your Java programming experience.
 category: java
 comments: true
-author: code whiz
+author: Otto
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
