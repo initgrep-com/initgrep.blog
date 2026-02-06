@@ -8,7 +8,7 @@ excerpt: "NgRx Effects use observable action streams to isolate side effects fro
 category: angular
 comments: true
 author: "sheikh irshad"
-twitter: imshykh    
+twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
 image: /assets/images/rxjs-effects.jpg
@@ -26,18 +26,17 @@ categories:
 - **What is a Side effect?**
 
 - **Why NgRx Effects?**
-  
+
   - Service based design vs NgRx Effects based design
 
-- **NgRx Effects** 
-  
+- **NgRx Effects**
+
   - Installation
-  
+
   - Implementation
-  
+
   - Register NgRx Effects in module
-    
-    
+
 
 
 
@@ -51,7 +50,7 @@ A [side effect](http://en.wikipedia.org/wiki/Side_effect_%28computer_science%29)
 
 - *Enabling or disabling a button in the User Interface.*
 
-...[source](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect) 
+...[source](https://softwareengineering.stackexchange.com/questions/40297/what-is-a-side-effect)
 
 
 
@@ -73,7 +72,7 @@ Now here are a few things you should consider -
 
 - ...and if  you have another service that performs some computation which is scheduled to be run when the user interacts with UI such as a click of a button. Again, you would inject the service in component, and on `click` of the button, a method of the service is called.
 
-It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user *clicks a button* or when an API should be called. 
+It works great... But if you notice, the component is tighly coupled with the service  and it knows about what operations to perform when a user *clicks a button* or when an API should be called.
 
 The very first **disadvantage** of this pattern you would come across is ***components are hard to test since they are dependent on many services***. You would also notice that It is almost ***impossible to reuse the components***.
 
@@ -93,7 +92,7 @@ The component does not have to know, how the Input data is made available or how
 
 I have already written a post about [ reactive state management using NgRx store, actions, and selectors.](/posts/javascript/angular/state-management-in-angualar-using-ngrx) You can go through it to have an understanding of NgRx state management.
 
-We discussed the service based approach above. Let's see a comparison between the service based design and NgRx effects. 
+We discussed the service based approach above. Let's see a comparison between the service based design and NgRx effects.
 
 You might notice fewer elements in play during service based design but don't let it fool you. It is better to have more elements in application than to have a lousy app.
 
@@ -101,127 +100,126 @@ You might notice fewer elements in play during service based design but don't le
 
 
 
-
 ### Service based design
 
-Suppose, our `AppComponent `requires a list of users. 
+Suppose, our `AppComponent `requires a list of users.
 
 - We have a service `AppRemoteService`  and it contains  `users$ observable`  which can be subscribed to get a list of users.
-  
-  ```typescript
-  users$ = this.httpClient.get<User[]>(URL).pipe(take(1));
-  ```
 
-- We have injected the `AppRemoteService` in side the `AppComponent` and we would subscribe to `AppRemoteService.users$` observable . 
-  
-  ```typescript
-  @Component({
-      template: `
-      <div class="user-container" 
-        *ngIf="localUsers">
-       <app-user *ngfor="let user of localUsers" 
-                  [inputUser]="user">
-    </div>
-      `
-  })
-  export class AppComponent{
-  //state inside component
-  localUsers: User[];
-  
-  constructor(private remoteService: RemoteService){}
-  
-    ngOnInit(){
-        //handle the subscription here
-    this.remoteService.users$.subscrible(
-        users => this.localUsers = users;
-        );
-    }
-    } 
-  ```
+```typescript
+users$ = this.httpClient.get<User[]>(URL).pipe(take(1));
+```
+
+- We have injected the `AppRemoteService` in side the `AppComponent` and we would subscribe to `AppRemoteService.users$` observable .
+
+```typescript
+@Component({
+    template: `
+    <div class="user-container"
+      *ngIf="localUsers">
+     <app-user *ngfor="let user of localUsers"
+                [inputUser]="user">
+  </div>
+    `
+})
+export class AppComponent{
+//state inside component
+localUsers: User[];
+
+constructor(private remoteService: RemoteService){}
+
+  ngOnInit(){
+      //handle the subscription here
+  this.remoteService.users$.subscrible(
+      users => this.localUsers = users;
+      );
+  }
+  }
+```
 
 ### NgRx Effects based design
 
 Here is how NgRx effects will change it -
 
 - The AppComponent would only require `NgRx Store` to select the `state` or dispatch `actions`.
-  
-  ```typescript
-  export class AppComponent implements OnInit {
-   constructor(private store: Store<fromApp.AppState>) { }
-   }
-  ```
+
+```typescript
+export class AppComponent implements OnInit {
+ constructor(private store: Store<fromApp.AppState>) { }
+ }
+```
 
 - As soon as the component requires the list of users, it would dispatch an action `loadUsers` when the component is initialized.
-  
-  ```typescript
-  export class AppComponent implements OnInit {
-   constructor(private store: Store<fromApp.AppState>) { }
-  
-   ngOnInit(): void {
-       //action dispatched
-      this.store.dispatch(fromActions.loadUsers());
-   }
-  
-  }
-  ```
 
-- The Component will use **NgRx selector** `selectUsers` and subscribe to its observable. 
-  
-  ```typescript
-  
-  @Component({
-   template: `
-       <div class="user-container" 
-           *ngIf="localUsers$ | async as users">
-           <app-user *ngfor="let user of users" 
-                      [inputUser]="user">
-       </div>
-   `
-  })
-  export class AppComponent implements OnInit {
-    localusers$ = this.store.select(fromSelectors.selectUsers);
-  
-    constructor(private store: Store<fromApp.AppState>) { }
-  
-    ngOnInit(): void {
-      this.store.dispatch(fromActions.loadUsers());
-    }
+```typescript
+export class AppComponent implements OnInit {
+ constructor(private store: Store<fromApp.AppState>) { }
+
+ ngOnInit(): void {
+     //action dispatched
+    this.store.dispatch(fromActions.loadUsers());
+ }
+
+}
+```
+
+- The Component will use **NgRx selector** `selectUsers` and subscribe to its observable.
+
+```typescript
+
+@Component({
+ template: `
+     <div class="user-container"
+         *ngIf="localUsers$ | async as users">
+         <app-user *ngfor="let user of users"
+                    [inputUser]="user">
+     </div>
+ `
+})
+export class AppComponent implements OnInit {
+  localusers$ = this.store.select(fromSelectors.selectUsers);
+
+  constructor(private store: Store<fromApp.AppState>) { }
+
+  ngOnInit(): void {
+    this.store.dispatch(fromActions.loadUsers());
   }
-  ```
+}
+```
 
 - **NgRx Effects** will be listening to the stream of actions dispatched since the latest state change. `loadUsers$` effect is interested in `loadUsers` action dispatched by `AppComponent`. As such, when the component is initialized, the `loadUsers` action is dispatched. The effect reacts to it and subscribes `remoteservice.users$` .
 
 - Once the data is fetched, the `loadUsers$` effect will dispatch `addUsers` action with associated metadata - users. The respective reducer function will transition the state. The latest state will contain recently feteched users.
-  
-  ```typescript
-  //app.effects.ts
-   loadUsers$ = createEffect(
-      () => this.action$.pipe(
-          ofType(AppActions.loadUsers),
-          mergeMap(() => this.remoteService.users$
-          .pipe(
-              map(users => AppActions.addUsers({ users })),
-              catchError(error => {
-              return of(error);
-              })
-          )),
-   ));
-  ```
-  
-  ```typescript
-  
-  //app.reducer.ts
-  //addUsers action mapping 
-  
-  const theReducer = createReducer(
-    initialState,
-    on(AppActions.addUsers, (state, { users }) => ({
-      ...state,
-      users: [...users]
-    }))
-  
-  );
-  ```
+
+```typescript
+//app.effects.ts
+ loadUsers$ = createEffect(
+    () => this.action$.pipe(
+        ofType(AppActions.loadUsers),
+        mergeMap(() => this.remoteService.users$
+        .pipe(
+            map(users => AppActions.addUsers({ users })),
+            catchError(error => {
+            return of(error);
+            })
+        )),
+ ));
+```
+
+```typescript
+
+//app.reducer.ts
+//addUsers action mapping
+
+const theReducer = createReducer(
+  initialState,
+  on(AppActions.addUsers, (state, { users }) => ({
+    ...state,
+    users: [...users]
+  }))
+
+);
+```
 
 - As soon as the data is available, the `localusers$` observable subsrciption will have users list ready for the component to render.
 
@@ -231,7 +229,7 @@ In contrast with the service-based approach isolating the side-effects using NgR
 
 ## NgRx Effects
 
-NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of *all* Actions dispatched. If the effect is interested in any action , it  performs a task(side-effects) and return another Action back to Action Stream. 
+NgRx Effects are injectable services similar to Angular services. These services are long running and listen to an observable stream of *all* Actions dispatched. If the effect is interested in any action , it  performs a task(side-effects) and return another Action back to Action Stream.
 
 > *NgRx Effects may not always dispatch a new action upon completion of a side-effect.*
 
@@ -282,32 +280,32 @@ export class AppRemoteService {
 - We would require an injectable service for create effects. Let's go ahead and create an `Effect` service, name it `AppEffects`   and make it injectable using `@Injectable` decorator.
 
 - NgRx Effects listens to an Observable Action stream dispatched since the latest state change and it provided by `Actions` service. Let's inject an instance of  `Actions` service in our AppEffects service.
-  
-  ```typescript
-  import { Actions } from '@ngrx/effects/';
-  
-  @Injectable()
-  
-    export class AppEffects{
-        constructor( private action$: Actions){}
-   }
-  ```
+
+```typescript
+import { Actions } from '@ngrx/effects/';
+
+@Injectable()
+
+  export class AppEffects{
+      constructor( private action$: Actions){}
+ }
+```
 
 - The sole purpose of NgRx Effects is to isolate the side-effects from components. Instead of directly calling side-effects inside components, we would now call them in NgRx effects. As such, other services can also be injected into `AppEffect` service. These services can be used to interact with external apis or perfrom computations. We will inject our `AppRemoteService` which contains methods to fetch data via APIs.
-  
-  ```typescript
-  import { Actions } from '@ngrx/effects/';
-  import { AppRemoteService } from '../app-remote.service';
-  
-  @Injectable()
-   export class AppEffects{
-  
-     constructor( 
-         private action$: Actions,
-         private remoteService: AppRemoteService
-       ) { }  
-  }
-  ```
+
+```typescript
+import { Actions } from '@ngrx/effects/';
+import { AppRemoteService } from '../app-remote.service';
+
+@Injectable()
+ export class AppEffects{
+
+   constructor(
+       private action$: Actions,
+       private remoteService: AppRemoteService
+     ) { }
+}
+```
 
 Inside the AppEffects service, The `createEffect` function is used to create the effects. It takes two arguments.  Lets see how each of these arguments are defined.
 
@@ -322,47 +320,47 @@ Below are the steps, we will follow to create this function--
 - First of all, we will access the `Actions` instance observable.
 
 - ...then we will use pipeable  [ofType](https://ngrx.io/api/effects/ofType) operator function.  `ofType` operator function takes one or more actions as arguments and filters the Actions stream based on provided arguments.
-  
-  ```typescript
-  () => this.actions$.pipe(
-      ofType(AppActions.loadUsers)
-  )
-  ```
+
+```typescript
+() => this.actions$.pipe(
+    ofType(AppActions.loadUsers)
+)
+```
 
 - The stream of actions is flattened and mapped to  new observables using a RxJs flattening operators such as `MergeMap, concatMap, exhaustMap`.  At this point, the computation or external API calls are performed depending on the task.
-  
-  ```typescript
-  () => this.actions$.pipe(
-       ofType(AppActions.loadUsers),
-       //flatten the actions
-       mergeMap(
-       (action) => this.remoteService.users$
-  )
-  ```
-  
-  *We have provide only one action as argument to `ofType` operator function. But you could provide multiple actions. In that case, the effect will execute the tasks for any matched Action.*
 
-- Finally 
-  
-  - If the task is successful, a new action with optional metadata is returned as an observable 
-  
+```typescript
+() => this.actions$.pipe(
+     ofType(AppActions.loadUsers),
+     //flatten the actions
+     mergeMap(
+     (action) => this.remoteService.users$
+)
+```
+
+*We have provide only one action as argument to `ofType` operator function. But you could provide multiple actions. In that case, the effect will execute the tasks for any matched Action.*
+
+- Finally
+
+  - If the task is successful, a new action with optional metadata is returned as an observable
+
   - If an error occurs, an Observable of error is returned.
-  
-  ```typescript
-  () => this.actions$.pipe(
-      ofType(AppActions.loadUsers),
-      //flatten the actions
-      mergeMap((action) => this.remoteService.users$
-          .pipe(
-              //maps the users to addUser action
-              map(users => AppActions.addUsers({ users })),
-              // return Observable<any> to catch error
-              catchError(error => {
-                  return of(error);
-               })
-           )
-      );
-  ```
+
+```typescript
+() => this.actions$.pipe(
+    ofType(AppActions.loadUsers),
+    //flatten the actions
+    mergeMap((action) => this.remoteService.users$
+        .pipe(
+            //maps the users to addUser action
+            map(users => AppActions.addUsers({ users })),
+            // return Observable<any> to catch error
+            catchError(error => {
+                return of(error);
+             })
+         )
+    );
+```
 
 **The second argument is the EffectConfig to configure the effect**
 
@@ -374,9 +372,9 @@ interface EffectConfig{
 ```
 
 - `Dispatch`:
-  
-  - `dipatch:true` conveyes that the  action emitted by the effect is dispatched to the store.
-  
+
+  - `dipatch:true` conveyes that the  action emitted by the effect is dispatched to the store.
+
   - `dipatch:false` means the effect does not need to return an action.
 
 - `useEffectErrorHandler` determines if the effect should be resubscribed incase an error occurs.
@@ -403,12 +401,11 @@ Below is the final version *`loadUsers$`* effect -
 
 
 
-
 ### Effects that require input state.
 
-Let's assume, our app also requires to show notifications upon operation success.  
+Let's assume, our app also requires to show notifications upon operation success.
 
-- We have a `showNofitication(message:string)` method which is responsible to show the notifications.  The messages shown by the notification is contextual and hence the message should be passed to the method as argument . 
+- We have a `showNofitication(message:string)` method which is responsible to show the notifications.  The messages shown by the notification is contextual and hence the message should be passed to the method as argument .
 
 - We also have an action  `[Notification] operation Success` which carries the `message` metadata.
 
@@ -428,7 +425,7 @@ export const operationSuccess = createAction(
 
   operatorSuccessNotify$ = createEffect(() => this.action$.pipe(
     ofType(AppActions.operationSuccess),
-    mergeMap((action) => 
+    mergeMap((action) =>
        of(
            this.notificationService.successNotification(action.message))
        )
@@ -447,14 +444,14 @@ There could also be scenarios where the lastest state of the application is requ
 Lets say, the effect requires latest number of posts, we will use `selectPosts` selector.
 
 ```typescript
-    () => 
+    () =>
         this.action$.pipe(
             ofType(AppActions.updateSize),
-            concatMap((action) => 
+            concatMap((action) =>
                     of(action).pipe(
                     withLatestFrom(
                             this.store.select(fromSelectors.selectPosts)
-                     )) 
+                     ))
              ),
 
              ....
@@ -473,6 +470,5 @@ EffectsModule.forRoot([AppEffects]);
 //OR
 EffectsModule.forFeature([ProfileFeatureEffects]);
 ```
-
 
 

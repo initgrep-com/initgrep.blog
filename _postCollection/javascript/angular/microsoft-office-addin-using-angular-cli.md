@@ -47,31 +47,34 @@ _Please note, It still does not support the `office-addin-debugger` plugin provi
   Office [official docs](https://docs.microsoft.com/en-us/outlook/add-ins/quick-start?tabs=visual-studio-code) have provided detailed steps. I will only provide concise steps.
 
 - Run the following command in the command line. It will install the office Yeoman generator.
-    ```
-      npm install -g yo generator-office
-    ```
+
+```
+npm install -g yo generator-office
+```
+
 - Generate the office adding angular project structure using the below command.
-    ```
-      yo office --skip-install
-    ```
-    The above command will provide interactive input. Choose the below options  
 
-      ```js
-         Choose a project type: (Use arrow keys) 
-         // choose (2) Office Add-in Task Pane project using Angular framework
+```
+yo office --skip-install
+```
 
-         Choose a script type: (Use arrow keys)
-         // choose (1) Typescript
-        
-         What do you want to name your add-in? (My Office Add-in) 
-         //Give any name you want. for this tutorial, I would keep demo-addin
+The above command will provide interactive input. Choose the below options
 
-         Which Office client application would you like to support? 
-         //choose (3) Outlook
+```js
+Choose a project type: (Use arrow keys)
+// choose (2) Office Add-in Task Pane project using Angular framework
 
-      ```
+Choose a script type: (Use arrow keys)
+// choose (1) Typescript
 
-    Notice `--skip-install` argument. Well, We don't want `npm` to install all the dependencies here. We would only need `manfiest.xml` file and some of the Microsoft office dependencies from package.json.
+What do you want to name your add-in? (My Office Add-in)
+//Give any name you want. for this tutorial, I would keep demo-addin
+
+Which Office client application would you like to support?
+//choose (3) Outlook
+```
+
+Notice `--skip-install` argument. Well, We don't want `npm` to install all the dependencies here. We would only need `manfiest.xml` file and some of the Microsoft office dependencies from package.json.
 
 Our outlook addin project structure is done using yeomen generator. Below is the structure of the generated project.
 
