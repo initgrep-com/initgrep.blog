@@ -33,6 +33,9 @@
 
     <!-- Custom Styles -->
     <style>
+        /* Google Fonts: Spectral for articles, JetBrains Mono for code */
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
         /* Hide scrollbars but allow scrolling */
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-none::-webkit-scrollbar { display: none; }
@@ -49,11 +52,13 @@
 
         /* ── Article Typography ── */
         .article-content {
-            font-size: 1rem;
-            line-height: 1.625;
+            font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+            font-size: 1.125rem;
+            font-weight: 400;
+            line-height: 1.8;
             color: var(--color-base-content);
         }
-        @media (min-width: 768px) { .article-content { font-size: 1.125rem; } }
+        @media (min-width: 768px) { .article-content { font-size: 1.35rem; } }
 
         /* Headings */
         .article-content h1,
@@ -62,16 +67,16 @@
         .article-content h4,
         .article-content h5,
         .article-content h6 {
-            font-weight: 700;
-            line-height: 1.25;
+            font-weight: 600;
+            line-height: 1.3;
             margin-top: 2rem;
             margin-bottom: 1rem;
             color: var(--color-base-content);
         }
-        .article-content h1 { font-size: 1.875rem; }
-        .article-content h2 { font-size: 1.5rem; border-bottom: 1px solid var(--color-base-200); padding-bottom: 0.5rem; }
-        .article-content h3 { font-size: 1.25rem; }
-        .article-content h4 { font-size: 1.125rem; }
+        .article-content h1 { font-size: 2rem; font-weight: 700; }
+        .article-content h2 { font-size: 1.625rem; border-bottom: 1px solid var(--color-base-200); padding-bottom: 0.5rem; }
+        .article-content h3 { font-size: 1.375rem; }
+        .article-content h4 { font-size: 1.25rem; }
 
         /* Paragraphs */
         .article-content p { margin-bottom: 1rem; }
@@ -156,7 +161,7 @@
             padding: 0.15em 0.4em;
             border-radius: 0.25rem;
             font-size: 0.85em;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background: var(--color-base-300);
             color: #d73a49; /* keyword red - light theme */
         }
@@ -171,7 +176,10 @@
             border-radius: 0.75rem;
             overflow-x: auto;
         }
-        .article-content .highlight { position: relative; }
+        .article-content .highlight,
+        .article-content pre {
+            font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
 
     </style>
 
