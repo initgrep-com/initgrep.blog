@@ -11,7 +11,7 @@ Parameters:
 
 <!-- Mobile: Compact card with category icon -->
 <div class="sm:hidden">
-    <a href="{{ site.baseurl }}{{ include.post.url }}" class="card card-side bg-base-100 shadow-sm group transition-all duration-150 ease-in-out hover:shadow-md hover:bg-base-200 active:shadow-md active:bg-base-200 active:scale-[0.98]">
+    <a href="{{ site.baseurl }}{{ include.post.url }}" class="card card-side bg-base-100 shadow-sm group transition-all duration-200 ease-in-out hover:shadow-md hover:bg-base-200">
         <figure class="w-12 h-12 flex-shrink-0 m-3">
             {% include category-icon.html category=include.post.category %}
         </figure>
@@ -23,7 +23,7 @@ Parameters:
                 </span>
                 <span>{% include relative-date.html date=include.post.date %}</span>
             </div>
-            <h3 class="card-title text-sm line-clamp-2 group-hover:text-primary group-active:text-primary transition-colors duration-150">{{ include.post.title }}</h3>
+            <h3 class="card-title text-sm line-clamp-2 group-hover:text-primary transition-colors duration-200">{{ include.post.title }}</h3>
         </div>
     </a>
 </div>

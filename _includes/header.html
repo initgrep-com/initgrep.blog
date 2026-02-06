@@ -23,19 +23,19 @@
                     <i data-lucide="sun" class="w-5 h-5"></i>
                 </div>
                 <ul tabindex="0" class="dropdown-content menu rounded-box z-50 w-40 p-2 gap-1 shadow-lg mt-2 bg-base-200">
-                    <li><a onclick="setTheme('light')" class="flex items-center gap-3 rounded-lg">
+                    <li><a onclick="setTheme('light'); setTimeout(function(){ document.activeElement.blur(); }, 50);" class="flex items-center gap-3 rounded-lg">
                         <span data-theme="light" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
                             <i data-lucide="sun" class="w-4 h-4 text-base-content"></i>
                         </span>
                         <span>Light</span>
                     </a></li>
-                    <li><a onclick="setTheme('retro')" class="flex items-center gap-3 rounded-lg">
+                    <li><a onclick="setTheme('retro'); setTimeout(function(){ document.activeElement.blur(); }, 50);" class="flex items-center gap-3 rounded-lg">
                         <span data-theme="retro" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
                             <i data-lucide="sun-dim" class="w-4 h-4 text-base-content"></i>
                         </span>
                         <span>Dim</span>
                     </a></li>
-                    <li><a onclick="setTheme('forest')" class="flex items-center gap-3 rounded-lg">
+                    <li><a onclick="setTheme('forest'); setTimeout(function(){ document.activeElement.blur(); }, 50);" class="flex items-center gap-3 rounded-lg">
                         <span data-theme="forest" class="bg-base-100 border border-base-300 rounded-full p-1.5 flex items-center justify-center">
                             <i data-lucide="moon" class="w-4 h-4 text-base-content"></i>
                         </span>

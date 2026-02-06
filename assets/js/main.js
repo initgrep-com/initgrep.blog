@@ -135,17 +135,24 @@ function renderResults(results, query) {
         return;
     }
     container.innerHTML = results.slice(0, 10).map(function(post, i) {
+        var iconName = post.icon || 'file-text';
         return '<a href="' + post.url + '" class="search-result flex items-start gap-3 px-4 py-3 hover:bg-base-200 transition-colors cursor-pointer border-b border-base-200 last:border-0" data-index="' + i + '">'
-            + '<i data-lucide="file-text" class="w-4 h-4 mt-0.5 text-base-content/40 flex-shrink-0"></i>'
-            + '<div class="min-w-0">'
-            + '<div class="text-xs text-base-content/50 mb-0.5">' + escapeHtml(post.category || '') + '</div>'
+            + '<div class="min-w-0 flex-1">'
+            + '<div class="flex items-center gap-2 mb-0.5">'
+            + '<span class="badge badge-ghost badge-sm gap-1">'
+            + '<i data-lucide="' + iconName + '" class="w-3 h-3"></i>'
+            + escapeHtml(post.category || '')
+            + '</span>'
+            + '</div>'
             + '<div class="font-medium text-sm text-base-content line-clamp-1">' + highlightMatch(post.title, query) + '</div>'
             + '<div class="text-xs text-base-content/60 line-clamp-1 mt-0.5">' + escapeHtml(post.meta || '') + '</div>'
             + '</div>'
             + '</a>';
     }).join('');
     searchActiveIndex = -1;
-    if (typeof lucide !== 'undefined') lucide.createIcons();
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons({ nodes: container.querySelectorAll('[data-lucide]') });
+    }
 }
 
 function highlightMatch(text, query) {
@@ -252,7 +259,12 @@ function initCodeCopyButtons() {
     document.querySelectorAll('div.highlight').forEach(function(block) {
         if (block.querySelector('.code-copy-btn')) return;
         var btn = document.createElement('button');
-        btn.className = 'code-copy-btn';
+        btn.className = 'code-copy-btn absolute top-2 right-2 z-10 flex items-center gap-1 ' +
+            'bg-base-100 text-base-content/70 border border-base-200 ' +
+            'rounded-md px-2 py-1 text-xs cursor-pointer ' +
+            'transition-all duration-150 ' +
+            'hover:bg-base-200 hover:text-base-content hover:scale-105 ' +
+            'active:scale-95';
         btn.innerHTML = ICON_CLIPBOARD;
         btn.setAttribute('aria-label', 'Copy code');
         btn.addEventListener('click', function() {
@@ -260,10 +272,10 @@ function initCodeCopyButtons() {
             if (!codeEl) return;
             navigator.clipboard.writeText(codeEl.textContent).then(function() {
                 btn.innerHTML = ICON_CHECK + ' <span>Copied!</span>';
-                btn.classList.add('copied');
+                btn.classList.add('text-success', 'bg-base-200');
                 setTimeout(function() {
                     btn.innerHTML = ICON_CLIPBOARD;
-                    btn.classList.remove('copied');
+                    btn.classList.remove('text-success', 'bg-base-200');
                 }, 2000);
             });
         });

@@ -9,6 +9,7 @@ layout: null
     "meta": {{ post.meta | default: post.excerpt | strip_html | truncate: 160 | jsonify }},
     "category": {{ post.category | jsonify }},
     "categories": {{ post.categories | jsonify }},
+    "icon": {{ site.data.categories[post.category].icon | default: "file-text" | jsonify }},
     "date": "{{ post.date | date: '%Y-%m-%d' }}"
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
