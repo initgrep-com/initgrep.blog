@@ -57,8 +57,12 @@ twitter:
 facebook:
   username: initgrep
 
-
-
-
+# SEO defaults
+defaults:
+  - scope:
+      path: ""
+      type: "authors"
+    values:
+      noindex: true
 
 

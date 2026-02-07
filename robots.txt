@@ -3,7 +3,24 @@ layout: null
 ---
 
 # www.robotstxt.org/
-# www.google.com/support/webmasters/bin/answer.py?hl=en&answer=156449
 
 User-agent: *
-Sitemap: {{ site.url }}/sitemap
+Allow: /posts/
+Allow: /
+
+Disallow: /about/
+Disallow: /privacy
+Disallow: /404
+Disallow: /google*.html
+Disallow: /assets/
+
+Sitemap: {{ site.url }}/sitemap.xml
+
+# AI Crawlers
+User-agent: GPTBot
+User-agent: Claude-Web
+User-agent: CCBot
+Allow: /posts/
+Disallow: /about/
+Disallow: /privacy
+Disallow: /assets/

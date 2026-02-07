@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dots-jpa" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="rgba(55, 65, 81, 0.08)" />
+    </pattern>
+    <radialGradient id="frame-gradient-jpa" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="rgba(55, 65, 81, 0.06)" />
+      <stop offset="100%" stop-color="rgba(55, 65, 81, 0.02)" />
+    </radialGradient>
+    <path id="frame-shape-jpa" d="M480 250 C480 220 534 195 600 195 C666 195 720 220 720 250 L720 395 C720 425 666 450 600 450 C534 450 480 425 480 395 Z" />
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="630" fill="#f3f4f6" />
+  <rect width="1200" height="630" fill="rgba(99, 102, 241, 0.18)" />
+  <rect width="1200" height="630" fill="rgba(55, 65, 81, 0.03)" />
+
+  <!-- Dot pattern overlay -->
+  <rect width="1200" height="630" fill="url(#dots-jpa)" />
+
+  <!-- Cylinder frame -->
+  <use href="#frame-shape-jpa" fill="url(#frame-gradient-jpa)" />
+  <use href="#frame-shape-jpa" stroke="rgba(55, 65, 81, 0.15)" stroke-width="2" fill="none" />
+
+  <!-- Database icon (JPA) - centered at 600,315 -->
+  <g transform="translate(600,315) scale(5)" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-12,-12)">
+      <ellipse cx="12" cy="5" rx="9" ry="3"/>
+      <path d="M3 5V19A9 3 0 0 0 21 19V5"/>
+      <path d="M3 12A9 3 0 0 0 21 12"/>
+    </g>
+  </g>
+
+  <!-- Category label -->
+  <text x="600" y="560" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="600" fill="#374151">JPA</text>
+</svg>

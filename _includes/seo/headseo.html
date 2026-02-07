@@ -1,6 +1,75 @@
+{% comment %} Robots meta - control page indexing {% endcomment %}
+{% if page.layout == 'author' or page.layout == 'privacy' or page.layout == 'FourNotFour' or page.layout == 'about' or page.noindex %}
+<meta name="robots" content="noindex, nofollow">
+{% elsif page.layout == 'post' or page.layout == 'home' or page.layout == 'category' %}
+<meta name="robots" content="index, follow">
+{% else %}
+<meta name="robots" content="noindex, nofollow">
+{% endif %}
 
 <meta property="article:publisher" content="http://www.facebook.com/{{site.facebook.username}}" />
 <meta property="article:author" content="https://www.facebook.com/{{page.facebook}}" />
 <meta name="twitter:description" content="{% if page.meta %}{{ page.meta | truncate: 160 }}{% else %}{{ site.description | truncate: 160  }}{% endif %}">
 <meta name="twitter:image:src" content="{{ site.url | append: site.baseurl }}{%if page.image %}{{ page.image }}{% else %}{{ site.image }}{% endif %}">
- {% seo %}
+{% seo %}
+
+{% comment %} JSON-LD Structured Data {% endcomment %}
+{% if page.layout == 'home' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.name }}",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url }}/search.json?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% endif %}
+
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.meta | default: page.excerpt | strip_html | truncate: 160 | escape }}",
+  "image": "{{ site.url }}/assets/images/categories/{{ page.category }}.svg",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.url }}/assets/images/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  }
+}
+</script>
+{% endif %}
+
+{% if page.layout == 'category' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ page.title }} Tutorials",
+  "description": "{{ page.meta | default: site.description }}",
+  "image": "{{ site.url }}/assets/images/categories/{{ page.type }}.svg",
+  "url": "{{ site.url }}{{ page.url }}"
+}
+</script>
+{% endif %}
