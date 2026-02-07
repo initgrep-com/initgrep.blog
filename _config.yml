@@ -47,7 +47,7 @@ plugins:
 #social and seo
 name: initgrep
 title: www.initgrep.com
-description: Learn software development using initgrep tutorials - JavaScript, TypeScript, AngularJs, Java, Groovy, JPA, Spring, Spring Boot
+description: Developer notes, mostly code.
 logo: /assets/images/biglogo.jpg
 image: /assets/images/biglogo.jpg
 
