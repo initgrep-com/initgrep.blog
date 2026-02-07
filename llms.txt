@@ -1,0 +1,21 @@
+---
+layout: null
+---
+# initgrep.com - Software Development Tutorials
+
+> Learn software development using initgrep tutorials covering JavaScript, TypeScript, Angular, React, Java, Spring, JPA, and design patterns.
+
+## Primary Content
+- /posts/java/ - Java programming tutorials
+- /posts/spring/ - Spring Framework and Spring Boot
+- /posts/jpa/ - Java Persistence API tutorials
+- /posts/javascript/ - JavaScript fundamentals
+- /posts/react/ - React.js tutorials
+- /posts/angular/ - Angular framework tutorials
+- /posts/typescript/ - TypeScript language tutorials
+- /posts/Design-pattern/ - Software design patterns
+
+## Do Not Index
+- /about/ - Author biography pages
+- /privacy - Privacy policy
+- /404 - Error page

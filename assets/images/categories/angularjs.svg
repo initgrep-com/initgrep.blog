@@ -1,0 +1,38 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dots-angularjs" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="rgba(55, 65, 81, 0.08)" />
+    </pattern>
+    <radialGradient id="frame-gradient-angularjs" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="rgba(55, 65, 81, 0.06)" />
+      <stop offset="100%" stop-color="rgba(55, 65, 81, 0.02)" />
+    </radialGradient>
+    <path id="frame-shape-angularjs" d="M600 180 L720 225 L720 375 C720 435 660 465 600 480 C540 465 480 435 480 375 L480 225 Z" />
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="630" fill="#f3f4f6" />
+  <rect width="1200" height="630" fill="rgba(99, 102, 241, 0.18)" />
+  <rect width="1200" height="630" fill="rgba(55, 65, 81, 0.03)" />
+
+  <!-- Dot pattern overlay -->
+  <rect width="1200" height="630" fill="url(#dots-angularjs)" />
+
+  <!-- Shield frame pulse rings -->
+  <path d="M600 150 L750 204 L750 384 C750 459 669 501 600 522 C531 501 450 459 450 384 L450 204 Z" stroke="rgba(99, 102, 241, 0.10)" stroke-width="1" fill="none" />
+  <path d="M600 165 L735 214.5 L735 379.5 C735 447 660 486 600 504 C540 486 465 447 465 379.5 L465 214.5 Z" stroke="rgba(99, 102, 241, 0.07)" stroke-width="1" fill="none" />
+
+  <!-- Main frame with gradient fill -->
+  <use href="#frame-shape-angularjs" fill="url(#frame-gradient-angularjs)" />
+  <use href="#frame-shape-angularjs" stroke="rgba(55, 65, 81, 0.15)" stroke-width="2" fill="none" />
+
+  <!-- Triangle icon (AngularJS) - centered at 600,315 -->
+  <g transform="translate(600,315) scale(5)" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-12,-12)">
+      <path d="M13.73 4a2 2 0 0 0-3.46 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+    </g>
+  </g>
+
+  <!-- Category label -->
+  <text x="600" y="560" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="600" fill="#374151">AngularJS</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dots-java" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="rgba(55, 65, 81, 0.08)" />
+    </pattern>
+    <radialGradient id="frame-gradient-java" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="rgba(55, 65, 81, 0.06)" />
+      <stop offset="100%" stop-color="rgba(55, 65, 81, 0.02)" />
+    </radialGradient>
+    <polygon id="frame-shape-java" points="600,200 714,260 714,380 600,440 486,380 486,260" />
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="630" fill="#f3f4f6" />
+  <rect width="1200" height="630" fill="rgba(99, 102, 241, 0.18)" />
+  <rect width="1200" height="630" fill="rgba(55, 65, 81, 0.03)" />
+
+  <!-- Dot pattern overlay -->
+  <rect width="1200" height="630" fill="url(#dots-java)" />
+
+  <!-- Hexagon frame pulse rings -->
+  <polygon points="600,175 744,252.5 744,407.5 600,485 456,407.5 456,252.5" stroke="rgba(99, 102, 241, 0.12)" stroke-width="1" fill="none" />
+  <polygon points="600,187 729,257.5 729,392.5 600,462 471,392.5 471,257.5" stroke="rgba(99, 102, 241, 0.08)" stroke-width="1" fill="none" />
+
+  <!-- Main frame with gradient fill -->
+  <use href="#frame-shape-java" fill="url(#frame-gradient-java)" />
+  <use href="#frame-shape-java" stroke="rgba(55, 65, 81, 0.15)" stroke-width="2" fill="none" />
+
+  <!-- Coffee cup icon (Java) - centered at 600,315 -->
+  <g transform="translate(600,315) scale(5)" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-12,-12)">
+      <path d="M10 2v2"/>
+      <path d="M14 2v2"/>
+      <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>
+      <path d="M6 2v2"/>
+    </g>
+  </g>
+
+  <!-- Category label -->
+  <text x="600" y="560" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="600" fill="#374151">Java</text>
+</svg>

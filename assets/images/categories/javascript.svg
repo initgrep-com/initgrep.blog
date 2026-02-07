@@ -1,0 +1,39 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="dots-js" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="rgba(55, 65, 81, 0.08)" />
+    </pattern>
+    <radialGradient id="frame-gradient-js" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="rgba(55, 65, 81, 0.06)" />
+      <stop offset="100%" stop-color="rgba(55, 65, 81, 0.02)" />
+    </radialGradient>
+    <rect id="frame-shape-js" x="474" y="189" width="252" height="252" rx="36" />
+  </defs>
+
+  <!-- Background layers -->
+  <rect width="1200" height="630" fill="#f3f4f6" />
+  <rect width="1200" height="630" fill="rgba(99, 102, 241, 0.18)" />
+  <rect width="1200" height="630" fill="rgba(55, 65, 81, 0.03)" />
+
+  <!-- Dot pattern overlay -->
+  <rect width="1200" height="630" fill="url(#dots-js)" />
+
+  <!-- Square frame pulse rings -->
+  <rect x="444" y="159" width="312" height="312" rx="48" stroke="rgba(99, 102, 241, 0.12)" stroke-width="1" fill="none" />
+  <rect x="459" y="174" width="282" height="282" rx="42" stroke="rgba(99, 102, 241, 0.08)" stroke-width="1" fill="none" />
+
+  <!-- Main frame with gradient fill -->
+  <use href="#frame-shape-js" fill="url(#frame-gradient-js)" />
+  <use href="#frame-shape-js" stroke="rgba(55, 65, 81, 0.15)" stroke-width="2" fill="none" />
+
+  <!-- Braces icon (JavaScript) - centered at 600,315 -->
+  <g transform="translate(600,315) scale(5)" stroke="#374151" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(-12,-12)">
+      <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1"/>
+      <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1"/>
+    </g>
+  </g>
+
+  <!-- Category label -->
+  <text x="600" y="560" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="600" fill="#374151">JavaScript</text>
+</svg>
