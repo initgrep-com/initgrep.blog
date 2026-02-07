@@ -1,9 +1,9 @@
 ---
 layout: null
 ---
-# initgrep.com - Software Development Tutorials
+# initgrep.com
 
-> Learn software development using initgrep tutorials covering JavaScript, TypeScript, Angular, React, Java, Spring, JPA, and design patterns.
+> Developer notes, mostly code.
 
 ## Primary Content
 - /posts/java/ - Java programming tutorials
