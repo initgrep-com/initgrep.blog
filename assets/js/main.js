@@ -2,15 +2,14 @@
  * initgrep v3 - DaisyUI Theme System
  */
 
-// Available themes
-const THEMES = ['light', 'retro', 'forest'];
+// Available themes (light and dark only)
+const THEMES = ['light', 'forest'];
 const DEFAULT_THEME = 'light';
-const VERSION = '3.0.0';
+const VERSION = '3.0.1';
 
 // Map themes to Lucide icon names
 var THEME_ICONS = {
     'light': 'sun',
-    'caramellatte': 'sun-dim',
     'forest': 'moon'
 };
 
@@ -25,6 +24,12 @@ function setTheme(theme) {
     localStorage.setItem('theme', theme);
     updateThemeColor();
     updateThemeIcon();
+}
+
+function toggleTheme() {
+    var currentTheme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
+    var newTheme = currentTheme === 'light' ? 'forest' : 'light';
+    setTheme(newTheme);
 }
 
 function loadTheme() {
@@ -59,7 +64,6 @@ function updateThemeColor() {
     // Update browser theme-color meta tag based on current theme
     const themeColors = {
         'light': '#ffffff',
-        'caramellatte': '#e4d8b4',
         'forest': '#171212'
     };
     const currentTheme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
@@ -189,25 +193,39 @@ function selectResult() {
     }
 }
 
-function initSearch() {
+function initKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
         var overlay = document.getElementById('searchOverlay');
         var isOpen = overlay && !overlay.classList.contains('hidden');
 
-        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-            e.preventDefault();
-            isOpen ? closeSearch() : openSearch();
-            return;
+        // Global shortcuts (Cmd/Ctrl + key)
+        if (e.metaKey || e.ctrlKey) {
+            switch (e.key.toLowerCase()) {
+                case 'd': // Toggle theme
+                    e.preventDefault();
+                    toggleTheme();
+                    return;
+                case 'k': // Toggle search
+                    e.preventDefault();
+                    isOpen ? closeSearch() : openSearch();
+                    return;
+            }
         }
 
+        // Search-only shortcuts (when search overlay is open)
         if (!isOpen) return;
 
-        if (e.key === 'Escape') { closeSearch(); return; }
-        if (e.key === 'ArrowDown') { e.preventDefault(); navigateResults(1); return; }
-        if (e.key === 'ArrowUp') { e.preventDefault(); navigateResults(-1); return; }
-        if (e.key === 'Enter') { e.preventDefault(); selectResult(); return; }
+        switch (e.key) {
+            case 'Escape': closeSearch(); return;
+            case 'ArrowDown': e.preventDefault(); navigateResults(1); return;
+            case 'ArrowUp': e.preventDefault(); navigateResults(-1); return;
+            case 'Enter': e.preventDefault(); selectResult(); return;
+        }
     });
 
+}
+
+function initSearchInput() {
     var input = document.getElementById('searchInput');
     if (input) {
         input.addEventListener('input', function() { performSearch(this.value); });
@@ -289,7 +307,8 @@ function initCodeCopyButtons() {
 function init() {
     checkVersion();
     loadTheme();
-    initSearch();
+    initKeyboardShortcuts();
+    initSearchInput();
     initLineNumbers();
     initCodeCopyButtons();
     // Initialize Lucide icons (replaces <i data-lucide="..."> with SVGs)
@@ -300,6 +319,7 @@ function init() {
 
 // Make functions available globally for onclick handlers
 window.setTheme = setTheme;
+window.toggleTheme = toggleTheme;
 window.openSearch = openSearch;
 window.closeSearch = closeSearch;
 
