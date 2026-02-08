@@ -12,7 +12,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/ng-office-addin.jpg
+image: /assets/images/categories/angular.svg
 categories:
   - angular
   - javascript

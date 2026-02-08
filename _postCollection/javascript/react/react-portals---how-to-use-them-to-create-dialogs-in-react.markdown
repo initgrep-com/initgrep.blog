@@ -11,7 +11,7 @@ author: Otto
 twitter: 
 facebook: 
 github: 
-image: /assets/images/react.jpg
+image: /assets/images/categories/react.svg
 categories:
     - react
     - javascript

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" class="w-full max-w-3xl mx-auto">
+  <defs>
+    <marker id="arrow-extends" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="none" stroke="var(--color-base-content)" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    Criteria API Interface Hierarchy
+  </text>
+
+  <!-- Selection Interface (Top) -->
+  <rect x="260" y="55" width="180" height="45" rx="6"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="350" y="83" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Selection&lt;X&gt;
+  </text>
+
+  <!-- Arrow from Selection to Expression -->
+  <line x1="350" y1="100" x2="350" y2="125"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2"/>
+  <text x="365" y="117"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    extends
+  </text>
+
+  <!-- Expression Interface -->
+  <rect x="260" y="130" width="180" height="45" rx="6"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="350" y="158" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Expression&lt;X&gt;
+  </text>
+
+  <!-- Arrows from Expression to Predicate and Path -->
+  <path d="M 300 175 L 300 195 L 150 195 L 150 215"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none"/>
+  <path d="M 400 175 L 400 195 L 550 195 L 550 215"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none"/>
+
+  <!-- Predicate Interface (Left branch) -->
+  <rect x="60" y="220" width="180" height="45" rx="6"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="150" y="248" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Predicate
+  </text>
+  <text x="150" y="260" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (WHERE conditions)
+  </text>
+
+  <!-- Path Interface (Right branch) -->
+  <rect x="460" y="220" width="180" height="45" rx="6"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="550" y="248" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Path&lt;X&gt;
+  </text>
+  <text x="550" y="260" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (attribute paths)
+  </text>
+
+  <!-- Arrow from Path to From -->
+  <line x1="550" y1="265" x2="550" y2="290"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2"/>
+
+  <!-- From Interface -->
+  <rect x="460" y="295" width="180" height="45" rx="6"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="550" y="323" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    From&lt;Z,X&gt;
+  </text>
+  <text x="550" y="335" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (base for Root &amp; Join)
+  </text>
+
+  <!-- Arrows from From to Root and Join -->
+  <path d="M 500 340 L 500 360 L 350 360 L 350 375"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none"/>
+  <path d="M 600 340 L 600 360 L 550 360 L 550 375"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none"/>
+
+  <!-- Root Interface -->
+  <rect x="260" y="380" width="180" height="35" rx="6"
+        fill="color-mix(in oklch, var(--color-accent) 25%, transparent)"
+        stroke="var(--color-accent)" stroke-width="2"/>
+  <text x="350" y="403" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Root&lt;X&gt;
+  </text>
+
+  <!-- Join Interface -->
+  <rect x="460" y="380" width="180" height="35" rx="6"
+        fill="color-mix(in oklch, var(--color-error) 20%, transparent)"
+        stroke="var(--color-error)" stroke-width="2"/>
+  <text x="550" y="403" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Join&lt;Z,X&gt;
+  </text>
+
+  <!-- Legend Box -->
+  <rect x="60" y="295" width="200" height="115" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="75" y="315"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Key Interfaces:
+  </text>
+  <text x="75" y="335"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    • Selection: query result
+  </text>
+  <text x="75" y="350"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    • Expression: expressions
+  </text>
+  <text x="75" y="365"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    • Path: attribute navigation
+  </text>
+  <text x="75" y="380"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    • Root: query root entity
+  </text>
+  <text x="75" y="395"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    • Join: entity joins
+  </text>
+
+  <!-- Note about highlighted interfaces -->
+  <text x="350" y="52"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-style: italic;" text-anchor="middle">
+    Colored boxes = commonly used interfaces
+  </text>
+</svg>

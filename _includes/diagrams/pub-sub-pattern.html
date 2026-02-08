@@ -1,0 +1,247 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" class="w-full max-w-4xl mx-auto">
+  <defs>
+    <marker id="arrow-pub" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-primary)"/>
+    </marker>
+    <marker id="arrow-sub" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-success)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    Publisher-Subscriber Pattern - Radio Analogy
+  </text>
+
+  <!-- Publishers Section Label -->
+  <text x="90" y="65" text-anchor="middle"
+        fill="var(--color-primary)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700;">
+    PUBLISHERS
+  </text>
+  <text x="90" y="80" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Radio Stations)
+  </text>
+
+  <!-- Publisher 1 -->
+  <rect x="30" y="95" width="120" height="70" rx="8"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="90" y="120" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Station A
+  </text>
+  <text x="90" y="140" text-anchor="middle"
+        fill="var(--color-primary)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700;">
+    FM 100
+  </text>
+  <text x="90" y="155" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    emit('FM100', data)
+  </text>
+
+  <!-- Publisher 2 -->
+  <rect x="30" y="180" width="120" height="70" rx="8"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="90" y="205" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Station B
+  </text>
+  <text x="90" y="225" text-anchor="middle"
+        fill="var(--color-secondary)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700;">
+    FM 200
+  </text>
+  <text x="90" y="240" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    emit('FM200', data)
+  </text>
+
+  <!-- Publisher 3 -->
+  <rect x="30" y="265" width="120" height="70" rx="8"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="90" y="290" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Station C
+  </text>
+  <text x="90" y="310" text-anchor="middle"
+        fill="var(--color-warning)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 700;">
+    FM 300
+  </text>
+  <text x="90" y="325" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    emit('FM300', data)
+  </text>
+
+  <!-- Arrows from Publishers to Event Bus -->
+  <path d="M 150 130 L 260 160"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-pub)"/>
+  <path d="M 150 215 L 260 215"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-pub)"/>
+  <path d="M 150 300 L 260 270"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-pub)"/>
+
+  <!-- Event Bus / Broker -->
+  <rect x="270" y="100" width="260" height="230" rx="12"
+        fill="color-mix(in oklch, var(--color-info) 10%, transparent)"
+        stroke="var(--color-info)" stroke-width="3"/>
+  <text x="400" y="130" text-anchor="middle"
+        fill="var(--color-info)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700;">
+    EVENT BUS
+  </text>
+  <text x="400" y="148" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Message Broker)
+  </text>
+
+  <!-- Topics inside Event Bus -->
+  <rect x="295" y="165" width="210" height="35" rx="5"
+        fill="color-mix(in oklch, var(--color-primary) 25%, transparent)"
+        stroke="var(--color-primary)" stroke-width="1"/>
+  <text x="400" y="187" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Topic: "FM100" → [callbacks]
+  </text>
+
+  <rect x="295" y="210" width="210" height="35" rx="5"
+        fill="color-mix(in oklch, var(--color-secondary) 25%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="1"/>
+  <text x="400" y="232" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Topic: "FM200" → [callbacks]
+  </text>
+
+  <rect x="295" y="255" width="210" height="35" rx="5"
+        fill="color-mix(in oklch, var(--color-warning) 25%, transparent)"
+        stroke="var(--color-warning)" stroke-width="1"/>
+  <text x="400" y="277" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Topic: "FM300" → [callbacks]
+  </text>
+
+  <!-- Event Bus methods -->
+  <text x="400" y="310" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    addEventListener(topic, callback)
+  </text>
+  <text x="400" y="322" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    emitEventListeners(topic, data)
+  </text>
+
+  <!-- Subscribers Section Label -->
+  <text x="710" y="65" text-anchor="middle"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 700;">
+    SUBSCRIBERS
+  </text>
+  <text x="710" y="80" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Listeners)
+  </text>
+
+  <!-- Arrows from Event Bus to Subscribers -->
+  <path d="M 530 160 L 640 120"
+        stroke="var(--color-success)" stroke-width="2" fill="none" marker-end="url(#arrow-sub)"/>
+  <path d="M 530 215 L 640 200"
+        stroke="var(--color-success)" stroke-width="2" fill="none" marker-end="url(#arrow-sub)"/>
+  <path d="M 530 270 L 640 280"
+        stroke="var(--color-success)" stroke-width="2" fill="none" marker-end="url(#arrow-sub)"/>
+
+  <!-- Subscriber 1 -->
+  <rect x="650" y="95" width="120" height="55" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="710" y="118" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Listener 1
+  </text>
+  <text x="710" y="135" text-anchor="middle"
+        fill="var(--color-primary)"
+        style="font-family: ui-monospace, monospace; font-size: 10px;">
+    tuned: FM100
+  </text>
+
+  <!-- Subscriber 2 -->
+  <rect x="650" y="165" width="120" height="55" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="710" y="188" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Listener 2
+  </text>
+  <text x="710" y="205" text-anchor="middle"
+        fill="var(--color-secondary)"
+        style="font-family: ui-monospace, monospace; font-size: 10px;">
+    tuned: FM200
+  </text>
+
+  <!-- Subscriber 3 -->
+  <rect x="650" y="235" width="120" height="55" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="710" y="258" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Listener 3
+  </text>
+  <text x="710" y="275" text-anchor="middle"
+        fill="var(--color-warning)"
+        style="font-family: ui-monospace, monospace; font-size: 10px;">
+    tuned: FM300
+  </text>
+
+  <!-- Subscriber 4 (multi-topic) -->
+  <rect x="650" y="305" width="120" height="55" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="710" y="328" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Listener 4
+  </text>
+  <text x="710" y="345" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    FM100, FM200
+  </text>
+
+  <!-- Legend -->
+  <rect x="30" y="360" width="520" height="45" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="50" y="382"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Key Difference:
+  </text>
+  <text x="145" y="387"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Publishers & Subscribers don't know each other - only the Event Bus connects them via topics
+  </text>
+</svg>

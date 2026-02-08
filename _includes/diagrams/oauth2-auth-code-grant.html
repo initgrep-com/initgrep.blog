@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" class="w-full max-w-3xl mx-auto">
+  <defs>
+    <marker id="arrowhead-oauth" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+    <marker id="arrowhead-oauth-dashed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    OAuth2 Authorization Code Grant Flow
+  </text>
+
+  <!-- Resource Owner (User) - Top - uses success color -->
+  <rect x="325" y="60" width="150" height="60" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="400" y="88" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600;">
+    Resource Owner
+  </text>
+  <text x="400" y="105" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    (User)
+  </text>
+
+  <!-- Client - Left - uses info color -->
+  <rect x="50" y="220" width="150" height="60" rx="8"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="125" y="248" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600;">
+    Client
+  </text>
+  <text x="125" y="265" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    (Third-party App)
+  </text>
+
+  <!-- Auth Server - Right - uses warning color -->
+  <rect x="600" y="220" width="150" height="60" rx="8"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="675" y="248" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600;">
+    Auth Server
+  </text>
+  <text x="675" y="265" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    (Keycloak)
+  </text>
+
+  <!-- Resource Server - Bottom - uses secondary color -->
+  <rect x="325" y="380" width="150" height="60" rx="8"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="400" y="408" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600;">
+    Resource Server
+  </text>
+  <text x="400" y="425" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    (Protected API)
+  </text>
+
+  <!-- Step 1: Client -> Resource Owner (Authorization Request) -->
+  <path d="M 170 220 Q 200 150 325 90"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrowhead-oauth)"/>
+  <circle cx="200" cy="155" r="12" fill="var(--color-info)"/>
+  <text x="200" y="159" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700;">
+    1
+  </text>
+  <text x="185" y="185"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Authorization
+  </text>
+  <text x="185" y="198"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Request
+  </text>
+
+  <!-- Step 2: Resource Owner -> Client (Authorization Code) -->
+  <path d="M 325 105 Q 280 170 200 220"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#arrowhead-oauth-dashed)"/>
+  <circle cx="280" cy="175" r="12" fill="var(--color-success)"/>
+  <text x="280" y="179" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700;">
+    2
+  </text>
+  <text x="310" y="165"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Auth Code
+  </text>
+
+  <!-- Step 3: Client -> Auth Server (Exchange Code for Token) -->
+  <path d="M 200 250 L 600 250"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrowhead-oauth)"/>
+  <circle cx="400" cy="235" r="12" fill="var(--color-warning)"/>
+  <text x="400" y="239" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700;">
+    3
+  </text>
+  <text x="400" y="218" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Exchange Auth Code for JWT Token
+  </text>
+
+  <!-- Step 3 Return: Auth Server -> Client (JWT Token) -->
+  <path d="M 600 265 L 200 265"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#arrowhead-oauth-dashed)"/>
+  <text x="400" y="290" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    JWT Token
+  </text>
+
+  <!-- Step 4: Client -> Resource Server (Access with Token) -->
+  <path d="M 125 280 Q 125 380 325 410"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrowhead-oauth)"/>
+  <circle cx="175" cy="360" r="12" fill="var(--color-secondary)"/>
+  <text x="175" y="364" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 700;">
+    4
+  </text>
+  <text x="140" y="330"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Access Protected
+  </text>
+  <text x="140" y="343"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Resource + JWT
+  </text>
+
+  <!-- Step 4 Return: Resource Server -> Client (Protected Data) -->
+  <path d="M 325 420 Q 200 440 140 280"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" stroke-dasharray="6,4" fill="none" marker-end="url(#arrowhead-oauth-dashed)"/>
+  <text x="220" y="455"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Protected Data
+  </text>
+
+  <!-- Legend -->
+  <rect x="580" y="400" width="180" height="80" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="590" y="420"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Legend:
+  </text>
+  <line x1="590" y1="438" x2="630" y2="438"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrowhead-oauth)"/>
+  <text x="640" y="442"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Request
+  </text>
+  <line x1="590" y1="458" x2="630" y2="458"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrowhead-oauth-dashed)"/>
+  <text x="640" y="462"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    Response
+  </text>
+</svg>

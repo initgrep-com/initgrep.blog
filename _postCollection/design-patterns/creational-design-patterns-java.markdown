@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/cr-dp.jpg
+image: /assets/images/categories/Design-pattern.svg
 categories:
   - Design-pattern
   - all

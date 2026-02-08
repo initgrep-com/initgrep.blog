@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/cq1.jpg
+image: /assets/images/categories/jpa.svg
 categories:
     - jpa
     - java
@@ -32,7 +32,7 @@ Criteria Queries are type-safe and portable. They are written using Java program
 
 We will be using the following domain model for building the criteria queries in this tutorial.
 
-![Object Model- UML](/assets/images/Criteria-object-UML.png)
+{% include diagrams/jpa-criteria-object-uml.html %}
 *<ins>UML diagram describing the Object Relationship Mapping</ins>*
 
 We have three Objects( ref. to diagram above ) `Student` , `Course` and `Passport`. Each of the Objects has a relationship with each other:
@@ -162,7 +162,7 @@ The `select` method specifies the result to be returned by the Query. If all the
 
 
 
-![Interface relationships in Criteria API](/assets/images/apidaigram.png)
+{% include diagrams/jpa-criteria-api-hierarchy.html %}
 *<ins>Interface relationships in Criteria API</ins>*
 
 In the Above diagram, observe the classes in a blue background. The relationship tree explains the inheritance hierarchy among various interfaces present in the Criteria API.

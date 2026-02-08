@@ -1,0 +1,285 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" class="w-full max-w-4xl mx-auto">
+  <defs>
+    <marker id="arrow-filter" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    Spring Security Filter Architecture
+  </text>
+
+  <!-- Servlet Container Box -->
+  <rect x="30" y="60" width="840" height="400" rx="12"
+        fill="color-mix(in oklch, var(--color-base-300) 30%, transparent)"
+        stroke="var(--color-base-content)" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="50" y="85"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 14px; font-weight: 600;">
+    Servlet Container
+  </text>
+
+  <!-- Filter 0 -->
+  <rect x="60" y="110" width="100" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-base-200) 50%, transparent)"
+        stroke="var(--color-base-content)" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="110" y="140" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Filter 0
+  </text>
+
+  <!-- Arrow -->
+  <line x1="160" y1="135" x2="195" y2="135"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-filter)"/>
+
+  <!-- DelegatingFilterProxy - Primary color -->
+  <rect x="200" y="100" width="160" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="280" y="128" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    DelegatingFilter
+  </text>
+  <text x="280" y="143" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Proxy
+  </text>
+  <text x="280" y="160" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (Spring Bean Bridge)
+  </text>
+
+  <!-- Arrow -->
+  <line x1="360" y1="135" x2="395" y2="135"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-filter)"/>
+
+  <!-- Filter 2 -->
+  <rect x="400" y="110" width="100" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-base-200) 50%, transparent)"
+        stroke="var(--color-base-content)" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="450" y="140" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Filter 2
+  </text>
+
+  <!-- Arrow -->
+  <line x1="500" y1="135" x2="535" y2="135"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-filter)"/>
+
+  <!-- Ellipsis -->
+  <text x="560" y="140" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 20px;">
+    ...
+  </text>
+
+  <!-- Arrow -->
+  <line x1="580" y1="135" x2="615" y2="135"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-filter)"/>
+
+  <!-- Filter N -->
+  <rect x="620" y="110" width="100" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-base-200) 50%, transparent)"
+        stroke="var(--color-base-content)" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="670" y="140" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Filter N
+  </text>
+
+  <!-- Arrow to Servlet -->
+  <line x1="720" y1="135" x2="755" y2="135"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-filter)"/>
+
+  <!-- Servlet -->
+  <rect x="760" y="110" width="90" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="805" y="140" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Servlet
+  </text>
+
+  <!-- Arrow down from DelegatingFilterProxy -->
+  <path d="M 280 170 L 280 200"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-filter)"/>
+
+  <!-- Spring ApplicationContext Box -->
+  <rect x="60" y="210" width="780" height="230" rx="10"
+        fill="color-mix(in oklch, var(--color-success) 10%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="80" y="235"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600;">
+    Spring ApplicationContext
+  </text>
+
+  <!-- FilterChainProxy - Info color -->
+  <rect x="200" y="250" width="160" height="60" rx="6"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="280" y="278" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    FilterChainProxy
+  </text>
+  <text x="280" y="295" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (Spring Security Entry)
+  </text>
+
+  <!-- Arrow from FilterChainProxy to SecurityFilterChains -->
+  <path d="M 360 280 L 420 280"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-filter)"/>
+
+  <!-- RequestMatcher label -->
+  <text x="390" y="270"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    uses
+  </text>
+
+  <!-- SecurityFilterChain Container -->
+  <rect x="430" y="250" width="390" height="170" rx="8"
+        fill="color-mix(in oklch, var(--color-secondary) 10%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="450" y="270"
+        fill="var(--color-secondary)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    SecurityFilterChain(s)
+  </text>
+
+  <!-- SecurityFilterChain 0 -->
+  <rect x="450" y="285" width="160" height="50" rx="5"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="530" y="305" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    SecurityFilterChain
+  </text>
+  <text x="530" y="320" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    /api/** pattern
+  </text>
+
+  <!-- Security Filters inside chain 0 -->
+  <rect x="630" y="288" width="35" height="20" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="647" y="302" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    F0
+  </text>
+  <rect x="670" y="288" width="35" height="20" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="687" y="302" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    F1
+  </text>
+  <rect x="710" y="288" width="35" height="20" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="727" y="302" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    F2
+  </text>
+  <text x="760" y="302"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ...
+  </text>
+
+  <!-- SecurityFilterChain 1 -->
+  <rect x="450" y="350" width="160" height="50" rx="5"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="530" y="370" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    SecurityFilterChain
+  </text>
+  <text x="530" y="385" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    /** pattern
+  </text>
+
+  <!-- Security Filters inside chain 1 -->
+  <rect x="630" y="353" width="35" height="20" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="647" y="367" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    F0
+  </text>
+  <rect x="670" y="353" width="35" height="20" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="687" y="367" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    F1
+  </text>
+  <text x="720" y="367"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ...
+  </text>
+
+  <!-- Legend -->
+  <rect x="80" y="330" width="100" height="90" rx="5"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="90" y="348"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 600;">
+    Legend
+  </text>
+  <rect x="90" y="358" width="12" height="12" rx="2"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="1"/>
+  <text x="108" y="368"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    Bridge
+  </text>
+  <rect x="90" y="375" width="12" height="12" rx="2"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="1"/>
+  <text x="108" y="385"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    Entry Point
+  </text>
+  <rect x="90" y="392" width="12" height="12" rx="2"
+        fill="color-mix(in oklch, var(--color-accent) 30%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="108" y="402"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    Sec Filter
+  </text>
+</svg>

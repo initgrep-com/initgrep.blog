@@ -48,8 +48,8 @@ plugins:
 name: initgrep
 title: www.initgrep.com
 description: Developer notes, mostly code.
-logo: /assets/images/biglogo.jpg
-image: /assets/images/biglogo.jpg
+logo: /assets/images/favicon.svg
+image: /assets/images/favicon.svg
 
 twitter:
   username: initgrep

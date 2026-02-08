@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/fbase.jpeg
+image: /assets/images/categories/spring.svg
 categories:
     - spring
     - java

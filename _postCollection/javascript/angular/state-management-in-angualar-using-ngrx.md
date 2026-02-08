@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh    
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/rxjs-state.jpg
+image: /assets/images/categories/angular.svg
 categories:
   - angular
   - javascript

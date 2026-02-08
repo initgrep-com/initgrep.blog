@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/ssf.jpeg
+image: /assets/images/categories/spring.svg
 categories:
     - spring
     - java
@@ -34,7 +34,7 @@ Spring security tries to solve this problem by packaging all the possible soluti
 
 Spring Security for web applications uses the filter pattern to implement different types of security solutions. At the very core of it are Servlet [filters](https://docs.oracle.com/javaee/7/api/javax/servlet/Filter.html). Spring framework provides `DelegatingFilterProxy` filter and Spring security adds `FilterChainProxy` filter on top of it. Both these filters are pivotal in Spring security.
 
-![Spring Security filter architecture](/assets/images/spring-security-filter.svg)
+{% include diagrams/spring-security-filter.html %}
 *Spring Security Filter architecture*
 {:.image-caption}
 
@@ -133,7 +133,7 @@ This object contains the authentication information about a request.
 
 It contains `SecurityContext` which by default is a `threadLocal` object. thus every request thread has its own `SecurityContext` object.
 
-![SecurityContextHolder API Diagram](/assets/images/arc-sec.svg)
+{% include diagrams/security-context-holder.html %}
 *SecurityContextHolder API Diagram*
 {:.image-caption}
 

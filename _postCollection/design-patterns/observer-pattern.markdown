@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/observer.jpg
+image: /assets/images/categories/Design-pattern.svg
 categories:
   - Design-pattern
   - all
@@ -31,7 +31,7 @@ My analogy of the **Observer pattern** could be as below
 >bulbs to the main switch board. So every time I switch-off or switch-on , the bulbs 
 >either turn on or turn off*
 
-![observer-analogy](/assets/images/observer.png)
+{% include diagrams/observer-pattern.html %}
 
 I hope that was a clear analogy.
 

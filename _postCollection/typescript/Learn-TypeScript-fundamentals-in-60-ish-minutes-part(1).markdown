@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: igagrock
-image: /assets/images/ts.jpeg
+image: /assets/images/categories/typescript.svg
 categories:
   - typescript
   - javascript

@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/rxjs-effects.jpg
+image: /assets/images/categories/angular.svg
 categories:
   - angular
   - javascript
@@ -273,7 +273,7 @@ export class AppRemoteService {
 
 ## Implementation
 
-![](/assets/images/ngrx-effects-flowchart.svg)
+{% include diagrams/ngrx-effects-flowchart.html %}
 
 *<u>Flow diagram of NgRx Effects</u>*
 

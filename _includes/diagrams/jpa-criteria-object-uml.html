@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 380" class="w-full max-w-3xl mx-auto">
+  <defs>
+    <marker id="arrow-uml" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+    <marker id="diamond-uml" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto">
+      <polygon points="6 0, 12 4, 6 8, 0 4" fill="none" stroke="var(--color-base-content)" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="375" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    JPA Entity Relationship - UML Diagram
+  </text>
+
+  <!-- Student Entity (Center) -->
+  <rect x="280" y="120" width="180" height="140" rx="0"
+        fill="color-mix(in oklch, var(--color-primary) 15%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <!-- Header -->
+  <rect x="280" y="120" width="180" height="30"
+        fill="color-mix(in oklch, var(--color-primary) 30%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="370" y="142" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Student
+  </text>
+  <!-- Attributes -->
+  <line x1="280" y1="150" x2="460" y2="150" stroke="var(--color-primary)" stroke-width="1"/>
+  <text x="295" y="170"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - id: Long
+  </text>
+  <text x="295" y="187"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - name: String
+  </text>
+  <text x="295" y="204"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - passport: Passport
+  </text>
+  <text x="295" y="221"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - addresses: List
+  </text>
+  <text x="295" y="238"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - courses: List
+  </text>
+
+  <!-- Passport Entity (Left) -->
+  <rect x="30" y="140" width="160" height="100" rx="0"
+        fill="color-mix(in oklch, var(--color-success) 15%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <rect x="30" y="140" width="160" height="30"
+        fill="color-mix(in oklch, var(--color-success) 30%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="110" y="162" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Passport
+  </text>
+  <line x1="30" y1="170" x2="190" y2="170" stroke="var(--color-success)" stroke-width="1"/>
+  <text x="45" y="190"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - id: Long
+  </text>
+  <text x="45" y="207"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - number: String
+  </text>
+  <text x="45" y="224"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - student: Student
+  </text>
+
+  <!-- One-to-One relationship line -->
+  <line x1="190" y1="190" x2="280" y2="190"
+        stroke="var(--color-base-content)" stroke-opacity="0.7"
+        stroke-width="2"/>
+  <text x="205" y="180"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    1
+  </text>
+  <text x="262" y="180"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    1
+  </text>
+  <text x="218" y="208"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    One-To-One
+  </text>
+
+  <!-- Address Entity (Bottom) -->
+  <rect x="280" y="300" width="180" height="70" rx="0"
+        fill="color-mix(in oklch, var(--color-warning) 15%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <rect x="280" y="300" width="180" height="30"
+        fill="color-mix(in oklch, var(--color-warning) 30%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="370" y="322" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Address
+  </text>
+  <line x1="280" y1="330" x2="460" y2="330" stroke="var(--color-warning)" stroke-width="1"/>
+  <text x="295" y="350"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - id, city, street, zip...
+  </text>
+
+  <!-- One-to-Many relationship line -->
+  <line x1="370" y1="260" x2="370" y2="300"
+        stroke="var(--color-base-content)" stroke-opacity="0.7"
+        stroke-width="2"/>
+  <text x="355" y="275"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    1
+  </text>
+  <text x="355" y="295"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    *
+  </text>
+  <text x="385" y="285"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    One-To-Many
+  </text>
+
+  <!-- Course Entity (Right) -->
+  <rect x="550" y="140" width="160" height="100" rx="0"
+        fill="color-mix(in oklch, var(--color-secondary) 15%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <rect x="550" y="140" width="160" height="30"
+        fill="color-mix(in oklch, var(--color-secondary) 30%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="630" y="162" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Course
+  </text>
+  <line x1="550" y1="170" x2="710" y2="170" stroke="var(--color-secondary)" stroke-width="1"/>
+  <text x="565" y="190"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - id: Long
+  </text>
+  <text x="565" y="207"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - name: String
+  </text>
+  <text x="565" y="224"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px;">
+    - students: List
+  </text>
+
+  <!-- Many-to-Many relationship line -->
+  <line x1="460" y1="190" x2="550" y2="190"
+        stroke="var(--color-base-content)" stroke-opacity="0.7"
+        stroke-width="2"/>
+  <text x="475" y="180"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    *
+  </text>
+  <text x="532" y="180"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    *
+  </text>
+  <text x="480" y="208"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    Many-To-Many
+  </text>
+
+  <!-- Legend -->
+  <rect x="30" y="60" width="200" height="55" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="45" y="80"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 600;">
+    Cardinality:
+  </text>
+  <text x="45" y="95"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 10px;">
+    1 = exactly one
+  </text>
+  <text x="45" y="108"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 10px;">
+    * = zero or more
+  </text>
+</svg>

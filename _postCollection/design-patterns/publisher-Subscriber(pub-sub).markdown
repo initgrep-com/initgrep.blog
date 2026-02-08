@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh	
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/pub-sub.jpg
+image: /assets/images/categories/Design-pattern.svg
 categories:
   - Design-pattern
   - all
@@ -26,7 +26,7 @@ Let me try an analogy for it:
 > 
 
  
-![pubsub-analogy](/assets/images/pub-sub.svg)
+{% include diagrams/pub-sub-pattern.html %}
 
 
 Lets implement the publisher subscriber design pattern using Javascript.

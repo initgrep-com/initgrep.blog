@@ -10,7 +10,7 @@ const VERSION = '3.0.0';
 // Map themes to Lucide icon names
 var THEME_ICONS = {
     'light': 'sun',
-    'retro': 'sun-dim',
+    'caramellatte': 'sun-dim',
     'forest': 'moon'
 };
 
@@ -59,7 +59,7 @@ function updateThemeColor() {
     // Update browser theme-color meta tag based on current theme
     const themeColors = {
         'light': '#ffffff',
-        'retro': '#e4d8b4',
+        'caramellatte': '#e4d8b4',
         'forest': '#171212'
     };
     const currentTheme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;

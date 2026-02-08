@@ -11,7 +11,7 @@ author: "sheikh irshad"
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/oauth2-poster.jpeg
+image: /assets/images/categories/spring.svg
 categories:
     - spring
     - java
@@ -37,7 +37,7 @@ There are four parties involved —
 
 
 
-![Oauth2 -Auth code grant diagram.drawio.svg](/assets/images/oauth2-auth-code-grant.svg)
+{% include diagrams/oauth2-auth-code-grant.html %}
 
 1. First of all, the client sends an authorization request to Resource Owner so that on behalf of the Resource Owner, it can access the protected resource(s).
 2. If the *Authorization-code-grant* is used, the Authorization code is returned to the client. It means the Resource owner has given access to the client for protected resources.
@@ -58,7 +58,7 @@ First let us understand, what is JWT and what API's are provided by spring secur
 
 The below diagram provides a thorough overview of Spring security API Specs for JWT Authentication.
 
-![Spring-security-Oauth2.svg](/assets/images/spring-security-Oauth2-api-specs.svg)
+{% include diagrams/spring-security-jwt-flow.html %}
 
 - When a client submits a request along with bearer token. It is passed through the security filter chain. The `BearerTokenAuthenticationFilter` creates a `BearerTokenAuthenticationToken` of the type `Authentication`.
 

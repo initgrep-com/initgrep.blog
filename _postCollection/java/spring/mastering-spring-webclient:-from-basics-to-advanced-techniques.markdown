@@ -11,7 +11,7 @@ author: Otto
 twitter: 
 facebook: 
 github: 
-image: /assets/images/rollback.jpeg
+image: /assets/images/categories/spring.svg
 categories:
     - spring
     - java

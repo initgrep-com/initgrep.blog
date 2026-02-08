@@ -11,7 +11,7 @@ author: Otto
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/react.jpg
+image: /assets/images/categories/react.svg
 categories:
     - react
     - javascript

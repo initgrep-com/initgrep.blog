@@ -11,7 +11,7 @@ author: Otto
 twitter: imshykh
 facebook: irshsheikh
 github: irshsheik
-image: /assets/images/java.jpg
+image: /assets/images/categories/java.svg
 categories:
     - java
     - all

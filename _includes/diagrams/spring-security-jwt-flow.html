@@ -1,0 +1,368 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" class="w-full max-w-4xl mx-auto">
+  <defs>
+    <marker id="arrow-jwt" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+    <marker id="arrow-jwt-success" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-success)"/>
+    </marker>
+    <marker id="arrow-jwt-error" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-error)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700;">
+    Spring Security JWT Authentication Flow
+  </text>
+
+  <!-- Request with Bearer Token - uses primary color -->
+  <rect x="30" y="80" width="130" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="95" y="102" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    HTTP Request
+  </text>
+  <text x="95" y="118" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    + Bearer Token
+  </text>
+
+  <!-- BearerTokenAuthenticationFilter - uses info color -->
+  <rect x="200" y="70" width="200" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="300" y="95" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    BearerTokenAuthentication
+  </text>
+  <text x="300" y="110" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Filter
+  </text>
+  <text x="300" y="128" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Creates BearerTokenAuthenticationToken
+  </text>
+
+  <!-- Arrow: Request -> Filter -->
+  <line x1="160" y1="105" x2="195" y2="105"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <circle cx="180" cy="95" r="10" fill="var(--color-info)"/>
+  <text x="180" y="99" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    1
+  </text>
+
+  <!-- AuthenticationManagerResolver - uses warning color -->
+  <rect x="450" y="70" width="180" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="540" y="95" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    AuthenticationManager
+  </text>
+  <text x="540" y="110" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Resolver
+  </text>
+  <text x="540" y="128" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Resolves AuthenticationManager
+  </text>
+
+  <!-- Arrow: Filter -> Resolver -->
+  <line x1="400" y1="105" x2="445" y2="105"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <circle cx="425" cy="95" r="10" fill="var(--color-warning)"/>
+  <text x="425" y="99" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    2
+  </text>
+
+  <!-- ProviderManager - uses warning color -->
+  <rect x="680" y="70" width="180" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="770" y="95" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    ProviderManager
+  </text>
+  <text x="770" y="115" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (AuthenticationManager impl)
+  </text>
+  <text x="770" y="128" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Selects AuthenticationProvider
+  </text>
+
+  <!-- Arrow: Resolver -> ProviderManager -->
+  <line x1="630" y1="105" x2="675" y2="105"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <circle cx="655" cy="95" r="10" fill="var(--color-warning)"/>
+  <text x="655" y="99" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    3
+  </text>
+
+  <!-- JwtAuthenticationProvider - uses secondary color -->
+  <rect x="580" y="190" width="180" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="670" y="215" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    JwtAuthentication
+  </text>
+  <text x="670" y="230" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Provider
+  </text>
+  <text x="670" y="248" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Decodes, verifies, validates JWT
+  </text>
+
+  <!-- Arrow: ProviderManager -> JwtAuthProvider -->
+  <path d="M 770 140 L 770 175 L 670 175 L 670 185"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-jwt)"/>
+  <circle cx="720" cy="175" r="10" fill="var(--color-secondary)"/>
+  <text x="720" y="179" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    4
+  </text>
+
+  <!-- JwtDecoder - uses accent color -->
+  <rect x="350" y="190" width="150" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-accent) 20%, transparent)"
+        stroke="var(--color-accent)" stroke-width="2"/>
+  <text x="425" y="215" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    JwtDecoder
+  </text>
+  <text x="425" y="235" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (NimbusJwtDecoder)
+  </text>
+  <text x="425" y="248" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Decodes JWT to Jwt object
+  </text>
+
+  <!-- Arrow: JwtAuthProvider -> JwtDecoder -->
+  <line x1="580" y1="225" x2="505" y2="225"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <circle cx="545" cy="215" r="10" fill="var(--color-accent)"/>
+  <text x="545" y="219" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    5
+  </text>
+
+  <!-- Jwt Token Object - uses primary color -->
+  <rect x="130" y="190" width="140" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="200" y="215" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    Jwt
+  </text>
+  <text x="200" y="235" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Java representation of
+  </text>
+  <text x="200" y="248" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    JSON Web Token
+  </text>
+
+  <!-- Arrow: JwtDecoder -> Jwt -->
+  <line x1="350" y1="225" x2="275" y2="225"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-jwt)"/>
+  <circle cx="315" cy="215" r="10" fill="var(--color-primary)"/>
+  <text x="315" y="219" text-anchor="middle"
+        fill="white"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 700;">
+    6
+  </text>
+
+  <!-- Success/Failure Split -->
+  <text x="450" y="310" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Authentication Result
+  </text>
+  <line x1="200" y1="320" x2="700" y2="320"
+        stroke="var(--color-base-300)" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- SecurityContextHolder - Success - uses success color -->
+  <rect x="150" y="350" width="200" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="250" y="375" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    SecurityContextHolder
+  </text>
+  <text x="250" y="395" text-anchor="middle"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Authentication SET
+  </text>
+  <text x="250" y="410" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ✓ Access Granted
+  </text>
+
+  <!-- SecurityContextHolder - Failure - uses error color -->
+  <rect x="550" y="350" width="200" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-error) 20%, transparent)"
+        stroke="var(--color-error)" stroke-width="2"/>
+  <text x="650" y="375" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 600;">
+    SecurityContextHolder
+  </text>
+  <text x="650" y="395" text-anchor="middle"
+        fill="var(--color-error)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Authentication CLEARED
+  </text>
+  <text x="650" y="410" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ✗ 401 Unauthorized
+  </text>
+
+  <!-- Arrow: Success path -->
+  <path d="M 200 260 L 200 290 L 250 290 L 250 345"
+        stroke="var(--color-success)" stroke-width="2" fill="none" marker-end="url(#arrow-jwt-success)"/>
+  <text x="180" y="300"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    Success
+  </text>
+
+  <!-- Arrow: Failure path -->
+  <path d="M 425 260 L 425 290 L 650 290 L 650 345"
+        stroke="var(--color-error)" stroke-width="2" stroke-dasharray="5,3" fill="none" marker-end="url(#arrow-jwt-error)"/>
+  <text x="530" y="285"
+        fill="var(--color-error)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    Failure
+  </text>
+
+  <!-- Legend -->
+  <rect x="30" y="430" width="250" height="70" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="45" y="450"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Flow Legend:
+  </text>
+  <circle cx="55" cy="468" r="8" fill="var(--color-info)"/>
+  <text x="70" y="472"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    Step number
+  </text>
+  <line x1="130" y1="468" x2="165" y2="468"
+        stroke="var(--color-success)" stroke-width="2" marker-end="url(#arrow-jwt-success)"/>
+  <text x="175" y="472"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    Success
+  </text>
+  <line x1="220" y1="468" x2="255" y2="468"
+        stroke="var(--color-error)" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-jwt-error)"/>
+  <text x="265" y="472"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    Failure
+  </text>
+
+  <!-- Components Legend -->
+  <rect x="300" y="430" width="580" height="70" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="315" y="450"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Components:
+  </text>
+  <rect x="315" y="460" width="60" height="16" rx="3"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="1"/>
+  <text x="380" y="472"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Filter
+  </text>
+  <rect x="420" y="460" width="60" height="16" rx="3"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="1"/>
+  <text x="490" y="472"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Manager
+  </text>
+  <rect x="540" y="460" width="60" height="16" rx="3"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="1"/>
+  <text x="610" y="472"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Provider
+  </text>
+  <rect x="660" y="460" width="60" height="16" rx="3"
+        fill="color-mix(in oklch, var(--color-accent) 20%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="730" y="472"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Decoder
+  </text>
+  <rect x="780" y="460" width="60" height="16" rx="3"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="1"/>
+  <text x="845" y="472"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Context
+  </text>
+</svg>

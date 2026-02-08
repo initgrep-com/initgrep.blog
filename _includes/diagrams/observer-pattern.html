@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" class="w-full max-w-3xl mx-auto">
+  <defs>
+    <marker id="arrow-obs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+    <marker id="arrow-obs-notify" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-warning)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    Observer Pattern - Switch Board Analogy
+  </text>
+
+  <!-- Subject - Main Switch Board -->
+  <rect x="50" y="80" width="200" height="240" rx="12"
+        fill="color-mix(in oklch, var(--color-primary) 15%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="150" y="110" text-anchor="middle"
+        fill="var(--color-primary)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700;">
+    SUBJECT
+  </text>
+  <text x="150" y="130" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    (Main Switch Board)
+  </text>
+
+  <!-- Switch toggle -->
+  <rect x="100" y="150" width="100" height="50" rx="25"
+        fill="color-mix(in oklch, var(--color-success) 30%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <circle cx="165" cy="175" r="18"
+        fill="var(--color-success)"/>
+  <text x="150" y="215" text-anchor="middle"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    ON
+  </text>
+
+  <!-- Observers List -->
+  <rect x="70" y="235" width="160" height="70" rx="6"
+        fill="color-mix(in oklch, var(--color-base-200) 50%, transparent)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="150" y="255" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    observers[]
+  </text>
+  <text x="150" y="275" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    register(observer)
+  </text>
+  <text x="150" y="290" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    notifyRegistered()
+  </text>
+
+  <!-- Notification arrows -->
+  <path d="M 250 150 Q 320 100 400 100"
+        stroke="var(--color-warning)" stroke-width="2" fill="none" marker-end="url(#arrow-obs-notify)"/>
+  <path d="M 250 175 L 400 175"
+        stroke="var(--color-warning)" stroke-width="2" fill="none" marker-end="url(#arrow-obs-notify)"/>
+  <path d="M 250 200 Q 320 250 400 250"
+        stroke="var(--color-warning)" stroke-width="2" fill="none" marker-end="url(#arrow-obs-notify)"/>
+  <path d="M 250 225 Q 320 300 400 325"
+        stroke="var(--color-warning)" stroke-width="2" fill="none" marker-end="url(#arrow-obs-notify)"/>
+
+  <!-- Notify label -->
+  <text x="325" y="165"
+        fill="var(--color-warning)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    notify()
+  </text>
+
+  <!-- Observer 1 - Light Bulb Room 1 -->
+  <rect x="410" y="60" width="140" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="480" y="85" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Observer 1
+  </text>
+  <text x="480" y="100" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Room 1 Light)
+  </text>
+  <!-- Light bulb icon -->
+  <circle cx="480" cy="125" r="10"
+        fill="var(--color-warning)" opacity="0.8"/>
+  <text x="510" y="130"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ON
+  </text>
+
+  <!-- Observer 2 - Light Bulb Room 2 -->
+  <rect x="410" y="150" width="140" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="480" y="175" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Observer 2
+  </text>
+  <text x="480" y="190" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Room 2 Light)
+  </text>
+  <circle cx="480" cy="215" r="10"
+        fill="var(--color-warning)" opacity="0.8"/>
+  <text x="510" y="220"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ON
+  </text>
+
+  <!-- Observer 3 - Light Bulb Room 3 -->
+  <rect x="410" y="240" width="140" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="480" y="265" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px; font-weight: 600;">
+    Observer 3
+  </text>
+  <text x="480" y="280" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    (Room 3 Light)
+  </text>
+  <circle cx="480" cy="305" r="10"
+        fill="var(--color-warning)" opacity="0.8"/>
+  <text x="510" y="310"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    ON
+  </text>
+
+  <!-- Ellipsis for more observers -->
+  <rect x="560" y="175" width="100" height="50" rx="6"
+        fill="color-mix(in oklch, var(--color-base-200) 30%, transparent)"
+        stroke="var(--color-base-300)" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="610" y="205" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 12px;">
+    ... more
+  </text>
+
+  <!-- Legend -->
+  <rect x="50" y="340" width="600" height="45" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="70" y="362"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Pattern:
+  </text>
+  <text x="130" y="362"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Subject maintains observers list
+  </text>
+  <line x1="300" y1="362" x2="340" y2="362"
+        stroke="var(--color-warning)" stroke-width="2" marker-end="url(#arrow-obs-notify)"/>
+  <text x="350" y="367"
+        fill="color-mix(in oklch, var(--color-base-content) 70%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    State change triggers notify() on all observers
+  </text>
+</svg>

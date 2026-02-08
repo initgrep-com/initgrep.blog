@@ -1,0 +1,298 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" class="w-full max-w-4xl mx-auto">
+  <defs>
+    <marker id="arrow-ngrx" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+    <marker id="arrow-ngrx-action" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-primary)"/>
+    </marker>
+    <marker id="arrow-ngrx-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-success)"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    NgRx Effects Flow Diagram
+  </text>
+
+  <!-- Component Box -->
+  <rect x="50" y="70" width="160" height="100" rx="8"
+        fill="color-mix(in oklch, var(--color-info) 20%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="130" y="100" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    Component
+  </text>
+  <text x="130" y="120" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    dispatch(action)
+  </text>
+  <text x="130" y="135" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    select(selector)
+  </text>
+  <text x="130" y="160" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    Pure & Reactive
+  </text>
+
+  <!-- Arrow: Component -> Actions -->
+  <path d="M 210 100 L 280 100"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-ngrx-action)"/>
+  <text x="245" y="90"
+        fill="var(--color-primary)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    loadUsers
+  </text>
+
+  <!-- Actions Stream Box -->
+  <rect x="290" y="60" width="160" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="370" y="90" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Action Stream
+  </text>
+  <text x="370" y="110" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Observable&lt;Action&gt;
+  </text>
+  <text x="370" y="125" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    All dispatched actions
+  </text>
+
+  <!-- Arrow: Actions -> Effects -->
+  <path d="M 370 140 L 370 180"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-ngrx)"/>
+
+  <!-- Effects Box - Main -->
+  <rect x="240" y="190" width="260" height="140" rx="10"
+        fill="color-mix(in oklch, var(--color-secondary) 15%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="370" y="215" text-anchor="middle"
+        fill="var(--color-secondary)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    NgRx Effects
+  </text>
+  <text x="370" y="235" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Injectable Service
+  </text>
+
+  <!-- ofType filter -->
+  <rect x="260" y="250" width="100" height="35" rx="5"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="1"/>
+  <text x="310" y="265" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    ofType()
+  </text>
+  <text x="310" y="278" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 8px;">
+    Filter actions
+  </text>
+
+  <!-- mergeMap -->
+  <rect x="380" y="250" width="100" height="35" rx="5"
+        fill="color-mix(in oklch, var(--color-accent) 20%, transparent)"
+        stroke="var(--color-accent)" stroke-width="1"/>
+  <text x="430" y="265" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    mergeMap()
+  </text>
+  <text x="430" y="278" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 8px;">
+    Side effects
+  </text>
+
+  <!-- Arrow between operators -->
+  <path d="M 360 267 L 375 267"
+        stroke="var(--color-base-content)" stroke-opacity="0.4"
+        stroke-width="1" fill="none" marker-end="url(#arrow-ngrx)"/>
+
+  <!-- Effect code label -->
+  <text x="370" y="310" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 8px;">
+    loadUsers$ = createEffect(...)
+  </text>
+
+  <!-- Remote Service Box -->
+  <rect x="580" y="210" width="150" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-error) 15%, transparent)"
+        stroke="var(--color-error)" stroke-width="2"/>
+  <text x="655" y="240" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;">
+    RemoteService
+  </text>
+  <text x="655" y="260" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    HTTP API calls
+  </text>
+  <text x="655" y="278" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    users$, posts$
+  </text>
+
+  <!-- Arrow: Effects -> Remote Service -->
+  <path d="M 500 250 L 575 250"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-ngrx)"/>
+  <text x="537" y="242"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    calls
+  </text>
+
+  <!-- Arrow: Remote Service returns data to Effects -->
+  <path d="M 575 270 L 500 270"
+        stroke="var(--color-success)" stroke-width="2" stroke-dasharray="4,2" fill="none" marker-end="url(#arrow-ngrx-data)"/>
+  <text x="537" y="285"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    data
+  </text>
+
+  <!-- Arrow: Effects dispatches new action -->
+  <path d="M 370 330 L 370 360"
+        stroke="var(--color-primary)" stroke-width="2" fill="none" marker-end="url(#arrow-ngrx-action)"/>
+  <text x="420" y="350"
+        fill="var(--color-primary)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    addUsers
+  </text>
+
+  <!-- Reducer Box -->
+  <rect x="290" y="370" width="160" height="70" rx="8"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="370" y="400" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Reducer
+  </text>
+  <text x="370" y="420" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Pure function
+  </text>
+  <text x="370" y="432" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    (state, action) => newState
+  </text>
+
+  <!-- Arrow: Reducer -> Store -->
+  <path d="M 290 405 L 210 405"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-ngrx)"/>
+
+  <!-- Store Box -->
+  <rect x="50" y="370" width="150" height="70" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 20%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="125" y="400" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Store
+  </text>
+  <text x="125" y="418" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Single source of truth
+  </text>
+  <text x="125" y="432" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px; font-style: italic;">
+    Immutable state
+  </text>
+
+  <!-- Arrow: Store -> Selector -->
+  <path d="M 125 370 L 125 320"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" fill="none" marker-end="url(#arrow-ngrx)"/>
+
+  <!-- Selector Box -->
+  <rect x="50" y="230" width="150" height="80" rx="8"
+        fill="color-mix(in oklch, var(--color-accent) 20%, transparent)"
+        stroke="var(--color-accent)" stroke-width="2"/>
+  <text x="125" y="260" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    Selectors
+  </text>
+  <text x="125" y="280" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Select state slices
+  </text>
+  <text x="125" y="298" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    selectUsers
+  </text>
+
+  <!-- Arrow: Selector -> Component -->
+  <path d="M 125 230 L 125 175"
+        stroke="var(--color-success)" stroke-width="2" fill="none" marker-end="url(#arrow-ngrx-data)"/>
+  <text x="140" y="205"
+        fill="var(--color-success)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    users$
+  </text>
+
+  <!-- Legend -->
+  <rect x="580" y="360" width="260" height="100" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="600" y="382"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px; font-weight: 600;">
+    Legend:
+  </text>
+
+  <line x1="600" y1="400" x2="640" y2="400"
+        stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-ngrx-action)"/>
+  <text x="650" y="404"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Action dispatched
+  </text>
+
+  <line x1="600" y1="420" x2="640" y2="420"
+        stroke="var(--color-success)" stroke-width="2" marker-end="url(#arrow-ngrx-data)"/>
+  <text x="650" y="424"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Data/State flow
+  </text>
+
+  <line x1="600" y1="440" x2="640" y2="440"
+        stroke="var(--color-base-content)" stroke-opacity="0.6"
+        stroke-width="2" marker-end="url(#arrow-ngrx)"/>
+  <text x="650" y="444"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Internal flow
+  </text>
+</svg>

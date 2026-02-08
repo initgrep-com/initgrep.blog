@@ -11,7 +11,7 @@ author: sheikh irshad
 twitter: 
 facebook: 
 github: 
-image: /assets/images/side-effects.png
+image: /assets/images/categories/react.svg
 categories:
     - react
     - javascript

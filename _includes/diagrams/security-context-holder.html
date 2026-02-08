@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" class="w-full max-w-3xl mx-auto">
+  <defs>
+    <marker id="arrow-ctx" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--color-base-content)" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="350" y="30" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 18px; font-weight: 700;">
+    SecurityContextHolder API Diagram
+  </text>
+
+  <!-- SecurityContextHolder - outermost box -->
+  <rect x="40" y="60" width="620" height="300" rx="12"
+        fill="color-mix(in oklch, var(--color-primary) 10%, transparent)"
+        stroke="var(--color-primary)" stroke-width="2"/>
+  <text x="60" y="90"
+        fill="var(--color-primary)"
+        style="font-family: ui-monospace, monospace; font-size: 14px; font-weight: 700;">
+    SecurityContextHolder
+  </text>
+  <text x="60" y="108"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 11px;">
+    ThreadLocal storage for security context
+  </text>
+
+  <!-- SecurityContext - nested box -->
+  <rect x="70" y="125" width="560" height="215" rx="10"
+        fill="color-mix(in oklch, var(--color-info) 10%, transparent)"
+        stroke="var(--color-info)" stroke-width="2"/>
+  <text x="90" y="150"
+        fill="var(--color-info)"
+        style="font-family: ui-monospace, monospace; font-size: 13px; font-weight: 700;">
+    SecurityContext
+  </text>
+  <text x="90" y="168"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Contains Authentication object
+  </text>
+
+  <!-- Authentication - nested box -->
+  <rect x="100" y="185" width="500" height="135" rx="8"
+        fill="color-mix(in oklch, var(--color-success) 10%, transparent)"
+        stroke="var(--color-success)" stroke-width="2"/>
+  <text x="120" y="210"
+        fill="var(--color-success)"
+        style="font-family: ui-monospace, monospace; font-size: 12px; font-weight: 700;">
+    Authentication
+  </text>
+  <text x="120" y="225"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px;">
+    Represents authenticated user
+  </text>
+
+  <!-- Principal -->
+  <rect x="130" y="245" width="140" height="55" rx="6"
+        fill="color-mix(in oklch, var(--color-warning) 20%, transparent)"
+        stroke="var(--color-warning)" stroke-width="2"/>
+  <text x="200" y="268" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Principal
+  </text>
+  <text x="200" y="285" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    User identity
+  </text>
+  <text x="200" y="295" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (UserDetails)
+  </text>
+
+  <!-- Credentials -->
+  <rect x="290" y="245" width="140" height="55" rx="6"
+        fill="color-mix(in oklch, var(--color-secondary) 20%, transparent)"
+        stroke="var(--color-secondary)" stroke-width="2"/>
+  <text x="360" y="268" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600;">
+    Credentials
+  </text>
+  <text x="360" y="285" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    Password/Token
+  </text>
+  <text x="360" y="295" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    (often erased)
+  </text>
+
+  <!-- GrantedAuthorities -->
+  <rect x="450" y="245" width="130" height="55" rx="6"
+        fill="color-mix(in oklch, var(--color-accent) 20%, transparent)"
+        stroke="var(--color-accent)" stroke-width="2"/>
+  <text x="515" y="263" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    Granted
+  </text>
+  <text x="515" y="278" text-anchor="middle"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 10px; font-weight: 600;">
+    Authorities
+  </text>
+  <text x="515" y="293" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 60%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 9px;">
+    Roles/Permissions
+  </text>
+
+  <!-- Methods on the side -->
+  <rect x="480" y="70" width="170" height="85" rx="6"
+        fill="var(--color-base-200)"
+        stroke="var(--color-base-300)" stroke-width="1"/>
+  <text x="495" y="90"
+        fill="var(--color-base-content)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-weight: 600;">
+    Key Methods:
+  </text>
+  <text x="495" y="108"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    getContext()
+  </text>
+  <text x="495" y="123"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    setContext()
+  </text>
+  <text x="495" y="138"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    getAuthentication()
+  </text>
+  <text x="495" y="153"
+        fill="var(--color-base-content)"
+        style="font-family: ui-monospace, monospace; font-size: 9px;">
+    getAuthorities()
+  </text>
+
+  <!-- Nesting arrows/labels -->
+  <text x="630" y="180" text-anchor="middle"
+        fill="color-mix(in oklch, var(--color-base-content) 50%, transparent)"
+        style="font-family: system-ui, -apple-system, sans-serif; font-size: 10px; font-style: italic;">
+    contains
+  </text>
+  <path d="M 630 190 L 630 240"
+        stroke="var(--color-base-content)" stroke-opacity="0.3"
+        stroke-width="1" stroke-dasharray="3,3"/>
+</svg>
