@@ -7,13 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="msvalidate.01" content="028DD45A8309143DDE8DAFDD41945FE6" />
 
+    <!-- Preconnect hints for external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <!-- DaisyUI + Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons (deferred for performance) -->
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- Google Fonts: Inter for articles, JetBrains Mono for code -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/images/favicon.svg">
@@ -33,8 +40,6 @@
 
     <!-- Custom Styles -->
     <style>
-        /* Google Fonts: Inter for articles, JetBrains Mono for code */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@400;500&display=swap');
         /* Hide scrollbars but allow scrolling */
         .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
         .scrollbar-none::-webkit-scrollbar { display: none; }

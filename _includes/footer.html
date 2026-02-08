@@ -1,10 +1,14 @@
 <!-- Footer -->
-<footer class="footer footer-center py-3 bg-base-200 text-base-content mt-auto">
-    <div class="flex items-center gap-1.5 text-xs opacity-50">
-        <i data-lucide="terminal" class="w-3 h-3"></i>
-        <span class="font-semibold">initgrep</span>
-        <span class="mx-1">&middot;</span>
-        <span>©{{ 'now' | date: '%Y' }} initgrep. Rights are a social construct!</span>
+<footer class="footer py-3 bg-base-200 text-base-content mt-auto">
+    <div class="w-full max-w-4xl mx-auto px-4 flex items-center justify-between text-xs">
+        <a href="/about" class="link link-hover opacity-70 hover:opacity-100">About</a>
+        <div class="flex items-center gap-1.5 opacity-70">
+            <i data-lucide="terminal" class="w-3 h-3"></i>
+            <span class="font-semibold">initgrep</span>
+            <span class="mx-1">&middot;</span>
+            <span>©{{ 'now' | date: '%Y' }}</span>
+        </div>
+        <a href="/privacy" class="link link-hover opacity-70 hover:opacity-100">Privacy</a>
     </div>
 </footer>
 
