@@ -3,14 +3,14 @@
  */
 
 // Available themes (light, dark, and system)
-const THEMES = ['light', 'forest', 'system'];
+const THEMES = ['lofi', 'halloween', 'system'];
 const DEFAULT_THEME = 'system';
 const VERSION = '3.0.2';
 
 // Map themes to Lucide icon names
 var THEME_ICONS = {
-    'light': 'sun',
-    'forest': 'moon',
+    'lofi': 'sun',
+    'halloween': 'moon',
     'system': 'monitor'
 };
 
@@ -20,7 +20,7 @@ var THEME_ICONS = {
 
 // Detect system color scheme preference
 function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'forest' : 'light';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'halloween' : 'lofi';
 }
 
 // Get effective theme (resolves 'system' to actual theme)
@@ -41,7 +41,7 @@ function setTheme(theme) {
 
 function toggleTheme() {
     var currentPref = localStorage.getItem('theme') || DEFAULT_THEME;
-    var order = ['system', 'light', 'forest'];
+    var order = ['system', 'lofi', 'halloween'];
     var idx = order.indexOf(currentPref);
     var newTheme = order[(idx + 1) % order.length];
     setTheme(newTheme);
@@ -88,8 +88,8 @@ function initSystemThemeListener() {
 function updateThemeColor() {
     // Update browser theme-color meta tag based on current theme
     const themeColors = {
-        'light': '#ffffff',
-        'forest': '#171212'
+        'lofi': '#ffffff',
+        'halloween': '#171212'
     };
     const currentTheme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
     const color = themeColors[currentTheme] || '#333333';

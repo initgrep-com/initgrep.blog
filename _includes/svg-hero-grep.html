@@ -21,29 +21,48 @@ Usage: {% include svg-hero-grep.html %}
       50% { opacity: 0.15; }
     }
 
-    .svg-hero-grep .particle {
-      animation: particle-flow-{{ svg_id }} 6s linear infinite;
+    /* Noise particles - fade and scatter at filter */
+    .svg-hero-grep .particle.noise {
+      animation: noise-flow-{{ svg_id }} 6s linear infinite;
     }
 
-    @keyframes particle-flow-{{ svg_id }} {
-      0% { transform: translateX(-100px); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { transform: translateX(940px); opacity: 0; }
+    @keyframes noise-flow-{{ svg_id }} {
+      0% { transform: translate(-100px, 0); opacity: 0; }
+      10% { transform: translate(0px, 0); opacity: 0.8; }
+      45% { transform: translate(320px, 0); opacity: 0.6; }
+      50% { transform: translate(420px, var(--scatter-y, 0px)); opacity: 0.3; }
+      70% { transform: translate(580px, var(--scatter-y, 0px)); opacity: 0; }
+      100% { transform: translate(940px, var(--scatter-y, 0px)); opacity: 0; }
     }
 
-    .svg-hero-grep .particle:nth-child(1) { animation-delay: 0s; }
-    .svg-hero-grep .particle:nth-child(2) { animation-delay: -0.5s; }
-    .svg-hero-grep .particle:nth-child(3) { animation-delay: -1s; }
-    .svg-hero-grep .particle:nth-child(4) { animation-delay: -1.5s; }
-    .svg-hero-grep .particle:nth-child(5) { animation-delay: -2s; }
-    .svg-hero-grep .particle:nth-child(6) { animation-delay: -2.5s; }
-    .svg-hero-grep .particle:nth-child(7) { animation-delay: -3s; }
-    .svg-hero-grep .particle:nth-child(8) { animation-delay: -3.5s; }
-    .svg-hero-grep .particle:nth-child(9) { animation-delay: -4s; }
-    .svg-hero-grep .particle:nth-child(10) { animation-delay: -4.5s; }
-    .svg-hero-grep .particle:nth-child(11) { animation-delay: -5s; }
-    .svg-hero-grep .particle:nth-child(12) { animation-delay: -5.5s; }
+    /* Match particles - converge to output lanes */
+    .svg-hero-grep .particle.match {
+      animation: match-flow-{{ svg_id }} 6s linear infinite;
+    }
+
+    @keyframes match-flow-{{ svg_id }} {
+      0% { transform: translate(-100px, 0); opacity: 0; }
+      10% { transform: translate(0px, 0); opacity: 1; }
+      45% { transform: translate(320px, 0); }
+      50% { transform: translate(420px, var(--converge-y, 0px)); }
+      55% { transform: translate(450px, var(--converge-y, 0px)); }
+      100% { transform: translate(940px, var(--converge-y, 0px)); opacity: 1; }
+    }
+
+    /* Staggered animation delays for noise particles */
+    .svg-hero-grep .particle.noise:nth-of-type(1) { animation-delay: 0s; }
+    .svg-hero-grep .particle.noise:nth-of-type(2) { animation-delay: -0.8s; }
+    .svg-hero-grep .particle.noise:nth-of-type(3) { animation-delay: -1.6s; }
+    .svg-hero-grep .particle.noise:nth-of-type(4) { animation-delay: -2.4s; }
+    .svg-hero-grep .particle.noise:nth-of-type(5) { animation-delay: -3.2s; }
+    .svg-hero-grep .particle.noise:nth-of-type(6) { animation-delay: -4s; }
+    .svg-hero-grep .particle.noise:nth-of-type(7) { animation-delay: -4.8s; }
+    .svg-hero-grep .particle.noise:nth-of-type(8) { animation-delay: -5.6s; }
+
+    /* Staggered animation delays for match particles */
+    .svg-hero-grep .particle.match:nth-of-type(1) { animation-delay: -0.5s; }
+    .svg-hero-grep .particle.match:nth-of-type(2) { animation-delay: -2.5s; }
+    .svg-hero-grep .particle.match:nth-of-type(3) { animation-delay: -4.5s; }
 
     .svg-hero-grep .match-highlight {
       animation: match-glow-{{ svg_id }} 2s ease-in-out infinite;
@@ -72,8 +91,14 @@ Usage: {% include svg-hero-grep.html %}
       50% { opacity: 0.3; }
     }
 
-    .group:hover .svg-hero-grep .particle {
+    /* Hover states - speed up animations */
+    .group:hover .svg-hero-grep .particle.noise {
       animation-duration: 3s;
+    }
+
+    .group:hover .svg-hero-grep .particle.match {
+      animation-duration: 3s;
+      fill: color-mix(in oklch, var(--color-primary) 80%, transparent);
     }
 
     .group:hover .svg-hero-grep .filter-line {
@@ -92,10 +117,6 @@ Usage: {% include svg-hero-grep.html %}
 
     .group:hover .svg-hero-grep .bg-line {
       opacity: 0.05;
-    }
-
-    .group:hover .svg-hero-grep .particle.match {
-      fill: color-mix(in oklch, var(--color-primary) 80%, transparent);
     }
 
     .svg-hero-grep .filter-line,
@@ -175,21 +196,22 @@ Usage: {% include svg-hero-grep.html %}
     <rect class="bg-line" x="680" y="310" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
   </g>
 
+  <!-- Particles: noise fades/scatters, match converges to output lanes -->
   <g class="particles">
-    <circle class="particle" cx="0" cy="90" r="3" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
-    <circle class="particle" cx="0" cy="130" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
-    <circle class="particle" cx="0" cy="160" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
-    <circle class="particle" cx="0" cy="200" r="3" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
-    <circle class="particle" cx="0" cy="240" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
-    <circle class="particle" cx="0" cy="280" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <!-- Noise particles - scatter away from filter -->
+    <circle class="particle noise" style="--scatter-y: -60px" cx="0" cy="70" r="2" fill="color-mix(in oklch, var(--color-base-content) 18%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: -40px" cx="0" cy="90" r="3" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: -25px" cx="0" cy="130" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: 20px" cx="0" cy="160" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: -15px" cx="0" cy="200" r="3" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: 25px" cx="0" cy="240" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: 40px" cx="0" cy="280" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <circle class="particle noise" style="--scatter-y: 50px" cx="0" cy="300" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
 
-    <circle class="particle match" cx="0" cy="110" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
-    <circle class="particle match" cx="0" cy="180" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
-    <circle class="particle match" cx="0" cy="250" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
-
-    <circle class="particle" cx="0" cy="70" r="2" fill="color-mix(in oklch, var(--color-base-content) 18%, transparent)" />
-    <circle class="particle" cx="0" cy="300" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
-    <circle class="particle" cx="0" cy="330" r="2" fill="color-mix(in oklch, var(--color-base-content) 18%, transparent)" />
+    <!-- Match particles - converge to output lanes at y=110, y=180, y=250 -->
+    <circle class="particle match" style="--converge-y: 0px" cx="0" cy="110" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
+    <circle class="particle match" style="--converge-y: 0px" cx="0" cy="180" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
+    <circle class="particle match" style="--converge-y: 0px" cx="0" cy="250" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
   </g>
 
   <g class="filter-element" transform="translate(420, 180)">
