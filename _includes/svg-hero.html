@@ -70,7 +70,6 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
       0%, 100% { opacity: 0.15; transform: scale(1); }
       50% { opacity: 0.25; transform: scale(1.02); }
     }
-    /* Breathing circles around center icon */
     .svg-hero .breathe-circle {
       transform-origin: 420px 180px;
     }
@@ -105,7 +104,6 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
       0%, 100% { transform: scale(1); opacity: 0.08; }
       50% { transform: scale(1.04); opacity: 0.16; }
     }
-    /* Faster breathing on hover */
     .group:hover .svg-hero .breathe-1 {
       animation-duration: 1.5s;
     }
@@ -149,12 +147,10 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
   </style>
 
   <defs>
-    <!-- Dot pattern (same as card) -->
     <pattern id="dots-{{ svg_id }}" patternUnits="userSpaceOnUse" width="20" height="20">
       <circle cx="10" cy="10" r="1.2" fill="color-mix(in oklch, var(--color-base-content) 8%, transparent)" />
     </pattern>
 
-    <!-- Category-specific frame shapes (centered at 420,180) -->
     {%- if frame_type == "hexagon" -%}
     <polygon id="frame-shape-{{ svg_id }}" points="420,112 477,147 477,213 420,248 363,213 363,147" />
     {%- elsif frame_type == "shield" -%}
@@ -176,15 +172,12 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
     {%- endif -%}
   </defs>
 
-  <!-- Flat background (same as card SVG) -->
   <rect width="840" height="360" fill="var(--color-base-200)" />
   <rect width="840" height="360" fill="color-mix(in oklch, var(--color-primary) 18%, transparent)" />
   <rect width="840" height="360" fill="color-mix(in oklch, var(--color-base-content) 3%, transparent)" />
 
-  <!-- Dot pattern overlay (same as card) -->
   <rect class="dot-pattern" width="840" height="360" fill="url(#dots-{{ svg_id }})" />
 
-  <!-- Star field - subtle dots using primary color -->
   <g class="stars" opacity="0.4">
     {%- assign star_positions = "50,30|120,80|200,25|280,95|350,40|500,35|580,90|650,20|720,75|780,45|100,150|180,130|750,140|800,120|30,280|90,320|160,290|250,340|340,300|510,310|590,350|680,290|760,330|810,280|45,180|795,200" | split: "|" -%}
     {%- for pos in star_positions -%}
@@ -194,30 +187,24 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
     {%- endfor -%}
   </g>
 
-  <!-- Corner decorative elements -->
   <g class="corner-accent" opacity="0.3">
-    <!-- Top-left corner -->
     <path d="M0 60 L60 0" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
     <path d="M0 90 L90 0" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
     <circle cx="30" cy="30" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
 
-    <!-- Top-right corner -->
     <path d="M780 0 L840 60" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
     <path d="M750 0 L840 90" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
     <circle cx="810" cy="30" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
 
-    <!-- Bottom-left corner -->
     <path d="M0 300 L60 360" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
     <path d="M0 270 L90 360" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
     <circle cx="30" cy="330" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
 
-    <!-- Bottom-right corner -->
     <path d="M780 360 L840 300" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
     <path d="M750 360 L840 270" stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)" stroke-width="1" fill="none" />
     <circle cx="810" cy="330" r="3" fill="color-mix(in oklch, var(--color-primary) 25%, transparent)" />
   </g>
 
-  <!-- Decorative hexagons scattered -->
   <g opacity="0.15">
     <polygon points="120,90 135,98 135,114 120,122 105,114 105,98" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
     <polygon points="720,90 735,98 735,114 720,122 705,114 705,98" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
@@ -225,12 +212,8 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
     <polygon points="720,270 735,278 735,294 720,302 705,294 705,278" stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)" stroke-width="1" fill="none" />
   </g>
 
-
-  <!-- Frame system - NO shadows, flat design -->
   <g>
-    <!-- Outermost pulse ring -->
     {%- if frame_type == "orbital" -%}
-    <!-- Breathing circles for orbital/react -->
     <circle class="breathe-circle breathe-4" cx="420" cy="180" r="130" stroke="color-mix(in oklch, var(--color-primary) 12%, transparent)" stroke-width="1" fill="none" />
     <circle class="breathe-circle breathe-3" cx="420" cy="180" r="110" stroke="color-mix(in oklch, var(--color-primary) 15%, transparent)" stroke-width="1" fill="none" />
     <circle class="breathe-circle breathe-2" cx="420" cy="180" r="92" stroke="color-mix(in oklch, var(--color-primary) 18%, transparent)" stroke-width="1" fill="none" />
@@ -262,14 +245,11 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
     </g>
     {%- endif -%}
 
-    <!-- Main frame - flat fill, no gradient -->
     <use href="#frame-shape-{{ svg_id }}" fill="color-mix(in oklch, var(--color-base-content) 4%, transparent)" />
 
-    <!-- Inner frame border -->
     <use href="#frame-shape-{{ svg_id }}" stroke="color-mix(in oklch, var(--color-base-content) 12%, transparent)" stroke-width="1.5" fill="none" />
   </g>
 
-  <!-- Centered category icon (same colors as card - base-content 65%) -->
   {%- if cat == 'java' -%}
     <g class="center-icon" transform="translate(420,180) scale(3)" stroke="color-mix(in oklch, var(--color-base-content) 65%, transparent)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <g transform="translate(-12,-12)">
@@ -342,7 +322,6 @@ Usage: {% include svg-hero.html category="java" title="Post Title" %}
     </g>
   {%- endif -%}
 
-  <!-- Secondary icons (same color as card - base-content 22%) -->
   {%- for pos in grid_positions -%}
     {%- assign coords = pos | split: "," -%}
     {%- assign jitter_x = forloop.index | times: title_hash | modulo: 25 | minus: 12 -%}

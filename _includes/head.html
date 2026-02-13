@@ -197,8 +197,12 @@
     <!-- Theme initialization (prevent flash) -->
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
+            var savedTheme = localStorage.getItem('theme') || 'system';
+            var effectiveTheme = savedTheme;
+            if (savedTheme === 'system') {
+                effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'forest' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', effectiveTheme);
         })();
     </script>
 </head>

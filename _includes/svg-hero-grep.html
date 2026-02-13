@@ -1,0 +1,265 @@
+{%- comment -%}
+SVG Hero - Terminal/Grep Design
+Terminal lines + particle convergence: scattered data → filter → highlighted matches
+Represents: init (all data) → grep (filtered matches)
+Usage: {% include svg-hero-grep.html %}
+{%- endcomment -%}
+
+{%- assign svg_id = "hero-grep" -%}
+
+<svg viewBox="0 0 840 360" class="w-full h-full svg-hero-grep" xmlns="http://www.w3.org/2000/svg" aria-label="Hero SVG - Grep" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .svg-hero-grep .bg-line {
+      animation: line-shimmer-{{ svg_id }} 4s ease-in-out infinite;
+    }
+    .svg-hero-grep .bg-line:nth-child(odd) { animation-delay: -2s; }
+    .svg-hero-grep .bg-line:nth-child(3n) { animation-delay: -1s; }
+    .svg-hero-grep .bg-line:nth-child(5n) { animation-delay: -3s; }
+
+    @keyframes line-shimmer-{{ svg_id }} {
+      0%, 100% { opacity: 0.08; }
+      50% { opacity: 0.15; }
+    }
+
+    .svg-hero-grep .particle {
+      animation: particle-flow-{{ svg_id }} 6s linear infinite;
+    }
+
+    @keyframes particle-flow-{{ svg_id }} {
+      0% { transform: translateX(-100px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateX(940px); opacity: 0; }
+    }
+
+    .svg-hero-grep .particle:nth-child(1) { animation-delay: 0s; }
+    .svg-hero-grep .particle:nth-child(2) { animation-delay: -0.5s; }
+    .svg-hero-grep .particle:nth-child(3) { animation-delay: -1s; }
+    .svg-hero-grep .particle:nth-child(4) { animation-delay: -1.5s; }
+    .svg-hero-grep .particle:nth-child(5) { animation-delay: -2s; }
+    .svg-hero-grep .particle:nth-child(6) { animation-delay: -2.5s; }
+    .svg-hero-grep .particle:nth-child(7) { animation-delay: -3s; }
+    .svg-hero-grep .particle:nth-child(8) { animation-delay: -3.5s; }
+    .svg-hero-grep .particle:nth-child(9) { animation-delay: -4s; }
+    .svg-hero-grep .particle:nth-child(10) { animation-delay: -4.5s; }
+    .svg-hero-grep .particle:nth-child(11) { animation-delay: -5s; }
+    .svg-hero-grep .particle:nth-child(12) { animation-delay: -5.5s; }
+
+    .svg-hero-grep .match-highlight {
+      animation: match-glow-{{ svg_id }} 2s ease-in-out infinite;
+    }
+
+    @keyframes match-glow-{{ svg_id }} {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.7; }
+    }
+
+    .svg-hero-grep .filter-line {
+      animation: scanner-pulse-{{ svg_id }} 2s ease-in-out infinite;
+    }
+
+    @keyframes scanner-pulse-{{ svg_id }} {
+      0%, 100% { opacity: 0.35; stroke-width: 2; }
+      50% { opacity: 0.6; stroke-width: 3; }
+    }
+
+    .svg-hero-grep .filter-glow {
+      animation: filter-glow-{{ svg_id }} 2s ease-in-out infinite;
+    }
+
+    @keyframes filter-glow-{{ svg_id }} {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.3; }
+    }
+
+    .group:hover .svg-hero-grep .particle {
+      animation-duration: 3s;
+    }
+
+    .group:hover .svg-hero-grep .filter-line {
+      animation-duration: 0.8s;
+      stroke: color-mix(in oklch, var(--color-primary) 70%, transparent);
+    }
+
+    .group:hover .svg-hero-grep .filter-glow {
+      opacity: 0.5;
+    }
+
+    .group:hover .svg-hero-grep .match-highlight {
+      animation-duration: 0.8s;
+      opacity: 0.9;
+    }
+
+    .group:hover .svg-hero-grep .bg-line {
+      opacity: 0.05;
+    }
+
+    .group:hover .svg-hero-grep .particle.match {
+      fill: color-mix(in oklch, var(--color-primary) 80%, transparent);
+    }
+
+    .svg-hero-grep .filter-line,
+    .svg-hero-grep .filter-glow,
+    .svg-hero-grep .match-highlight,
+    .svg-hero-grep .particle {
+      transition: stroke 0.3s ease, fill 0.3s ease, opacity 0.3s ease;
+    }
+  </style>
+
+  <defs>
+    <pattern id="dots-{{ svg_id }}" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="color-mix(in oklch, var(--color-base-content) 8%, transparent)" />
+    </pattern>
+
+    <linearGradient id="filter-gradient-{{ svg_id }}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0" />
+      <stop offset="50%" stop-color="var(--color-primary)" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <rect width="840" height="360" fill="var(--color-base-200)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-primary) 18%, transparent)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-base-content) 3%, transparent)" />
+
+  <rect class="dot-pattern" width="840" height="360" fill="url(#dots-{{ svg_id }})" opacity="0.6" />
+
+  <g class="terminal-lines">
+    <rect class="bg-line" x="40" y="50" width="180" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="250" y="50" width="120" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="480" y="50" width="200" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="710" y="50" width="90" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="60" y="80" width="140" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="220" y="80" width="80" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="500" y="80" width="160" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="690" y="80" width="110" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="30" y="110" width="220" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="280" y="110" width="100" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="460" y="110" width="180" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="670" y="110" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="50" y="140" width="160" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="240" y="140" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="480" y="140" width="140" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="650" y="140" width="150" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="40" y="170" width="100" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+    <rect class="bg-line" x="170" y="170" width="70" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+    <rect class="bg-line" x="600" y="170" width="90" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+    <rect class="bg-line" x="720" y="170" width="80" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+
+    <rect class="bg-line" x="60" y="195" width="120" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+    <rect class="bg-line" x="580" y="195" width="110" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+    <rect class="bg-line" x="710" y="195" width="100" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 10%, transparent)" />
+
+    <rect class="bg-line" x="30" y="220" width="180" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="240" y="220" width="110" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="470" y="220" width="170" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="670" y="220" width="140" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="50" y="250" width="150" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="230" y="250" width="140" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="490" y="250" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="650" y="250" width="160" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="70" y="280" width="190" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="290" y="280" width="80" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="460" y="280" width="200" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="690" y="280" width="120" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+
+    <rect class="bg-line" x="40" y="310" width="170" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="240" y="310" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="500" y="310" width="150" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+    <rect class="bg-line" x="680" y="310" width="130" height="3" rx="1.5" fill="color-mix(in oklch, var(--color-base-content) 12%, transparent)" />
+  </g>
+
+  <g class="particles">
+    <circle class="particle" cx="0" cy="90" r="3" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <circle class="particle" cx="0" cy="130" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
+    <circle class="particle" cx="0" cy="160" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+    <circle class="particle" cx="0" cy="200" r="3" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
+    <circle class="particle" cx="0" cy="240" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 20%, transparent)" />
+    <circle class="particle" cx="0" cy="280" r="2" fill="color-mix(in oklch, var(--color-base-content) 25%, transparent)" />
+
+    <circle class="particle match" cx="0" cy="110" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
+    <circle class="particle match" cx="0" cy="180" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
+    <circle class="particle match" cx="0" cy="250" r="4" fill="color-mix(in oklch, var(--color-primary) 45%, transparent)" />
+
+    <circle class="particle" cx="0" cy="70" r="2" fill="color-mix(in oklch, var(--color-base-content) 18%, transparent)" />
+    <circle class="particle" cx="0" cy="300" r="2.5" fill="color-mix(in oklch, var(--color-base-content) 22%, transparent)" />
+    <circle class="particle" cx="0" cy="330" r="2" fill="color-mix(in oklch, var(--color-base-content) 18%, transparent)" />
+  </g>
+
+  <g class="filter-element" transform="translate(420, 180)">
+    <rect class="filter-glow" x="-30" y="-170" width="60" height="340" fill="url(#filter-gradient-{{ svg_id }})" />
+
+    <line class="filter-line" x1="0" y1="-150" x2="0" y2="150"
+          stroke="color-mix(in oklch, var(--color-primary) 50%, transparent)"
+          stroke-width="2" />
+
+    <path d="M-15 -140 L-15 -120 M-15 120 L-15 140"
+          stroke="color-mix(in oklch, var(--color-primary) 40%, transparent)"
+          stroke-width="2"
+          fill="none" />
+    <path d="M15 -140 L15 -120 M15 120 L15 140"
+          stroke="color-mix(in oklch, var(--color-primary) 40%, transparent)"
+          stroke-width="2"
+          fill="none" />
+
+    <circle cx="0" cy="0" r="25"
+            stroke="color-mix(in oklch, var(--color-primary) 35%, transparent)"
+            stroke-width="2"
+            fill="color-mix(in oklch, var(--color-primary) 10%, transparent)" />
+    <circle cx="0" cy="0" r="15"
+            stroke="color-mix(in oklch, var(--color-primary) 25%, transparent)"
+            stroke-width="1"
+            fill="none" />
+    <circle cx="0" cy="0" r="8"
+            fill="color-mix(in oklch, var(--color-primary) 40%, transparent)" />
+  </g>
+
+  <g class="matches">
+    <rect class="match-highlight" x="500" y="108" width="180" height="6" rx="3"
+          fill="color-mix(in oklch, var(--color-primary) 50%, transparent)" />
+    <rect class="match-highlight" x="480" y="177" width="220" height="6" rx="3"
+          fill="color-mix(in oklch, var(--color-primary) 55%, transparent)"
+          style="animation-delay: -0.7s;" />
+    <rect class="match-highlight" x="520" y="247" width="200" height="6" rx="3"
+          fill="color-mix(in oklch, var(--color-primary) 50%, transparent)"
+          style="animation-delay: -1.4s;" />
+
+    <line x1="445" y1="110" x2="495" y2="110"
+          stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)"
+          stroke-width="1"
+          stroke-dasharray="4 4" />
+    <line x1="445" y1="180" x2="475" y2="180"
+          stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)"
+          stroke-width="1"
+          stroke-dasharray="4 4" />
+    <line x1="445" y1="250" x2="515" y2="250"
+          stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)"
+          stroke-width="1"
+          stroke-dasharray="4 4" />
+  </g>
+
+  <g class="corner-accent" opacity="0.25">
+    <path d="M0 40 L40 0" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M800 0 L840 40" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M0 320 L40 360" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M800 360 L840 320" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+  </g>
+
+  <g opacity="0.4">
+    <text x="25" y="55" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-base-content) 30%, transparent)">$</text>
+    <text x="25" y="115" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-base-content) 30%, transparent)">$</text>
+    <text x="25" y="175" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-base-content) 30%, transparent)">$</text>
+    <text x="25" y="255" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-base-content) 30%, transparent)">$</text>
+    <text x="25" y="315" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-base-content) 30%, transparent)">$</text>
+
+    <text x="710" y="114" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-primary) 50%, transparent)">&gt;</text>
+    <text x="730" y="183" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-primary) 50%, transparent)">&gt;</text>
+    <text x="750" y="252" font-family="monospace" font-size="10" fill="color-mix(in oklch, var(--color-primary) 50%, transparent)">&gt;</text>
+  </g>
+</svg>

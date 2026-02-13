@@ -2,52 +2,65 @@
  * initgrep v3 - DaisyUI Theme System
  */
 
-// Available themes (light and dark only)
-const THEMES = ['light', 'forest'];
-const DEFAULT_THEME = 'light';
-const VERSION = '3.0.1';
+// Available themes (light, dark, and system)
+const THEMES = ['light', 'forest', 'system'];
+const DEFAULT_THEME = 'system';
+const VERSION = '3.0.2';
 
 // Map themes to Lucide icon names
 var THEME_ICONS = {
     'light': 'sun',
-    'forest': 'moon'
+    'forest': 'moon',
+    'system': 'monitor'
 };
 
 /**
  * Theme Management
  */
+
+// Detect system color scheme preference
+function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'forest' : 'light';
+}
+
+// Get effective theme (resolves 'system' to actual theme)
+function getEffectiveTheme(preference) {
+    return preference === 'system' ? getSystemTheme() : preference;
+}
+
 function setTheme(theme) {
     if (!THEMES.includes(theme)) {
         theme = DEFAULT_THEME;
     }
-    document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    var effectiveTheme = getEffectiveTheme(theme);
+    document.documentElement.setAttribute('data-theme', effectiveTheme);
     updateThemeColor();
-    updateThemeIcon();
+    updateThemeIcon(theme);
 }
 
 function toggleTheme() {
-    var currentTheme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
-    var newTheme = currentTheme === 'light' ? 'forest' : 'light';
+    var currentPref = localStorage.getItem('theme') || DEFAULT_THEME;
+    var order = ['system', 'light', 'forest'];
+    var idx = order.indexOf(currentPref);
+    var newTheme = order[(idx + 1) % order.length];
     setTheme(newTheme);
 }
 
 function loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme && THEMES.includes(savedTheme)) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    } else {
-        document.documentElement.setAttribute('data-theme', DEFAULT_THEME);
-    }
+    var savedTheme = localStorage.getItem('theme');
+    var preference = (savedTheme && THEMES.includes(savedTheme)) ? savedTheme : DEFAULT_THEME;
+    var effectiveTheme = getEffectiveTheme(preference);
+    document.documentElement.setAttribute('data-theme', effectiveTheme);
     updateThemeColor();
-    updateThemeIcon();
+    updateThemeIcon(preference);
 }
 
-function updateThemeIcon() {
+function updateThemeIcon(preference) {
     var btn = document.getElementById('themeBtn');
     if (!btn) return;
-    var theme = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
-    var iconName = THEME_ICONS[theme] || 'sun';
+    var pref = preference || localStorage.getItem('theme') || DEFAULT_THEME;
+    var iconName = THEME_ICONS[pref] || 'monitor';
     var iconEl = btn.querySelector('svg, i');
     if (iconEl) {
         var newIcon = document.createElement('i');
@@ -58,6 +71,18 @@ function updateThemeIcon() {
             lucide.createIcons({ nodes: [newIcon] });
         }
     }
+}
+
+// Listen for system theme changes (for users on 'system' preference)
+function initSystemThemeListener() {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+        var pref = localStorage.getItem('theme') || DEFAULT_THEME;
+        if (pref === 'system') {
+            var effectiveTheme = getSystemTheme();
+            document.documentElement.setAttribute('data-theme', effectiveTheme);
+            updateThemeColor();
+        }
+    });
 }
 
 function updateThemeColor() {
@@ -307,6 +332,7 @@ function initCodeCopyButtons() {
 function init() {
     checkVersion();
     loadTheme();
+    initSystemThemeListener();
     initKeyboardShortcuts();
     initSearchInput();
     initLineNumbers();

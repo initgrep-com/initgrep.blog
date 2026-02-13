@@ -1,0 +1,202 @@
+{%- comment -%}
+SVG Hero - Waveform Design
+Signal processing visualization: chaotic waves → processor → clean signal
+Represents: init (raw data) → grep (filtered output)
+Usage: {% include svg-hero-waveform.html %}
+{%- endcomment -%}
+
+{%- assign svg_id = "hero-waveform" -%}
+
+<svg viewBox="0 0 840 360" class="w-full h-full svg-hero-waveform" xmlns="http://www.w3.org/2000/svg" aria-label="Hero SVG - Waveform" preserveAspectRatio="xMidYMid slice">
+  <style>
+    .svg-hero-waveform .wave-path {
+      stroke-dasharray: 1200;
+      animation: wave-flow-{{ svg_id }} 4s linear infinite;
+    }
+    .svg-hero-waveform .wave-path.wave-1 { animation-delay: 0s; }
+    .svg-hero-waveform .wave-path.wave-2 { animation-delay: -1s; }
+    .svg-hero-waveform .wave-path.wave-3 { animation-delay: -2s; }
+    .svg-hero-waveform .wave-path.wave-4 { animation-delay: -3s; }
+
+    @keyframes wave-flow-{{ svg_id }} {
+      0% { stroke-dashoffset: 1200; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .svg-hero-waveform .clean-wave {
+      stroke-dasharray: 800;
+      animation: clean-flow-{{ svg_id }} 3s linear infinite;
+    }
+
+    @keyframes clean-flow-{{ svg_id }} {
+      0% { stroke-dashoffset: 800; }
+      100% { stroke-dashoffset: 0; }
+    }
+
+    .svg-hero-waveform .processor-glow {
+      animation: processor-pulse-{{ svg_id }} 2s ease-in-out infinite;
+    }
+
+    @keyframes processor-pulse-{{ svg_id }} {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.05); }
+    }
+
+    .svg-hero-waveform .processor-core {
+      animation: core-pulse-{{ svg_id }} 2s ease-in-out infinite;
+    }
+
+    @keyframes core-pulse-{{ svg_id }} {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+
+    .group:hover .svg-hero-waveform .wave-path {
+      animation-duration: 1.5s;
+    }
+
+    .group:hover .svg-hero-waveform .clean-wave {
+      animation-duration: 1.2s;
+      stroke: color-mix(in oklch, var(--color-primary) 65%, transparent);
+    }
+
+    .group:hover .svg-hero-waveform .processor-glow {
+      animation-duration: 0.8s;
+      opacity: 0.7;
+    }
+
+    .group:hover .svg-hero-waveform .processor-core {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .group:hover .svg-hero-waveform .wave-path {
+      stroke: color-mix(in oklch, var(--color-base-content) 35%, transparent);
+    }
+
+    .svg-hero-waveform .processor-core,
+    .svg-hero-waveform .clean-wave,
+    .svg-hero-waveform .wave-path {
+      transition: stroke 0.3s ease, transform 0.3s ease;
+    }
+  </style>
+
+  <defs>
+    <pattern id="dots-{{ svg_id }}" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1.2" fill="color-mix(in oklch, var(--color-base-content) 8%, transparent)" />
+    </pattern>
+
+    <radialGradient id="processor-gradient-{{ svg_id }}" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.4" />
+      <stop offset="70%" stop-color="var(--color-primary)" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="840" height="360" fill="var(--color-base-200)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-primary) 18%, transparent)" />
+  <rect width="840" height="360" fill="color-mix(in oklch, var(--color-base-content) 3%, transparent)" />
+
+  <rect class="dot-pattern" width="840" height="360" fill="url(#dots-{{ svg_id }})" opacity="0.6" />
+
+  <g class="chaotic-waves">
+    <path class="wave-path wave-1"
+          d="M0 180 Q30 140, 60 180 Q90 220, 120 180 Q150 140, 180 180 Q210 220, 240 180 Q270 140, 300 180 Q330 220, 360 180 L420 180"
+          stroke="color-mix(in oklch, var(--color-base-content) 25%, transparent)"
+          stroke-width="2"
+          fill="none" />
+
+    <path class="wave-path wave-2"
+          d="M0 180 Q60 100, 120 180 Q180 260, 240 180 Q300 100, 360 180 L420 180"
+          stroke="color-mix(in oklch, var(--color-base-content) 20%, transparent)"
+          stroke-width="1.5"
+          fill="none" />
+
+    <path class="wave-path wave-3"
+          d="M0 180 Q25 165, 50 175 Q75 195, 100 180 Q125 160, 150 185 Q175 205, 200 175 Q225 155, 250 190 Q275 215, 300 170 Q325 145, 350 195 Q375 225, 400 180 L420 180"
+          stroke="color-mix(in oklch, var(--color-base-content) 22%, transparent)"
+          stroke-width="1.5"
+          fill="none" />
+
+    <path class="wave-path wave-4"
+          d="M0 180 L20 175 L40 190 L60 170 L80 195 L100 165 L120 200 L140 160 L160 205 L180 155 L200 210 L220 150 L240 215 L260 145 L280 210 L300 155 L320 200 L340 165 L360 185 L380 175 L400 180 L420 180"
+          stroke="color-mix(in oklch, var(--color-base-content) 15%, transparent)"
+          stroke-width="1"
+          fill="none" />
+  </g>
+
+  <g class="processor" transform="translate(420, 180)">
+    <circle class="processor-glow" cx="0" cy="0" r="80" fill="url(#processor-gradient-{{ svg_id }})" />
+    <circle class="processor-glow" cx="0" cy="0" r="60" fill="url(#processor-gradient-{{ svg_id }})" style="animation-delay: -0.5s;" />
+
+    <circle cx="0" cy="0" r="45"
+            stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)"
+            stroke-width="2"
+            fill="none" />
+
+    <circle cx="0" cy="0" r="35"
+            stroke="color-mix(in oklch, var(--color-primary) 20%, transparent)"
+            stroke-width="1"
+            fill="none"
+            stroke-dasharray="8 4" />
+
+    <circle class="processor-core" cx="0" cy="0" r="20"
+            fill="color-mix(in oklch, var(--color-primary) 15%, transparent)"
+            stroke="color-mix(in oklch, var(--color-primary) 45%, transparent)"
+            stroke-width="2" />
+
+    <circle cx="0" cy="0" r="6"
+            fill="color-mix(in oklch, var(--color-primary) 50%, transparent)" />
+
+    <line x1="0" y1="-55" x2="0" y2="-48"
+          stroke="color-mix(in oklch, var(--color-primary) 40%, transparent)"
+          stroke-width="2" />
+    <line x1="0" y1="48" x2="0" y2="55"
+          stroke="color-mix(in oklch, var(--color-primary) 40%, transparent)"
+          stroke-width="2" />
+  </g>
+
+  <g class="clean-output">
+    <path class="clean-wave"
+          d="M420 180 Q450 140, 480 180 Q510 220, 540 180 Q570 140, 600 180 Q630 220, 660 180 Q690 140, 720 180 Q750 220, 780 180 Q810 140, 840 180"
+          stroke="color-mix(in oklch, var(--color-base-content) 55%, transparent)"
+          stroke-width="2.5"
+          fill="none" />
+
+    <path class="clean-wave"
+          d="M420 180 Q450 150, 480 180 Q510 210, 540 180 Q570 150, 600 180 Q630 210, 660 180 Q690 150, 720 180 Q750 210, 780 180 Q810 150, 840 180"
+          stroke="color-mix(in oklch, var(--color-primary) 25%, transparent)"
+          stroke-width="1.5"
+          fill="none"
+          style="animation-delay: -1s;" />
+  </g>
+
+  <g opacity="0.3">
+    <path d="M80 120 L100 120 L95 115 M100 120 L95 125"
+          stroke="color-mix(in oklch, var(--color-base-content) 30%, transparent)"
+          stroke-width="1"
+          fill="none" />
+    <path d="M120 240 L140 240 L135 235 M140 240 L135 245"
+          stroke="color-mix(in oklch, var(--color-base-content) 30%, transparent)"
+          stroke-width="1"
+          fill="none" />
+  </g>
+
+  <g opacity="0.3">
+    <path d="M700 120 L720 120 L715 115 M720 120 L715 125"
+          stroke="color-mix(in oklch, var(--color-base-content) 40%, transparent)"
+          stroke-width="1"
+          fill="none" />
+    <path d="M680 240 L700 240 L695 235 M700 240 L695 245"
+          stroke="color-mix(in oklch, var(--color-base-content) 40%, transparent)"
+          stroke-width="1"
+          fill="none" />
+  </g>
+
+  <g class="corner-accent" opacity="0.25">
+    <path d="M0 40 L40 0" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M800 0 L840 40" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M0 320 L40 360" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+    <path d="M800 360 L840 320" stroke="color-mix(in oklch, var(--color-primary) 30%, transparent)" stroke-width="1" fill="none" />
+  </g>
+</svg>
